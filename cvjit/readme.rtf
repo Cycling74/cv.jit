@@ -1,0 +1,52 @@
+{\rtf1\ansi\ansicpg932\cocoartf949\cocoasubrtf270
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10840\viewh10240\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\b\fs48 \cf0 About cv.jit Development\
+\
+
+\fs28 Compiling cv.jit\
+\
+
+\b0\fs24 You will find Visual Studio and Xcode projects in the "cvjit-dev/projects/Windows" and "cvjit-dev/projects/OSX" folders, respectively.\
+\
+You must install the Max and Jitter development SDKs before compiling cv.jit.\
+\
+Before you can build the externals, you must copy the Cycling74 include directories to the "cvjit-dev/Cycling74support" folder. You do not need the MSP includes, so only copy the "jit-includes" and "max-incudes".\
+\
+You should be able to build all externals at once using the "build solution" option in Visual Studio or by picking "build-all" as the target in Xcode.\
+\
+The compiled externals should be found in the "cvjit-dev/build/" directory.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b\fs28 \cf0 About OpenCV\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b0\fs24 \cf0 Some of the cv.jit externals depend on the OpenCV library. <http://sourceforge.net/projects/opencvlibrary/>\
+\
+The necessary headers, as well as libraries for compiling cv.jit are provided. You can find them in the "cvjit-dev/OpenCVsupport" and "cvjit-dev/lib" folders.\
+\
+cv.jit externals link statically to OpenCV. This decision was made because I wanted cv.jit externals to have no dependencies, at the cost of having bloated files. For this reason, those who wish to compile their own OpenCV libraries must be careful to compile them as .a (under OSX) and .lib (under Windows) static libraries.\
+\
+There is a conflict between the Max and OpenCV includes as both contain definitions of the uchar type. The easiest way to solve this problem is to simply comment out the OpenCV typedef.\
+\
+Under Windows, when OpenCV encounters an error it reports via a message box. This causes no problem but under the OSX implementation, the error message is printed to stderr, which does not show up in Max. Since this is followed by an exit command, the result is that Max will suddenly and silently quit when something goes wrong with OpenCV. This makes debugging particularly difficult. For this reason, I have changed the implementation of the error reporting functions. If you wish to build your own OpenCV libraries under OSX, use the file "cvjit-dev/OpenCVsupport/jitcxerror.cpp" instead of the standard "cxerror". OpenCV errors will now be reported to the Max window. However, this is only meant for debugging! If OpenCV complains, it is because there is something wrong with the program. Be sure to properly check your data before calling any OpenCV function. Again, 
+\b there should never be any OpenCV error in a release external.
+\b0  \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b\fs28 \cf0 Abstractions and help files\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b0\fs24 \cf0 The patches for abstractions and help files are also provided. Abstractions are the same for both platforms. However help files are slightly different. The Windows version uses jit.dx.grab instead of jit.qt.grab. Furthermore, some of the comments were adjusted to appear nicely in both OSX and Windows in Max 4.x. (Max 5 doesn't have this problem.)\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\qr\pardirnatural
+\cf0 Jean-Marc Pelletier\
+2008.07.07 }

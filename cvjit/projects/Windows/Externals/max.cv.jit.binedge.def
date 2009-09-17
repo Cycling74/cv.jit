@@ -1,0 +1,6 @@
+;cv.jit.binedge.def
+
+LIBRARY	cv.jit.binedge.mxe
+
+EXPORTS
+	main

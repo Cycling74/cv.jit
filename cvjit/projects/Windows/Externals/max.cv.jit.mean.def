@@ -1,0 +1,6 @@
+;cv.jit.mean.def
+
+LIBRARY	cv.jit.mean.mxe
+
+EXPORTS
+	main

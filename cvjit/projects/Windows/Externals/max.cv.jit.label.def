@@ -1,0 +1,6 @@
+;cv.jit.label.def
+
+LIBRARY	cv.jit.label.mxe
+
+EXPORTS
+	main

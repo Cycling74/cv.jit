@@ -1,0 +1,6 @@
+;cv.jit.floodfill.def
+
+LIBRARY	cv.jit.floodfill.mxe
+
+EXPORTS
+	main

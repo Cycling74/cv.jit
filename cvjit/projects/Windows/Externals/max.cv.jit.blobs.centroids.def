@@ -1,0 +1,6 @@
+;cv.jit.blobs.centroids.def
+
+LIBRARY	cv.jit.blobs.centroids.mxe
+
+EXPORTS
+	main

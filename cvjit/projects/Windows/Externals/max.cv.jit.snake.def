@@ -1,0 +1,6 @@
+;cv.jit.snake.def
+
+LIBRARY	cv.jit.snake.mxe
+
+EXPORTS
+	main

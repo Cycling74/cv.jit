@@ -1,0 +1,6 @@
+;cv.jit.extrema.def
+
+LIBRARY	cv.jit.extrema.mxe
+
+EXPORTS
+	main

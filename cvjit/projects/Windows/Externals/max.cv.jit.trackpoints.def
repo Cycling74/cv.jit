@@ -1,0 +1,6 @@
+;cv.jit.trackpoints.def
+
+LIBRARY	cv.jit.trackpoints.mxe
+
+EXPORTS
+	main

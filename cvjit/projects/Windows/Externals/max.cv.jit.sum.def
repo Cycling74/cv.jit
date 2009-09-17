@@ -1,0 +1,6 @@
+;cv.jit.sum.def
+
+LIBRARY	cv.jit.sum.mxe
+
+EXPORTS
+	main

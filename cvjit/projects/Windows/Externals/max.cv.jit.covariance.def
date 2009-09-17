@@ -1,0 +1,6 @@
+;cv.jit.covariance.def
+
+LIBRARY	cv.jit.covariance.mxe
+
+EXPORTS
+	main

@@ -1,0 +1,6 @@
+;cv.jit.resize.def
+
+LIBRARY	cv.jit.resize.mxe
+
+EXPORTS
+	main

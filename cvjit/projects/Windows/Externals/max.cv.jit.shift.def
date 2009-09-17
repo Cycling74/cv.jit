@@ -1,0 +1,6 @@
+;cv.jit.shift.def
+
+LIBRARY	cv.jit.shift.mxe
+
+EXPORTS
+	main

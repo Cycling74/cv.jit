@@ -1,0 +1,6 @@
+;cv.jit.features.def
+
+LIBRARY	cv.jit.features.mxe
+
+EXPORTS
+	main

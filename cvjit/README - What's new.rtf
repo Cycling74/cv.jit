@@ -1,0 +1,244 @@
+{\rtf1\ansi\ansicpg932\cocoartf949\cocoasubrtf460
+{\fonttbl\f0\fnil\fcharset0 Verdana;}
+{\colortbl;\red255\green255\blue255;}
+{\info
+{\title cv}
+{\author Jean-Marc Pelletier}}\paperw11905\paperh16837\margl1440\margr1440\margb1701\margt1985\vieww10780\viewh9520\viewkind0
+\deftab720
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\f0\b\fs38 \cf0 \ul \ulc0 cv.jit 1.7 What's New
+\b0\fs24 \ulnone \
+\pard\pardeftab720\ri5\ql\qnatural
+
+\fs22 \cf0 2009-07-17\
+\
+
+\b cv.jit.blobs.moments:
+\b0  Fixed a problem where the order of the Hu invariants did not match that of those outputted by cv.jit.moments.\
+\
+
+\b cv.jit.centroids
+\b0 : Outputs coordinates of (-1,-1) when the image is empty instead of NaN.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b\fs38 \cf0 \ul \
+\
+cv.jit 1.6 What's New
+\b0\fs24 \ulnone \
+\pard\pardeftab720\ri5\ql\qnatural
+
+\fs22 \cf0 2008-02-27\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b\fs38 \cf0 \ul \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\fs24 \cf0 CHANGES TO OLD OBJECTS\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b0\fs22 \cf0 \ulnone \
+All externals are now compiled as universal binaries under Mac OS. This means that there is no need to use separate versions for PPC and Intel machines.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b \cf0 	cv.jit.centroids
+\b0 : rewritten so that it can be used in js. Also, the external now supports any data type.\
+
+\b 	cv.jit.dilate/ cv.jit.erode
+\b0 : Under Mac OS, these externals now use Core Image functionality which can in the best of cases improve performance by an order of magnitude. \
+
+\b 	cv.jit.faces
+\b0 : Added an attribute called \'93nfaces\'94 that returns the number of detected faces. This can be useful for detecting when there are no faces in the image, as the external returns a dummy matrix in this case.\
+
+\b 	cv.jit.features
+\b0 : Added a new attribute called \'93precision\'94, which when set to 1 tells the external to calculate features with sub-pixel accuracy.\
+
+\b 	cv.jit.track: 
+\b0 The maximum number of points that can be tracked at once used to be set to 255 but can now be arbitrarily large. Note however that very large number of tracking points will result in very slow performance.\
+	
+\b cv.jit.label: 
+\b0 Fixed a bug that caused "mode 1" operation to not label correctly when "charmode" was set to 1.
+\i \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\i0\b\fs38 \cf0 \ul \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\fs24 \cf0 NEW EXTERNALS\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\fs22 \cf0 \ulnone 	cv.jit.resize
+\b0 : This external uses bi-cubic interpolation to resize an imcomming matrix. This yields a higher-quality image than using jit.matrix with a lower resolution.\
+
+\b 	cv.jit.shift: 
+\b0 Implements the MeanShift and CAMShift algorithms for tracking greyscale and binary blobs.\
+
+\b 	cv.jit.shift.draw: 
+\b0 Drawing utility for cv.jit.shift.
+\b\fs38 \ul \
+\
+cv.jit 1.5 What's New
+\b0\fs24 \ulnone \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\fs22 \cf0 2006-10-03
+\fs24 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b \cf0 \ul CHANGES TO OLD OBJECTS\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b0 \cf0 \ulnone \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b\fs22 \cf0 	cv.jit.moments
+\b0 : output now accessible from js.\
+
+\b 	cv.jit.mean
+\b0 : now accurately computes mean even for char data, no need to convert to float before processing.\
+
+\b 	cv.jit.track
+\b0 : output now only has 1-dimension, instead of having a dummy second dimension of 1.\
+
+\b 	cv.jit.orientation
+\b0 : changed algorithm, now correctly outputs only values between 0. and 
+\i pi.
+\i0 .\
+
+\b 	cv.jit.elongation
+\b0 : changed algorithm, gives better results.\
+
+\b 	cv.jit.open, cv.jit.close
+\b0 : now properly filter out "done" message from 
+\i patcherargs.\
+\
+	
+\i0 The pdf manual is no longer updated, but every external and abstraction now has its own help file.
+\fs24 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b \cf0 \ul NEW EXTERNALS
+\b0 \ulnone \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\fs22 \cf0 	
+\b cv.jit.blobs.*
+\b0  : this series of externals performs a number of analysis function on individual blobs (connected components) labeld by cv.jit.label.\
+\
+	
+\b cv.jit.blobs.bounds
+\b0 : finds bounding box for each blob.\
+	
+\b cv.jit.blobs.centroids
+\b0 : finds centroids and mass for each blob.\
+	
+\b cv.jit.blobs.direction
+\b0 : estimates the direction each blob points to.\
+	
+\b cv.jit.blobs.elongation
+\b0 : measures each blob's elongation (thinness).\
+	
+\b cv.jit.blobs.moments
+\b0 : calculate moments of inertia, Hu invariants, centroids and mass for each blob.\
+	
+\b cv.jit.blobs.orientation
+\b0 : finds the main axis for each blob.\
+	
+\b cv.jit.blobs.recon
+\b0 : estimates the statistical distance between each blob and a trained model.\
+	
+\b cv.jit.blobs.sort
+\b0 : assigns blobs labels that do not easily change from frame to frame.\
+\
+	
+\b cv.jit.canny
+\b0 : extract edges.\
+	
+\b cv.jit.faces
+\b0 : finds human faces. (Not available for pre-Jitter 1.6 version on Mac.)\
+	
+\b cv.jit.features
+\b0 : finds high-contrast, easy-to-track areas.\
+	
+\b cv.jit.hough
+\b0 : computes Hough space from edges.\
+	
+\b cv.jit.learn
+\b0 : perform pattern recognition.\
+	
+\b cv.jit.lines
+\b0 : find straight lines.\
+	
+\b cv.jit.ravg
+\b0 : compute the running average over time. (Essentially duplicates 
+\b jit.slide 
+\b0 but gives more accurate output with char input.)
+\fs24 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b \cf0 \ul NEW ABSTRACTIONS
+\b0 \ulnone \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\fs22 \cf0 	The 
+\b .draw
+\b0  series: several abstractions are provided for simply overlaying data on an input image.\
+\
+	
+\b cv.jit.blobs.bounds.draw
+\b0 \
+	
+\b cv.jit.blobs.centroids.draw
+\b0 \
+	
+\b cv.jit.blobs.direction.draw
+\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b \cf0 	cv.jit.blobs.elongation.draw\
+	cv.jit.blobs.orient.draw 
+\b0 (For use with cv.jit.blobs.orientation.)
+\b \
+	cv.jit.centroids.draw\
+	cv.jit.faces.draw\
+	cv.jit.features.draw\
+	cv.jit.lines.draw\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri5\ql\qnatural
+
+\b0 \cf0 	
+\b cv.jit.track.draw
+\b0  (Replaces cv.jit.trackpoint.)\
+	\
+	
+\b cv.jit.blobs.color
+\b0 /
+\b cv.jit.blobs.colour
+\b0 : assign random colours to 
+\b cv.jit.label
+\b0 's output (previously only a sub-patcher).\
+	
+\b cv.jit.direction
+\b0 : finds the direction the image leans/points to.\
+	
+\b cv.jit.features2track
+\b0 : initialize 
+\b cv.jit.track
+\b0  to pixels for likely to "stick".\
+	
+\b cv.jit.hough2lines
+\b0 : extract lines from Hough space computed by 
+\b cv.jit.hough
+\b0 .
+\fs24 \
+\
+\
+}

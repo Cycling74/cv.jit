@@ -1,0 +1,6 @@
+;cv.jit.hough.def
+
+LIBRARY	cv.jit.hough.mxe
+
+EXPORTS
+	main

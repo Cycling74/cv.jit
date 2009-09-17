@@ -1,0 +1,6 @@
+;cv.jit.mass.def
+
+LIBRARY	cv.jit.mass.mxe
+
+EXPORTS
+	main

@@ -1,0 +1,6 @@
+;cv.jit.track.def
+
+LIBRARY	cv.jit.track.mxe
+
+EXPORTS
+	main

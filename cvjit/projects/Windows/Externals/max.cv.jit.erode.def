@@ -1,0 +1,6 @@
+;cv.jit.erode.def
+
+LIBRARY	cv.jit.erode.mxe
+
+EXPORTS
+	main

@@ -1,0 +1,6 @@
+;cv.jit.blobs.recon.def
+
+LIBRARY	cv.jit.blobs.recon.mxe
+
+EXPORTS
+	main

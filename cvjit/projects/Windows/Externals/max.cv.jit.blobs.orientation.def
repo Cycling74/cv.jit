@@ -1,0 +1,6 @@
+;cv.jit.blobs.orientation.def
+
+LIBRARY	cv.jit.blobs.orientation.mxe
+
+EXPORTS
+	main

@@ -1,0 +1,6 @@
+;cv.jit.HSflow.def
+
+LIBRARY	cv.jit.HSflow.mxe
+
+EXPORTS
+	main

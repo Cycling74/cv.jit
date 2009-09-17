@@ -1,0 +1,6 @@
+;cv.jit.blobs.sort.def
+
+LIBRARY	cv.jit.blobs.sort.mxe
+
+EXPORTS
+	main

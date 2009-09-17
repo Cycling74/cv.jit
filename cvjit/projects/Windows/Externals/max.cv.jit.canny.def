@@ -1,0 +1,6 @@
+;cv.jit.canny.def
+
+LIBRARY	cv.jit.canny.mxe
+
+EXPORTS
+	main

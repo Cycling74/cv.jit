@@ -1,0 +1,6 @@
+;cv.jit.blobs.bounds.def
+
+LIBRARY	cv.jit.blobs.bounds.mxe
+
+EXPORTS
+	main

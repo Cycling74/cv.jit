@@ -2,8 +2,9 @@
 cv.jit.LKflow
 	
 
-Copyright 2008, Jean-Marc Pelletier
+Copyright 2009, Jean-Marc Pelletier
 jmp@iamas.ac.jp
+jmp@jmpelletier.com
 
 This file is part of cv.jit.
 
@@ -46,6 +47,7 @@ typedef struct _cv_jit_LKflow
 	t_object				ob;
 	int						radius;  //Size of the averaging window
 	void 					*imgA;	//Matrix to hold previous frame data
+	CvMat					*previous; //Holds previous frame
 } t_cv_jit_LKflow;
 
 void *_cv_jit_LKflow_class;
@@ -85,45 +87,37 @@ t_jit_err cv_jit_LKflow_init(void)
 t_jit_err cv_jit_LKflow_matrix_calc(t_cv_jit_LKflow *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock,out_savelock,prev_savelock;
-	t_jit_matrix_info in_minfo,out_minfo,prev_minfo;
-	char *in_bp,*out_bp,*prev_bp;
+	long in_savelock,out_savelock;
+	t_jit_matrix_info in_minfo,out_minfo;
+	char *in_bp,*out_bp;
 	long i,j;
-	void *in_matrix,*out_matrix,*prev_matrix;
+	void *in_matrix,*out_matrix;
 	float *out, *outX, *outY;
 	int stepX, stepY;
 	int radius = x->radius * 2 + 1;
-	CvMat previous, current;
+	CvMat current;
 	CvMat *flowX=0, *flowY=0;
 	
 	//First, get pointers to matrices
 	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
 	out_matrix 	= jit_object_method(outputs,_jit_sym_getindex,0);
-	prev_matrix = x->imgA;
 	
-	if (x&&in_matrix&&out_matrix&&prev_matrix)
+	if (x&&in_matrix&&out_matrix)
 	{ 
 		in_savelock   = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
 		out_savelock  = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
-		prev_savelock = (long) jit_object_method(prev_matrix,_jit_sym_lock,1);
 		
 		//Get the matrix info
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
-		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
-		jit_object_method(prev_matrix,_jit_sym_getinfo,&prev_minfo);
-		
-		//Copy the info structure of the input matrix to the internal matrix	
-		jit_object_method(prev_matrix,_jit_sym_setinfo,&in_minfo);
+		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);		
 		
 		//Get pointers to the actual matrix data
 		jit_object_method(in_matrix,_jit_sym_getdata,&in_bp);
 		jit_object_method(out_matrix,_jit_sym_getdata,&out_bp);
-		jit_object_method(prev_matrix,_jit_sym_getdata,&prev_bp);
 		
 		//If something is wrong with the pointer...
 		if (!in_bp) { err=JIT_ERR_INVALID_INPUT; goto out;}
 		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
-		if (!prev_bp) { err=JIT_ERR_INVALID_PTR; goto out;}
 		
 		//compatible types?
 		if ((in_minfo.type!=_jit_sym_char)||(out_minfo.type!=_jit_sym_float32)) { 
@@ -143,40 +137,78 @@ t_jit_err cv_jit_LKflow_matrix_calc(t_cv_jit_LKflow *x, void *inputs, void *outp
 			goto out;
 		}		
 		
+		//Check to see if image isn't too small
+		if((in_minfo.dim[0] < radius)||(in_minfo.dim[1] < radius)){
+			error("Matrix height and width must be at least %d", radius);
+			err = JIT_ERR_GENERIC;
+			goto out;
+		}
+		
 		//Convert Jitter matrix to OpenCV matrix
 		cvJitter2CvMat(in_matrix, &current);
-		cvJitter2CvMat(prev_matrix, &previous);
 		flowX = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		flowY = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		
 		if(!flowX || !flowY){
-			error("Failed to created internal data.");
+			error("Failed to create internal data.");
 			goto out;
 		}
-			
-		//Calculate optical flow
-		cvCalcOpticalFlowLK(&previous, &current, cvSize(radius, radius),flowX, flowY);
-				
-		//Copy to output
-		out = (float *)out_bp;
-		outX = flowX->data.fl;
-		outY = flowY->data.fl;
-		stepX = flowX->step / sizeof(float);
-		stepY = flowY->step / sizeof(float);
-		for(i=0;i<out_minfo.dim[1];i++){
-			out=(float *)(out_bp+i*out_minfo.dimstride[1]);
-			outX=flowX->data.fl+i*stepX;
-			outY=flowY->data.fl+i*stepY;
-			for(j=0;j<out_minfo.dim[0];j++){
-				out[0] = *outX;
-				out[1] = *outY;
-				out+=2;
-				outX++;
-				outY++;
+		
+		if(!x->previous){
+			x->previous = cvCreateMat(current.rows, current.cols, current.type);
+			if(!x->previous){
+				error("Failed to create internal matrix.");
+				goto out;
 			}
 		}
-		
-		jit_object_method(prev_matrix,_jit_sym_frommatrix,in_matrix,NULL); 
+		else if((current.cols != x->previous->cols)||(current.rows != x->previous->rows)||(current.step != x->previous->step)||(x->previous->data.ptr == NULL)){
+			cvReleaseMat(&x->previous);
+			//Because we cast a Jitter matrix into a CvMat, we cannot assume that the step is going to be the same as that 
+			//returned by cvCreateMat, hence we need to fudge things by hand.
+			x->previous = cvCreateMatHeader(current.rows, current.cols, current.type);
+			if(!x->previous){
+				error("Failed to create internal matrix (2).");
+				err = JIT_ERR_GENERIC;
+				goto out;
+			}
+			cvInitMatHeader(x->previous, current.rows, current.cols, current.type, 0, current.step);
+			cvCreateData(x->previous);
+			if(!x->previous->data.ptr){
+				error("Failed to allocate internal memory.");
+				err = JIT_ERR_GENERIC;
+				cvReleaseMat(&x->previous);
+				goto out;
+			}
+			
+			
+			//jit_object_method(out_matrix, _jit_sym_clear);
+			
+		}else {
+			
+		//Calculate optical flow
+		cvCalcOpticalFlowLK(x->previous, &current, cvSize(radius, radius),flowX, flowY);
+				
+			//Copy to output
+			out = (float *)out_bp;
+			outX = flowX->data.fl;
+			outY = flowY->data.fl;
+			stepX = flowX->step / sizeof(float);
+			stepY = flowY->step / sizeof(float);
+			for(i=0;i<out_minfo.dim[1];i++){
+				out=(float *)(out_bp+i*out_minfo.dimstride[1]);
+				outX=flowX->data.fl+i*stepX;
+				outY=flowY->data.fl+i*stepY;
+				for(j=0;j<out_minfo.dim[0];j++){
+					out[0] = *outX;
+					out[1] = *outY;
+					out+=2;
+					outX++;
+					outY++;
+				}
+			}
+			
+		}
+		cvCopy(&current, x->previous, 0);
 	} 
 	else 
 	{
@@ -184,9 +216,10 @@ t_jit_err cv_jit_LKflow_matrix_calc(t_cv_jit_LKflow *x, void *inputs, void *outp
 	}
 	
 out:
+	if(flowX)cvReleaseMat(&flowX);
+	if(flowY)cvReleaseMat(&flowY);
 	jit_object_method(out_matrix, gensym("lock"),out_savelock);
 	jit_object_method(in_matrix,  gensym("lock"),in_savelock);
-	jit_object_method(prev_matrix,gensym("lock"),prev_savelock);
 	
 	return err;
 }
@@ -194,22 +227,13 @@ out:
 t_cv_jit_LKflow *cv_jit_LKflow_new(void)
 {
 	t_cv_jit_LKflow *x;		//jitter object
-	void *m;				//matrix pointer for previous frame 
-	t_jit_matrix_info info;	//info struct for prev. frame matrix
 		
 	if (x=(t_cv_jit_LKflow *)jit_object_alloc(_cv_jit_LKflow_class)) {
 	
 		x->radius = 2;	//Default values for averaging window
-		
-		jit_matrix_info_default(&info);								//Fill info structure with default values
-		info.type = _jit_sym_char;
-		info.dimcount = 2;
-		info.planecount = 1;
-		m = jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
-		if(!m) error("could not allocate internal matrix!");
-		jit_object_method(m,_jit_sym_clear);						//Clear data
-		x->imgA = m;												//Copy matrix pointer to jitter object
-			} else {
+		x->previous = 0;
+	
+	} else {
 		x = NULL;
 	}	
 	return x;
@@ -217,5 +241,5 @@ t_cv_jit_LKflow *cv_jit_LKflow_new(void)
 
 void cv_jit_LKflow_free(t_cv_jit_LKflow *x)
 {	
-	jit_object_free(x->imgA); //Free matrix memory
+	cvReleaseMat(&x->previous);
 }

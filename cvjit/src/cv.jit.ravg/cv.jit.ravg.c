@@ -30,24 +30,26 @@ extern "C" {
 } //extern "C"
 #endif
 
+#include "cvjitVectorOps.h"
+
 typedef struct _cv_jit_ravg 
 {
 	t_object				ob;
-	t_jit_matrix_info			previousInfo;
-	double				*buffer;
+	t_jit_matrix_info	previousInfo;
+	float				*buffer;
 	long					buf_size;
 	double				alpha;
+	void				*bufMat;
 } t_cv_jit_ravg;
 
 void *_cv_jit_ravg_class;
 
-static char compareInfo(t_jit_matrix_info *info1, t_jit_matrix_info *info2);
 t_jit_err 		cv_jit_ravg_init(void);
 t_cv_jit_ravg 		*cv_jit_ravg_new(void);
 void 			cv_jit_ravg_free(t_cv_jit_ravg *x);
 t_jit_err 		cv_jit_ravg_matrix_calc(t_cv_jit_ravg *x, void *inputs, void *outputs);
 void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long planecount, 
-	t_jit_matrix_info *in_minfo, uchar *bip, t_jit_matrix_info *out_minfo, uchar *bop);
+	t_jit_matrix_info *in_minfo, uchar *bip, t_jit_matrix_info *out_minfo, uchar *bop, t_jit_matrix_info *buf_minfo, uchar *bbp);
 	
 
 
@@ -76,33 +78,12 @@ t_jit_err cv_jit_ravg_init(void)
 	return JIT_ERR_NONE;
 }
 
-static char compareInfo(t_jit_matrix_info *info1, t_jit_matrix_info *info2)
-{
-	int i;
-	
-	if(info1->planecount != info2->planecount)
-		return 0;
-	else if(info1->dimcount != info2->dimcount)
-		return 0;
-	else
-	{
-		for(i=0;i<info1->dimcount;i++)
-		{
-			if(info1->dim[i]!=info2->dim[i])
-				return 0;
-		}
-	}
-	
-	return 1;
-}
-
-
 t_jit_err cv_jit_ravg_matrix_calc(t_cv_jit_ravg *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock,out_savelock;
-	t_jit_matrix_info in_minfo,out_minfo;
-	uchar *in_bp,*out_bp;
+	long in_savelock,out_savelock, buf_savelock;
+	t_jit_matrix_info in_minfo,out_minfo, buf_minfo;
+	char *in_bp,*out_bp, *buf_bp;
 	long i,dimcount,planecount,dim[JIT_MATRIX_MAX_DIMCOUNT];
 	void *in_matrix,*out_matrix;
 	
@@ -113,9 +94,12 @@ t_jit_err cv_jit_ravg_matrix_calc(t_cv_jit_ravg *x, void *inputs, void *outputs)
 		
 		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
 		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		buf_savelock = (long) jit_object_method(x->bufMat,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
+		
+		jit_object_method(x->bufMat,_jit_sym_getinfo,&buf_minfo);
 		
 		if (in_minfo.type != out_minfo.type) 
 		{ 
@@ -134,34 +118,48 @@ t_jit_err cv_jit_ravg_matrix_calc(t_cv_jit_ravg *x, void *inputs, void *outputs)
 		planecount = out_minfo.planecount;			
 		for (i=0;i<dimcount;i++) {
 			dim[i] = MIN(in_minfo.dim[i],out_minfo.dim[i]);
-		}		
+		}
 		
-		if((!compareInfo(&in_minfo, &(x->previousInfo)))||!x->buffer)
-		{
-			if(x->buffer)
-				jit_freebytes(x->buffer,x->buf_size);
-				
-			x->buf_size = planecount * sizeof(double);
-			
-			for (i=0;i<dimcount;i++) 
-			{
-				x->buf_size *= dim[i];
+		if(in_minfo.size != out_minfo.size){
+			err=JIT_ERR_GENERIC;
+			error("Mismatched sizes");
+			goto out;
+		}
+		
+		//Check to see if internal buffer dimensions are still valid
+		if((in_minfo.type == _jit_sym_char)||(in_minfo.type == _jit_sym_long)){
+			if ((buf_minfo.planecount != planecount)||(buf_minfo.dimcount != dimcount)) {
+				buf_minfo.dimcount = dimcount;
+				buf_minfo.planecount = planecount;
+				for(i=0;i<dimcount;i++)buf_minfo.dim[i] = dim[i];
+				jit_object_method(x->bufMat,_jit_sym_setinfo,&buf_minfo);
+				jit_object_method(x->bufMat,_jit_sym_getinfo,&buf_minfo);
+				jit_object_method(x->bufMat,_jit_sym_clear);
+			}else{
+				for(i=0;i<dimcount;i++){
+					if (dim[i] != buf_minfo.dim[i]) {
+						buf_minfo.dimcount = dimcount;
+						buf_minfo.planecount = planecount;
+						for(i=0;i<dimcount;i++)buf_minfo.dim[i] = dim[i];
+						jit_object_method(x->bufMat,_jit_sym_setinfo,&buf_minfo);
+						jit_object_method(x->bufMat,_jit_sym_getinfo,&buf_minfo);
+						jit_object_method(x->bufMat,_jit_sym_clear);
+						break;
+					}
+				}
 			}
-			
-			x->buffer = (double *)jit_getbytes(x->buf_size);
-			
-			x->previousInfo = in_minfo;
 		}
 		
 		jit_object_method(in_matrix,_jit_sym_getdata,&in_bp);
 		jit_object_method(out_matrix,_jit_sym_getdata,&out_bp);
+		jit_object_method(x->bufMat,_jit_sym_getdata,&buf_bp);
 		
 		if (!in_bp) { err=JIT_ERR_INVALID_INPUT; goto out;}
 		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
+		if (!buf_bp) { err=JIT_ERR_INVALID_PTR; goto out;}
 		
 		//calculate
-		cv_jit_ravg_calculate_ndim(x, dimcount, dim, planecount, &in_minfo, in_bp, &out_minfo, out_bp);
-
+		jit_parallel_ndim_simplecalc3((method)cv_jit_ravg_calculate_ndim, x, dimcount, dim, planecount, &in_minfo, in_bp, &out_minfo, out_bp, &buf_minfo, buf_bp, 0, 0, 0);
 	} else {
 		return JIT_ERR_INVALID_PTR;
 	}
@@ -169,18 +167,19 @@ t_jit_err cv_jit_ravg_matrix_calc(t_cv_jit_ravg *x, void *inputs, void *outputs)
 out:
 	jit_object_method(out_matrix,gensym("lock"),out_savelock);
 	jit_object_method(in_matrix,gensym("lock"),in_savelock);
+	jit_object_method(x->bufMat,gensym("lock"),buf_savelock);
 	return err;
 }
 
 void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long planecount, 
-	t_jit_matrix_info *in_minfo, uchar *bip, t_jit_matrix_info *out_minfo, uchar *bop)
+	t_jit_matrix_info *in_minfo, uchar *bip, t_jit_matrix_info *out_minfo, uchar *bop, t_jit_matrix_info *buf_minfo, uchar *bbp)
 {
-	long i,j,k,width,height,l;
-	uchar *ip,*op;
+	long i,j;
+	uchar *ip,*op,*bp;
 	double a, b;
-	double temp_in;
-	double *buf;
-		
+	float *buf;
+	int steps=0;
+	
 	if (dimcount<1) return; //safety
 
 	a = x->alpha;
@@ -191,84 +190,131 @@ void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long
 		dim[1]=1;
 	
 	case 2:	
-		width  = dim[0];
-		height = dim[1];
-		
 		if (in_minfo->type==_jit_sym_char) 
-		{
-			buf = x->buffer;
-			for (i=0;i<dim[1];i++)
-			{
-				ip = bip + i*in_minfo->dimstride[1];					
-				op = bop + i*out_minfo->dimstride[1];	
-				for (j=0;j<dim[0];j++) 
-				{						
-					for (k=0;k<in_minfo->planecount;k++) 
-					{
-						temp_in = *ip; 
-						*buf = (temp_in * a) + (*buf * b);
-						*op = (char)*buf;
-						op++;ip++;
-						buf++;
-					}
+		{			
+			float4 bufferVec;
+			float4 inVec;
+			
+			float4 aVec = {a,a,a,a};
+			float4 bVec = {b,b,b,b};
+			
+			ip = bip;
+			op = bop;
+			buf = (float *)bbp;
+			
+			steps = MIN(in_minfo->dimstride[1] / 4, buf_minfo->dimstride[1] / (4 * sizeof(float)));
+			
+			for(i=0;i<dim[1];i++){
+				ip = bip + i * in_minfo->dimstride[1];
+				op = bop + i * out_minfo->dimstride[1];
+				bp = bbp + i * buf_minfo->dimstride[1];
+				buf = (float *)bp;
+				for(j=0;j<steps;j++){
+					copy_float4(ip,inVec);
+					copy_float4(buf,bufferVec);
+					mult_float4(inVec,aVec,inVec);
+					mult_float4(bufferVec,bVec,bufferVec);
+					add_float4(inVec,bufferVec,bufferVec);
+					copy_float4(bufferVec,op);
+					copy_float4(bufferVec,buf);
 					
+					ip += 4;
+					op += 4;
+					buf += 4;
 				}
 			}
+			
 		} else if (in_minfo->type==_jit_sym_long) 
 		{
-			buf = x->buffer;
-			for (i=0;i<dim[1];i++)
-			{
-				ip = bip + i*in_minfo->dimstride[1];					
-				op = bop + i*out_minfo->dimstride[1];	
-				for (j=0;j<dim[0];j++) 
-				{	
+			long *lip, *lop;
+			
+			float4 bufferVec;
+			float4 inVec;
+			
+			float4 aVec = {a,a,a,a};
+			float4 bVec = {b,b,b,b};
+			
+			buf = (float *)bbp;
+			
+			steps = MIN(in_minfo->dimstride[1] / (4 * sizeof(long)), buf_minfo->dimstride[1] / (4 * sizeof(float)));
+			
+			for(i=0;i<dim[1];i++){
+				ip = bip + i * in_minfo->dimstride[1];
+				op = bop + i * out_minfo->dimstride[1];
+				bp = bbp + i * buf_minfo->dimstride[1];
+				buf = (float *)bp;
+				lip = (long *)ip;
+				lop = (long *)op;
+				for(j=0;j<steps;j++){
+					copy_float4(lip,inVec);
+					copy_float4(buf,bufferVec);
+					mult_float4(inVec,aVec,inVec);
+					mult_float4(bufferVec,bVec,bufferVec);
+					add_float4(inVec,bufferVec,bufferVec);
+					copy_float4(bufferVec,lop);
+					copy_float4(bufferVec,buf);
 					
-					l = j*out_minfo->planecount;
-					
-					for (k=0;k<in_minfo->planecount;k++) 
-					{
-						*buf = (double) (( (long *) ip )[l+k] * a) + (*buf * b);
-						((long *)op)[l+k] = (long) *buf;
-						buf++;
-					}
-					
+					lip += 4;
+					lop += 4;
+					buf += 4;
 				}
 			}
 		} else if (in_minfo->type==_jit_sym_float32) 
 		{
-			for (i=0;i<dim[1];i++)
-			{
-				ip = bip + i*in_minfo->dimstride[1];					
-				op = bop + i*out_minfo->dimstride[1];	
-				for (j=0;j<dim[0];j++) 
-				{	
+			float *fip, *fop;
+			
+			float4 inVec;
+			float4 outVec;
+			
+			float4 aVec = {a,a,a,a};
+			float4 bVec = {b,b,b,b};
+			
+			steps = in_minfo->dimstride[1] / (4 * sizeof(float));
+			
+			for(i=0;i<dim[1];i++){
+				ip = bip + i * in_minfo->dimstride[1];
+				op = bop + i * out_minfo->dimstride[1];
+				fip = (float *)ip;
+				fop = (float *)op;
+				for(j=0;j<steps;j++){
+					copy_float4(fip,inVec);
+					copy_float4(fop,outVec);
+					mult_float4(inVec,aVec,inVec);
+					mult_float4(outVec,bVec,outVec);
+					add_float4(inVec,outVec,outVec);
+					copy_float4(outVec,fop);
 					
-					l = j*out_minfo->planecount;
-					
-					for (k=0;k<in_minfo->planecount;k++) 
-					{
-						((float *)op)[l+k] = (((float *)ip)[l+k] * a) + (((float *)op)[l+k] * b);
-					}
-					
+					fip += 4;
+					fop += 4;
 				}
 			}
 		} else if (in_minfo->type==_jit_sym_float64) 
 		{
-			for (i=0;i<dim[1];i++)
-			{
-				ip = bip + i*in_minfo->dimstride[1];					
-				op = bop + i*out_minfo->dimstride[1];	
-				for (j=0;j<dim[0];j++) 
-				{	
+			double *dip, *dop;
+			
+			double2 inVec;
+			double2 outVec;
+			
+			double2 aVec = {a,a};
+			double2 bVec = {b,b};
+			
+			steps = in_minfo->dimstride[1] / (2 * sizeof(double));
+			
+			for(i=0;i<dim[1];i++){
+				ip = bip + i * in_minfo->dimstride[1];
+				op = bop + i * out_minfo->dimstride[1];
+				dip = (double *)ip;
+				dop = (double *)op;
+				for(j=0;j<steps;j++){
+					copy_double2(dip,inVec);
+					copy_double2(dop,outVec);
+					mult_double2(inVec,aVec,inVec);
+					mult_double2(outVec,bVec,outVec);
+					add_double2(inVec,outVec,outVec);
+					copy_double2(outVec,dop);
 					
-					l = j*out_minfo->planecount;
-					
-					for (k=0;k<in_minfo->planecount;k++) 
-					{
-						((double *)op)[l+k] = (((double *)ip)[l+k] * a) + (((double *)op)[l+k] * b);
-					}
-					
+					dip += 2;
+					dop += 2;
 				}
 			}
 		}
@@ -277,7 +323,8 @@ void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long
 		for	(i=0;i<dim[dimcount-1];i++) {
 			ip = bip + i*in_minfo->dimstride[dimcount-1];
 			op = bop + i*out_minfo->dimstride[dimcount-1];
-			cv_jit_ravg_calculate_ndim(x,dimcount-1,dim,planecount,in_minfo,ip,out_minfo,op);
+			bp = bbp + i*buf_minfo->dimstride[dimcount-1];
+			cv_jit_ravg_calculate_ndim(x,dimcount-1,dim,planecount,in_minfo,ip,out_minfo,op,buf_minfo,bp);
 		}
 	}
 }
@@ -285,12 +332,23 @@ void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long
 t_cv_jit_ravg *cv_jit_ravg_new(void)
 {
 	t_cv_jit_ravg *x;
+	void *m;
+	t_jit_matrix_info info;
 		
 	if (x=(t_cv_jit_ravg *)jit_object_alloc(_cv_jit_ravg_class)) 
 	{
-		x->buffer = (double *)0;
+		x->buffer = (float *)0;
 		x->buf_size = 0;
 		x->alpha = 0.05;
+		
+		jit_matrix_info_default(&info);								//Fill info structure with default values
+		info.type = _jit_sym_float32;
+		info.dimcount = 2;
+		info.planecount = 1;
+		m = jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
+		if(!m) error("could not allocate internal matrix!");
+		jit_object_method(m,_jit_sym_clear);						//Clear data
+		x->bufMat = m;
 	} 
 	else 
 	{
@@ -303,5 +361,7 @@ void cv_jit_ravg_free(t_cv_jit_ravg *x)
 {
 	if(x->buffer)
 		jit_freebytes(x->buffer,x->buf_size);
+	if(x->bufMat)
+		jit_object_free(x->bufMat);
 }
 

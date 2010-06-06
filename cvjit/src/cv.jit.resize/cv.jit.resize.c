@@ -2,7 +2,7 @@
 cv.jit.resize
 	
 
-Copyright 2008, Jean-Marc Pelletier
+Copyright 2010, Jean-Marc Pelletier
 jmp@iamas.ac.jp
 
 This file is part of cv.jit.
@@ -96,6 +96,7 @@ t_jit_err cv_jit_resize_init(void)
 	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset_array,"size",_jit_sym_long,2,attrflags,
 		(method)0L,(method)cv_jit_resize_size_set,calcoffset(t_cv_jit_resize,sizecount),calcoffset(t_cv_jit_resize,size));
+	jit_attr_addfilterset_clip(attr,1,0,TRUE,FALSE);  //2009-09 size cannot be less than 1 (bad access error if it is)
 	jit_class_addattr(_cv_jit_resize_class,attr);
 	
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"interpolation",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_resize,interpolation));			

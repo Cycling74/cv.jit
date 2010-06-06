@@ -2,7 +2,7 @@
 max.cv.jit.floodfill
 	
 
-Copyright 2008, Jean-Marc Pelletier
+Copyright 2010, Jean-Marc Pelletier
 jmp@iamas.ac.jp
 
 This file is part of cv.jit.

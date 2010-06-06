@@ -5,7 +5,7 @@ cv.jit.hough
 Copyright 2004, 2010, Chrstopher P. Baker, mateusz herczka and Jean-Marc Pelletier
 bakercp@umn.edu
 msz@westerplatte.net
-jmp@iamas.ac.jp
+jmp@jmpelletier.com
 
 This file is part of cv.jit.
 

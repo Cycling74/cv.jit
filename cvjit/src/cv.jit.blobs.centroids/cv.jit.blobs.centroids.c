@@ -3,8 +3,8 @@ cv.jit.blobs.centroids
 	
 
 Copyright 2010, Jean-Marc Pelletier
-jmp@iamas.ac.jp
-
+jmp@jmpelletier.com
+ 
 This file is part of cv.jit.
 
 cv.jit is free software: you can redistribute it and/or modify

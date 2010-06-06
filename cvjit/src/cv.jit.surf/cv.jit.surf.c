@@ -2,8 +2,8 @@
 cv.jit.surf
 	
 
-Copyright 2009, Jean-Marc Pelletier
-jmp@iamas.ac.jp
+Copyright 2010, Jean-Marc Pelletier
+jmp@jmpelletier.com
 
 This file is part of cv.jit.
 

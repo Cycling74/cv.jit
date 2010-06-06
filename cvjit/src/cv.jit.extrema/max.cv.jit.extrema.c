@@ -4,7 +4,7 @@ max.cv.jit.extrema
 
 Copyright 2010, Chrstopher P. Baker and Jean-Marc Pelletier
 bakercp@umn.edu
-jmp@iamas.ac.jp
+jmp@jmpelletier.com
 
 This file is part of cv.jit.
 

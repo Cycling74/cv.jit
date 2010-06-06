@@ -2,7 +2,7 @@
 max.cv.jit.extrema
 	
 
-Copyright 2008, Chrstopher P. Baker and Jean-Marc Pelletier
+Copyright 2010, Chrstopher P. Baker and Jean-Marc Pelletier
 bakercp@umn.edu
 jmp@iamas.ac.jp
 

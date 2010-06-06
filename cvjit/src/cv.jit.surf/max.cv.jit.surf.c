@@ -1,6 +1,5 @@
 /*
 max.cv.jit.surf
-	
 
 Copyright 2009, Jean-Marc Pelletier
 jmp@iamas.ac.jp

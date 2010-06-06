@@ -2,7 +2,7 @@
 cv.jit.threshold
 	
 
-Copyright 2009, Jean-Marc Pelletier
+Copyright 2010, Jean-Marc Pelletier
 cv@jmpelletier.com
 
 This file is part of cv.jit.

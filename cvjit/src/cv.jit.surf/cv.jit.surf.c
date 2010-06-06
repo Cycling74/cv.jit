@@ -29,6 +29,7 @@ Please refer to the  Intel License Agreement For Open Source Computer Vision Lib
 
 Please also read the notes concerning technical issues with using the OpenCV library
 in Jitter externals.
+ 
 */
 
 
@@ -65,7 +66,7 @@ t_jit_err 				cv_jit_surf_matrix_calc(t_cv_jit_surf *x, void *inputs, void *outp
 t_jit_err cv_jit_surf_init(void) 
 {
 	long attrflags=0;
-	t_jit_object *attr,*mop,*output1, *output2;
+	t_jit_object *attr,*mop,*output/**output1, *output2*/;
 	t_symbol *atsym;
 	
 	atsym = gensym("jit_attr_offset");
@@ -74,15 +75,20 @@ t_jit_err cv_jit_surf_init(void)
 		sizeof(t_cv_jit_surf),A_CANT,0L); //A_CANT = untyped
 
 	//add mop
-	mop = (t_jit_object *)jit_object_new(_jit_sym_jit_mop,1,2);  //Object has one input and two outputs
-	output1 = (t_jit_object *)jit_object_method(mop,_jit_sym_getoutput,1); //Get a pointer to the output matrix
-	output2 = (t_jit_object *)jit_object_method(mop,_jit_sym_getoutput,2); //Get a pointer to the output matrix
+	//mop = (t_jit_object *)jit_object_new(_jit_sym_jit_mop,1,2);  //Object has one input and two outputs
+	//output1 = (t_jit_object *)jit_object_method(mop,_jit_sym_getoutput,1); //Get a pointer to the output matrix
+	//output2 = (t_jit_object *)jit_object_method(mop,_jit_sym_getoutput,2); //Get a pointer to the output matrix
+	//
+	//Changed to a single output matrix containing all necessary info:
+	mop = (t_jit_object *)jit_object_new(_jit_sym_jit_mop,1,1); //One input and one output
+	output = (t_jit_object *)jit_object_method(mop,_jit_sym_getoutput,1); //Get a pointer to the output matrix
 
    	jit_mop_single_type(mop,_jit_sym_char);   //Set input type and planecount
    	jit_mop_single_planecount(mop,1);  
    	
    	jit_mop_output_nolink(mop,1); //Turn off output linking so that output matrix does not adapt to input
    	
+	/*
    	jit_attr_setlong(output1,_jit_sym_minplanecount,6);  //Six planes, x,y coordinates, size, direction, hessian, laplacian
   	jit_attr_setlong(output1,_jit_sym_maxplanecount,6);
   	jit_attr_setlong(output1,_jit_sym_mindim,1); //Only one dimension
@@ -95,6 +101,14 @@ t_jit_err cv_jit_surf_init(void)
   	jit_attr_setlong(output2,_jit_sym_mindim,2); //Two dimensions
   	jit_attr_setlong(output2,_jit_sym_maxdim,2);
   	jit_attr_setsym(output2,_jit_sym_types,_jit_sym_float32);
+	 */
+	
+	//Output matrix:
+	jit_attr_setlong(output,_jit_sym_minplanecount,1);  //One plane
+  	jit_attr_setlong(output,_jit_sym_maxplanecount,1);
+  	jit_attr_setlong(output,_jit_sym_mindim,2); //Two dimensions
+  	jit_attr_setlong(output,_jit_sym_maxdim,2);
+  	jit_attr_setsym(output,_jit_sym_types,_jit_sym_float32);
    	   	
 	jit_class_addadornment(_cv_jit_surf_class,mop);
 	
@@ -143,13 +157,21 @@ t_jit_err cv_jit_surf_init(void)
 t_jit_err cv_jit_surf_matrix_calc(t_cv_jit_surf *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
+	/*
 	long in_savelock=0,out1_savelock=0,out2_savelock=0;
 	t_jit_matrix_info in_minfo,out1_minfo,out2_minfo;
 	char *out1_bp, *out2_bp,*in_bp;
 	void *in_matrix,*out1_matrix, *out2_matrix;
-	int i;
-	int roi_w, roi_h, roi_offset;
 	float *out1_data, *out2_data;
+	 */
+	long in_savelock=0,out_savelock=0;
+	t_jit_matrix_info in_minfo,out_minfo;
+	char *out_bp, *in_bp;
+	void *in_matrix,*out_matrix;
+	float *out_data;
+	
+	int i, step, descriptor_count;
+	int roi_w, roi_h, roi_offset;
 	CvMat source;
 	CvSeq *keypoints=0, *descriptors=0;
 	CvMemStorage *storage=0;
@@ -158,20 +180,24 @@ t_jit_err cv_jit_surf_matrix_calc(t_cv_jit_surf *x, void *inputs, void *outputs)
 	
 	//Get pointers to matrices
 	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
-	out1_matrix  = jit_object_method(outputs,_jit_sym_getindex,0);
-	out2_matrix  = jit_object_method(outputs,_jit_sym_getindex,1);
+	out_matrix  = jit_object_method(outputs,_jit_sym_getindex,0);
+	//out1_matrix  = jit_object_method(outputs,_jit_sym_getindex,0);
+	//out2_matrix  = jit_object_method(outputs,_jit_sym_getindex,1);
 
-	if (x&&in_matrix&&out1_matrix&&out2_matrix) 
+	//if (x&&in_matrix&&out1_matrix&&out2_matrix) 
+	if (x&&in_matrix&&out_matrix)
 	{
 		//Lock the matrices
 		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out1_savelock = (long) jit_object_method(out1_matrix,_jit_sym_lock,1);
-		out2_savelock = (long) jit_object_method(out2_matrix,_jit_sym_lock,1);
+		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		//out1_savelock = (long) jit_object_method(out1_matrix,_jit_sym_lock,1);
+		//out2_savelock = (long) jit_object_method(out2_matrix,_jit_sym_lock,1);
 		
 		//Make sure input is of proper format
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
-		jit_object_method(out1_matrix,_jit_sym_getinfo,&out1_minfo);
-		jit_object_method(out2_matrix,_jit_sym_getinfo,&out2_minfo);
+		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
+		//jit_object_method(out1_matrix,_jit_sym_getinfo,&out1_minfo);
+		//jit_object_method(out2_matrix,_jit_sym_getinfo,&out2_minfo);
 
 		if(in_minfo.dimcount != 2)
 		{
@@ -235,9 +261,11 @@ t_jit_err cv_jit_surf_matrix_calc(t_cv_jit_surf *x, void *inputs, void *outputs)
 		
 		
 		//Calculate
-		cvExtractSURF(&source, NULL,&keypoints, &descriptors, storage, params);
+		cvExtractSURF(&source, NULL,&keypoints, &descriptors, storage, params, 0);
 		
 		//Prepare output
+		
+		/*
 		out1_minfo.dim[0] = keypoints->total;
 		jit_object_method(out1_matrix,_jit_sym_setinfo,&out1_minfo);
 		jit_object_method(out1_matrix,_jit_sym_getinfo,&out1_minfo);
@@ -256,12 +284,28 @@ t_jit_err cv_jit_surf_matrix_calc(t_cv_jit_surf *x, void *inputs, void *outputs)
 		if (!out2_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
 		
 		out2_data = (float *)out2_bp;
+		*/
+		
+		out_minfo.dimcount = 2;
+		out_minfo.planecount = 1;
+		out_minfo.dim[1] = keypoints->total;
+		descriptor_count = 64 + x->mode * 64;
+		out_minfo.dim[0] = 6 + descriptor_count;
+		jit_object_method(out_matrix,_jit_sym_setinfo,&out_minfo);
+		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
+		jit_object_method(out_matrix,_jit_sym_getdata,&out_bp);
+		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
+		
+		out_data = (float *)out_bp;
+		step = out_minfo.dimstride[1] / sizeof(float);
 		
 		if(x->useroi)
 		{
 			for(i=0; i <  keypoints->total; i++)
 			{
-				surfpoint = (CvSURFPoint *)CV_GET_SEQ_ELEM(CvSURFPoint,keypoints,i);
+				surfpoint = CV_GET_SEQ_ELEM(CvSURFPoint,keypoints,i);
+				
+				/*
 				out1_data[0] = surfpoint->pt.x + x->roi[0];
 				out1_data[1] = surfpoint->pt.y + x->roi[1];
 				out1_data[2] = surfpoint->size;
@@ -270,13 +314,24 @@ t_jit_err cv_jit_surf_matrix_calc(t_cv_jit_surf *x, void *inputs, void *outputs)
 				out1_data[5] = surfpoint->laplacian;
 				
 				out1_data += 6;
+				*/
+				
+				out_data[0] = surfpoint->pt.x + x->roi[0];
+				out_data[1] = surfpoint->pt.y + x->roi[1];
+				out_data[2] = surfpoint->size;
+				out_data[3] = surfpoint->dir;
+				out_data[4] = surfpoint->hessian;
+				out_data[5] = surfpoint->laplacian;
+				cvCvtSeqToArray(descriptors, out_data+6, cvSlice(i, i+1));
+				out_data+=step;
 			}
 		}
 		else
 		{
 			for(i=0; i <  keypoints->total; i++)
 			{
-				surfpoint = (CvSURFPoint *)CV_GET_SEQ_ELEM(CvSURFPoint,keypoints,i);
+				surfpoint = CV_GET_SEQ_ELEM(CvSURFPoint,keypoints,i);
+				/*
 				out1_data[0] = surfpoint->pt.x;
 				out1_data[1] = surfpoint->pt.y;
 				out1_data[2] = surfpoint->size;
@@ -285,17 +340,27 @@ t_jit_err cv_jit_surf_matrix_calc(t_cv_jit_surf *x, void *inputs, void *outputs)
 				out1_data[5] = surfpoint->laplacian;
 				
 				out1_data += 6;
+				 */
+				out_data[0] = surfpoint->pt.x;
+				out_data[1] = surfpoint->pt.y;
+				out_data[2] = surfpoint->size;
+				out_data[3] = surfpoint->dir;
+				out_data[4] = surfpoint->hessian;
+				out_data[5] = surfpoint->laplacian;
+				cvCvtSeqToArray(descriptors, out_data+6, cvSlice(i, i+1));
+				out_data+=step;
 			}
 		}
 		
 		//Fill in the descriptor matrix
-		cvCvtSeqToArray(descriptors, out2_bp, CV_WHOLE_SEQ);
+		//cvCvtSeqToArray(descriptors, out2_bp, CV_WHOLE_SEQ);
 	}
 
 	
 out:
-	jit_object_method(out1_matrix,gensym("lock"),out1_savelock);
-	jit_object_method(out2_matrix,gensym("lock"),out2_savelock);
+	//jit_object_method(out1_matrix,gensym("lock"),out1_savelock);
+	//jit_object_method(out2_matrix,gensym("lock"),out2_savelock);
+	jit_object_method(out_matrix,gensym("lock"),out_savelock);
 	jit_object_method(in_matrix,gensym("lock"),in_savelock);
 	cvReleaseMemStorage(&storage);
 	return err;

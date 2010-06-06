@@ -2,7 +2,7 @@
 cv.jit.hough
 	
 
-Copyright 2010, 2008, Chrstopher P. Baker, mateusz herczka and Jean-Marc Pelletier
+Copyright 2004, 2010, Chrstopher P. Baker, mateusz herczka and Jean-Marc Pelletier
 bakercp@umn.edu
 jmp@iamas.ac.jp
 

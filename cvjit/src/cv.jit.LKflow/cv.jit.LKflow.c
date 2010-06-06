@@ -2,7 +2,7 @@
 cv.jit.LKflow
 	
 
-Copyright 2009, Jean-Marc Pelletier
+Copyright 2010, Jean-Marc Pelletier
 jmp@iamas.ac.jp
 jmp@jmpelletier.com
 

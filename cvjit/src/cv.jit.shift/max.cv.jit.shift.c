@@ -1,5 +1,5 @@
 /*
-max.cv.jit.floodfill
+max.cv.jit.shift
 	
 
 Copyright 2010, Jean-Marc Pelletier
@@ -40,6 +40,8 @@ typedef struct _max_cv_jit_shift
 	void			*boxout;
 	void			*boxout2;
 	void			*massout;
+	
+	t_atom *av;
 } t_max_cv_jit_shift;
 
 //Function definitions
@@ -85,7 +87,6 @@ int main(void)
 	ps_getbox	= gensym("getbox");
 	ps_getrot	= gensym("getvertices");
 	ps_getmass	= gensym("getmass");
-
     
 }
 
@@ -109,6 +110,8 @@ void *max_cv_jit_shift_new(t_symbol *s, long argc, t_atom *argv)
 			x->massout 	= outlet_new(x,0L);
 			x->boxout2 	= outlet_new(x,0L);  
 			x->boxout 	= outlet_new(x,0L); 
+			
+			x->av = NULL;
 		} else {
 			error("cv.jit.shift: could not allocate object");
 			freeobject((t_object *)x);
@@ -119,8 +122,8 @@ void *max_cv_jit_shift_new(t_symbol *s, long argc, t_atom *argv)
 
 void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 {
-	long ac = 0;
-	t_atom *av = NULL;
+	long ac;
+	//t_atom *av = NULL;
 	void *o;
 	
 	if (max_jit_mop_getoutputmode(x)) 
@@ -128,37 +131,38 @@ void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 		o=max_jit_obex_jitob_get(x);
 		
 		//Output mass
-		jit_object_method(o,ps_getmass,&ac,&av);
+		ac = 1;
+		jit_object_method(o,ps_getmass,&ac,&(x->av));
 		//just in case...
 		if (ac!=1)
 			error("Could not get mass from Jitter object.");
 		else 
 		{
-			outlet_float(x->massout,jit_atom_getfloat(av));
+			outlet_float(x->massout,jit_atom_getfloat(x->av));
 		}
 		
 		//Output rotated frame
-		ac = 0;
-		av = NULL;
-		jit_object_method(o,ps_getrot,&ac,&av);
+		ac = 8;
+		//av = NULL;
+		jit_object_method(o,ps_getrot,&ac,&(x->av));
 		//just in case...
 		if (ac!=8)
 			error("Could not get rotated frame from Jitter object.");
 		else 
 		{
-			outlet_anything(x->boxout2,_jit_sym_list,ac,av);
+			outlet_anything(x->boxout2,_jit_sym_list,ac,x->av);
 		}
 		
 		//Output bounding box
-		ac = 0;
-		av = NULL;
-		jit_object_method(o,ps_getbox,&ac,&av);
+		ac = 4;
+		//av = NULL;
+		jit_object_method(o,ps_getbox,&ac,&(x->av));
 		//just in case...
 		if (ac!=4)
 			error("Could not get bounding rectangle from Jitter object.");
 		else 
 		{
-			outlet_anything(x->boxout,_jit_sym_list,ac,av);
+			outlet_anything(x->boxout,_jit_sym_list,ac,x->av);
 		}
 	}
 }

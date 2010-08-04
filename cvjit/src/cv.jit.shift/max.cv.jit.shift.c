@@ -41,7 +41,7 @@ typedef struct _max_cv_jit_shift
 	void			*boxout2;
 	void			*massout;
 	
-	t_atom			av[8];
+	t_atom			*av;
 } t_max_cv_jit_shift;
 
 //Function definitions
@@ -92,6 +92,9 @@ int main(void)
 
 void max_cv_jit_shift_free(t_max_cv_jit_shift *x)
 {
+	if(x->av){
+		sysmem_freeptr(x->av);
+	}
 	max_jit_mop_free(x);		//Free the matrix operator
 	jit_object_free(max_jit_obex_jitob_get(x));	//Free the Jitter object
 	max_jit_obex_free(x);		//Free the Max wrapper object
@@ -109,7 +112,9 @@ void *max_cv_jit_shift_new(t_symbol *s, long argc, t_atom *argv)
 			//Add outlet
 			x->massout 	= outlet_new(x,0L);
 			x->boxout2 	= outlet_new(x,0L);  
-			x->boxout 	= outlet_new(x,0L); 
+			x->boxout 	= outlet_new(x,0L);
+			
+			x->av = (t_atom *)sysmem_newptr(8*sizeof(t_atom));
 		} else {
 			error("cv.jit.shift: could not allocate object");
 			freeobject((t_object *)x);
@@ -129,7 +134,7 @@ void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 		o=max_jit_obex_jitob_get(x);
 		
 		//Output mass
-		ac = 1;
+		ac = 8;
 		jit_object_method(o,ps_getmass,&ac,&(x->av));
 		//just in case...
 		if (ac!=1)
@@ -152,7 +157,7 @@ void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 		}
 		
 		//Output bounding box
-		ac = 4;
+		ac = 8;
 		//av = NULL;
 		jit_object_method(o,ps_getbox,&ac,&(x->av));
 		//just in case...

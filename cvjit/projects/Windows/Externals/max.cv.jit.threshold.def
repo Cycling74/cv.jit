@@ -1,0 +1,6 @@
+;cv.jit.threshold.def
+
+LIBRARY	cv.jit.threshold.mxe
+
+EXPORTS
+	main

@@ -1,0 +1,6 @@
+;cv.jit.opticalflow.def
+
+LIBRARY	cv.jit.opticalflow.mxe
+
+EXPORTS
+	main

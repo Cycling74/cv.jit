@@ -2,7 +2,7 @@
  cvjitVectorOps.h
  
  
- Copyright 2009, Jean-Marc Pelletier
+ Copyright 2010, Jean-Marc Pelletier
  jmp@iamas.ac.jp
  
  This file is part of cv.jit.
@@ -30,64 +30,62 @@ typedef long long4[4];
 typedef short short8[8];
 typedef char char16[16];
 
-#define set_double2(a,b) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)a[vector_iterator] = b;}
-#define set_float4(a,b) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)a[vector_iterator] = b;}
-#define set_long4(a,b) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)a[vector_iterator] = b;}
-#define set_short8(a,b) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)a[vector_iterator] = b;}
-#define set_char16(a,b) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)a[vector_iterator] = b;}
+#define set_double2(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)a[vector_iterator] = b;}
+#define set_float4(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)a[vector_iterator] = b;}
+#define set_long4(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)a[vector_iterator] = b;}
+#define set_short8(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)a[vector_iterator] = b;}
+#define set_char16(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)a[vector_iterator] = b;}
 
-#define copy_double2(a,b) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
-#define copy_float4(a,b) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
-#define copy_long4(a,b) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
-#define copy_short8(a,b) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
-#define copy_char16(a,b) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
+#define copy_double2(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
+#define copy_float4(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
+#define copy_long4(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
+#define copy_short8(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
+#define copy_char16(a,b) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)b[vector_iterator] = a[vector_iterator];}
 
-#define add_double2(a,b,c) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
-#define add_float4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
-#define add_long4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
-#define add_short8(a,b,c) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
-#define add_char16(a,b,c) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
+#define add_double2(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
+#define add_float4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
+#define add_long4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
+#define add_short8(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
+#define add_char16(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b[vector_iterator];}
 
-#define add_scalar_double2(a,b,c) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
-#define add_scalar_float4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
-#define add_scalar_long4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
-#define add_scalar_short8(a,b,c) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
-#define add_scalar_char16(a,b,c) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
+#define add_scalar_double2(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
+#define add_scalar_float4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
+#define add_scalar_long4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
+#define add_scalar_short8(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
+#define add_scalar_char16(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] + b;}
 
-#define sub_double2(a,b,c) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
-#define sub_float4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
-#define sub_long4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
-#define sub_short8(a,b,c) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
-#define sub_char16(a,b,c) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
+#define sub_double2(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
+#define sub_float4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
+#define sub_long4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
+#define sub_short8(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
+#define sub_char16(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b[vector_iterator];}
 
-#define sub_scalar_double2(a,b,c) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
-#define sub_scalar_float4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
-#define sub_scalar_long4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
-#define sub_scalar_short8(a,b,c) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
-#define sub_scalar_char16(a,b,c) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
+#define sub_scalar_double2(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
+#define sub_scalar_float4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
+#define sub_scalar_long4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
+#define sub_scalar_short8(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
+#define sub_scalar_char16(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] - b;}
 
-#define mult_double2(a,b,c) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
-#define mult_float4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
-#define mult_long4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
-#define mult_short8(a,b,c) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
-#define mult_char16(a,b,c) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
+#define mult_double2(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
+#define mult_float4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
+#define mult_long4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
+#define mult_short8(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
+#define mult_char16(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b[vector_iterator];}
 
-#define mult_scalar_double2(a,b,c) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
-#define mult_scalar_float4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
-#define mult_scalar_long4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
-#define mult_scalar_short8(a,b,c) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
-#define mult_scalar_char16(a,b,c) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
+#define mult_scalar_double2(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
+#define mult_scalar_float4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
+#define mult_scalar_long4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
+#define mult_scalar_short8(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
+#define mult_scalar_char16(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] * b;}
 
-#define div_double2(a,b,c) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
-#define div_float4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
-#define div_long4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
-#define div_short8(a,b,c) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
-#define div_char16(a,b,c) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
+#define div_double2(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
+#define div_float4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
+#define div_long4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
+#define div_short8(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
+#define div_char16(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b[vector_iterator];}
 
-#define div_scalar_double2(a,b,c) {for(int vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}
-#define div_scalar_float4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}
-#define div_scalar_long4(a,b,c) {for(int vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}
-#define div_scalar_short8(a,b,c) {for(int vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}
-#define div_scalar_char16(a,b,c) {for(int vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}
-
-
+#define div_scalar_double2(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<2;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}
+#define div_scalar_float4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}
+#define div_scalar_long4(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<4;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}
+#define div_scalar_short8(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<8;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}
+#define div_scalar_char16(a,b,c) {int vector_iterator; for(vector_iterator=0;vector_iterator<16;vector_iterator++)c[vector_iterator] = a[vector_iterator] / b;}

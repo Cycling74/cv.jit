@@ -51,9 +51,13 @@ int main(void)
 {	
 	void *p,*q;
 	
+	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;
+	alias_ptr.v_ptr = &max_cv_jit_binedge_class;
+	
 	cv_jit_binedge_init();
 	setup(
-			(t_messlist **)&max_cv_jit_binedge_class,	//A pointer to the Max class pointer
+			//(t_messlist **)&max_cv_jit_binedge_class,	//A pointer to the Max class pointer
+			alias_ptr.m_ptr,
 			(method)max_cv_jit_binedge_new,				//The constructor function
 			(method)max_cv_jit_binedge_free,			//The destructor function
 			(short)sizeof(t_max_cv_jit_binedge),		//The size of the Max class

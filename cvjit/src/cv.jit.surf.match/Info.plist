@@ -5,9 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>cv.jit.mass</string>
+	<string>cv.jit.surf.match</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.jmp.cv.jit.mass</string>
+	<string>com.jmp.cv.jit.surf.match</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>

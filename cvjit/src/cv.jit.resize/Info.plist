@@ -5,9 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>cv.jit.resize</string>
+	<string>cv.jit.opticalflow</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.jmp.cv.jit.resize</string>
+	<string>com.jmp.cv.jit.opticalflow</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>

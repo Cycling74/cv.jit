@@ -73,7 +73,7 @@ void *_cv_jit_sum_class;
 
 t_cv_jit_sum *cv_jit_sum_new(void);
 void cv_jit_sum_free(t_cv_jit_sum *x);
-void cv_jit_sum_precalc(t_cv_jit_sum_vecdata *vecdata, t_jit_matrix_info *in1_minfo, char *bip1); 
+void cv_jit_sum_precalc(t_cv_jit_sum_vecdata *vecdata, t_jit_matrix_info *in1_minfo, uchar *bip1); 
 void cv_jit_sum_postcalc(t_cv_jit_sum *x, t_cv_jit_sum_vecdata *vecdata, t_jit_matrix_info *in1_minfo); 
 void cv_jit_sum_sum(t_cv_jit_sum_vecdata *vecdata, t_jit_matrix_info *in1_minfo); 
 void cv_jit_sum_calculate_ndim(t_cv_jit_sum *x, long dimcount, long *dim, t_cv_jit_sum_vecdata *vecdata, t_jit_matrix_info *in_minfo, uchar *bip);
@@ -147,7 +147,7 @@ out:
 	return err;
 }
 
-void cv_jit_sum_precalc(t_cv_jit_sum_vecdata *vecdata, t_jit_matrix_info *in1_minfo, char *bip1) 
+void cv_jit_sum_precalc(t_cv_jit_sum_vecdata *vecdata, t_jit_matrix_info *in1_minfo, uchar *bip1) 
 {
 	long i;
 	

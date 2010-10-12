@@ -53,9 +53,11 @@ int main(void)
 {	
 	void *p,*q;
 	
+	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;
+	alias_ptr.v_ptr = &max_cv_jit_canny_class;
 	cv_jit_canny_init();
 	setup(
-			(t_messlist **)&max_cv_jit_canny_class,	//A pointer to the Max class pointer
+			alias_ptr.m_ptr,	//A pointer to the Max class pointer
 			(method)max_cv_jit_canny_new,			//The constructor function
 			(method)max_cv_jit_canny_free,			//The destructor function
 			(short)sizeof(t_max_cv_jit_canny),		//The size of the Max class

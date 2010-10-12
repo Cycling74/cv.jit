@@ -50,8 +50,10 @@ int main(void)
 {	
 	void *p,*q;
 	
-	cv_jit_ravg_init();	
-	setup((t_messlist **)&max_cv_jit_ravg_class, (method)max_cv_jit_ravg_new, (method)max_cv_jit_ravg_free, (short)sizeof(t_max_cv_jit_ravg), 
+	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;
+	alias_ptr.v_ptr = &max_cv_jit_ravg_class;
+	cv_jit_ravg_init();
+	setup(alias_ptr.m_ptr, (method)max_cv_jit_ravg_new, (method)max_cv_jit_ravg_free, (short)sizeof(t_max_cv_jit_ravg), 
 		0L, A_GIMME, 0);
 
 	p = max_jit_classex_setup(calcoffset(t_max_cv_jit_ravg,obex));

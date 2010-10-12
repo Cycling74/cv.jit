@@ -73,7 +73,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 // the object struct
-typedef struct _jit_hough 
+typedef struct _cv_jit_hough 
 {
 	t_object	ob;				// object
 	
@@ -84,39 +84,39 @@ typedef struct _jit_hough
 	double		tab_cos[360];		// cos table pointer
 	//long		tab_size;		// size of these tables in bytes
 	//long		tab_count;
-} t_jit_hough;
+} t_cv_jit_hough;
 
 // the class
-void *_jit_hough_class;
+void *_cv_jit_hough_class;
 
 // constructor
-t_jit_hough *jit_hough_new(void);
+t_cv_jit_hough *cv_jit_hough_new(void);
 	
 // destructor				
-void jit_hough_free(t_jit_hough *x);
+void cv_jit_hough_free(t_cv_jit_hough *x);
 
 // matrix calc			
-t_jit_err jit_hough_matrix_calc(t_jit_hough *x, void *inputs, void *outputs);
+t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *outputs);
 
 // initializer
-t_jit_err jit_hough_init(void);
+t_jit_err cv_jit_hough_init(void);
 
 										
 //------------------------------
 
 // init
 // setup/register class, mop, attributes
-t_jit_err jit_hough_init(void) 
+t_jit_err cv_jit_hough_init(void) 
 {
 	long attrflags=0;
 	t_jit_object *attr;	// attribute handle
 	t_jit_object *mop;	// pointer to mop
 	
 	// setup class
-	_jit_hough_class = jit_class_new(	"cv_jit_hough",			// name
-										(method)jit_hough_new,	// constructor
-										(method)jit_hough_free,	// destructor
-										sizeof(t_jit_hough),	// size
+	_cv_jit_hough_class = jit_class_new(	"cv_jit_hough",			// name
+										(method)cv_jit_hough_new,	// constructor
+										(method)cv_jit_hough_free,	// destructor
+										sizeof(t_cv_jit_hough),	// size
 										A_CANT,					// A_CANT = untyped
 										0L	); 					// end
 
@@ -130,12 +130,12 @@ t_jit_err jit_hough_init(void)
 							1	);	// output 1
 	
 	// add class to mop	
-	jit_class_addadornment(	_jit_hough_class,
+	jit_class_addadornment(	_cv_jit_hough_class,
 							mop	);
 							
 	// add methods
-	jit_class_addmethod(	_jit_hough_class, 
-							(method)jit_hough_matrix_calc, 	// matrix calc method
+	jit_class_addmethod(	_cv_jit_hough_class, 
+							(method)cv_jit_hough_matrix_calc, 	// matrix calc method
 							"matrix_calc", 					// matrix_calc message
 							A_CANT, 
 							0L	);
@@ -150,10 +150,10 @@ t_jit_err jit_hough_init(void)
 							attrflags, 					// attribute flags
 							(method)0L,					
 							(method)0L,
-							calcoffset(t_jit_hough,rho));	// offset for the attribute
+							calcoffset(t_cv_jit_hough,rho));	// offset for the attribute
 	
 	// add attribute			
-	jit_class_addattr(_jit_hough_class, attr);
+	jit_class_addattr(_cv_jit_hough_class, attr);
 	
 	// setup attribute					
 	attr = jit_object_new(	_jit_sym_jit_attr_offset,
@@ -162,23 +162,23 @@ t_jit_err jit_hough_init(void)
 							attrflags, 
 							(method)0L,
 							(method)0L,
-							calcoffset(t_jit_hough,theta));
+							calcoffset(t_cv_jit_hough,theta));
 	
 	// add attribute
-	jit_class_addattr(_jit_hough_class, attr);
+	jit_class_addattr(_cv_jit_hough_class, attr);
 	
 	
 
 	//add methods
 	
 	// register class
-	jit_class_register(_jit_hough_class);
+	jit_class_register(_cv_jit_hough_class);
 
 	return JIT_ERR_NONE;
 }
 
 // matrix calc
-t_jit_err jit_hough_matrix_calc(t_jit_hough *x, void *inputs, void *outputs)
+t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *outputs)
 {
 	/** set the default err to return */
 	t_jit_err err=JIT_ERR_NONE;
@@ -365,14 +365,14 @@ out:
 }
 
 // constructor
-t_jit_hough *jit_hough_new(void)
+t_cv_jit_hough *cv_jit_hough_new(void)
 {
-	t_jit_hough *x;				// pointer to objext
+	t_cv_jit_hough *x;				// pointer to objext
 	//t_jit_matrix_info info;		// matrix info struct
 	//long i;						// iteration variable
 	
 	// allocate memory
-	if (x=(t_jit_hough *)jit_object_alloc(_jit_hough_class)) {
+	if (x=(t_cv_jit_hough *)jit_object_alloc(_cv_jit_hough_class)) {
 	
 		// init attributes
 		x->rho = 4.0;
@@ -384,7 +384,7 @@ t_jit_hough *jit_hough_new(void)
 	return x;
 }
 
-void jit_hough_free(t_jit_hough *x)
+void cv_jit_hough_free(t_cv_jit_hough *x)
 {
 	//nothing to free
 }

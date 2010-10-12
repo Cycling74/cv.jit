@@ -50,8 +50,10 @@ int main(void)
 {	
 	void *p,*q;
 	
-	cv_jit_resize_init();	
-	setup((t_messlist **)&max_cv_jit_resize_class, (method)max_cv_jit_resize_new, (method)max_cv_jit_resize_free, (short)sizeof(t_max_cv_jit_resize), 
+	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;
+	alias_ptr.v_ptr = &max_cv_jit_resize_class;
+	cv_jit_resize_init();
+	setup(alias_ptr.m_ptr, (method)max_cv_jit_resize_new, (method)max_cv_jit_resize_free, (short)sizeof(t_max_cv_jit_resize), 
 		0L, A_GIMME, 0);
 
 	p = max_jit_classex_setup(calcoffset(t_max_cv_jit_resize,obex));

@@ -39,7 +39,7 @@ typedef struct _max_cv_jit_hough
 	void			*obex;
 } t_max_cv_jit_hough;
 
-t_jit_err jit_hough_init(void); 
+t_jit_err cv_jit_hough_init(void); 
 
 void *max_cv_jit_hough_new(t_symbol *s, long argc, t_atom *argv);
 void max_cv_jit_hough_free(t_max_cv_jit_hough *x);
@@ -52,8 +52,10 @@ int main(void)
 {	
 	void *p,*q;
 	
-	jit_hough_init();	
-	setup((t_messlist **)&max_cv_jit_hough_class, (method)max_cv_jit_hough_new, (method)max_cv_jit_hough_free, (short)sizeof(t_max_cv_jit_hough), 
+	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;
+	alias_ptr.v_ptr = &max_cv_jit_hough_class;
+	cv_jit_hough_init();
+	setup(alias_ptr.m_ptr, (method)max_cv_jit_hough_new, (method)max_cv_jit_hough_free, (short)sizeof(t_max_cv_jit_hough), 
 		0L, A_GIMME, 0);
 
 	p = max_jit_classex_setup(calcoffset(t_max_cv_jit_hough,obex));

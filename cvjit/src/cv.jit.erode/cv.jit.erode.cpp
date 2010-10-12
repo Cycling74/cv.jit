@@ -43,9 +43,9 @@ extern "C" {
 typedef struct _cv_jit_erode 
 {
 	t_object				ob;
-	Erode					eroder;
 	long					mode;
 	long					grey;
+	Erode					*eroder;
 } t_cv_jit_erode;
 
 void *_cv_jit_erode_class;
@@ -127,10 +127,10 @@ t_jit_err cv_jit_erode_matrix_calc(t_cv_jit_erode *x, void *inputs, void *output
 		}	
 				
 		//calculate
-		x->eroder.setInput(in_bp,in_minfo.dim[0],in_minfo.dim[1],in_minfo.planecount,in_minfo.dimstride[1],jit_gettype(&in_minfo));
-		x->eroder.setOutput(out_bp,out_minfo.dim[0],out_minfo.dim[1],out_minfo.planecount,out_minfo.dimstride[1],jit_gettype(&out_minfo));
-		x->eroder.setMode(x->mode);
-		x->eroder.erode();
+		x->eroder->setInput(in_bp,in_minfo.dim[0],in_minfo.dim[1],in_minfo.planecount,in_minfo.dimstride[1],jit_gettype(&in_minfo));
+		x->eroder->setOutput(out_bp,out_minfo.dim[0],out_minfo.dim[1],out_minfo.planecount,out_minfo.dimstride[1],jit_gettype(&out_minfo));
+		x->eroder->setMode(x->mode);
+		x->eroder->erode();
 		
 	} else {
 		return JIT_ERR_INVALID_PTR;
@@ -150,6 +150,7 @@ t_cv_jit_erode *cv_jit_erode_new(void)
 	{
 		x->mode = 0;
 		x->grey = 0; 
+		x->eroder = new Erode;
 	} 
 	else 
 	{
@@ -160,6 +161,6 @@ t_cv_jit_erode *cv_jit_erode_new(void)
 
 void cv_jit_erode_free(t_cv_jit_erode *x)
 {
-	//rien
+	delete x->eroder;
 }
 

@@ -43,9 +43,10 @@ extern "C" {
 typedef struct _cv_jit_dilate 
 {
 	t_object				ob;
-	Dilate					dilator;
 	long					mode;
 	long					grey;
+	//Dilate					dilator;
+	Dilate					*dilator;
 } t_cv_jit_dilate;
 
 void *_cv_jit_dilate_class;
@@ -127,10 +128,10 @@ t_jit_err cv_jit_dilate_matrix_calc(t_cv_jit_dilate *x, void *inputs, void *outp
 		}	
 				
 		//calculate
-		x->dilator.setInput(in_bp,in_minfo.dim[0],in_minfo.dim[1],in_minfo.planecount,in_minfo.dimstride[1],jit_gettype(&in_minfo));
-		x->dilator.setOutput(out_bp,out_minfo.dim[0],out_minfo.dim[1],out_minfo.planecount,out_minfo.dimstride[1],jit_gettype(&out_minfo));
-		x->dilator.setMode(x->mode);
-		x->dilator.dilate();
+		x->dilator->setInput(in_bp,in_minfo.dim[0],in_minfo.dim[1],in_minfo.planecount,in_minfo.dimstride[1],jit_gettype(&in_minfo));
+		x->dilator->setOutput(out_bp,out_minfo.dim[0],out_minfo.dim[1],out_minfo.planecount,out_minfo.dimstride[1],jit_gettype(&out_minfo));
+		x->dilator->setMode(x->mode);
+		x->dilator->dilate();
 		
 	} else {
 		return JIT_ERR_INVALID_PTR;
@@ -150,6 +151,7 @@ t_cv_jit_dilate *cv_jit_dilate_new(void)
 	{
 		x->mode = 0;
 		x->grey = 0; 
+		x->dilator = new Dilate;
 	} 
 	else 
 	{
@@ -160,6 +162,6 @@ t_cv_jit_dilate *cv_jit_dilate_new(void)
 
 void cv_jit_dilate_free(t_cv_jit_dilate *x)
 {
-	//rien
+	delete x->dilator;
 }
 

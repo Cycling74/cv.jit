@@ -83,7 +83,9 @@ extern "C"
 int main()
 {
 	//Setup object
-	setup((t_messlist **)&cv_jit_learn_class, (method)cv_jit_learn_new, (method)cv_jit_learn_free, (short)sizeof(t_cv_jit_learn), 0L, A_DEFLONG, 0);
+	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;
+	alias_ptr.v_ptr = &cv_jit_learn_class;
+	setup(alias_ptr.m_ptr, (method)cv_jit_learn_new, (method)cv_jit_learn_free, (short)sizeof(t_cv_jit_learn), 0L, A_DEFLONG, 0);
 	
 	//Add messages
 	addmess((method)cv_jit_learn_list, "list", A_GIMME, 0);  //Object only understands lists

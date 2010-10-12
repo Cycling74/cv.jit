@@ -66,9 +66,10 @@ int main(void)
 {	
 	void *p,*q;
 	
+	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;
+	alias_ptr.v_ptr = &max_cv_jit_shift_class;
 	cv_jit_shift_init();
-	setup(
-		  (t_messlist **)&max_cv_jit_shift_class,	//A pointer to the Max class pointer
+	setup(alias_ptr.m_ptr,	//A pointer to the Max class pointer
 		  (method)max_cv_jit_shift_new,			//The constructor function
 		  (method)max_cv_jit_shift_free,			//The destructor function
 		  (short)sizeof(t_max_cv_jit_shift),		//The size of the Max class
@@ -126,7 +127,6 @@ void *max_cv_jit_shift_new(t_symbol *s, long argc, t_atom *argv)
 void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 {
 	long ac;
-	//t_atom *av = NULL;
 	void *o;
 	
 	if (max_jit_mop_getoutputmode(x)) 
@@ -146,7 +146,6 @@ void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 		
 		//Output rotated frame
 		ac = 8;
-		//av = NULL;
 		jit_object_method(o,ps_getrot,&ac,&(x->av));
 		//just in case...
 		if (ac!=8)
@@ -158,7 +157,6 @@ void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 		
 		//Output bounding box
 		ac = 8;
-		//av = NULL;
 		jit_object_method(o,ps_getbox,&ac,&(x->av));
 		//just in case...
 		if (ac!=4)

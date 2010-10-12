@@ -40,6 +40,7 @@ in Jitter externals.
 #include <jit.common.h>
 
 void cvJitter2CvMat(void *jitMat, CvMat *mat);
+void cvMat2Jitter(CvMat *mat, void *jitMat);
 
 
 
@@ -84,4 +85,48 @@ void cvJitter2CvMat(void *jitMat, CvMat *mat)
 
 	cvInitMatHeader( mat, info.dim[1], info.dim[0], type, data, info.dimstride[1] );
 	
+}
+
+
+void cvMat2Jitter(CvMat *mat, void *jitMat)
+{
+	t_jit_matrix_info info;
+	
+	if((!jitMat)||(!mat))
+	{
+		error("Error converting to Jitter matrix: invalid pointer.");
+		return;
+	}
+	
+	jit_object_method(jitMat,_jit_sym_getinfo,&info);
+	info.dimcount = 2;
+	info.planecount = CV_MAT_CN(mat->type);
+	info.dim[0] = mat->cols;
+	info.dim[1] = mat->rows;
+	switch(CV_MAT_DEPTH(mat->type)){
+		case CV_8U:
+			info.type = _jit_sym_char;
+			info.dimstride[0] = sizeof(char);
+			break;
+		case CV_32S:
+			info.type = _jit_sym_long;
+			info.dimstride[0] = sizeof(long);
+			break;
+		case CV_32F:
+			info.type = _jit_sym_float32;
+			info.dimstride[0] = sizeof(float);
+			break;
+		case CV_64F:	
+			info.type = _jit_sym_float64;
+			info.dimstride[0] = sizeof(double);
+			break;
+		default:
+			error("Error converting to Jitter matrix: unsupported depth.");
+			return;
+	}
+	info.dimstride[1] = mat->step;
+	info.size = mat->step * mat->rows;
+	info.flags = JIT_MATRIX_DATA_REFERENCE | JIT_MATRIX_DATA_FLAGS_USE;
+	jit_object_method(jitMat,_jit_sym_setinfo_ex,&info);
+	jit_object_method(jitMat, _jit_sym_data, mat->data.ptr);
 }

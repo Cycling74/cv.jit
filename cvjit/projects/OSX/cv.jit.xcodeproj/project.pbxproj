@@ -13,42 +13,49 @@
 			buildPhases = (
 			);
 			dependencies = (
+				43DA9790129E72CB00B09409 /* PBXTargetDependency */,
+				43DA9792129E72CB00B09409 /* PBXTargetDependency */,
+				43DA9794129E72CB00B09409 /* PBXTargetDependency */,
+				43DA9796129E72CB00B09409 /* PBXTargetDependency */,
+				43DA9798129E72CB00B09409 /* PBXTargetDependency */,
 				B4E73DB20E188A43001E52BE /* PBXTargetDependency */,
-				B4E73DF40E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DF20E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DF00E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DEE0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DEC0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DEA0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DE80E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DE60E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DE40E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DE20E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DE00E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DDE0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DDC0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DDA0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DD80E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DD60E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DD40E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DD20E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DD00E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DCE0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DCC0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DCA0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DC80E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DC60E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DC40E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DC20E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DC00E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DBE0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DBC0E188A4C001E52BE /* PBXTargetDependency */,
-				B4E73DBA0E188A4C001E52BE /* PBXTargetDependency */,
 				B4E73DB80E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DBA0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DBC0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DBE0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DC00E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DC20E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DC40E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DC60E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DC80E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DCA0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DCC0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DCE0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DD00E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DD20E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DD40E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DD60E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DD80E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DDA0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DDC0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DDE0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DE00E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DE20E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DE40E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DE60E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DE80E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DEA0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DEC0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DEE0E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DF00E188A4C001E52BE /* PBXTargetDependency */,
+				B4E73DF20E188A4C001E52BE /* PBXTargetDependency */,
 				B4E73DB60E188A4C001E52BE /* PBXTargetDependency */,
 				B4E73DB40E188A4C001E52BE /* PBXTargetDependency */,
 				B4A0277211BBE11A0067494F /* PBXTargetDependency */,
+				4390398D129E742800C39448 /* PBXTargetDependency */,
+				4390398B129E742800C39448 /* PBXTargetDependency */,
 				B4A0277411BBE11E0067494F /* PBXTargetDependency */,
+				B4E73DF40E188A4C001E52BE /* PBXTargetDependency */,
 			);
 			name = "Build all";
 			productName = "Build all";
@@ -56,6 +63,46 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4300AFB5126DE6C1007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300AFB8126DE6D1007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300AFBE126DE75C007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300AFC1126DE76B007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300AFC4126DE77D007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300AFC7126DE791007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300B00C126DE7A5007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300B00F126DE7B4007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300B012126DE7D1007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300B023126DE7E6007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300B026126DE7F6007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300B02C126DE80E007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300B05B126DE824007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		4300B063126DE8A2007EE669 /* libOpenCVstatic200.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB4126DE6A0007EE669 /* libOpenCVstatic200.a */; };
+		43903994129E74B800C39448 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		439E68AB127C6A4200384D04 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		439E68AC127C6A4200384D04 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
+		439E68AD127C6A4200384D04 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
+		439E68B3127C6A6700384D04 /* cv.jit.perspective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 439E689F127C69EC00384D04 /* cv.jit.perspective.cpp */; };
+		439E68B4127C6A6700384D04 /* max.cv.jit.perspective.c in Sources */ = {isa = PBXBuildFile; fileRef = 439E68A0127C69EC00384D04 /* max.cv.jit.perspective.c */; };
+		439E68EE127C6FF600384D04 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		439E68EF127C6FF600384D04 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
+		439E68F0127C6FF600384D04 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
+		439E68F9127C702800384D04 /* cv.jit.calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 439E68E6127C6FA500384D04 /* cv.jit.calibration.cpp */; };
+		439E68FA127C702800384D04 /* max.cv.jit.calibration.c in Sources */ = {isa = PBXBuildFile; fileRef = 439E68E7127C6FA500384D04 /* max.cv.jit.calibration.c */; };
+		43BCCA86128312250049B105 /* libOpenCVstatic200.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB4126DE6A0007EE669 /* libOpenCVstatic200.a */; };
+		43BCCA87128312250049B105 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
+		43BCCA88128312250049B105 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
+		43BCCAF2128331EA0049B105 /* cv.jit.findhomography.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 439E696E127C76F400384D04 /* cv.jit.findhomography.cpp */; };
+		43BCCAF3128331EA0049B105 /* max.cv.jit.findhomography.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 439E696F127C76F400384D04 /* max.cv.jit.findhomography.cpp */; };
+		43E6EF1F127EBFDB00B43DFA /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		43E6EF20127EBFDB00B43DFA /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
+		43E6EF21127EBFDB00B43DFA /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
+		43E6EF27127EC00A00B43DFA /* cv.jit.findchessboardcorners.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43E6EF0C127EBFAD00B43DFA /* cv.jit.findchessboardcorners.cpp */; };
+		43E6F076127EFEF100B43DFA /* max.cv.jit.findchessboardcorners.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43E6F075127EFEF100B43DFA /* max.cv.jit.findchessboardcorners.cpp */; };
+		43E6F72E12808DC600B43DFA /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
+		43E6F72F12808DC600B43DFA /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
+		43E6F73012808DC600B43DFA /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
+		43E6F73612808E2300B43DFA /* cv.jit.getperspective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 439E68D0127C6C1900384D04 /* cv.jit.getperspective.cpp */; };
+		43E6F73712808E2300B43DFA /* max.cv.jit.getperspective.c in Sources */ = {isa = PBXBuildFile; fileRef = 439E68D1127C6C1900384D04 /* max.cv.jit.getperspective.c */; };
 		B42BF3A90DC5CE4100C6D89F /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
 		B42BF3AA0DC5CE4100C6D89F /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
 		B42BF3D00DC5CE5600C6D89F /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
@@ -74,21 +121,6 @@
 		B460571810E9995C002B2AD8 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
 		B460572410E99986002B2AD8 /* cv.jit.surf.match.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B460572210E99986002B2AD8 /* cv.jit.surf.match.cpp */; };
 		B460572510E99986002B2AD8 /* max.cv.jit.surf.match.c in Sources */ = {isa = PBXBuildFile; fileRef = B460572310E99986002B2AD8 /* max.cv.jit.surf.match.c */; };
-		B49183BC1260749E00FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183BD126079D500FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183BE12607A0D00FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183BF12607A1100FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C012607A1500FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C112607A1900FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C212607A1E00FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C312607A2200FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C412607A2700FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C512607A2C00FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C612607A3100FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C712607A3700FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C812607A4000FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B49183C912607A5800FBE1F9 /* libOpencvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */; };
-		B491843512607F1100FBE1F9 /* libOpenCvStatic200.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B491843412607F1100FBE1F9 /* libOpenCvStatic200.a */; };
 		B49818B51071DC6800FACBCA /* cvjitVectorOps.h in Headers */ = {isa = PBXBuildFile; fileRef = B49818B41071DC6800FACBCA /* cvjitVectorOps.h */; };
 		B49E58110E176D2100AF4A50 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
 		B49E58120E176D2100AF4A50 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
@@ -232,6 +264,55 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4390398A129E742800C39448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B460571110E9995C002B2AD8 /* cv.jit.surf.match */;
+			remoteInfo = cv.jit.surf.match;
+		};
+		4390398C129E742800C39448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4A3B9561016E16500C56B11 /* cv.jit.surf */;
+			remoteInfo = cv.jit.surf;
+		};
+		43DA978F129E72CB00B09409 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43BCCA7F128312250049B105;
+			remoteInfo = cv.jit.findhomography;
+		};
+		43DA9791129E72CB00B09409 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43E6F72812808DC600B43DFA;
+			remoteInfo = cv.jit.getperspective;
+		};
+		43DA9793129E72CB00B09409 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43E6EF19127EBFDB00B43DFA;
+			remoteInfo = cv.jit.findchessboardcorners;
+		};
+		43DA9795129E72CB00B09409 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 439E68E8127C6FF600384D04;
+			remoteInfo = cv.jit.calibration;
+		};
+		43DA9797129E72CB00B09409 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 439E68A5127C6A4200384D04;
+			remoteInfo = cv.jit.perspective;
+		};
 		B4A0277111BBE11A0067494F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -488,7 +569,25 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpencvStatic.a; path = ../../lib/libOpencvStatic.a; sourceTree = SOURCE_ROOT; };
+		4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenCVstatic.a; path = "SDK/cv.jit-dev_v1.7.2/lib/libOpenCVstatic.a"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		4300AFB4126DE6A0007EE669 /* libOpenCVstatic200.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenCVstatic200.a; path = "SDK/cv.jit-dev_v1.7.2/lib/libOpenCVstatic200.a"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E689E127C69EC00384D04 /* bugreport.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = bugreport.rtf; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.perspective/bugreport.rtf"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E689F127C69EC00384D04 /* cv.jit.perspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.perspective.cpp; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.perspective/cv.jit.perspective.cpp"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E68A0127C69EC00384D04 /* max.cv.jit.perspective.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.perspective.c; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.perspective/max.cv.jit.perspective.c"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E68B1127C6A4200384D04 /* cv.jit.perspective.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.perspective.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		439E68D0127C6C1900384D04 /* cv.jit.getperspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.getperspective.cpp; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.getperspective/cv.jit.getperspective.cpp"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E68D1127C6C1900384D04 /* max.cv.jit.getperspective.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.getperspective.c; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.getperspective/max.cv.jit.getperspective.c"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E68E5127C6FA500384D04 /* bugreport.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = bugreport.rtf; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.calibration/bugreport.rtf"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E68E6127C6FA500384D04 /* cv.jit.calibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.calibration.cpp; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.calibration/cv.jit.calibration.cpp"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E68E7127C6FA500384D04 /* max.cv.jit.calibration.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.calibration.c; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.calibration/max.cv.jit.calibration.c"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E68F4127C6FF600384D04 /* cv.jit.calibration.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.calibration.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		439E696E127C76F400384D04 /* cv.jit.findhomography.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.findhomography.cpp; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.findhomography/cv.jit.findhomography.cpp"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		439E696F127C76F400384D04 /* max.cv.jit.findhomography.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = max.cv.jit.findhomography.cpp; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.findhomography/max.cv.jit.findhomography.cpp"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		43BCCA8C128312250049B105 /* cv.jit.findhomography.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.findhomography.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		43E6EF0C127EBFAD00B43DFA /* cv.jit.findchessboardcorners.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.findchessboardcorners.cpp; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.findchessboardcorners/cv.jit.findchessboardcorners.cpp"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		43E6EF25127EBFDB00B43DFA /* cv.jit.findchessboardcorners.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.findchessboardcorners.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		43E6F075127EFEF100B43DFA /* max.cv.jit.findchessboardcorners.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = max.cv.jit.findchessboardcorners.cpp; path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.findchessboardcorners/max.cv.jit.findchessboardcorners.cpp"; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		43E6F73412808DC600B43DFA /* cv.jit.getperspective.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.getperspective.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45339F210EDAC94002BE988 /* cv.jit.opticalflow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.opticalflow.cpp; sourceTree = "<group>"; };
 		B4584BF910100DFB00DA7DA9 /* cv.jit.threshold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.threshold.c; path = ../../src/cv.jit.threshold/cv.jit.threshold.c; sourceTree = SOURCE_ROOT; };
 		B4584BFA10100DFB00DA7DA9 /* max.cv.jit.threhsold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.threhsold.c; path = ../../src/cv.jit.threshold/max.cv.jit.threhsold.c; sourceTree = SOURCE_ROOT; };
@@ -498,7 +597,6 @@
 		B460572310E99986002B2AD8 /* max.cv.jit.surf.match.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.surf.match.c; path = ../../src/cv.jit.surf.match/max.cv.jit.surf.match.c; sourceTree = SOURCE_ROOT; };
 		B46285D90D9388AD0009DEEA /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = /Library/Frameworks/MaxAPI.framework; sourceTree = "<absolute>"; };
 		B46285DD0D9388B80009DEEA /* JitterAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JitterAPI.framework; path = /Library/Frameworks/JitterAPI.framework; sourceTree = "<absolute>"; };
-		B491843412607F1100FBE1F9 /* libOpenCvStatic200.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenCvStatic200.a; path = ../../lib/libOpenCvStatic200.a; sourceTree = SOURCE_ROOT; };
 		B49818B41071DC6800FACBCA /* cvjitVectorOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cvjitVectorOps.h; path = ../../include/cvjitVectorOps.h; sourceTree = SOURCE_ROOT; };
 		B4A3B9A11016E1BE00C56B11 /* max.cv.jit.surf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.surf.c; path = ../../src/cv.jit.surf/max.cv.jit.surf.c; sourceTree = SOURCE_ROOT; };
 		B4A3B9A21016E1BE00C56B11 /* cv.jit.surf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.surf.c; path = ../../src/cv.jit.surf/cv.jit.surf.c; sourceTree = SOURCE_ROOT; };
@@ -614,11 +712,61 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		439E68AA127C6A4200384D04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439E68AB127C6A4200384D04 /* libOpenCVstatic.a in Frameworks */,
+				439E68AC127C6A4200384D04 /* JitterAPI.framework in Frameworks */,
+				439E68AD127C6A4200384D04 /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		439E68ED127C6FF600384D04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439E68EE127C6FF600384D04 /* libOpenCVstatic.a in Frameworks */,
+				439E68EF127C6FF600384D04 /* JitterAPI.framework in Frameworks */,
+				439E68F0127C6FF600384D04 /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43BCCA85128312250049B105 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43BCCA86128312250049B105 /* libOpenCVstatic200.a in Frameworks */,
+				43BCCA87128312250049B105 /* JitterAPI.framework in Frameworks */,
+				43BCCA88128312250049B105 /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43E6EF1E127EBFDB00B43DFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43E6EF1F127EBFDB00B43DFA /* libOpenCVstatic.a in Frameworks */,
+				43E6EF20127EBFDB00B43DFA /* JitterAPI.framework in Frameworks */,
+				43E6EF21127EBFDB00B43DFA /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43E6F72D12808DC600B43DFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43E6F72E12808DC600B43DFA /* libOpenCVstatic.a in Frameworks */,
+				43E6F72F12808DC600B43DFA /* JitterAPI.framework in Frameworks */,
+				43E6F73012808DC600B43DFA /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4584BEE10100D4100DA7DA9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C812607A4000FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300B05B126DE824007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B4584BEF10100D4100DA7DA9 /* JitterAPI.framework in Frameworks */,
 				B4584BF010100D4100DA7DA9 /* MaxAPI.framework in Frameworks */,
 			);
@@ -637,7 +785,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C912607A5800FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				43903994129E74B800C39448 /* libOpenCVstatic.a in Frameworks */,
 				B4A3B95C1016E16500C56B11 /* JitterAPI.framework in Frameworks */,
 				B4A3B95D1016E16500C56B11 /* MaxAPI.framework in Frameworks */,
 			);
@@ -647,9 +795,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4300B063126DE8A2007EE669 /* libOpenCVstatic200.a in Frameworks */,
 				B4C3B0C810EB828F005A82E9 /* JitterAPI.framework in Frameworks */,
 				B4C3B0C910EB828F005A82E9 /* MaxAPI.framework in Frameworks */,
-				B491843512607F1100FBE1F9 /* libOpenCvStatic200.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,7 +898,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183BC1260749E00FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300AFB5126DE6C1007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B4E73D760E188373001E52BE /* JitterAPI.framework in Frameworks */,
 				B4E73D770E188373001E52BE /* MaxAPI.framework in Frameworks */,
 			);
@@ -769,7 +917,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C512607A2C00FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300B023126DE7E6007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B42BF3D00DC5CE5600C6D89F /* JitterAPI.framework in Frameworks */,
 				B42BF3D10DC5CE5600C6D89F /* MaxAPI.framework in Frameworks */,
 			);
@@ -779,7 +927,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183BD126079D500FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300AFB8126DE6D1007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B4E73D720E18836C001E52BE /* JitterAPI.framework in Frameworks */,
 				B4E73D730E18836C001E52BE /* MaxAPI.framework in Frameworks */,
 			);
@@ -816,7 +964,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183BE12607A0D00FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300AFBE126DE75C007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B42BF3A90DC5CE4100C6D89F /* JitterAPI.framework in Frameworks */,
 				B42BF3AA0DC5CE4100C6D89F /* MaxAPI.framework in Frameworks */,
 			);
@@ -826,7 +974,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183BF12607A1100FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300AFC1126DE76B007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B4C0086F0DB6E16B00C45222 /* JitterAPI.framework in Frameworks */,
 				B4C008700DB6E16B00C45222 /* MaxAPI.framework in Frameworks */,
 			);
@@ -854,7 +1002,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C312607A2200FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300B00F126DE7B4007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B49E58720E1780EC00AF4A50 /* JitterAPI.framework in Frameworks */,
 				B49E58730E1780EC00AF4A50 /* MaxAPI.framework in Frameworks */,
 			);
@@ -900,7 +1048,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C412607A2700FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300B012126DE7D1007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B42BF3DB0DC5CEBC00C6D89F /* JitterAPI.framework in Frameworks */,
 				B42BF3DC0DC5CEBC00C6D89F /* MaxAPI.framework in Frameworks */,
 			);
@@ -910,7 +1058,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C612607A3100FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300B026126DE7F6007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B4E73D580E188318001E52BE /* JitterAPI.framework in Frameworks */,
 				B4E73D590E188318001E52BE /* MaxAPI.framework in Frameworks */,
 			);
@@ -929,7 +1077,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C712607A3700FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300B02C126DE80E007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B42BF3E70DC5CED100C6D89F /* JitterAPI.framework in Frameworks */,
 				B42BF3E80DC5CED100C6D89F /* MaxAPI.framework in Frameworks */,
 			);
@@ -939,7 +1087,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C012607A1500FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300AFC4126DE77D007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B49E58110E176D2100AF4A50 /* JitterAPI.framework in Frameworks */,
 				B49E58120E176D2100AF4A50 /* MaxAPI.framework in Frameworks */,
 			);
@@ -958,7 +1106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C112607A1900FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300AFC7126DE791007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B4E73D640E188338001E52BE /* JitterAPI.framework in Frameworks */,
 				B4E73D650E188338001E52BE /* MaxAPI.framework in Frameworks */,
 			);
@@ -968,7 +1116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49183C212607A1E00FBE1F9 /* libOpencvStatic.a in Frameworks */,
+				4300B00C126DE7A5007EE669 /* libOpenCVstatic.a in Frameworks */,
 				B4E73D620E188333001E52BE /* JitterAPI.framework in Frameworks */,
 				B4E73D630E188333001E52BE /* MaxAPI.framework in Frameworks */,
 			);
@@ -980,11 +1128,8 @@
 		089C166AFE841209C02AAC07 /* cv_jit */ = {
 			isa = PBXGroup;
 			children = (
-				B4C3B0D110EB82AC005A82E9 /* cv.jit.opticalflow */,
 				B460570F10E9993C002B2AD8 /* cv.jit.surf.match */,
-				B49818B31071DC2400FACBCA /* Utilities */,
 				B4A3B99C1016E17500C56B11 /* cv.jit.surf */,
-				B4584BE810100D2D00DA7DA9 /* cv.jit.treshold */,
 				B4B5DCBE0CEF323400CE6A66 /* cv.jit.binedge */,
 				B4FEAEB20CEF0D4C00C2A20C /* cv.jit.blobs.bounds */,
 				B4FEAEB40CEF0D8B00C2A20C /* cv.jit.blobs.centroids */,
@@ -1012,15 +1157,23 @@
 				B4B5DCB10CEF318E00CE6A66 /* cv.jit.mass */,
 				B4B5DCB20CEF319400CE6A66 /* cv.jit.mean */,
 				B4B5DCB40CEF31B600CE6A66 /* cv.jit.moments */,
+				B4C3B0D110EB82AC005A82E9 /* cv.jit.opticalflow */,
 				B4B5DCB50CEF31BC00CE6A66 /* cv.jit.ravg */,
 				B4B5DCB60CEF31C500CE6A66 /* cv.jit.resize */,
 				B4B5DCA70CEF30F000CE6A66 /* cv.jit.shift */,
 				B4B5DCB70CEF31CA00CE6A66 /* cv.jit.snake */,
 				B4B5DCB80CEF31D200CE6A66 /* cv.jit.sum */,
+				B4584BE810100D2D00DA7DA9 /* cv.jit.threshold */,
 				B4B5DCB90CEF31DD00CE6A66 /* cv.jit.track */,
 				B4EE2EBE0D78080F001E050C /* cv.jit.trackpoints */,
+				43E6EF0A127EBFAD00B43DFA /* cv.jit.findchessboardcorners */,
+				439E68E4127C6FA500384D04 /* cv.jit.calibration */,
+				439E696D127C76F400384D04 /* cv.jit.findhomography */,
+				439E68CF127C6C1900384D04 /* cv.jit.getperspective */,
+				439E689D127C69EC00384D04 /* cv.jit.perspective */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
+				B49818B31071DC2400FACBCA /* Utilities */,
 			);
 			name = cv_jit;
 			sourceTree = "<group>";
@@ -1028,8 +1181,8 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				B491843412607F1100FBE1F9 /* libOpenCvStatic200.a */,
-				B43E2C050E1A1179002A0BAC /* libOpencvStatic.a */,
+				4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */,
+				4300AFB4126DE6A0007EE669 /* libOpenCVstatic200.a */,
 				B46285DD0D9388B80009DEEA /* JitterAPI.framework */,
 				B46285D90D9388AD0009DEEA /* MaxAPI.framework */,
 				B4FEAC220CEECE0700C2A20C /* Accelerate.framework */,
@@ -1079,17 +1232,74 @@
 				B4CDCF3710621C0900847C22 /* cv.jit.surf.mxo */,
 				B460571D10E9995C002B2AD8 /* cv.jit.surf.match.mxo */,
 				B4C3B0CE10EB828F005A82E9 /* cv.jit.opticalflow.mxo */,
+				439E68B1127C6A4200384D04 /* cv.jit.perspective.mxo */,
+				439E68F4127C6FF600384D04 /* cv.jit.calibration.mxo */,
+				43E6EF25127EBFDB00B43DFA /* cv.jit.findchessboardcorners.mxo */,
+				43E6F73412808DC600B43DFA /* cv.jit.getperspective.mxo */,
+				43BCCA8C128312250049B105 /* cv.jit.findhomography.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B4584BE810100D2D00DA7DA9 /* cv.jit.treshold */ = {
+		439E689D127C69EC00384D04 /* cv.jit.perspective */ = {
+			isa = PBXGroup;
+			children = (
+				439E689E127C69EC00384D04 /* bugreport.rtf */,
+				439E689F127C69EC00384D04 /* cv.jit.perspective.cpp */,
+				439E68A0127C69EC00384D04 /* max.cv.jit.perspective.c */,
+			);
+			name = cv.jit.perspective;
+			path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.perspective";
+			sourceTree = SYSTEM_DEVELOPER_DIR;
+		};
+		439E68CF127C6C1900384D04 /* cv.jit.getperspective */ = {
+			isa = PBXGroup;
+			children = (
+				439E68D0127C6C1900384D04 /* cv.jit.getperspective.cpp */,
+				439E68D1127C6C1900384D04 /* max.cv.jit.getperspective.c */,
+			);
+			name = cv.jit.getperspective;
+			path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.getperspective";
+			sourceTree = SYSTEM_DEVELOPER_DIR;
+		};
+		439E68E4127C6FA500384D04 /* cv.jit.calibration */ = {
+			isa = PBXGroup;
+			children = (
+				439E68E5127C6FA500384D04 /* bugreport.rtf */,
+				439E68E6127C6FA500384D04 /* cv.jit.calibration.cpp */,
+				439E68E7127C6FA500384D04 /* max.cv.jit.calibration.c */,
+			);
+			name = cv.jit.calibration;
+			path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.calibration";
+			sourceTree = SYSTEM_DEVELOPER_DIR;
+		};
+		439E696D127C76F400384D04 /* cv.jit.findhomography */ = {
+			isa = PBXGroup;
+			children = (
+				439E696E127C76F400384D04 /* cv.jit.findhomography.cpp */,
+				439E696F127C76F400384D04 /* max.cv.jit.findhomography.cpp */,
+			);
+			name = cv.jit.findhomography;
+			path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.findhomography";
+			sourceTree = SYSTEM_DEVELOPER_DIR;
+		};
+		43E6EF0A127EBFAD00B43DFA /* cv.jit.findchessboardcorners */ = {
+			isa = PBXGroup;
+			children = (
+				43E6F075127EFEF100B43DFA /* max.cv.jit.findchessboardcorners.cpp */,
+				43E6EF0C127EBFAD00B43DFA /* cv.jit.findchessboardcorners.cpp */,
+			);
+			name = cv.jit.findchessboardcorners;
+			path = "SDK/cv.jit-dev_v1.7.2/src/cv.jit.findchessboardcorners";
+			sourceTree = SYSTEM_DEVELOPER_DIR;
+		};
+		B4584BE810100D2D00DA7DA9 /* cv.jit.threshold */ = {
 			isa = PBXGroup;
 			children = (
 				B4584BF910100DFB00DA7DA9 /* cv.jit.threshold.c */,
 				B4584BFA10100DFB00DA7DA9 /* max.cv.jit.threhsold.c */,
 			);
-			name = cv.jit.treshold;
+			name = cv.jit.threshold;
 			sourceTree = "<group>";
 		};
 		B460570F10E9993C002B2AD8 /* cv.jit.surf.match */ = {
@@ -1451,6 +1661,91 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		439E68A5127C6A4200384D04 /* cv.jit.perspective */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 439E68AE127C6A4200384D04 /* Build configuration list for PBXNativeTarget "cv.jit.perspective" */;
+			buildPhases = (
+				439E68A6127C6A4200384D04 /* Resources */,
+				439E68A7127C6A4200384D04 /* Sources */,
+				439E68AA127C6A4200384D04 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.perspective;
+			productName = cv.jit.dilate;
+			productReference = 439E68B1127C6A4200384D04 /* cv.jit.perspective.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		439E68E8127C6FF600384D04 /* cv.jit.calibration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 439E68F1127C6FF600384D04 /* Build configuration list for PBXNativeTarget "cv.jit.calibration" */;
+			buildPhases = (
+				439E68E9127C6FF600384D04 /* Resources */,
+				439E68EA127C6FF600384D04 /* Sources */,
+				439E68ED127C6FF600384D04 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.calibration;
+			productName = cv.jit.dilate;
+			productReference = 439E68F4127C6FF600384D04 /* cv.jit.calibration.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		43BCCA7F128312250049B105 /* cv.jit.findhomography */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43BCCA89128312250049B105 /* Build configuration list for PBXNativeTarget "cv.jit.findhomography" */;
+			buildPhases = (
+				43BCCA80128312250049B105 /* Resources */,
+				43BCCA81128312250049B105 /* Sources */,
+				43BCCA85128312250049B105 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.findhomography;
+			productName = cv.jit.dilate;
+			productReference = 43BCCA8C128312250049B105 /* cv.jit.findhomography.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		43E6EF19127EBFDB00B43DFA /* cv.jit.findchessboardcorners */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43E6EF22127EBFDB00B43DFA /* Build configuration list for PBXNativeTarget "cv.jit.findchessboardcorners" */;
+			buildPhases = (
+				43E6EF1A127EBFDB00B43DFA /* Resources */,
+				43E6EF1B127EBFDB00B43DFA /* Sources */,
+				43E6EF1E127EBFDB00B43DFA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.findchessboardcorners;
+			productName = cv.jit.dilate;
+			productReference = 43E6EF25127EBFDB00B43DFA /* cv.jit.findchessboardcorners.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		43E6F72812808DC600B43DFA /* cv.jit.getperspective */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43E6F73112808DC600B43DFA /* Build configuration list for PBXNativeTarget "cv.jit.getperspective" */;
+			buildPhases = (
+				43E6F72912808DC600B43DFA /* Resources */,
+				43E6F72A12808DC600B43DFA /* Sources */,
+				43E6F72D12808DC600B43DFA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.getperspective;
+			productName = cv.jit.dilate;
+			productReference = 43E6F73412808DC600B43DFA /* cv.jit.getperspective.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
 		B4584BE910100D4100DA7DA9 /* cv.jit.threshold */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4584BF210100D4100DA7DA9 /* Build configuration list for PBXNativeTarget "cv.jit.threshold" */;
@@ -2154,17 +2449,57 @@
 				B4FEAD870CEF06F700C2A20C /* cv.jit.shift */,
 				B4FEAE6E0CEF0C4500C2A20C /* cv.jit.snake */,
 				B4FEAE7E0CEF0CEA00C2A20C /* cv.jit.sum */,
+				B4A3B9561016E16500C56B11 /* cv.jit.surf */,
+				B460571110E9995C002B2AD8 /* cv.jit.surf.match */,
 				B4FEAE8C0CEF0D0100C2A20C /* cv.jit.track */,
 				B4EE2EBF0D780844001E050C /* cv.jit.trackpoints */,
 				B4584BE910100D4100DA7DA9 /* cv.jit.threshold */,
-				B4A3B9561016E16500C56B11 /* cv.jit.surf */,
-				B460571110E9995C002B2AD8 /* cv.jit.surf.match */,
 				B4C3B0C010EB828F005A82E9 /* cv.jit.opticalflow */,
+				439E68A5127C6A4200384D04 /* cv.jit.perspective */,
+				439E68E8127C6FF600384D04 /* cv.jit.calibration */,
+				43E6EF19127EBFDB00B43DFA /* cv.jit.findchessboardcorners */,
+				43E6F72812808DC600B43DFA /* cv.jit.getperspective */,
+				43BCCA7F128312250049B105 /* cv.jit.findhomography */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		439E68A6127C6A4200384D04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		439E68E9127C6FF600384D04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43BCCA80128312250049B105 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43E6EF1A127EBFDB00B43DFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43E6F72912808DC600B43DFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4584BEA10100D4100DA7DA9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2434,6 +2769,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		439E68A7127C6A4200384D04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439E68B3127C6A6700384D04 /* cv.jit.perspective.cpp in Sources */,
+				439E68B4127C6A6700384D04 /* max.cv.jit.perspective.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		439E68EA127C6FF600384D04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439E68F9127C702800384D04 /* cv.jit.calibration.cpp in Sources */,
+				439E68FA127C702800384D04 /* max.cv.jit.calibration.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43BCCA81128312250049B105 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43BCCAF2128331EA0049B105 /* cv.jit.findhomography.cpp in Sources */,
+				43BCCAF3128331EA0049B105 /* max.cv.jit.findhomography.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43E6EF1B127EBFDB00B43DFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43E6EF27127EC00A00B43DFA /* cv.jit.findchessboardcorners.cpp in Sources */,
+				43E6F076127EFEF100B43DFA /* max.cv.jit.findchessboardcorners.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43E6F72A12808DC600B43DFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43E6F73612808E2300B43DFA /* cv.jit.getperspective.cpp in Sources */,
+				43E6F73712808E2300B43DFA /* max.cv.jit.getperspective.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4584BEB10100D4100DA7DA9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2781,6 +3161,41 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4390398B129E742800C39448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B460571110E9995C002B2AD8 /* cv.jit.surf.match */;
+			targetProxy = 4390398A129E742800C39448 /* PBXContainerItemProxy */;
+		};
+		4390398D129E742800C39448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4A3B9561016E16500C56B11 /* cv.jit.surf */;
+			targetProxy = 4390398C129E742800C39448 /* PBXContainerItemProxy */;
+		};
+		43DA9790129E72CB00B09409 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43BCCA7F128312250049B105 /* cv.jit.findhomography */;
+			targetProxy = 43DA978F129E72CB00B09409 /* PBXContainerItemProxy */;
+		};
+		43DA9792129E72CB00B09409 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43E6F72812808DC600B43DFA /* cv.jit.getperspective */;
+			targetProxy = 43DA9791129E72CB00B09409 /* PBXContainerItemProxy */;
+		};
+		43DA9794129E72CB00B09409 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43E6EF19127EBFDB00B43DFA /* cv.jit.findchessboardcorners */;
+			targetProxy = 43DA9793129E72CB00B09409 /* PBXContainerItemProxy */;
+		};
+		43DA9796129E72CB00B09409 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 439E68E8127C6FF600384D04 /* cv.jit.calibration */;
+			targetProxy = 43DA9795129E72CB00B09409 /* PBXContainerItemProxy */;
+		};
+		43DA9798129E72CB00B09409 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 439E68A5127C6A4200384D04 /* cv.jit.perspective */;
+			targetProxy = 43DA9797129E72CB00B09409 /* PBXContainerItemProxy */;
+		};
 		B4A0277211BBE11A0067494F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B4584BE910100D4100DA7DA9 /* cv.jit.threshold */;
@@ -2964,6 +3379,423 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		439E68AF127C6A4200384D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					../include/OpenCV/,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "../../src/cv.jit.threshold/Info copy 3.plist";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		439E68B0127C6A4200384D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					../include/OpenCV/,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "/Developer/SDK/cv.jit-dev_v1.7.2/src/cv.jit.perspective/Info.plist";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		439E68F2127C6FF600384D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					../include/OpenCV/,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "../../src/cv.jit.threshold/Info copy 5.plist";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		439E68F3127C6FF600384D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					../include/OpenCV/,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "/Developer/SDK/cv.jit-dev_v1.7.2/src/cv.jit.calibration/Info.plist";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		43BCCA8A128312250049B105 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "../../src/cv.jit.opticalflow/Info copy.plist";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		43BCCA8B128312250049B105 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ../../src/cv.jit.findhomography/Info.plist;
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
+				SEPARATE_SYMBOL_EDIT = YES;
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		43E6EF23127EBFDB00B43DFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					../include/OpenCV/,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "../../src/cv.jit.calibration/Info copy.plist";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		43E6EF24127EBFDB00B43DFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					../include/OpenCV/,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ../../src/cv.jit.findchessboardcorners/Info.plist;
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		43E6F73212808DC600B43DFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					../include/OpenCV/,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "../../src/cv.jit.findchessboardcorners/Info copy.plist";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		43E6F73312808DC600B43DFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(inherited)";
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					../include/OpenCV/,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ../../src/cv.jit.getperspective/Info.plist;
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		4FADC23808B4156C00ABE55E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2992,11 +3824,11 @@
 				HEADER_SEARCH_PATHS = (
 					"../../c74support/max-includes",
 					"../../c74support/jit-includes",
-					../../Include,
+					../../include,
 					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1)",
 				);
-				HEADER_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Source/common/include\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "../../OpenCVsupport/opencv\"";
+				HEADER_SEARCH_PATHS_QUOTED_1 = "$(SRCROOT)/../Source/common/include";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = ../../OpenCVsupport/opencv;
 				INFOPLIST_FILE = "$(SRCROOT)/../../src/$(TARGET_NAME)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
 				INSTALL_PATH = "../../build/OSX/$(CONFIGURATION)";
@@ -3047,14 +3879,14 @@
 				HEADER_SEARCH_PATHS = (
 					"../../c74support/max-includes",
 					"../../c74support/jit-includes",
-					../../Include,
+					../../include,
 					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_4)",
 				);
 				HEADER_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Source/common/include\"";
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "";
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_2 = "\"$(SRCROOT)/../../../../cvjit/cvjit/OpenCVsupport/cv/include\"";
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_3 = "\"$(SRCROOT)/../../../../cvjit/cvjit/OpenCVsupport/cxcore/include\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_4 = "../../OpenCVsupport/opencv\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_4 = ../../OpenCVsupport/opencv;
 				INFOPLIST_FILE = "$(SRCROOT)/../../src/$(TARGET_NAME)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
 				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
@@ -3099,8 +3931,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -3137,8 +3971,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -3244,7 +4080,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -3283,8 +4121,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -3323,9 +4163,11 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -3362,9 +4204,11 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -4095,8 +4939,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -4130,8 +4976,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -4236,8 +5084,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -4271,8 +5121,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -4312,8 +5164,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -4347,8 +5201,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -4574,8 +5430,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -4609,8 +5467,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -4650,8 +5510,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -4685,8 +5547,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -4852,8 +5716,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -4887,8 +5753,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5183,8 +6051,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -5222,8 +6092,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5260,8 +6132,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -5295,8 +6169,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5396,8 +6272,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -5431,8 +6309,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5469,8 +6349,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -5505,8 +6387,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5608,8 +6492,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -5643,8 +6529,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5681,8 +6569,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PREBINDING = NO;
@@ -5716,8 +6606,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5735,6 +6627,51 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		439E68AE127C6A4200384D04 /* Build configuration list for PBXNativeTarget "cv.jit.perspective" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				439E68AF127C6A4200384D04 /* Debug */,
+				439E68B0127C6A4200384D04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		439E68F1127C6FF600384D04 /* Build configuration list for PBXNativeTarget "cv.jit.calibration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				439E68F2127C6FF600384D04 /* Debug */,
+				439E68F3127C6FF600384D04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43BCCA89128312250049B105 /* Build configuration list for PBXNativeTarget "cv.jit.findhomography" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43BCCA8A128312250049B105 /* Debug */,
+				43BCCA8B128312250049B105 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43E6EF22127EBFDB00B43DFA /* Build configuration list for PBXNativeTarget "cv.jit.findchessboardcorners" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43E6EF23127EBFDB00B43DFA /* Debug */,
+				43E6EF24127EBFDB00B43DFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43E6F73112808DC600B43DFA /* Build configuration list for PBXNativeTarget "cv.jit.getperspective" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43E6F73212808DC600B43DFA /* Debug */,
+				43E6F73312808DC600B43DFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4FADC23708B4156C00ABE55E /* Build configuration list for PBXProject "cv.jit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

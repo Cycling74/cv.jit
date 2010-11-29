@@ -1,0 +1,6 @@
+;cv.jit.calibration.def
+
+LIBRARY	cv.jit.calibration.mxe
+
+EXPORTS
+	main

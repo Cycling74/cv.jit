@@ -1,0 +1,6 @@
+;cv.jit.findhomography.def
+
+LIBRARY	cv.jit.findhomography.mxe
+
+EXPORTS
+	main

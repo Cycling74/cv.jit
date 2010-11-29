@@ -1,0 +1,6 @@
+;cv.jit.findchessboardcorners.def
+
+LIBRARY	cv.jit.findchessboardcorners.mxe
+
+EXPORTS
+	main

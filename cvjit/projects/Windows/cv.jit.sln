@@ -72,6 +72,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.opticalflow", "Exter
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.lkflow", "Externals\cv.jit.lkflow.vcproj", "{9AE66E11-57C7-444E-973F-B32100EC0D4E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.calibration", "Externals\cv.jit.calibration.vcproj", "{3B0DF615-990B-4192-9F86-D0B3CA622A47}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.getperspective", "Externals\cv.jit.getperspective.vcproj", "{255ACA3B-9BC4-4D06-8616-38188270EDCE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.findhomography", "Externals\cv.jit.findhomography.vcproj", "{78471679-3B65-4B1B-BD8F-EDC7EE7EC0E2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.perspective", "Externals\cv.jit.perspective.vcproj", "{5E1CFAAC-82CE-4D3B-8055-ED4EF23ABBAB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.findchessboardcorners", "Externals\cv.jit.findchessboardcorners.vcproj", "{31B2BB6C-5E4D-45EB-AB3E-216A7D2FF816}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -222,6 +232,26 @@ Global
 		{9AE66E11-57C7-444E-973F-B32100EC0D4E}.Debug|Win32.Build.0 = Debug|Win32
 		{9AE66E11-57C7-444E-973F-B32100EC0D4E}.Release|Win32.ActiveCfg = Release|Win32
 		{9AE66E11-57C7-444E-973F-B32100EC0D4E}.Release|Win32.Build.0 = Release|Win32
+		{3B0DF615-990B-4192-9F86-D0B3CA622A47}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3B0DF615-990B-4192-9F86-D0B3CA622A47}.Debug|Win32.Build.0 = Debug|Win32
+		{3B0DF615-990B-4192-9F86-D0B3CA622A47}.Release|Win32.ActiveCfg = Release|Win32
+		{3B0DF615-990B-4192-9F86-D0B3CA622A47}.Release|Win32.Build.0 = Release|Win32
+		{255ACA3B-9BC4-4D06-8616-38188270EDCE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{255ACA3B-9BC4-4D06-8616-38188270EDCE}.Debug|Win32.Build.0 = Debug|Win32
+		{255ACA3B-9BC4-4D06-8616-38188270EDCE}.Release|Win32.ActiveCfg = Release|Win32
+		{255ACA3B-9BC4-4D06-8616-38188270EDCE}.Release|Win32.Build.0 = Release|Win32
+		{78471679-3B65-4B1B-BD8F-EDC7EE7EC0E2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{78471679-3B65-4B1B-BD8F-EDC7EE7EC0E2}.Debug|Win32.Build.0 = Debug|Win32
+		{78471679-3B65-4B1B-BD8F-EDC7EE7EC0E2}.Release|Win32.ActiveCfg = Release|Win32
+		{78471679-3B65-4B1B-BD8F-EDC7EE7EC0E2}.Release|Win32.Build.0 = Release|Win32
+		{5E1CFAAC-82CE-4D3B-8055-ED4EF23ABBAB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5E1CFAAC-82CE-4D3B-8055-ED4EF23ABBAB}.Debug|Win32.Build.0 = Debug|Win32
+		{5E1CFAAC-82CE-4D3B-8055-ED4EF23ABBAB}.Release|Win32.ActiveCfg = Release|Win32
+		{5E1CFAAC-82CE-4D3B-8055-ED4EF23ABBAB}.Release|Win32.Build.0 = Release|Win32
+		{31B2BB6C-5E4D-45EB-AB3E-216A7D2FF816}.Debug|Win32.ActiveCfg = Debug|Win32
+		{31B2BB6C-5E4D-45EB-AB3E-216A7D2FF816}.Debug|Win32.Build.0 = Debug|Win32
+		{31B2BB6C-5E4D-45EB-AB3E-216A7D2FF816}.Release|Win32.ActiveCfg = Release|Win32
+		{31B2BB6C-5E4D-45EB-AB3E-216A7D2FF816}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

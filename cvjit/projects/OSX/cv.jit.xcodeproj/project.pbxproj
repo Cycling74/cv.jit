@@ -268,14 +268,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B460571110E9995C002B2AD8 /* cv.jit.surf.match */;
+			remoteGlobalIDString = B460571110E9995C002B2AD8;
 			remoteInfo = cv.jit.surf.match;
 		};
 		4390398C129E742800C39448 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B4A3B9561016E16500C56B11 /* cv.jit.surf */;
+			remoteGlobalIDString = B4A3B9561016E16500C56B11;
 			remoteInfo = cv.jit.surf;
 		};
 		43DA978F129E72CB00B09409 /* PBXContainerItemProxy */ = {
@@ -3399,7 +3399,6 @@
 					../include/OpenCV/,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "../../src/cv.jit.threshold/Info copy 3.plist";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3482,7 +3481,6 @@
 					../include/OpenCV/,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "../../src/cv.jit.threshold/Info copy 5.plist";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3563,7 +3561,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "../../src/cv.jit.opticalflow/Info copy.plist";
+				INFOPLIST_FILE = ../../src/cv.jit.opticalflow/Info.plist;
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3650,7 +3648,6 @@
 					../include/OpenCV/,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "../../src/cv.jit.calibration/Info copy.plist";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3733,7 +3730,7 @@
 					../include/OpenCV/,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "../../src/cv.jit.findchessboardcorners/Info copy.plist";
+				INFOPLIST_FILE = ../../src/cv.jit.findchessboardcorners/Info.plist;
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3831,14 +3828,15 @@
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = ../../OpenCVsupport/opencv;
 				INFOPLIST_FILE = "$(SRCROOT)/../../src/$(TARGET_NAME)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
-				INSTALL_PATH = "../../build/OSX/$(CONFIGURATION)";
+				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
 				OBJROOT = "$(SYMROOT)";
 				OTHER_LDFLAGS = "-lmx";
 				PREBINDING = YES;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
 				SYMROOT = ../../build/OSX;
+				VERSION = 1.7.3;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -3893,10 +3891,11 @@
 				OBJROOT = "$(SYMROOT)";
 				OTHER_LDFLAGS = "-lmx";
 				PREBINDING = YES;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
 				SYMROOT = ../../build/OSX;
+				VERSION = 1.7.3;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -4157,7 +4156,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = $inherited;
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4198,7 +4196,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = $inherited;
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4408,7 +4405,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
@@ -4474,7 +4470,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
@@ -4507,7 +4502,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -4541,7 +4535,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
@@ -4572,7 +4565,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;

@@ -43,7 +43,7 @@ typedef struct _cv_jit_blobs_moments
 	long	long				m21[256];
 	long	long				m30[256];
 	long	long				m03[256];
-	char					maxval;
+	unsigned char           maxval;
 	
 } t_cv_jit_blobs_moments;
 

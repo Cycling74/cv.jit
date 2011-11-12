@@ -36,7 +36,7 @@ typedef struct _cv_jit_blobs_centroids
 	long					mass[256];
 	long					m10[256];
 	long					m01[256];
-	char					maxval;
+	unsigned char           maxval;
 	
 } t_cv_jit_blobs_centroids;
 

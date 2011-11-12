@@ -37,7 +37,7 @@ typedef struct _cv_jit_blobs_bounds
 	long					top[256];
 	long					right[256];
 	long					bottom[256];
-	char					maxval;
+	unsigned char           maxval;
 	
 } t_cv_jit_blobs_bounds;
 

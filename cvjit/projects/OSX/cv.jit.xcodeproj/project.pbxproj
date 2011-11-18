@@ -58,58 +58,108 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		4300AFB5126DE6C1007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300AFB8126DE6D1007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300AFBE126DE75C007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300AFC1126DE76B007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300AFC4126DE77D007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300AFC7126DE791007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300B00C126DE7A5007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300B00F126DE7B4007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300B012126DE7D1007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300B023126DE7E6007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300B026126DE7F6007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300B02C126DE80E007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300B05B126DE824007EE669 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		4300B063126DE8A2007EE669 /* libOpenCVstatic200.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB4126DE6A0007EE669 /* libOpenCVstatic200.a */; };
-		43903994129E74B800C39448 /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */; };
-		B42BF3A90DC5CE4100C6D89F /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B42BF3AA0DC5CE4100C6D89F /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B42BF3D00DC5CE5600C6D89F /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B42BF3D10DC5CE5600C6D89F /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B42BF3DB0DC5CEBC00C6D89F /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B42BF3DC0DC5CEBC00C6D89F /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B42BF3E70DC5CED100C6D89F /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B42BF3E80DC5CED100C6D89F /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
 		B45339F310EDAC94002BE988 /* cv.jit.opticalflow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B45339F210EDAC94002BE988 /* cv.jit.opticalflow.cpp */; };
-		B4584BEF10100D4100DA7DA9 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4584BF010100D4100DA7DA9 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
 		B4584BFD10100DFB00DA7DA9 /* cv.jit.threshold.c in Sources */ = {isa = PBXBuildFile; fileRef = B4584BF910100DFB00DA7DA9 /* cv.jit.threshold.c */; };
 		B4584BFE10100DFB00DA7DA9 /* max.cv.jit.threhsold.c in Sources */ = {isa = PBXBuildFile; fileRef = B4584BFA10100DFB00DA7DA9 /* max.cv.jit.threhsold.c */; };
 		B45CDC4411BBE070000DFDD3 /* max.cv.jit.opticalflow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B45CDC4311BBE070000DFDD3 /* max.cv.jit.opticalflow.cpp */; };
-		B460571710E9995C002B2AD8 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B460571810E9995C002B2AD8 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
 		B460572410E99986002B2AD8 /* cv.jit.surf.match.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B460572210E99986002B2AD8 /* cv.jit.surf.match.cpp */; };
 		B460572510E99986002B2AD8 /* max.cv.jit.surf.match.c in Sources */ = {isa = PBXBuildFile; fileRef = B460572310E99986002B2AD8 /* max.cv.jit.surf.match.c */; };
 		B49818B51071DC6800FACBCA /* cvjitVectorOps.h in Headers */ = {isa = PBXBuildFile; fileRef = B49818B41071DC6800FACBCA /* cvjitVectorOps.h */; };
-		B49E58110E176D2100AF4A50 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B49E58120E176D2100AF4A50 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B49E58720E1780EC00AF4A50 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B49E58730E1780EC00AF4A50 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B49E58C00E1793B200AF4A50 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B49E58C10E1793B200AF4A50 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4A3B95C1016E16500C56B11 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4A3B95D1016E16500C56B11 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
 		B4A3B9A31016E1BE00C56B11 /* max.cv.jit.surf.c in Sources */ = {isa = PBXBuildFile; fileRef = B4A3B9A11016E1BE00C56B11 /* max.cv.jit.surf.c */; };
 		B4A3B9A41016E1BE00C56B11 /* cv.jit.surf.c in Sources */ = {isa = PBXBuildFile; fileRef = B4A3B9A21016E1BE00C56B11 /* cv.jit.surf.c */; };
-		B4C0086F0DB6E16B00C45222 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4C008700DB6E16B00C45222 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4C3B0C810EB828F005A82E9 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4C3B0C910EB828F005A82E9 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
 		B4C8FA7910F42E5500E2052A /* OpticalFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C8FA7810F42E5500E2052A /* OpticalFlow.cpp */; };
+		B4D4E634147610900086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E635147610900086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E636147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E637147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E638147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E639147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E63A147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E63B147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E63C147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E63D147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E63E147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E63F147610910086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E640147610920086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E641147610920086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E642147610920086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E643147610920086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E644147610920086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E645147610920086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E646147610920086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E647147610920086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E648147610920086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E649147610930086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E64A147610930086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E64B147610930086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E64C147610930086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E64D147610930086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E64E147610930086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E64F147610930086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E650147610930086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E651147610930086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E652147610940086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E653147610940086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E654147610940086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E655147610940086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E656147610940086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E657147610940086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E658147610940086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E659147610940086335B /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		B4D4E65B147610AA0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E65C147610AB0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E65D147610AB0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E65E147610AB0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E65F147610AB0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E660147610AB0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E661147610AB0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E662147610AB0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E663147610AB0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E664147610AB0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E665147610AC0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E666147610AC0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E667147610AC0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E668147610AC0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E669147610AC0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E66A147610AC0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E66B147610AC0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E66C147610AC0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E66D147610AC0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E66E147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E66F147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E670147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E671147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E672147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E673147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E674147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E675147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E676147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E677147610AD0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E678147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E679147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E67A147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E67B147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E67C147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E67D147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E67E147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E67F147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E680147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		B4D4E682147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E683147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E684147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E685147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E686147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E687147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E688147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E689147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E68A147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E68B147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E68C147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E68D147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E68E147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
+		B4D4E6901476116D0086335B /* libOpenCVstatic200.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E68F1476116D0086335B /* libOpenCVstatic200.a */; };
+		B4D4E6911476116D0086335B /* libOpenCVstatic200.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E68F1476116D0086335B /* libOpenCVstatic200.a */; };
 		B4DA8E400E21A50100A424E7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B4E73A3A0E18647D001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73A3B0E18647D001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
 		B4E73BB00E18708E001E52BE /* cv.jit.binedge.c in Sources */ = {isa = PBXBuildFile; fileRef = B4E73BAE0E18708E001E52BE /* cv.jit.binedge.c */; };
 		B4E73BB10E18708E001E52BE /* max.cv.jit.binedge.c in Sources */ = {isa = PBXBuildFile; fileRef = B4E73BAF0E18708E001E52BE /* max.cv.jit.binedge.c */; };
 		B4E73BB40E18709F001E52BE /* cv.jit.blobs.bounds.c in Sources */ = {isa = PBXBuildFile; fileRef = B4E73BB20E18709F001E52BE /* cv.jit.blobs.bounds.c */; };
@@ -179,56 +229,6 @@
 		B4E73C3A0E187314001E52BE /* cv.jit.track.c in Sources */ = {isa = PBXBuildFile; fileRef = B4E73C380E187314001E52BE /* cv.jit.track.c */; };
 		B4E73C3D0E18731E001E52BE /* cv.jit.trackpoints.c in Sources */ = {isa = PBXBuildFile; fileRef = B4E73C3B0E18731E001E52BE /* cv.jit.trackpoints.c */; };
 		B4E73C3E0E18731E001E52BE /* max.cv.jit.trackpoints.c in Sources */ = {isa = PBXBuildFile; fileRef = B4E73C3C0E18731E001E52BE /* max.cv.jit.trackpoints.c */; };
-		B4E73D500E18824E001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D510E18824E001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D530E18825D001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D540E18825D001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D560E188313001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D570E188313001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D580E188318001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D590E188318001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D5A0E188321001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D5B0E188321001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D5C0E188327001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D5D0E188327001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D5E0E18832B001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D5F0E18832B001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D600E18832E001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D610E18832E001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D620E188333001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D630E188333001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D640E188338001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D650E188338001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D660E188349001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D670E188349001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D680E188355001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D690E188355001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D6A0E18835C001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D6B0E18835C001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D6C0E188362001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D6D0E188362001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D6E0E188366001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D6F0E188366001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D700E188369001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D710E188369001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D720E18836C001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D730E18836C001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D740E18836F001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D750E18836F001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D760E188373001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D770E188373001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D780E188377001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D790E188377001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D7A0E188379001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D7B0E188379001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D7C0E18837C001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D7D0E18837C001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D7E0E18837E001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D7F0E18837E001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73D800E188381001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73D810E188381001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
-		B4E73DFE0E188C0C001E52BE /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285DD0D9388B80009DEEA /* JitterAPI.framework */; };
-		B4E73DFF0E188C0C001E52BE /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46285D90D9388AD0009DEEA /* MaxAPI.framework */; };
 		B4FEAC230CEECE0700C2A20C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FEAC220CEECE0700C2A20C /* Accelerate.framework */; };
 		B4FEAC240CEECE0700C2A20C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FEAC220CEECE0700C2A20C /* Accelerate.framework */; };
 /* End PBXBuildFile section */
@@ -504,8 +504,6 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenCVstatic.a; path = "SDK/cv.jit-dev_v1.7.2/lib/libOpenCVstatic.a"; sourceTree = DEVELOPER_DIR; };
-		4300AFB4126DE6A0007EE669 /* libOpenCVstatic200.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenCVstatic200.a; path = "SDK/cv.jit-dev_v1.7.2/lib/libOpenCVstatic200.a"; sourceTree = DEVELOPER_DIR; };
 		B45339F210EDAC94002BE988 /* cv.jit.opticalflow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.opticalflow.cpp; sourceTree = "<group>"; };
 		B4584BF910100DFB00DA7DA9 /* cv.jit.threshold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.threshold.c; path = ../../src/cv.jit.threshold/cv.jit.threshold.c; sourceTree = SOURCE_ROOT; };
 		B4584BFA10100DFB00DA7DA9 /* max.cv.jit.threhsold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.threhsold.c; path = ../../src/cv.jit.threshold/max.cv.jit.threhsold.c; sourceTree = SOURCE_ROOT; };
@@ -513,8 +511,6 @@
 		B460571D10E9995C002B2AD8 /* cv.jit.surf.match.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.surf.match.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		B460572210E99986002B2AD8 /* cv.jit.surf.match.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.surf.match.cpp; path = ../../src/cv.jit.surf.match/cv.jit.surf.match.cpp; sourceTree = SOURCE_ROOT; };
 		B460572310E99986002B2AD8 /* max.cv.jit.surf.match.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.surf.match.c; path = ../../src/cv.jit.surf.match/max.cv.jit.surf.match.c; sourceTree = SOURCE_ROOT; };
-		B46285D90D9388AD0009DEEA /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = /Library/Frameworks/MaxAPI.framework; sourceTree = "<absolute>"; };
-		B46285DD0D9388B80009DEEA /* JitterAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JitterAPI.framework; path = /Library/Frameworks/JitterAPI.framework; sourceTree = "<absolute>"; };
 		B49818B41071DC6800FACBCA /* cvjitVectorOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cvjitVectorOps.h; path = ../../include/cvjitVectorOps.h; sourceTree = SOURCE_ROOT; };
 		B4A3B9A11016E1BE00C56B11 /* max.cv.jit.surf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.surf.c; path = ../../src/cv.jit.surf/max.cv.jit.surf.c; sourceTree = SOURCE_ROOT; };
 		B4A3B9A21016E1BE00C56B11 /* cv.jit.surf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.surf.c; path = ../../src/cv.jit.surf/cv.jit.surf.c; sourceTree = SOURCE_ROOT; };
@@ -557,6 +553,10 @@
 		B4CDCF3510621C0900847C22 /* cv.jit.track.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.track.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CDCF3610621C0900847C22 /* cv.jit.threshold.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.threshold.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CDCF3710621C0900847C22 /* cv.jit.surf.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.surf.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4D4E633147610900086335B /* JitterAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JitterAPI.framework; path = "../../c74support/jit-includes/JitterAPI.framework"; sourceTree = "<group>"; };
+		B4D4E65A147610AA0086335B /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../../c74support/max-includes/MaxAPI.framework"; sourceTree = "<group>"; };
+		B4D4E681147611320086335B /* libOpenCVstatic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenCVstatic.a; path = ../../lib/libOpenCVstatic.a; sourceTree = "<group>"; };
+		B4D4E68F1476116D0086335B /* libOpenCVstatic200.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenCVstatic200.a; path = ../../lib/libOpenCVstatic200.a; sourceTree = "<group>"; };
 		B4E73BAE0E18708E001E52BE /* cv.jit.binedge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.binedge.c; path = ../../src/cv.jit.binedge/cv.jit.binedge.c; sourceTree = SOURCE_ROOT; };
 		B4E73BAF0E18708E001E52BE /* max.cv.jit.binedge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.binedge.c; path = ../../src/cv.jit.binedge/max.cv.jit.binedge.c; sourceTree = SOURCE_ROOT; };
 		B4E73BB20E18709F001E52BE /* cv.jit.blobs.bounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.blobs.bounds.c; path = ../../src/cv.jit.blobs.bounds/cv.jit.blobs.bounds.c; sourceTree = SOURCE_ROOT; };
@@ -634,9 +634,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300B05B126DE824007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B4584BEF10100D4100DA7DA9 /* JitterAPI.framework in Frameworks */,
-				B4584BF010100D4100DA7DA9 /* MaxAPI.framework in Frameworks */,
+				B4D4E658147610940086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E67F147610AE0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E68E147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,8 +644,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B460571710E9995C002B2AD8 /* JitterAPI.framework in Frameworks */,
-				B460571810E9995C002B2AD8 /* MaxAPI.framework in Frameworks */,
+				B4D4E655147610940086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E67C147610AE0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,9 +653,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43903994129E74B800C39448 /* libOpenCVstatic.a in Frameworks */,
-				B4A3B95C1016E16500C56B11 /* JitterAPI.framework in Frameworks */,
-				B4A3B95D1016E16500C56B11 /* MaxAPI.framework in Frameworks */,
+				B4D4E654147610940086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E67B147610AE0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E6901476116D0086335B /* libOpenCVstatic200.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,9 +663,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300B063126DE8A2007EE669 /* libOpenCVstatic200.a in Frameworks */,
-				B4C3B0C810EB828F005A82E9 /* JitterAPI.framework in Frameworks */,
-				B4C3B0C910EB828F005A82E9 /* MaxAPI.framework in Frameworks */,
+				B4D4E659147610940086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E680147610AE0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E6911476116D0086335B /* libOpenCVstatic200.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,8 +673,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73DFE0E188C0C001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73DFF0E188C0C001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E657147610940086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E67E147610AE0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,9 +682,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D6C0E188362001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D6D0E188362001E52BE /* MaxAPI.framework in Frameworks */,
 				B4FEAC230CEECE0700C2A20C /* Accelerate.framework in Frameworks */,
+				B4D4E640147610920086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E667147610AC0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,9 +692,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D6A0E18835C001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D6B0E18835C001E52BE /* MaxAPI.framework in Frameworks */,
 				B4FEAC240CEECE0700C2A20C /* Accelerate.framework in Frameworks */,
+				B4D4E641147610920086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E668147610AC0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,8 +703,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4DA8E400E21A50100A424E7 /* Carbon.framework in Frameworks */,
-				B4E73D500E18824E001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D510E18824E001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E634147610900086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E65B147610AA0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,8 +712,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D530E18825D001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D540E18825D001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E635147610900086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E65C147610AB0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,8 +721,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D800E188381001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D810E188381001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E636147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E65D147610AB0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,8 +730,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D7E0E18837E001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D7F0E18837E001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E637147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E65E147610AB0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,8 +739,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D7C0E18837C001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D7D0E18837C001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E638147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E65F147610AB0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,8 +748,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D7A0E188379001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D7B0E188379001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E639147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E660147610AB0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,8 +757,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D780E188377001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D790E188377001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E63A147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E661147610AB0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,9 +766,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300AFB5126DE6C1007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B4E73D760E188373001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D770E188373001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E63B147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E662147610AB0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E682147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,8 +776,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D740E18836F001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D750E18836F001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E63C147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E663147610AB0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,9 +785,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300B023126DE7E6007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B42BF3D00DC5CE5600C6D89F /* JitterAPI.framework in Frameworks */,
-				B42BF3D10DC5CE5600C6D89F /* MaxAPI.framework in Frameworks */,
+				B4D4E651147610930086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E678147610AE0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E68B147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,9 +795,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300AFB8126DE6D1007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B4E73D720E18836C001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D730E18836C001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E63D147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E664147610AB0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E683147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,8 +805,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D700E188369001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D710E188369001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E63E147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E665147610AC0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,8 +814,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D6E0E188366001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D6F0E188366001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E63F147610910086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E666147610AC0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,8 +823,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D680E188355001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D690E188355001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E642147610920086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E669147610AC0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,9 +832,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300AFBE126DE75C007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B42BF3A90DC5CE4100C6D89F /* JitterAPI.framework in Frameworks */,
-				B42BF3AA0DC5CE4100C6D89F /* MaxAPI.framework in Frameworks */,
+				B4D4E643147610920086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E66A147610AC0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E684147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,9 +842,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300AFC1126DE76B007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B4C0086F0DB6E16B00C45222 /* JitterAPI.framework in Frameworks */,
-				B4C008700DB6E16B00C45222 /* MaxAPI.framework in Frameworks */,
+				B4D4E644147610920086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E66B147610AC0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E685147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,8 +852,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73A3A0E18647D001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73A3B0E18647D001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E645147610920086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E66C147610AC0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,8 +861,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D660E188349001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D670E188349001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E646147610920086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E66D147610AC0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,9 +870,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300B00F126DE7B4007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B49E58720E1780EC00AF4A50 /* JitterAPI.framework in Frameworks */,
-				B49E58730E1780EC00AF4A50 /* MaxAPI.framework in Frameworks */,
+				B4D4E64B147610930086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E672147610AD0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E689147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,8 +880,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D600E18832E001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D610E18832E001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E64C147610930086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E673147610AD0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -889,8 +889,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D5E0E18832B001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D5F0E18832B001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E64D147610930086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E674147610AD0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,8 +898,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D5C0E188327001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D5D0E188327001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E64E147610930086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E675147610AD0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -907,8 +907,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D5A0E188321001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D5B0E188321001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E64F147610930086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E676147610AD0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,9 +916,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300B012126DE7D1007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B42BF3DB0DC5CEBC00C6D89F /* JitterAPI.framework in Frameworks */,
-				B42BF3DC0DC5CEBC00C6D89F /* MaxAPI.framework in Frameworks */,
+				B4D4E650147610930086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E677147610AD0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E68A147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,9 +926,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300B026126DE7F6007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B4E73D580E188318001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D590E188318001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E652147610940086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E679147610AE0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E68C147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,8 +936,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E73D560E188313001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D570E188313001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E653147610940086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E67A147610AE0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,9 +945,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300B02C126DE80E007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B42BF3E70DC5CED100C6D89F /* JitterAPI.framework in Frameworks */,
-				B42BF3E80DC5CED100C6D89F /* MaxAPI.framework in Frameworks */,
+				B4D4E656147610940086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E67D147610AE0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E68D147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -955,9 +955,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300AFC4126DE77D007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B49E58110E176D2100AF4A50 /* JitterAPI.framework in Frameworks */,
-				B49E58120E176D2100AF4A50 /* MaxAPI.framework in Frameworks */,
+				B4D4E647147610920086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E66E147610AD0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E686147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,8 +965,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49E58C00E1793B200AF4A50 /* JitterAPI.framework in Frameworks */,
-				B49E58C10E1793B200AF4A50 /* MaxAPI.framework in Frameworks */,
+				B4D4E648147610920086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E66F147610AD0086335B /* MaxAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -974,9 +974,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300AFC7126DE791007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B4E73D640E188338001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D650E188338001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E649147610930086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E670147610AD0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E687147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,9 +984,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4300B00C126DE7A5007EE669 /* libOpenCVstatic.a in Frameworks */,
-				B4E73D620E188333001E52BE /* JitterAPI.framework in Frameworks */,
-				B4E73D630E188333001E52BE /* MaxAPI.framework in Frameworks */,
+				B4D4E64A147610930086335B /* JitterAPI.framework in Frameworks */,
+				B4D4E671147610AD0086335B /* MaxAPI.framework in Frameworks */,
+				B4D4E688147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,10 +1044,10 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				4300AFB3126DE6A0007EE669 /* libOpenCVstatic.a */,
-				4300AFB4126DE6A0007EE669 /* libOpenCVstatic200.a */,
-				B46285DD0D9388B80009DEEA /* JitterAPI.framework */,
-				B46285D90D9388AD0009DEEA /* MaxAPI.framework */,
+				B4D4E68F1476116D0086335B /* libOpenCVstatic200.a */,
+				B4D4E681147611320086335B /* libOpenCVstatic.a */,
+				B4D4E65A147610AA0086335B /* MaxAPI.framework */,
+				B4D4E633147610900086335B /* JitterAPI.framework */,
 				B4FEAC220CEECE0700C2A20C /* Accelerate.framework */,
 				08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */,
 			);
@@ -3010,7 +3010,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "../../c74support/max-includes/macho-prefix.pch";
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				GCC_WARN_SIGN_COMPARE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
@@ -3067,7 +3068,8 @@
 				GCC_PREFIX_HEADER = "../../c74support/max-includes/macho-prefix.pch";
 				GCC_UNROLL_LOOPS = YES;
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				GCC_WARN_SIGN_COMPARE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
@@ -3109,7 +3111,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -3117,7 +3123,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = (
 					../include/OpenCV/,
 					"$(inherited)",
@@ -3128,9 +3134,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3150,13 +3156,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = (
 					../include/OpenCV/,
 					"$(inherited)",
@@ -3167,9 +3177,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -3190,7 +3200,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -3198,7 +3212,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = $inherited;
 				INSTALL_PATH = "$(inherited)";
@@ -3222,13 +3236,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = $inherited;
 				INSTALL_PATH = "$(inherited)";
@@ -3256,6 +3274,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3265,7 +3285,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = $inherited;
 				INSTALL_PATH = "$(inherited)";
@@ -3273,8 +3293,8 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -3298,6 +3318,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -3305,7 +3327,7 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = $inherited;
 				INSTALL_PATH = "$(inherited)";
@@ -3313,9 +3335,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -3336,7 +3358,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -3345,7 +3371,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
@@ -3353,10 +3379,10 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3377,14 +3403,18 @@
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
@@ -3392,10 +3422,10 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -3416,8 +3446,8 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_VERSION = "";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "";
 				INFOPLIST_FILE = "";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -3436,10 +3466,14 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_VERSION = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_2 = "";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_3 = "";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_4 = "";
 				INFOPLIST_FILE = "";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "";
+				INSTALL_PATH = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_NAME = cv.jit;
 				PUBLIC_HEADERS_FOLDER_PATH = "";
@@ -3455,7 +3489,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3463,7 +3501,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3487,13 +3525,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3518,7 +3560,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -3526,7 +3572,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3550,13 +3596,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3581,7 +3631,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -3589,7 +3643,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -3612,13 +3666,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3643,7 +3701,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -3652,7 +3714,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -3676,14 +3738,18 @@
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = "$(PROJECT_DIR)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -3707,7 +3773,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3715,7 +3785,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -3738,13 +3808,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -3768,7 +3842,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3776,7 +3854,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3800,13 +3878,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3831,7 +3913,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3839,7 +3925,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3863,13 +3949,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3894,7 +3984,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3902,7 +3996,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3926,13 +4020,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3957,7 +4055,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3965,7 +4067,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -3989,13 +4091,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4020,7 +4126,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -4028,7 +4138,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4052,13 +4162,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4083,7 +4197,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4091,7 +4209,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					../Include/OpenCV/,
@@ -4102,13 +4220,13 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4124,13 +4242,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4138,14 +4260,14 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
+				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4161,7 +4283,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -4169,7 +4295,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4193,13 +4319,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4224,7 +4354,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4232,7 +4366,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					../Include/OpenCV/,
@@ -4243,9 +4377,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4265,13 +4399,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4279,9 +4417,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -4302,7 +4440,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4310,7 +4452,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = (
 					../include/OpenCV/,
 					"$(inherited)",
@@ -4321,9 +4463,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4343,13 +4485,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4357,9 +4503,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -4380,14 +4526,18 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4411,12 +4561,16 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4441,14 +4595,18 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4472,12 +4630,16 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4502,14 +4664,18 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4533,12 +4699,16 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4563,7 +4733,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4571,7 +4745,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4579,9 +4753,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4601,13 +4775,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4615,9 +4793,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -4641,7 +4819,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4649,7 +4831,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4657,9 +4839,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4679,13 +4861,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4693,9 +4879,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -4719,14 +4905,18 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4750,12 +4940,16 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4780,14 +4974,18 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4811,12 +5009,16 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4841,7 +5043,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4849,7 +5055,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4857,9 +5063,8 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4879,13 +5084,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4893,9 +5102,8 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -4916,7 +5124,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -4925,7 +5137,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4949,14 +5161,18 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -4981,7 +5197,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -4989,7 +5209,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5013,13 +5233,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5044,14 +5268,18 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5075,12 +5303,16 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5105,14 +5337,18 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5136,12 +5372,16 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5166,7 +5406,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5174,7 +5418,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5182,9 +5426,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5206,14 +5450,18 @@
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_OPENMP_SUPPORT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DEBUGGING_SYMBOLS = full;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5221,9 +5469,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5244,7 +5492,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5252,7 +5504,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5260,9 +5512,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5282,13 +5534,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5296,9 +5552,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5319,14 +5575,18 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5350,12 +5610,16 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5380,7 +5644,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5388,7 +5656,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5396,9 +5664,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5418,13 +5686,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5432,9 +5704,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5455,7 +5727,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5463,7 +5739,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5471,9 +5747,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5493,13 +5769,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Source/common/include\"";
 				INFOPLIST_FILE = "$(inherited)";
@@ -5508,9 +5788,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5531,7 +5811,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -5539,7 +5823,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5563,13 +5847,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5594,7 +5882,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5602,7 +5894,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5610,9 +5902,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5632,13 +5924,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5646,9 +5942,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -5669,7 +5965,11 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5677,7 +5977,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5685,9 +5985,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5707,13 +6007,17 @@
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../c74support/jit-includes\"",
+					"\"$(SRCROOT)/../../c74support/max-includes\"",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
@@ -5721,9 +6025,9 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../../lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDK/cv.jit-dev_v1.7.2/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";

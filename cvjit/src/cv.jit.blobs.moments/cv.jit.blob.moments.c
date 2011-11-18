@@ -292,7 +292,7 @@ t_cv_jit_blobs_moments *cv_jit_blobs_moments_new(void)
 {
 	t_cv_jit_blobs_moments *x;
 		
-	if (x=(t_cv_jit_blobs_moments *)jit_object_alloc(_cv_jit_blobs_moments_class)) {
+	if ((x=(t_cv_jit_blobs_moments *)jit_object_alloc(_cv_jit_blobs_moments_class))) {
 	
 		x->maxval = 0;
 

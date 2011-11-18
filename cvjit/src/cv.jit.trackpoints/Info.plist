@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>cv.jit.trackpoints</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.jmp.cv.jit. trackpoints</string>
+	<string>com.jmp.cv.jit.trackpoints</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>

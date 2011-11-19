@@ -3032,7 +3032,7 @@
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
-				SYMROOT = ../../build/OSX;
+				SYMROOT = /build;
 				VERSION = 1.7.3;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -3093,7 +3093,7 @@
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
-				SYMROOT = ../../build/OSX;
+				SYMROOT = /build;
 				VERSION = 1.7.3;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -3214,7 +3214,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = $inherited;
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
@@ -3248,7 +3248,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = $inherited;
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -3287,7 +3287,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = $inherited;
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3329,7 +3329,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = $inherited;
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3373,6 +3373,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3416,6 +3417,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3645,6 +3647,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
@@ -3716,6 +3719,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
@@ -3751,6 +3755,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -3787,6 +3792,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
@@ -3820,6 +3826,7 @@
 				GCC_PREFIX_HEADER = "$(inherited)";
 				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;

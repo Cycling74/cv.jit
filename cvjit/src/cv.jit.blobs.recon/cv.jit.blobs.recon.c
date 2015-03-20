@@ -111,12 +111,13 @@ t_jit_err cv_jit_blobs_recon_init(void)
 
 void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t_atom *argv)
 {
-	char fname[256];
+	char fname[MAX_FILENAME_CHARS];
 	short id;
 	t_filehandle handle;
-	long count,cvjt;
-	long type;
-	long code;
+	t_ptr_size count;
+	long cvjt;
+	t_fourcc type;
+	t_fourcc code;
 	double index;
 	int i;
 	

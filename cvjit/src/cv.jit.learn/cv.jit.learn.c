@@ -120,12 +120,13 @@ void cv_jit_learn_clear(t_cv_jit_learn *x)
 
 void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 {
-	char fname[256];
+	char fname[MAX_FILENAME_CHARS];
 	short id;
 	t_filehandle handle;
-	long count,cvjt;
-	long type;
-	long code;
+	t_ptr_size count;
+	long cvjt;
+	t_fourcc type;
+	t_fourcc code;
 	int i;
 	
 	code = FOUR_CHAR_CODE( 'maxb' );
@@ -248,7 +249,8 @@ void cv_jit_learn_write(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv
 	char fname[256];
 	short id;
 	t_filehandle handle;
-	long count,cvjt;
+	t_ptr_size count;
+	long cvjt;
 	
 	strcpy(fname,".mxb");  //Display .mxb in the dialog box	
 	if(!saveas_dialog(fname, &id, 0L))

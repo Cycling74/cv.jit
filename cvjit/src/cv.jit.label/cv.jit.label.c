@@ -139,7 +139,7 @@ t_jit_err cv_jit_label_matrix_calc(t_cv_jit_label *x, void *inputs, void *output
 //	int 				bufferSize; 										//Size of the segment buffer
 	long 				in_savelock=0,out_savelock=0,buf_savelock=0,temp_savelock=0; 				//Savelocks
 	t_jit_matrix_info 	in_minfo,out_minfo,buf_minfo,temp_minfo; 						//Matrix information structures
-	char 				*in_bp,*out_bp,*buf_bp,*temp_bp; 							//Pointers to matrix data
+	char 				*in_bp,*out_bp,*buf_bp,*temp_bp = 0; 							//Pointers to matrix data
 	long 				i; 													//Used for itteration
 	long 				dimcount,planecount,dim[JIT_MATRIX_MAX_DIMCOUNT];	//Variables to store information about matrices
 	void 				*in_matrix, *out_matrix, *buf_matrix, *temp_matrix; 				//Pointers to actual matrices
@@ -236,6 +236,7 @@ t_jit_err cv_jit_label_matrix_calc(t_cv_jit_label *x, void *inputs, void *output
 	}
 	
 out:
+	jit_object_method(temp_matrix,gensym("lock"),temp_savelock);
 	jit_object_method(out_matrix,gensym("lock"),out_savelock);
 	jit_object_method(in_matrix,gensym("lock"),in_savelock);
 	jit_object_method(buf_matrix,gensym("lock"),buf_savelock);
@@ -246,7 +247,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 {
 	char	*in; 								//Pointers to matrix data 	
 	char	*out;
-	long	*out_l;
+	t_int32	*out_l;
 	char	*cTemp;
     int 	step,outstep,cstep;						//The size, in bytes of a single row of data
     int 	width,height;						//Width and height, in elements, of the matrices
@@ -284,7 +285,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 		{	
     		for (j=0;(j<width)&&(ndx < 2048);j++)
     		{
-    			if((((long *)out)[j]==0)&&(in[j]!=0))    //We found a new blob
+    			if((((t_int32 *)out)[j]==0)&&(in[j]!=0))    //We found a new blob
     			{
     				ndx++;
 					ndx = MIN(ndx, 2048);
@@ -303,7 +304,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 		{	
     		for (j=0;(j<width)&&(ndx < 2048);j++)
     		{
-    			if((((long *)cTemp)[j]==0)&&(in[j]!=0))    //We found a new blob
+    			if((((t_int32 *)cTemp)[j]==0)&&(in[j]!=0))    //We found a new blob
     			{
     				ndx++;
 					ndx = MIN(ndx, 2048);
@@ -324,7 +325,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 			switch(x->mode)
 			{
 			case 1:	//Label each blob with its mass
-				out_l = (long*)bop;  //Convert data pointer
+				out_l = (t_int32 *)bop;  //Convert data pointer
 		    
    		 		for (i=0;i<height;i++)
     			{	
@@ -337,7 +338,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     						out_l[j] = 0;
     				}
     				//(char *)out_l += outstep;
-					out_l = (long *)((char *)out_l + outstep);
+					out_l = (t_int32 *)((char *)out_l + outstep);
     			}
 				break;
 
@@ -360,7 +361,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     			}
 	    		
 				blobs[0].index = 0;
-    			out_l = (long*)bop;
+    			out_l = (t_int32 *)bop;
 	    
    		 		for (i=0;i<height;i++)
     			{	
@@ -371,7 +372,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 						out_l[j] = blobs[temp].index;
     				}
     				//(char *)out_l += outstep;
-					out_l = (long *)((char *)out_l + outstep);
+					out_l = (t_int32 *)((char *)out_l + outstep);
     			}
 				break;
 			}
@@ -382,7 +383,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 		{
 			if(x->mode == 1) //Label with mass
     		{
-    			out_l = (long*)bop;
+    			out_l = (t_int32 *)bop;
 	    
    		 		for (i=0;i<height;i++)
     			{	
@@ -393,7 +394,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 						out_l[j] = blobs[temp].size;
     				}
 					//(char *)out_l += outstep;
-					out_l = (long *)((char *)out_l + outstep);
+					out_l = (t_int32 *)((char *)out_l + outstep);
     			}
     		}
 		}
@@ -406,7 +407,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 			{
 			case 1:	//Label each blob with its size rank
 				
-				out_l = (long*)tmp;  //Convert data pointer
+				out_l = (t_int32 *)tmp;  //Convert data pointer
 				out = bop;
 				
 				if(ndx == 1)
@@ -459,7 +460,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 						out[j] = equiv[out_l[j]];
     				}
     				//(char *)out_l += cstep;
-					out_l = (long *)((char *)out_l + cstep);
+					out_l = (t_int32 *)((char *)out_l + cstep);
 					out += outstep;
     			}
 				
@@ -484,7 +485,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 
 	    		if (ndx < 256) //no need to sort
 				{
-					out_l = (long *)tmp;  //Convert data pointer
+					out_l = (t_int32 *)tmp;  //Convert data pointer
 					out = bop;
 			    
    		 			for (i=0;i<height;i++)
@@ -494,13 +495,13 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     						out[j] = blobs[out_l[j]].index;
     					}
     					//(char *)out_l += cstep;
-						out_l = (long *)((char *)out_l + cstep);
+						out_l = (t_int32 *)((char *)out_l + cstep);
 						out += outstep;
     				}
 				}
 				else  //We'll have to sort this out.
 				{
-					out_l = (long *)tmp;  //Convert data pointer
+					out_l = (t_int32 *)tmp;  //Convert data pointer
 					out = bop;
 			    
    		 			for (i=0;i<height;i++)
@@ -513,7 +514,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     							out[j] = blobs[out_l[j]].index;
     					}
     					//(char *)out_l += cstep;
-						out_l = (long *)((char *)out_l + cstep);
+						out_l = (t_int32 *)((char *)out_l + cstep);
 						out += outstep;
     				}
 					
@@ -526,7 +527,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 		{
 			if(x->mode == 1) //Label with size index
     		{
-    			out_l = (long*)tmp;  //Convert data pointer
+    			out_l = (t_int32 *)tmp;  //Convert data pointer
 				out = bop;
 
 				if(ndx == 1)
@@ -562,7 +563,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 						out[j] = equiv[out_l[j]];
     				}
     				//(char *)out_l += cstep;
-					out_l = (long *)((char *)out_l + cstep);
+					out_l = (t_int32 *)((char *)out_l + cstep);
 					out += outstep;
     			}
     		}
@@ -570,7 +571,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 			{
 				if (ndx < 256) //no need to sort
 				{
-					out_l = (long *)tmp;  //Convert data pointer
+					out_l = (t_int32 *)tmp;  //Convert data pointer
 					out = bop;
 				
    		 			for (i=0;i<height;i++)
@@ -580,13 +581,13 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     						out[j] = out_l[j];
     					}
     					//(char *)out_l += cstep;
-						out_l = (long *)((char *)out_l + cstep);
+						out_l = (t_int32 *)((char *)out_l + cstep);
 						out += outstep;
     				}
 				}
 				else
 				{
-					out_l = (long *)tmp;  //Convert data pointer
+					out_l = (t_int32 *)tmp;  //Convert data pointer
 					out = bop;
 				
    		 			for (i=0;i<height;i++)
@@ -599,7 +600,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     							out[j] = blobs[out_l[j]].index;
     					}
     					//(char *)out_l += cstep;
-						out_l = (long *)((char *)out_l + cstep);
+						out_l = (t_int32 *)((char *)out_l + cstep);
 						out += outstep;
     				}
 					
@@ -614,7 +615,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
 long fillBlobLong(long row, long coll, long val, long *X, long *dim, long instep, long outstep, char *bip, char *bop, char *st)
 {
 	char	*Temp_in; 				//Pointers to matrix data 
-	long	*Temp_out;	
+	t_int32	*Temp_out;
     int 	seedx,seedy;						//The starting points for the algorithm
     int 	width,height;						//Width and height, in elements, of the matrices
     int 	StIn = 0;							//The number of new segments, used for "while" loop control
@@ -640,7 +641,7 @@ long fillBlobLong(long row, long coll, long val, long *X, long *dim, long instep
 		
 	Temp_in = bip + (instep*seedy);	//Temp_in pointer points to the first element of the starting row.
     //(char *)Temp_out = bop + (outstep*seedy);	//Same goes for Temp_out.
-	Temp_out = (long *)(bop + (outstep*seedy));	//Same goes for Temp_out.
+	Temp_out = (t_int32 *)(bop + (outstep*seedy));	//Same goes for Temp_out.
     	
     if (Temp_in[seedx]==0)			//If the starting pixel is OFF, do not do anything.
     	return 0;
@@ -684,7 +685,7 @@ long fillBlobLong(long row, long coll, long val, long *X, long *dim, long instep
           	Temp_in = bip + (YC - flag) * instep;		//Set the Temp_in pointer to the start of the next row
          		 											//(Direction opposite to where we are going (UP or DOWN?))
           	//(char *)Temp_out = bop + (YC - flag) * outstep; 	//And Temp_out accordingly
-			Temp_out = (long *)(bop + (YC - flag) * outstep); 
+			Temp_out = (t_int32 *)(bop + (YC - flag) * outstep);
           	
      		for(i = L; i < R + 1; i++)	//Start at the left edge and go to the right edge
            	{
@@ -713,7 +714,7 @@ long fillBlobLong(long row, long coll, long val, long *X, long *dim, long instep
         Temp_in = bip + (YC + flag) * instep;		//Set the Temp_in pointer to the start of the next row
            		 										//(Below, if direction is UP, upward if it's DOWN)
         //(char *)Temp_out = bop + (YC + flag) * outstep;	//And Temp_out accordingly
-		Temp_out = (long *)(bop + (YC + flag) * outstep);
+		Temp_out = (t_int32 *)(bop + (YC + flag) * outstep);
         		
         for(i = L; i < PL; i++)		//Start at the left edge until the previous left edge (do nothing if prev. edge was right of the current edge)
         {

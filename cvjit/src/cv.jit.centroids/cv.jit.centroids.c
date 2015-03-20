@@ -147,10 +147,10 @@ void cv_jit_centroids_calculate(t_cv_jit_centroids *x, t_jit_matrix_info *in_min
 	} 
 	else if (in_minfo->type==_jit_sym_long) 
 	{
-		long *data;
+		t_int32 *data;
 		for (i=0;i<in_minfo->dim[1];i++)
 		{
-			data = (long *)(bip + in_minfo->dimstride[1] * i);
+			data = (t_int32 *)(bip + in_minfo->dimstride[1] * i);
 			for (j=0;j<in_minfo->dim[0];j++) 
 			{
 				area += data[j];
@@ -189,14 +189,14 @@ void cv_jit_centroids_calculate(t_cv_jit_centroids *x, t_jit_matrix_info *in_min
 		}
 	} 
 	
-	SETFLOAT(&x->mass,area);
+	atom_setfloat(&x->mass,area);
 	if(area > 0.){
-		SETFLOAT(&x->centroids[0],m10 / area);
-		SETFLOAT(&x->centroids[1],m01 / area);
+		atom_setfloat(&x->centroids[0],m10 / area);
+		atom_setfloat(&x->centroids[1],m01 / area);
 	}
 	else{
-		SETFLOAT(&x->centroids[0],-1);
-		SETFLOAT(&x->centroids[1],-1);
+		atom_setfloat(&x->centroids[0],-1);
+		atom_setfloat(&x->centroids[1],-1);
 	}
 	
 }

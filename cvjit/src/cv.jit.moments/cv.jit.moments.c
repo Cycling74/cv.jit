@@ -201,9 +201,9 @@ void cv_jit_moments_calculate(t_cv_jit_moments *x, long *dim, t_jit_matrix_info 
 			{
 				dx = i*i;
 						
-				if(*(long *)ip != 0)
+				if(*(t_int32 *)ip != 0)
 				{
-					d_val = (double)*(long *)ip;
+					d_val = (double)*(t_int32 *)ip;
 					x->m00 += d_val;
 					x->m10 += i * d_val;
 					x->m01 += j * d_val;

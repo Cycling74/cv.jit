@@ -1,0 +1,17 @@
+.DS_Store
+build/
+*.pbxuser
+*.mode1v3
+xcuserdata
+*.xcworkspace
+*.tm_build_errors
+*.ncb
+*.suo
+*.vcproj.*
+*.wwdb
+*.user
+*.sdf
+*/ipch/
+ipch
+*.opensdf
+

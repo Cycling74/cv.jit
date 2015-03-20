@@ -314,10 +314,10 @@ void cv_jit_sum_vector_char(long n, t_jit_op_info *in1, long *sum)
 
 void cv_jit_sum_vector_long(long n, t_jit_op_info *in1, double *sum) 
 {
-	long *ip1,tmp;
+	t_int32 *ip1,tmp;
 	long is1;
 		
-	ip1 = ((long *)in1->p);
+	ip1 = ((t_int32 *)in1->p);
 	is1 = in1->stride; 
 	
 	++n;

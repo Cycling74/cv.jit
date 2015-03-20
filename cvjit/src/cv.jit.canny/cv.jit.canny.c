@@ -146,9 +146,9 @@ t_jit_err cv_jit_canny_matrix_calc(t_cv_jit_canny *x, void *inputs, void *output
 		//Calculate threshold values
 		thresh1 = x->threshold - x->range;
 		thresh2 = x->threshold + x->range;
-		CLIP(thresh1,0,255);
-		CLIP(thresh2,0,255);
-				
+		CLIP_ASSIGN(thresh1,0,255);
+		CLIP_ASSIGN(thresh2,0,255);
+
 		//calculate
 		cvCanny( &source, &edges, thresh1, thresh2, 3 );
 		

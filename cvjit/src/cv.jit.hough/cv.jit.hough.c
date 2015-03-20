@@ -193,8 +193,8 @@ t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *output
 	void *in_matrix, *out_matrix;
 	char *in_bp,*out_bp;	// these are pointers to the in/out pointers.
 									// are these always char? -- seems so
-	uchar *ip;	// this is a pointer to a char value in the input matrix;
-	long  *op;	// this is a pointer to a long value in the output 1 matrix;
+	uchar   *ip;	// this is a pointer to a char value in the input matrix;
+	t_int32 *op;	// this is a pointer to a long value in the output 1 matrix;
 	
 	/** init hough params */
 	double theta = CLAMP (x->theta, DEG / 2.0 , HALF_PI);
@@ -221,8 +221,7 @@ t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *output
 	/** check pointers */
 	if (!x && !in_matrix && !out_matrix) //  make sure pointers point to something
 	{
-		err = JIT_ERR_INVALID_PTR;
-		goto out;
+		return JIT_ERR_INVALID_PTR;
 	}
 	
 	/** lock the in_matrix/out_matrix pointers so's they don't change - dont forget to unlock them later */
@@ -300,7 +299,7 @@ t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *output
 
 	/** set pointers to the first value in the new cleared matricies */
 	ip = (uchar *)in_bp;		// recast to uchar*
-	op = (long *)out_bp;	// recast to long*
+	op = (t_int32 *)out_bp;	// recast to long*
 	
 	/** fill sin and cos tables precalculate sin and cos for each angle step */
     for( ang = 0, n = 0; n < numangle; ang += theta, n++ )	
@@ -329,7 +328,7 @@ t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *output
 				// iterate each angle
 				for( n = 0; n < numangle; n++ ) // angle
 				{
-					op = (long*)(out_bp + n * out_minfo.dimstride[1]);
+					op = (t_int32 *)(out_bp + n * out_minfo.dimstride[1]);
 					//  set the output pointer to index value of "out_bp + n * out_minfo.dimstride[1] "
 								
 					// r = xcos(theta) + ysin(theta)

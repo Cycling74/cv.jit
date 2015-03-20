@@ -144,21 +144,6 @@
 		B4D4E67E147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
 		B4D4E67F147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
 		B4D4E680147610AE0086335B /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
-		B4D4E682147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E683147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E684147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E685147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E686147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E687147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E688147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E689147611320086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E68A147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E68B147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E68C147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E68D147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E68E147611330086335B /* libOpenCVstatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E681147611320086335B /* libOpenCVstatic.a */; };
-		B4D4E6901476116D0086335B /* libOpenCVstatic200.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E68F1476116D0086335B /* libOpenCVstatic200.a */; };
-		B4D4E6911476116D0086335B /* libOpenCVstatic200.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E68F1476116D0086335B /* libOpenCVstatic200.a */; };
 		B4DA8E400E21A50100A424E7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B4E73BB00E18708E001E52BE /* cv.jit.binedge.c in Sources */ = {isa = PBXBuildFile; fileRef = B4E73BAE0E18708E001E52BE /* cv.jit.binedge.c */; };
 		B4E73BB10E18708E001E52BE /* max.cv.jit.binedge.c in Sources */ = {isa = PBXBuildFile; fileRef = B4E73BAF0E18708E001E52BE /* max.cv.jit.binedge.c */; };
@@ -555,8 +540,6 @@
 		B4CDCF3710621C0900847C22 /* cv.jit.surf.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.surf.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D4E633147610900086335B /* JitterAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JitterAPI.framework; path = "../../c74support/jit-includes/JitterAPI.framework"; sourceTree = "<group>"; };
 		B4D4E65A147610AA0086335B /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../../c74support/max-includes/MaxAPI.framework"; sourceTree = "<group>"; };
-		B4D4E681147611320086335B /* libOpenCVstatic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenCVstatic.a; path = ../../lib/libOpenCVstatic.a; sourceTree = "<group>"; };
-		B4D4E68F1476116D0086335B /* libOpenCVstatic200.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenCVstatic200.a; path = ../../lib/libOpenCVstatic200.a; sourceTree = "<group>"; };
 		B4E73BAE0E18708E001E52BE /* cv.jit.binedge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.binedge.c; path = ../../src/cv.jit.binedge/cv.jit.binedge.c; sourceTree = SOURCE_ROOT; };
 		B4E73BAF0E18708E001E52BE /* max.cv.jit.binedge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.binedge.c; path = ../../src/cv.jit.binedge/max.cv.jit.binedge.c; sourceTree = SOURCE_ROOT; };
 		B4E73BB20E18709F001E52BE /* cv.jit.blobs.bounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.blobs.bounds.c; path = ../../src/cv.jit.blobs.bounds/cv.jit.blobs.bounds.c; sourceTree = SOURCE_ROOT; };
@@ -627,6 +610,7 @@
 		B4E73C3B0E18731E001E52BE /* cv.jit.trackpoints.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.trackpoints.c; path = ../../src/cv.jit.trackpoints/cv.jit.trackpoints.c; sourceTree = SOURCE_ROOT; };
 		B4E73C3C0E18731E001E52BE /* max.cv.jit.trackpoints.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.trackpoints.c; path = ../../src/cv.jit.trackpoints/max.cv.jit.trackpoints.c; sourceTree = SOURCE_ROOT; };
 		B4FEAC220CEECE0700C2A20C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
+		F7B103051ABAFD2A00027E8D /* libcv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcv.a; path = ../../lib/libcv.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -636,7 +620,6 @@
 			files = (
 				B4D4E658147610940086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E67F147610AE0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E68E147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,7 +638,6 @@
 			files = (
 				B4D4E654147610940086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E67B147610AE0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E6901476116D0086335B /* libOpenCVstatic200.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +647,6 @@
 			files = (
 				B4D4E659147610940086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E680147610AE0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E6911476116D0086335B /* libOpenCVstatic200.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,7 +749,6 @@
 			files = (
 				B4D4E63B147610910086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E662147610AB0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E682147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,7 +767,6 @@
 			files = (
 				B4D4E651147610930086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E678147610AE0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E68B147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,7 +776,6 @@
 			files = (
 				B4D4E63D147610910086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E664147610AB0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E683147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,7 +812,6 @@
 			files = (
 				B4D4E643147610920086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E66A147610AC0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E684147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,7 +821,6 @@
 			files = (
 				B4D4E644147610920086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E66B147610AC0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E685147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,7 +848,6 @@
 			files = (
 				B4D4E64B147610930086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E672147610AD0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E689147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,7 +893,6 @@
 			files = (
 				B4D4E650147610930086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E677147610AD0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E68A147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,7 +902,6 @@
 			files = (
 				B4D4E652147610940086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E679147610AE0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E68C147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,7 +920,6 @@
 			files = (
 				B4D4E656147610940086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E67D147610AE0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E68D147611330086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,7 +929,6 @@
 			files = (
 				B4D4E647147610920086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E66E147610AD0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E686147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,7 +947,6 @@
 			files = (
 				B4D4E649147610930086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E670147610AD0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E687147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -986,7 +956,6 @@
 			files = (
 				B4D4E64A147610930086335B /* JitterAPI.framework in Frameworks */,
 				B4D4E671147610AD0086335B /* MaxAPI.framework in Frameworks */,
-				B4D4E688147611320086335B /* libOpenCVstatic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,8 +1013,7 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				B4D4E68F1476116D0086335B /* libOpenCVstatic200.a */,
-				B4D4E681147611320086335B /* libOpenCVstatic.a */,
+				F7B103051ABAFD2A00027E8D /* libcv.a */,
 				B4D4E65A147610AA0086335B /* MaxAPI.framework */,
 				B4D4E633147610900086335B /* JitterAPI.framework */,
 				B4FEAC220CEECE0700C2A20C /* Accelerate.framework */,
@@ -2994,14 +2962,13 @@
 		4FADC23808B4156C00ABE55E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
+				CLANG_CXX_LIBRARY = "libc++";
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../c74support/**";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3017,47 +2984,43 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"../../c74support/max-includes",
-					"../../c74support/jit-includes",
-					../../include,
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1)",
+					"$(SRCROOT)/../../c74support/**",
+					"$(SRCROOT)/../../include",
+					"$(SRCROOT)/../../OpenCVsupport/**",
 				);
-				HEADER_SEARCH_PATHS_QUOTED_1 = "$(SRCROOT)/../Source/common/include";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = ../../OpenCVsupport/opencv;
 				INFOPLIST_FILE = "$(SRCROOT)/../../src/$(TARGET_NAME)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
 				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
-				OBJROOT = "$(SYMROOT)";
-				OTHER_LDFLAGS = "-lmx";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../lib";
+				OTHER_LDFLAGS = (
+					"-lmx",
+					"-lz",
+					"-lcv",
+				);
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
-				SYMROOT = /build;
-				VERSION = 1.7.3;
+				VERSION = 1.8.0;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = mxo;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		4FADC23908B4156C00ABE55E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
+				CLANG_CXX_LIBRARY = "libc++";
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../c74support/**";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -3075,26 +3038,23 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"../../c74support/max-includes",
-					"../../c74support/jit-includes",
-					../../include,
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_4)",
+					"$(SRCROOT)/../../c74support/**",
+					"$(SRCROOT)/../../include",
+					"$(SRCROOT)/../../OpenCVsupport/**",
 				);
-				HEADER_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Source/common/include\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_2 = "\"$(SRCROOT)/../../../../cvjit/cvjit/OpenCVsupport/cv/include\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_3 = "\"$(SRCROOT)/../../../../cvjit/cvjit/OpenCVsupport/cxcore/include\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_4 = ../../OpenCVsupport/opencv;
 				INFOPLIST_FILE = "$(SRCROOT)/../../src/$(TARGET_NAME)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
 				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
-				OBJROOT = "$(SYMROOT)";
-				OTHER_LDFLAGS = "-lmx";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../lib";
+				OTHER_LDFLAGS = (
+					"-lmx",
+					"-lz",
+					"-lcv",
+				);
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
-				SYMROOT = /build;
-				VERSION = 1.7.3;
+				VERSION = 1.8.0;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -3107,15 +3067,9 @@
 		B4584BF310100D4100DA7DA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -3123,88 +3077,47 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = (
-					../include/OpenCV/,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4584BF410100D4100DA7DA9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = (
-					../include/OpenCV/,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B460571B10E9995C002B2AD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -3212,71 +3125,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B460571C10E9995C002B2AD8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4A3B9601016E16500C56B11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -3285,84 +3172,48 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4A3B9611016E16500C56B11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4C3B0CC10EB828F005A82E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -3371,74 +3222,43 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4C3B0CD10EB828F005A82E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SEPARATE_SYMBOL_EDIT = YES;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -3449,7 +3269,6 @@
 				FRAMEWORK_VERSION = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "";
 				INFOPLIST_FILE = "";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -3468,9 +3287,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_VERSION = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_2 = "";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_3 = "";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_4 = "";
 				INFOPLIST_FILE = "";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -3480,22 +3296,15 @@
 				PRODUCT_NAME = cv.jit;
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				WRAPPER_EXTENSION = "";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4EE2ECA0D780844001E050C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3503,70 +3312,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4EE2ECB0D780844001E050C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAB080CEE97BF00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -3574,70 +3358,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.dilate;
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAB090CEE97BF00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.dilate;
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAB110CEE97E400C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -3645,70 +3404,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.erode;
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAB120CEE97E400C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.erode;
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEACEE0CEF01BF00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -3717,72 +3451,47 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.binedge;
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEACEF0CEF01BF00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = "$(PROJECT_DIR)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.binedge;
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAD010CEF020C00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3790,70 +3499,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.blobs.bounds;
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAD020CEF020C00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.blobs.bounds;
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAD100CEF021200C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3861,70 +3545,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.blobs.centroids;
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAD110CEF021200C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.blobs.centroids;
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAD1F0CEF021600C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -3932,70 +3591,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.blobs.direction;
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAD200CEF021600C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.blobs.direction;
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAD2E0CEF021900C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -4003,70 +3637,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.blobs.elongation;
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAD2F0CEF021900C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = cv.jit.blobs.elongation;
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAD430CEF02C000C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -4074,70 +3683,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAD440CEF02C000C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAD5F0CEF05ED00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -4145,70 +3729,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAD600CEF05ED00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAD700CEF06B400C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4216,85 +3775,47 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					../Include/OpenCV/,
-				);
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAD710CEF06B400C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAD810CEF06D700C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -4302,70 +3823,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAD820CEF06D700C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAD920CEF06F700C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4373,85 +3869,47 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					../Include/OpenCV/,
-				);
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAD930CEF06F700C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEADA20CEF088800C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4459,292 +3917,179 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = (
-					../include/OpenCV/,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEADA30CEF088800C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEADAE0CEF089800C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEADAF0CEF089800C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEADBE0CEF08E800C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEADBF0CEF08E800C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEADCC0CEF091F00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEADCD0CEF091F00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEADDA0CEF095000C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4752,85 +4097,47 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEADDB0CEF095000C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"-lz",
-					"$(inherited)",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEADE80CEF09D100C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -4838,223 +4145,135 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEADE90CEF09D100C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"-lz",
-					"$(inherited)",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEADF60CEF0A0A00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEADF70CEF0A0A00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE040CEF0A3200C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE050CEF0A3200C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE140CEF0AD100C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5062,80 +4281,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE150CEF0AD100C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE220CEF0AF700C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -5144,71 +4328,46 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE230CEF0AF700C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE300CEF0B7000C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -5216,208 +4375,133 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE310CEF0B7000C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE4C0CEF0BBB00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE4D0CEF0BBB00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE5A0CEF0BFA00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE5B0CEF0BFA00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE680CEF0C1F00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5425,85 +4509,50 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE690CEF0C1F00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_OPENMP_SUPPORT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DEBUGGING_SYMBOLS = full;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE760CEF0C4500C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5511,151 +4560,91 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE770CEF0C4500C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE860CEF0CEA00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE870CEF0CEA00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAE940CEF0D0100C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5663,82 +4652,47 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAE950CEF0D0100C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAF130CEF128D00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5746,83 +4700,47 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAF140CEF128D00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				HEADER_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Source/common/include\"";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAF230CEF132200C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = automatic;
@@ -5830,70 +4748,45 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAF240CEF132200C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAF310CEF134B00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5901,82 +4794,47 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAF320CEF134B00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 		B4FEAF3F0CEF136900C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
@@ -5984,67 +4842,38 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "$(inherited)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		B4FEAF400CEF136900C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(inherited)";
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../c74support/jit-includes\"",
-					"\"$(SRCROOT)/../../c74support/max-includes\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				GCC_VERSION = 4.2;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"\"$(SRCROOT)/../../lib\"",
-				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OBJROOT = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = "";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
 				WRAPPER_EXTENSION = "$(inherited)";
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};

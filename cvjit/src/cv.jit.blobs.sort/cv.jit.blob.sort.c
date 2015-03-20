@@ -166,7 +166,7 @@ t_jit_err cv_jit_blobs_sort_matrix_calc(t_cv_jit_blobs_sort *x, void *inputs, vo
 		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
 		
 		in_data = (float *)in_bp;
-		//out_data = (long *)out_bp;
+		//out_data = (t_int32 *)out_bp;
 		
 		//Calculate
 		cv_jit_blobs_sort_calculate(x, in_data, out_bp, in_minfo.dim[0], in_minfo.planecount);

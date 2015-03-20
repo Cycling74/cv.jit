@@ -195,8 +195,8 @@ t_jit_err cv_jit_extrema_matrix_calc(t_cv_jit_extrema *x, void *inputs, void *ou
 	char *in_bp,*out_bp;	// these are pointers to the in/out pointers.
 					// are these always char? -- seems so (yes, cast to another pointer as necessary -- jmp)
 	
-	long  *ip;	// this is a pointer to a long value in the input matrix;
-	float  *op;	// this is a pointer to a long value in the output  matrix
+	t_int32	*ip;	// this is a pointer to a long value in the input matrix;
+	float	*op;	// this is a pointer to a long value in the output  matrix
 	
 	/** init point parameters */
 	long mode = CLAMP (x->mode,0,1);
@@ -215,8 +215,7 @@ t_jit_err cv_jit_extrema_matrix_calc(t_cv_jit_extrema *x, void *inputs, void *ou
 	/** check pointers */
 	if (!x && !in_matrix && !out_matrix) //  make sure pointers point to something
 	{
-		err = JIT_ERR_INVALID_PTR;
-		goto out;
+		return JIT_ERR_INVALID_PTR;
 	}
 	
 	/** lock the in_matrix/out_matrix pointers so's they don't change - dont forget to unlock them later */
@@ -286,7 +285,7 @@ t_jit_err cv_jit_extrema_matrix_calc(t_cv_jit_extrema *x, void *inputs, void *ou
 	}
 
 	/** set pointers to the first value in the new cleared matricies */
-	ip = (long *)in_bp;	  // recast to long*
+	ip = (t_int32 *)in_bp;	  // recast to long*
 	op = (float *)out_bp;  // recast to float*
 	
     	/** Now find local maximums */
@@ -303,8 +302,8 @@ t_jit_err cv_jit_extrema_matrix_calc(t_cv_jit_extrema *x, void *inputs, void *ou
 		{
 			// first time, 0 coords, pointcounter = 0, maxpoints = 1
 			// second time, 1 coord pointcounter = 1, maxpoints = 1
-			ip = (long*)(in_bp + (i) * in_minfo.dimstride[1]) + j;
-			//op = (long*)(out_bp + (pointcounter) * out_minfo.dimstride[1] );  --jmp
+			ip = (t_int32 *)(in_bp + (i) * in_minfo.dimstride[1]) + j;
+			//op = (t_int32 *)(out_bp + (pointcounter) * out_minfo.dimstride[1] );  --jmp
 			
 			switch (mode) {
 			case 0:		//  defalut is 8 connectivity.		

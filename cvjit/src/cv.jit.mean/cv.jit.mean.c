@@ -238,8 +238,8 @@ void cv_jit_mean_calculate(t_cv_jit_mean *x, long dimcount, long *dim, long plan
 					
 					for (k=0;k<in_minfo->planecount;k++) 
 					{
-						*buf = (double) (( (long *) ip )[l+k] * a) + (*buf * b);
-						((long *)op)[l+k] = (long) *buf;
+						*buf = (double) (( (t_int32 *) ip )[l+k] * a) + (*buf * b);
+						((t_int32 *)op)[l+k] = (t_int32) *buf;
 						buf++;
 					}
 					

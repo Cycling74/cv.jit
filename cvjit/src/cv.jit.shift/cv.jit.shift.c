@@ -184,10 +184,10 @@ t_jit_err cv_jit_shift_matrix_calc(t_cv_jit_shift *x, void *inputs, void *output
 			
 		//Calculate start rectangle:
 		rectangle = cvRect(x->rect[0],x->rect[1],x->rect[2]-x->rect[0],x->rect[3]-x->rect[1]);
-		CLIP(rectangle.x,0,in_minfo.dim[0]-1);
-		CLIP(rectangle.y,0,in_minfo.dim[1]-1);
-		CLIP(rectangle.width,1,in_minfo.dim[0]-rectangle.x);
-		CLIP(rectangle.height,1,in_minfo.dim[1]-rectangle.y);
+		CLIP_ASSIGN(rectangle.x,0,in_minfo.dim[0]-1);
+		CLIP_ASSIGN(rectangle.y,0,in_minfo.dim[1]-1);
+		CLIP_ASSIGN(rectangle.width,1,in_minfo.dim[0]-rectangle.x);
+		CLIP_ASSIGN(rectangle.height,1,in_minfo.dim[1]-rectangle.y);
 
 		//Convert Jitter matrix to OpenCV matrix
 		cvJitter2CvMat(in_matrix, &source);

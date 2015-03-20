@@ -226,7 +226,7 @@ void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long
 			
 		} else if (in_minfo->type==_jit_sym_long) 
 		{
-			long *lip, *lop;
+			t_int32 *lip, *lop;
 			
 			float4 bufferVec;
 			float4 inVec;
@@ -243,8 +243,8 @@ void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long
 				op = bop + i * out_minfo->dimstride[1];
 				bp = bbp + i * buf_minfo->dimstride[1];
 				buf = (float *)bp;
-				lip = (long *)ip;
-				lop = (long *)op;
+				lip = (t_int32 *)ip;
+				lop = (t_int32 *)op;
 				for(j=0;j<steps;j++){
 					copy_float4(lip,inVec);
 					copy_float4(buf,bufferVec);

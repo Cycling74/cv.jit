@@ -97,7 +97,7 @@ t_jit_err cv_jit_blobs_bounds_matrix_calc(t_cv_jit_blobs_bounds *x, void *inputs
 	char *out_bp, *in_bp;
 	void *in_matrix,*out_matrix;
 	int i;
-	long *out_data;
+	t_int32 *out_data;
 	
 	//Get pointers to matrices
 	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
@@ -144,7 +144,7 @@ t_jit_err cv_jit_blobs_bounds_matrix_calc(t_cv_jit_blobs_bounds *x, void *inputs
 		jit_object_method(out_matrix,_jit_sym_getdata,&out_bp);
 		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
 		
-		out_data = (long *)out_bp;
+		out_data = (t_int32 *)out_bp;
 		
 		for(i=1; i <= x->maxval; i++)
 		{

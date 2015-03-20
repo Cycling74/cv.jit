@@ -273,10 +273,10 @@ void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info 
 		op = bop;
 		line3 = ip + in_minfo->dimstride[1];
 		
-		if (*(long *)ip && (!*(long *)(ip+step) || !*(long *)line3 || !*(long *)(line3 + step)))
-			*(long *)op = 1;
+		if (*(t_int32 *)ip && (!*(t_int32 *)(ip+step) || !*(t_int32 *)line3 || !*(t_int32 *)(line3 + step)))
+			*(t_int32 *)op = 1;
 		else
-			*(long *)op = 0;
+			*(t_int32 *)op = 0;
 		
 		ip += step;
 		op += step;
@@ -285,10 +285,10 @@ void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info 
 		//Process first line
 		for (j=1;j<dim[0]-1;j++)
 		{
-			if (*(long *)ip && (!*(long *)(ip+step) || !*(long *)(ip-step) || !*(long *)(line3 - step) || !*(long *)line3 || !*(long *)(line3 + step)))
-				*(long *)op = 1;
+			if (*(t_int32 *)ip && (!*(t_int32 *)(ip+step) || !*(t_int32 *)(ip-step) || !*(t_int32 *)(line3 - step) || !*(t_int32 *)line3 || !*(t_int32 *)(line3 + step)))
+				*(t_int32 *)op = 1;
 			else
-				*(long *)op = 0;
+				*(t_int32 *)op = 0;
 			
 			ip += step;
 			op += step;
@@ -296,10 +296,10 @@ void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info 
 		}
 		
 		//Process last pixel of first line
-		if (*(long *)ip && (!*(long *)(ip-step) || !*(long *)line3 || !*(long *)(line3 - step)))
-			*(long *)op = 1;
+		if (*(t_int32 *)ip && (!*(t_int32 *)(ip-step) || !*(t_int32 *)line3 || !*(t_int32 *)(line3 - step)))
+			*(t_int32 *)op = 1;
 		else
-			*(long *)op = 0;
+			*(t_int32 *)op = 0;
 		
 		//Process rest of image
 		for(i=1;i<dim[1]-1;i++)
@@ -310,10 +310,10 @@ void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info 
 			line3 = ip + in_minfo->dimstride[1];;
 			
 			//first pixel
-			if (*(long *)ip && (!*(long *)(ip+step) || !*(long *)line3 || !*(long *)(line3 + step)|| !*(long *)line1 || !*(long *)(line1 + step)))
-				*(long *)op = 1;
+			if (*(t_int32 *)ip && (!*(t_int32 *)(ip+step) || !*(t_int32 *)line3 || !*(t_int32 *)(line3 + step)|| !*(t_int32 *)line1 || !*(t_int32 *)(line1 + step)))
+				*(t_int32 *)op = 1;
 			else
-				*(long *)op = 0;
+				*(t_int32 *)op = 0;
 				
 			ip += step;
 			op += step;
@@ -323,11 +323,11 @@ void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info 
 			//rest of line
 			for (j=1;j<dim[0]-1;j++)
 			{
-				if (*(long *)ip && (!*(long *)(ip+step) || !*(long *)(ip-step) || !*(long *)(line3 - step) || !*(long *)line3 || !*(long *)(line3 + step)
-					|| !*(long *)(line1 - step) || !*(long *)line1 || !*(long *)(line1 + step)))
-					*(long *)op = 1;
+				if (*(t_int32 *)ip && (!*(t_int32 *)(ip+step) || !*(t_int32 *)(ip-step) || !*(t_int32 *)(line3 - step) || !*(t_int32 *)line3 || !*(t_int32 *)(line3 + step)
+					|| !*(t_int32 *)(line1 - step) || !*(t_int32 *)line1 || !*(t_int32 *)(line1 + step)))
+					*(t_int32 *)op = 1;
 				else
-					*(long *)op = 0;
+					*(t_int32 *)op = 0;
 			
 				ip += step;
 				op += step;
@@ -336,10 +336,10 @@ void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info 
 			}
 			
 			//last pixel
-			if (*(long *)ip && (!*(long *)(ip-step) || !*(long *)line3 || !*(long *)(line3 - step)|| !*(long *)line1 || !*(long *)(line1 - step)))
-				*(long *)op = 1;
+			if (*(t_int32 *)ip && (!*(t_int32 *)(ip-step) || !*(t_int32 *)line3 || !*(t_int32 *)(line3 - step)|| !*(t_int32 *)line1 || !*(t_int32 *)(line1 - step)))
+				*(t_int32 *)op = 1;
 			else
-				*(long *)op = 0;
+				*(t_int32 *)op = 0;
 		
 		}
 		
@@ -349,10 +349,10 @@ void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info 
 		
 		//Process last line
 		//first pixel
-		if (*(long *)ip && (!*(long *)(ip+step) || !*(long *)line1 || !*(long *)(line1 + step)))
-			*(long *)op = 1;
+		if (*(t_int32 *)ip && (!*(t_int32 *)(ip+step) || !*(t_int32 *)line1 || !*(t_int32 *)(line1 + step)))
+			*(t_int32 *)op = 1;
 		else
-			*(long *)op = 0;
+			*(t_int32 *)op = 0;
 		
 		ip += step;
 		op += step;
@@ -361,10 +361,10 @@ void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info 
 		//Process rest of last line
 		for (j=1;j<dim[0]-1;j++)
 		{
-			if (*(long *)ip && (!*(long *)(ip+step) || !*(long *)(ip-step) || !*(long *)(line1 - step) || !*(long *)line1 || !*(long *)(line1 + step)))
-				*(long *)op = 1;
+			if (*(t_int32 *)ip && (!*(t_int32 *)(ip+step) || !*(t_int32 *)(ip-step) || !*(t_int32 *)(line1 - step) || !*(t_int32 *)line1 || !*(t_int32 *)(line1 + step)))
+				*(t_int32 *)op = 1;
 			else
-				*(long *)op = 0;
+				*(t_int32 *)op = 0;
 			
 			ip += step;
 			op += step;
@@ -372,10 +372,10 @@ void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info 
 		}
 		
 		//Process last pixel
-		if (*(long *)ip && (!*(long *)(ip-step) || !*(long *)line1 || !*(long *)(line1 - step)))
-			*(long *)op = 1;
+		if (*(t_int32 *)ip && (!*(t_int32 *)(ip-step) || !*(t_int32 *)line1 || !*(t_int32 *)(line1 - step)))
+			*(t_int32 *)op = 1;
 		else
-			*(long *)op = 0;
+			*(t_int32 *)op = 0;
 			
 	} else if (in_minfo->type==_jit_sym_float32) 
 	{

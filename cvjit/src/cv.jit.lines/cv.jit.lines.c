@@ -129,7 +129,7 @@ t_jit_err cv_jit_lines_matrix_calc(t_cv_jit_lines *x, void *inputs, void *output
 	char *in_bp,*out_bp;
 	long i,dimcount,dim[JIT_MATRIX_MAX_DIMCOUNT];
 	void *in_matrix,*out_matrix;
-	long *out;
+	t_int32 *out;
 	
 	double thresh1, thresh2, theta, rho;
 	int houghThresh;
@@ -183,8 +183,8 @@ t_jit_err cv_jit_lines_matrix_calc(t_cv_jit_lines *x, void *inputs, void *output
 		//Calculate parameter values for Hough and Canny algorithms
 		thresh1 = x->threshold - THRESHOLD_RANGE;
 		thresh2 = x->threshold + THRESHOLD_RANGE;
-		CLIP(thresh1,0,255);
-		CLIP(thresh2,0,255);
+		CLIP_ASSIGN(thresh1,0,255);
+		CLIP_ASSIGN(thresh2,0,255);
 		
 		theta = CV_PI /  (180 / (double)x->resolution);
 		rho = (double)x->resolution;
@@ -211,7 +211,7 @@ t_jit_err cv_jit_lines_matrix_calc(t_cv_jit_lines *x, void *inputs, void *output
 		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
 		
 		//Copy...
-		out = (long *)out_bp;
+		out = (t_int32 *)out_bp;
 		
 		for( i = 0; i < x->lines->total; i++ )
        	 	{

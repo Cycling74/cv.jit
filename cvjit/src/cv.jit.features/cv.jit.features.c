@@ -177,10 +177,10 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 		
 		if(x->useroi)
 		{
-			CLIP(x->roi[0],0,in_minfo.dim[0]);
-			CLIP(x->roi[1],0,in_minfo.dim[1]);
-			CLIP(x->roi[2],0,in_minfo.dim[0]);
-			CLIP(x->roi[3],0,in_minfo.dim[1]);
+			CLIP_ASSIGN(x->roi[0],0,in_minfo.dim[0]);
+			CLIP_ASSIGN(x->roi[1],0,in_minfo.dim[1]);
+			CLIP_ASSIGN(x->roi[2],0,in_minfo.dim[0]);
+			CLIP_ASSIGN(x->roi[3],0,in_minfo.dim[1]);
 			
 			x->roi[0] = MIN(x->roi[0], x->roi[2]);
 			x->roi[1] = MIN(x->roi[1], x->roi[3]);

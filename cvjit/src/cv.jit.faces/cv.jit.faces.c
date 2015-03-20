@@ -209,7 +209,7 @@ t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *output
 		cvJitter2CvMat(in_matrix, &source);
 		
 		//Calculate		
-		faces = cvHaarDetectObjects(&source,x->cascade,storage,1.1,3,CV_HAAR_DO_CANNY_PRUNING,cvSize(20,20));
+		faces = cvHaarDetectObjects(&source,x->cascade,storage,1.1,3,CV_HAAR_DO_CANNY_PRUNING,cvSize(20,20), cvSize(0,0) /*default, windows doesn't support this*/);
 		
 		x->nfaces = faces->total;
 
@@ -264,11 +264,11 @@ t_cv_jit_faces *cv_jit_faces_new(void)
 
 void cv_jit_faces_read(t_cv_jit_faces *x, t_symbol *s, short argc, t_atom *argv)
 {
-	char fname[1024];
-	char pname[1024];
+	char fname[MAX_FILENAME_CHARS];
+	char pname[MAX_PATH_CHARS];
 	short id;
-	long type;
-	long code;
+	t_fourcc type;
+	t_fourcc code;
 
 
 	code = FOUR_CHAR_CODE( 'TEXT' );
@@ -321,10 +321,10 @@ void cv_jit_faces_read(t_cv_jit_faces *x, t_symbol *s, short argc, t_atom *argv)
 short cv_jit_faces_load(t_cv_jit_faces *x,const char *m)
 {
 	short path; 
-	char name[1024];
-	char full_name[1024];
-	char conform_name[1024];
-	long type;
+	char name[MAX_FILENAME_CHARS];
+	char full_name[MAX_PATH_CHARS];
+	char conform_name[MAX_PATH_CHARS];
+	t_fourcc type;
 
 	strcpy(name,m);
 	

@@ -478,7 +478,7 @@ void cv_jit_calibration_read(t_cv_jit_calibration *x, t_symbol *s, long argc, t_
 
 void cv_jit_calibration_doread(t_cv_jit_calibration *x, t_symbol *s, long argc, t_atom *argv){
 	
-	long filetype = NULL, intrinsic_outtype, dist_outtype;
+	t_fourcc filetype = NULL, intrinsic_outtype, dist_outtype;
 	//short numtype = 1;
 	char	intrinsic_filename[512],
 	dist_filename[512],
@@ -548,7 +548,7 @@ void cv_jit_calibration_dowrite(t_cv_jit_calibration *x, t_symbol *s, long argc,
 	defer(x, (method)cv_jit_calibration_dowrite, NULL, argc, argv);
 }
 void cv_jit_calibration_write(t_cv_jit_calibration *x, t_symbol *s, long argc, t_atom *argv){
-	long filetype = 'TEXT', intrinsic_outtype, dist_outtype, intrinsic_filetype = 'TEXT';
+	t_fourcc filetype = 'TEXT', intrinsic_outtype, dist_outtype, intrinsic_filetype = 'TEXT';
 	char intrinsic_filename[512], dist_filename[512], intrinsic_fullpathname[512], dist_fullpathname[512], intrinsic_bootpath[512], dist_bootpath[512];
 	short intrinsic_path, dist_path;
 	

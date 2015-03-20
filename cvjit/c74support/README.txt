@@ -1,0 +1,1 @@
+Copy the contents of c74support from the Max SDK to this folder (e.g. max-includes, msp-includes and jit-includes)

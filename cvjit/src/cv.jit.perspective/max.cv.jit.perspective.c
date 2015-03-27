@@ -58,8 +58,10 @@ static void	*max_cv_jit_perspective_class = NULL;
 
 
 /************************************************************************************/
-
-int main(void)
+#ifdef __cplusplus
+extern "C"
+#endif
+int ext_main(void)
 {	
 	void *p, *q;
 	

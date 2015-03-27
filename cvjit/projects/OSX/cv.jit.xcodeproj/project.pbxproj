@@ -13,6 +13,11 @@
 			buildPhases = (
 			);
 			dependencies = (
+				89E355E01AC5AC7F0086DB1F /* PBXTargetDependency */,
+				89E355E21AC5AC7F0086DB1F /* PBXTargetDependency */,
+				89E355E41AC5AC7F0086DB1F /* PBXTargetDependency */,
+				89E355E61AC5AC7F0086DB1F /* PBXTargetDependency */,
+				89E355E81AC5AC7F0086DB1F /* PBXTargetDependency */,
 				B4E73DB20E188A43001E52BE /* PBXTargetDependency */,
 				B4E73DB80E188A4C001E52BE /* PBXTargetDependency */,
 				B4E73DBA0E188A4C001E52BE /* PBXTargetDependency */,
@@ -252,6 +257,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = B4A3B9561016E16500C56B11;
 			remoteInfo = cv.jit.surf;
+		};
+		89E355DF1AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000A71AC5A68000B9CA6D;
+			remoteInfo = cv.jit.calibration;
+		};
+		89E355E11AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000BA1AC5A76700B9CA6D;
+			remoteInfo = cv.jit.findchessboardcorners;
+		};
+		89E355E31AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000CE1AC5A7E700B9CA6D;
+			remoteInfo = cv.jit.findhomography;
+		};
+		89E355E51AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000E11AC5A86D00B9CA6D;
+			remoteInfo = cv.jit.getperspective;
+		};
+		89E355E71AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000F51AC5A8D200B9CA6D;
+			remoteInfo = cv.jit.perspective;
 		};
 		B4A0277111BBE11A0067494F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -525,6 +565,7 @@
 		892001001AC5A8D200B9CA6D /* cv.jit.getperspective copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.getperspective copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		892001091AC5A93500B9CA6D /* cv.jit.perspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.perspective.cpp; sourceTree = "<group>"; };
 		8920010B1AC5A93500B9CA6D /* max.cv.jit.perspective.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = max.cv.jit.perspective.c; sourceTree = "<group>"; };
+		8920010F1AC5A9DC00B9CA6D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B45339F210EDAC94002BE988 /* cv.jit.opticalflow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.opticalflow.cpp; sourceTree = "<group>"; };
 		B4584BF910100DFB00DA7DA9 /* cv.jit.threshold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.threshold.c; path = ../../src/cv.jit.threshold/cv.jit.threshold.c; sourceTree = SOURCE_ROOT; };
 		B4584BFA10100DFB00DA7DA9 /* max.cv.jit.threhsold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.threhsold.c; path = ../../src/cv.jit.threshold/max.cv.jit.threhsold.c; sourceTree = SOURCE_ROOT; };
@@ -1046,6 +1087,7 @@
 		089C166AFE841209C02AAC07 /* cv_jit */ = {
 			isa = PBXGroup;
 			children = (
+				8920010F1AC5A9DC00B9CA6D /* Info.plist */,
 				892000A61AC5A53E00B9CA6D /* exports.exp */,
 				B460570F10E9993C002B2AD8 /* cv.jit.surf.match */,
 				B4A3B99C1016E17500C56B11 /* cv.jit.surf */,
@@ -3088,6 +3130,31 @@
 			target = B4A3B9561016E16500C56B11 /* cv.jit.surf */;
 			targetProxy = 4390398C129E742800C39448 /* PBXContainerItemProxy */;
 		};
+		89E355E01AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000A71AC5A68000B9CA6D /* cv.jit.calibration */;
+			targetProxy = 89E355DF1AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
+		89E355E21AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000BA1AC5A76700B9CA6D /* cv.jit.findchessboardcorners */;
+			targetProxy = 89E355E11AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
+		89E355E41AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000CE1AC5A7E700B9CA6D /* cv.jit.findhomography */;
+			targetProxy = 89E355E31AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
+		89E355E61AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000E11AC5A86D00B9CA6D /* cv.jit.getperspective */;
+			targetProxy = 89E355E51AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
+		89E355E81AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000F51AC5A8D200B9CA6D /* cv.jit.perspective */;
+			targetProxy = 89E355E71AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
 		B4A0277211BBE11A0067494F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B4584BE910100D4100DA7DA9 /* cv.jit.threshold */;
@@ -3301,7 +3368,7 @@
 					"$(SRCROOT)/../../include",
 					"$(SRCROOT)/../../OpenCVsupport/**",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/../../src/$(TARGET_NAME)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
 				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../lib";
@@ -3310,6 +3377,7 @@
 					"-lz",
 					"-lcv",
 				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
@@ -3356,7 +3424,7 @@
 					"$(SRCROOT)/../../include",
 					"$(SRCROOT)/../../OpenCVsupport/**",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/../../src/$(TARGET_NAME)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
 				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../lib";
@@ -3365,6 +3433,7 @@
 					"-lz",
 					"-lcv",
 				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
@@ -3394,7 +3463,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.canny copy";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3416,7 +3484,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.canny copy";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3442,7 +3509,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.opticalflow copy";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3467,7 +3533,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.opticalflow copy";
 				SEPARATE_SYMBOL_EDIT = YES;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
@@ -3494,7 +3559,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.findchessboardcorners copy";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3519,7 +3583,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.findchessboardcorners copy";
 				SEPARATE_SYMBOL_EDIT = YES;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
@@ -3546,7 +3609,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.opticalflow copy";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3571,7 +3633,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.opticalflow copy";
 				SEPARATE_SYMBOL_EDIT = YES;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
@@ -3594,11 +3655,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.getperspective copy";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3619,11 +3680,11 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "cv.jit.getperspective copy";
 				SEPARATE_SYMBOL_EDIT = YES;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
@@ -3649,7 +3710,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3672,7 +3732,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3696,7 +3755,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3718,7 +3776,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3744,7 +3801,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3768,7 +3824,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3795,7 +3850,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3821,7 +3875,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_SYMBOL_EDIT = YES;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
@@ -3837,7 +3890,7 @@
 				FRAMEWORK_VERSION = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = $SRCROOT/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "";
@@ -3855,7 +3908,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_VERSION = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = $SRCROOT/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "";
@@ -3880,10 +3933,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3902,10 +3953,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3929,7 +3978,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.dilate;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3951,7 +3999,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.dilate;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3975,7 +4022,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.erode;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3997,7 +4043,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.erode;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4022,7 +4067,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.binedge;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4046,7 +4090,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.binedge;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4070,7 +4113,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.bounds;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4092,7 +4134,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.bounds;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4116,7 +4157,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.centroids;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4138,7 +4178,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.centroids;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4162,7 +4201,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.direction;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4184,7 +4222,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.direction;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4208,7 +4245,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.elongation;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4230,7 +4266,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.elongation;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4254,7 +4289,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4276,7 +4310,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4300,7 +4333,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4322,7 +4354,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4347,7 +4378,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4370,7 +4400,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4394,7 +4423,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4416,7 +4444,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4437,11 +4464,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4460,11 +4485,9 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4489,7 +4512,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4512,7 +4534,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4535,7 +4556,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4556,7 +4576,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4579,7 +4598,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4600,7 +4618,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4623,7 +4640,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4644,7 +4660,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4669,7 +4684,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4692,7 +4706,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4717,7 +4730,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4740,7 +4752,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4763,7 +4774,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4784,7 +4794,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4807,7 +4816,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4828,7 +4836,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4852,7 +4859,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4874,7 +4880,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4896,10 +4901,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4919,10 +4922,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4943,10 +4944,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4965,10 +4964,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4988,10 +4985,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5009,10 +5004,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5032,10 +5025,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5053,10 +5044,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5077,11 +5066,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5103,11 +5090,9 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5128,11 +5113,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5151,11 +5134,9 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5178,7 +5159,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5199,7 +5179,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5224,7 +5203,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5247,7 +5225,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5272,7 +5249,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5295,7 +5271,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5319,7 +5294,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5341,7 +5315,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5366,7 +5339,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5389,7 +5361,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5414,7 +5385,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -5437,7 +5407,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";

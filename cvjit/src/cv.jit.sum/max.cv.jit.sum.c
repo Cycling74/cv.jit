@@ -53,7 +53,7 @@ t_symbol *ps_getsum;
 #ifdef __cplusplus
 extern "C"
 #endif		 	
-int main(void)
+int ext_main(void)
 {	
 	void *p,*q;
 	

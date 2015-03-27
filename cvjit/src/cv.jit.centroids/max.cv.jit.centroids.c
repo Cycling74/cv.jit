@@ -54,7 +54,7 @@ t_symbol *ps_getmin,*ps_getcentroids,*ps_getmax,*ps_getmass;
 #ifdef __cplusplus
 extern "C"
 #endif
-int main(void)
+int ext_main(void)
 {	
 	void *p,*q;
 	

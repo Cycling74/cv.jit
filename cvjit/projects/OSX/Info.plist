@@ -5,9 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>cv.jit.track</string>
+	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.jmp.cv.jit.track</string>
+	<string>com.jmp.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>

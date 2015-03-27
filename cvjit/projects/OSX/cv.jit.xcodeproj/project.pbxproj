@@ -13,6 +13,11 @@
 			buildPhases = (
 			);
 			dependencies = (
+				89E355E01AC5AC7F0086DB1F /* PBXTargetDependency */,
+				89E355E21AC5AC7F0086DB1F /* PBXTargetDependency */,
+				89E355E41AC5AC7F0086DB1F /* PBXTargetDependency */,
+				89E355E61AC5AC7F0086DB1F /* PBXTargetDependency */,
+				89E355E81AC5AC7F0086DB1F /* PBXTargetDependency */,
 				B4E73DB20E188A43001E52BE /* PBXTargetDependency */,
 				B4E73DB80E188A4C001E52BE /* PBXTargetDependency */,
 				B4E73DBA0E188A4C001E52BE /* PBXTargetDependency */,
@@ -58,6 +63,26 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		892000AD1AC5A68000B9CA6D /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		892000AE1AC5A68000B9CA6D /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		892000B71AC5A6B200B9CA6D /* cv.jit.calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 892000B41AC5A6B200B9CA6D /* cv.jit.calibration.cpp */; };
+		892000B91AC5A6B200B9CA6D /* max.cv.jit.calibration.c in Sources */ = {isa = PBXBuildFile; fileRef = 892000B61AC5A6B200B9CA6D /* max.cv.jit.calibration.c */; };
+		892000C11AC5A76700B9CA6D /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		892000C21AC5A76700B9CA6D /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		892000CB1AC5A7AC00B9CA6D /* cv.jit.findchessboardcorners.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 892000C81AC5A7AC00B9CA6D /* cv.jit.findchessboardcorners.cpp */; };
+		892000CD1AC5A7AC00B9CA6D /* max.cv.jit.findchessboardcorners.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 892000CA1AC5A7AC00B9CA6D /* max.cv.jit.findchessboardcorners.cpp */; };
+		892000D41AC5A7E700B9CA6D /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		892000D51AC5A7E700B9CA6D /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		892000DE1AC5A83200B9CA6D /* cv.jit.findhomography.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 892000DB1AC5A83200B9CA6D /* cv.jit.findhomography.cpp */; };
+		892000E01AC5A83200B9CA6D /* max.cv.jit.findhomography.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 892000DD1AC5A83200B9CA6D /* max.cv.jit.findhomography.cpp */; };
+		892000E81AC5A86D00B9CA6D /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		892000E91AC5A86D00B9CA6D /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		892000F21AC5A89D00B9CA6D /* cv.jit.getperspective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 892000EF1AC5A89D00B9CA6D /* cv.jit.getperspective.cpp */; };
+		892000F41AC5A89D00B9CA6D /* max.cv.jit.getperspective.c in Sources */ = {isa = PBXBuildFile; fileRef = 892000F11AC5A89D00B9CA6D /* max.cv.jit.getperspective.c */; };
+		892000FB1AC5A8D200B9CA6D /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		892000FC1AC5A8D200B9CA6D /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		8920010C1AC5A93500B9CA6D /* cv.jit.perspective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 892001091AC5A93500B9CA6D /* cv.jit.perspective.cpp */; };
+		8920010E1AC5A93500B9CA6D /* max.cv.jit.perspective.c in Sources */ = {isa = PBXBuildFile; fileRef = 8920010B1AC5A93500B9CA6D /* max.cv.jit.perspective.c */; };
 		B45339F310EDAC94002BE988 /* cv.jit.opticalflow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B45339F210EDAC94002BE988 /* cv.jit.opticalflow.cpp */; };
 		B4584BFD10100DFB00DA7DA9 /* cv.jit.threshold.c in Sources */ = {isa = PBXBuildFile; fileRef = B4584BF910100DFB00DA7DA9 /* cv.jit.threshold.c */; };
 		B4584BFE10100DFB00DA7DA9 /* max.cv.jit.threhsold.c in Sources */ = {isa = PBXBuildFile; fileRef = B4584BFA10100DFB00DA7DA9 /* max.cv.jit.threhsold.c */; };
@@ -232,6 +257,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = B4A3B9561016E16500C56B11;
 			remoteInfo = cv.jit.surf;
+		};
+		89E355DF1AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000A71AC5A68000B9CA6D;
+			remoteInfo = cv.jit.calibration;
+		};
+		89E355E11AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000BA1AC5A76700B9CA6D;
+			remoteInfo = cv.jit.findchessboardcorners;
+		};
+		89E355E31AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000CE1AC5A7E700B9CA6D;
+			remoteInfo = cv.jit.findhomography;
+		};
+		89E355E51AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000E11AC5A86D00B9CA6D;
+			remoteInfo = cv.jit.getperspective;
+		};
+		89E355E71AC5AC7F0086DB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 892000F51AC5A8D200B9CA6D;
+			remoteInfo = cv.jit.perspective;
 		};
 		B4A0277111BBE11A0067494F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -489,6 +549,23 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		892000A61AC5A53E00B9CA6D /* exports.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = exports.exp; sourceTree = "<group>"; };
+		892000B21AC5A68000B9CA6D /* cv.jit.canny copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.canny copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892000B41AC5A6B200B9CA6D /* cv.jit.calibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.calibration.cpp; sourceTree = "<group>"; };
+		892000B61AC5A6B200B9CA6D /* max.cv.jit.calibration.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = max.cv.jit.calibration.c; sourceTree = "<group>"; };
+		892000C61AC5A76700B9CA6D /* cv.jit.opticalflow copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.opticalflow copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892000C81AC5A7AC00B9CA6D /* cv.jit.findchessboardcorners.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.findchessboardcorners.cpp; sourceTree = "<group>"; };
+		892000CA1AC5A7AC00B9CA6D /* max.cv.jit.findchessboardcorners.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = max.cv.jit.findchessboardcorners.cpp; sourceTree = "<group>"; };
+		892000D91AC5A7E700B9CA6D /* cv.jit.findchessboardcorners copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.findchessboardcorners copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892000DB1AC5A83200B9CA6D /* cv.jit.findhomography.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.findhomography.cpp; sourceTree = "<group>"; };
+		892000DD1AC5A83200B9CA6D /* max.cv.jit.findhomography.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = max.cv.jit.findhomography.cpp; sourceTree = "<group>"; };
+		892000ED1AC5A86D00B9CA6D /* cv.jit.opticalflow copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.opticalflow copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892000EF1AC5A89D00B9CA6D /* cv.jit.getperspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.getperspective.cpp; sourceTree = "<group>"; };
+		892000F11AC5A89D00B9CA6D /* max.cv.jit.getperspective.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = max.cv.jit.getperspective.c; sourceTree = "<group>"; };
+		892001001AC5A8D200B9CA6D /* cv.jit.getperspective copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.getperspective copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892001091AC5A93500B9CA6D /* cv.jit.perspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.perspective.cpp; sourceTree = "<group>"; };
+		8920010B1AC5A93500B9CA6D /* max.cv.jit.perspective.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = max.cv.jit.perspective.c; sourceTree = "<group>"; };
+		8920010F1AC5A9DC00B9CA6D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B45339F210EDAC94002BE988 /* cv.jit.opticalflow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.opticalflow.cpp; sourceTree = "<group>"; };
 		B4584BF910100DFB00DA7DA9 /* cv.jit.threshold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.threshold.c; path = ../../src/cv.jit.threshold/cv.jit.threshold.c; sourceTree = SOURCE_ROOT; };
 		B4584BFA10100DFB00DA7DA9 /* max.cv.jit.threhsold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.threhsold.c; path = ../../src/cv.jit.threshold/max.cv.jit.threhsold.c; sourceTree = SOURCE_ROOT; };
@@ -614,6 +691,51 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		892000AC1AC5A68000B9CA6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				892000AD1AC5A68000B9CA6D /* JitterAPI.framework in Frameworks */,
+				892000AE1AC5A68000B9CA6D /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000C01AC5A76700B9CA6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				892000C11AC5A76700B9CA6D /* JitterAPI.framework in Frameworks */,
+				892000C21AC5A76700B9CA6D /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000D31AC5A7E700B9CA6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				892000D41AC5A7E700B9CA6D /* JitterAPI.framework in Frameworks */,
+				892000D51AC5A7E700B9CA6D /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000E71AC5A86D00B9CA6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				892000E81AC5A86D00B9CA6D /* JitterAPI.framework in Frameworks */,
+				892000E91AC5A86D00B9CA6D /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000FA1AC5A8D200B9CA6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				892000FB1AC5A8D200B9CA6D /* JitterAPI.framework in Frameworks */,
+				892000FC1AC5A8D200B9CA6D /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4584BEE10100D4100DA7DA9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -965,6 +1087,8 @@
 		089C166AFE841209C02AAC07 /* cv_jit */ = {
 			isa = PBXGroup;
 			children = (
+				8920010F1AC5A9DC00B9CA6D /* Info.plist */,
+				892000A61AC5A53E00B9CA6D /* exports.exp */,
 				B460570F10E9993C002B2AD8 /* cv.jit.surf.match */,
 				B4A3B99C1016E17500C56B11 /* cv.jit.surf */,
 				B4B5DCBE0CEF323400CE6A66 /* cv.jit.binedge */,
@@ -976,6 +1100,7 @@
 				B4B5DCA40CEF30BF00CE6A66 /* cv.jit.blobs.orientation */,
 				B4B5DCA50CEF30CE00CE6A66 /* cv.jit.blobs.recon */,
 				B4B5DCA60CEF30E100CE6A66 /* cv.jit.blobs.sort */,
+				892000B31AC5A6B200B9CA6D /* cv.jit.calibration */,
 				B4B5DCA80CEF310500CE6A66 /* cv.jit.canny */,
 				B4B5DCA90CEF310C00CE6A66 /* cv.jit.centroids */,
 				B4B5DCAA0CEF311700CE6A66 /* cv.jit.covariance */,
@@ -984,7 +1109,10 @@
 				B4B5DCAB0CEF312100CE6A66 /* cv.jit.extrema */,
 				B4B5DCAC0CEF312C00CE6A66 /* cv.jit.faces */,
 				B4B5DCAD0CEF313700CE6A66 /* cv.jit.features */,
+				892000C71AC5A7AC00B9CA6D /* cv.jit.findchessboardcorners */,
+				892000DA1AC5A83200B9CA6D /* cv.jit.findhomography */,
 				B4B5DCAE0CEF314100CE6A66 /* cv.jit.floodfill */,
+				892000EE1AC5A89D00B9CA6D /* cv.jit.getperspective */,
 				B4B5DCAF0CEF316800CE6A66 /* cv.jit.hough */,
 				B4B5DCBA0CEF31E300CE6A66 /* cv.jit.HSflow */,
 				B4B5DCBB0CEF31EB00CE6A66 /* cv.jit.label */,
@@ -995,6 +1123,7 @@
 				B4B5DCB20CEF319400CE6A66 /* cv.jit.mean */,
 				B4B5DCB40CEF31B600CE6A66 /* cv.jit.moments */,
 				B4C3B0D110EB82AC005A82E9 /* cv.jit.opticalflow */,
+				892001081AC5A93500B9CA6D /* cv.jit.perspective */,
 				B4B5DCB50CEF31BC00CE6A66 /* cv.jit.ravg */,
 				B4B5DCB60CEF31C500CE6A66 /* cv.jit.resize */,
 				B4B5DCA70CEF30F000CE6A66 /* cv.jit.shift */,
@@ -1063,8 +1192,63 @@
 				B4CDCF3710621C0900847C22 /* cv.jit.surf.mxo */,
 				B460571D10E9995C002B2AD8 /* cv.jit.surf.match.mxo */,
 				B4C3B0CE10EB828F005A82E9 /* cv.jit.opticalflow.mxo */,
+				892000B21AC5A68000B9CA6D /* cv.jit.canny copy.mxo */,
+				892000C61AC5A76700B9CA6D /* cv.jit.opticalflow copy.mxo */,
+				892000D91AC5A7E700B9CA6D /* cv.jit.findchessboardcorners copy.mxo */,
+				892000ED1AC5A86D00B9CA6D /* cv.jit.opticalflow copy.mxo */,
+				892001001AC5A8D200B9CA6D /* cv.jit.getperspective copy.mxo */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		892000B31AC5A6B200B9CA6D /* cv.jit.calibration */ = {
+			isa = PBXGroup;
+			children = (
+				892000B41AC5A6B200B9CA6D /* cv.jit.calibration.cpp */,
+				892000B61AC5A6B200B9CA6D /* max.cv.jit.calibration.c */,
+			);
+			name = cv.jit.calibration;
+			path = ../../src/cv.jit.calibration;
+			sourceTree = "<group>";
+		};
+		892000C71AC5A7AC00B9CA6D /* cv.jit.findchessboardcorners */ = {
+			isa = PBXGroup;
+			children = (
+				892000C81AC5A7AC00B9CA6D /* cv.jit.findchessboardcorners.cpp */,
+				892000CA1AC5A7AC00B9CA6D /* max.cv.jit.findchessboardcorners.cpp */,
+			);
+			name = cv.jit.findchessboardcorners;
+			path = ../../src/cv.jit.findchessboardcorners;
+			sourceTree = "<group>";
+		};
+		892000DA1AC5A83200B9CA6D /* cv.jit.findhomography */ = {
+			isa = PBXGroup;
+			children = (
+				892000DB1AC5A83200B9CA6D /* cv.jit.findhomography.cpp */,
+				892000DD1AC5A83200B9CA6D /* max.cv.jit.findhomography.cpp */,
+			);
+			name = cv.jit.findhomography;
+			path = ../../src/cv.jit.findhomography;
+			sourceTree = "<group>";
+		};
+		892000EE1AC5A89D00B9CA6D /* cv.jit.getperspective */ = {
+			isa = PBXGroup;
+			children = (
+				892000EF1AC5A89D00B9CA6D /* cv.jit.getperspective.cpp */,
+				892000F11AC5A89D00B9CA6D /* max.cv.jit.getperspective.c */,
+			);
+			name = cv.jit.getperspective;
+			path = ../../src/cv.jit.getperspective;
+			sourceTree = "<group>";
+		};
+		892001081AC5A93500B9CA6D /* cv.jit.perspective */ = {
+			isa = PBXGroup;
+			children = (
+				892001091AC5A93500B9CA6D /* cv.jit.perspective.cpp */,
+				8920010B1AC5A93500B9CA6D /* max.cv.jit.perspective.c */,
+			);
+			name = cv.jit.perspective;
+			path = ../../src/cv.jit.perspective;
 			sourceTree = "<group>";
 		};
 		B4584BE810100D2D00DA7DA9 /* cv.jit.threshold */ = {
@@ -1435,6 +1619,91 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		892000A71AC5A68000B9CA6D /* cv.jit.calibration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 892000AF1AC5A68000B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.calibration" */;
+			buildPhases = (
+				892000A81AC5A68000B9CA6D /* Resources */,
+				892000A91AC5A68000B9CA6D /* Sources */,
+				892000AC1AC5A68000B9CA6D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.calibration;
+			productName = cv.jit.dilate;
+			productReference = 892000B21AC5A68000B9CA6D /* cv.jit.canny copy.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		892000BA1AC5A76700B9CA6D /* cv.jit.findchessboardcorners */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 892000C31AC5A76700B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.findchessboardcorners" */;
+			buildPhases = (
+				892000BB1AC5A76700B9CA6D /* Resources */,
+				892000BC1AC5A76700B9CA6D /* Sources */,
+				892000C01AC5A76700B9CA6D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.findchessboardcorners;
+			productName = cv.jit.dilate;
+			productReference = 892000C61AC5A76700B9CA6D /* cv.jit.opticalflow copy.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		892000CE1AC5A7E700B9CA6D /* cv.jit.findhomography */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 892000D61AC5A7E700B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.findhomography" */;
+			buildPhases = (
+				892000CF1AC5A7E700B9CA6D /* Resources */,
+				892000D01AC5A7E700B9CA6D /* Sources */,
+				892000D31AC5A7E700B9CA6D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.findhomography;
+			productName = cv.jit.dilate;
+			productReference = 892000D91AC5A7E700B9CA6D /* cv.jit.findchessboardcorners copy.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		892000E11AC5A86D00B9CA6D /* cv.jit.getperspective */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 892000EA1AC5A86D00B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.getperspective" */;
+			buildPhases = (
+				892000E21AC5A86D00B9CA6D /* Resources */,
+				892000E31AC5A86D00B9CA6D /* Sources */,
+				892000E71AC5A86D00B9CA6D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.getperspective;
+			productName = cv.jit.dilate;
+			productReference = 892000ED1AC5A86D00B9CA6D /* cv.jit.opticalflow copy.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		892000F51AC5A8D200B9CA6D /* cv.jit.perspective */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 892000FD1AC5A8D200B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.perspective" */;
+			buildPhases = (
+				892000F61AC5A8D200B9CA6D /* Resources */,
+				892000F71AC5A8D200B9CA6D /* Sources */,
+				892000FA1AC5A8D200B9CA6D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.perspective;
+			productName = cv.jit.dilate;
+			productReference = 892001001AC5A8D200B9CA6D /* cv.jit.getperspective copy.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
 		B4584BE910100D4100DA7DA9 /* cv.jit.threshold */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4584BF210100D4100DA7DA9 /* Build configuration list for PBXNativeTarget "cv.jit.threshold" */;
@@ -2117,6 +2386,7 @@
 				B4FEAD650CEF06B400C2A20C /* cv.jit.blobs.recon */,
 				B4FEAD760CEF06D700C2A20C /* cv.jit.blobs.sort */,
 				B4FEAD9A0CEF088800C2A20C /* cv.jit.canny */,
+				892000A71AC5A68000B9CA6D /* cv.jit.calibration */,
 				B4FEADA60CEF089800C2A20C /* cv.jit.centroids */,
 				B4FEADB60CEF08E800C2A20C /* cv.jit.covariance */,
 				B4FEAB040CEE97BE00C2A20C /* cv.jit.dilate */,
@@ -2124,7 +2394,10 @@
 				B4FEADC40CEF091F00C2A20C /* cv.jit.extrema */,
 				B4FEADD20CEF095000C2A20C /* cv.jit.faces */,
 				B4FEADE00CEF09D100C2A20C /* cv.jit.features */,
+				892000BA1AC5A76700B9CA6D /* cv.jit.findchessboardcorners */,
+				892000CE1AC5A7E700B9CA6D /* cv.jit.findhomography */,
 				B4FEADEE0CEF0A0A00C2A20C /* cv.jit.floodfill */,
+				892000E11AC5A86D00B9CA6D /* cv.jit.getperspective */,
 				B4FEADFC0CEF0A3200C2A20C /* cv.jit.hough */,
 				B4FEAF0B0CEF128D00C2A20C /* cv.jit.HSflow */,
 				B4FEAF1B0CEF132200C2A20C /* cv.jit.label */,
@@ -2134,6 +2407,8 @@
 				B4FEAE1A0CEF0AF700C2A20C /* cv.jit.mass */,
 				B4FEAE280CEF0B7000C2A20C /* cv.jit.mean */,
 				B4FEAE440CEF0BBB00C2A20C /* cv.jit.moments */,
+				B4C3B0C010EB828F005A82E9 /* cv.jit.opticalflow */,
+				892000F51AC5A8D200B9CA6D /* cv.jit.perspective */,
 				B4FEAE520CEF0BFA00C2A20C /* cv.jit.ravg */,
 				B4FEAE600CEF0C1F00C2A20C /* cv.jit.resize */,
 				B4FEAD870CEF06F700C2A20C /* cv.jit.shift */,
@@ -2144,12 +2419,46 @@
 				B4FEAE8C0CEF0D0100C2A20C /* cv.jit.track */,
 				B4EE2EBF0D780844001E050C /* cv.jit.trackpoints */,
 				B4584BE910100D4100DA7DA9 /* cv.jit.threshold */,
-				B4C3B0C010EB828F005A82E9 /* cv.jit.opticalflow */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		892000A81AC5A68000B9CA6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000BB1AC5A76700B9CA6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000CF1AC5A7E700B9CA6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000E21AC5A86D00B9CA6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000F61AC5A8D200B9CA6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4584BEA10100D4100DA7DA9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2419,6 +2728,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		892000A91AC5A68000B9CA6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				892000B71AC5A6B200B9CA6D /* cv.jit.calibration.cpp in Sources */,
+				892000B91AC5A6B200B9CA6D /* max.cv.jit.calibration.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000BC1AC5A76700B9CA6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				892000CB1AC5A7AC00B9CA6D /* cv.jit.findchessboardcorners.cpp in Sources */,
+				892000CD1AC5A7AC00B9CA6D /* max.cv.jit.findchessboardcorners.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000D01AC5A7E700B9CA6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				892000DE1AC5A83200B9CA6D /* cv.jit.findhomography.cpp in Sources */,
+				892000E01AC5A83200B9CA6D /* max.cv.jit.findhomography.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000E31AC5A86D00B9CA6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				892000F21AC5A89D00B9CA6D /* cv.jit.getperspective.cpp in Sources */,
+				892000F41AC5A89D00B9CA6D /* max.cv.jit.getperspective.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		892000F71AC5A8D200B9CA6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8920010C1AC5A93500B9CA6D /* cv.jit.perspective.cpp in Sources */,
+				8920010E1AC5A93500B9CA6D /* max.cv.jit.perspective.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4584BEB10100D4100DA7DA9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2776,6 +3130,31 @@
 			target = B4A3B9561016E16500C56B11 /* cv.jit.surf */;
 			targetProxy = 4390398C129E742800C39448 /* PBXContainerItemProxy */;
 		};
+		89E355E01AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000A71AC5A68000B9CA6D /* cv.jit.calibration */;
+			targetProxy = 89E355DF1AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
+		89E355E21AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000BA1AC5A76700B9CA6D /* cv.jit.findchessboardcorners */;
+			targetProxy = 89E355E11AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
+		89E355E41AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000CE1AC5A7E700B9CA6D /* cv.jit.findhomography */;
+			targetProxy = 89E355E31AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
+		89E355E61AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000E11AC5A86D00B9CA6D /* cv.jit.getperspective */;
+			targetProxy = 89E355E51AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
+		89E355E81AC5AC7F0086DB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 892000F51AC5A8D200B9CA6D /* cv.jit.perspective */;
+			targetProxy = 89E355E71AC5AC7F0086DB1F /* PBXContainerItemProxy */;
+		};
 		B4A0277211BBE11A0067494F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B4584BE910100D4100DA7DA9 /* cv.jit.threshold */;
@@ -2968,6 +3347,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
+				EXPORTED_SYMBOLS_FILE = exports.exp;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../c74support/**";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
@@ -2988,7 +3368,7 @@
 					"$(SRCROOT)/../../include",
 					"$(SRCROOT)/../../OpenCVsupport/**",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/../../src/$(TARGET_NAME)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
 				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../lib";
@@ -2997,6 +3377,7 @@
 					"-lz",
 					"-lcv",
 				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
@@ -3018,6 +3399,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
+				EXPORTED_SYMBOLS_FILE = exports.exp;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../c74support/**";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -3042,7 +3424,7 @@
 					"$(SRCROOT)/../../include",
 					"$(SRCROOT)/../../OpenCVsupport/**",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/../../src/$(TARGET_NAME)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
 				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../lib";
@@ -3051,6 +3433,7 @@
 					"-lz",
 					"-lcv",
 				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
@@ -3061,6 +3444,252 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = mxo;
+			};
+			name = Release;
+		};
+		892000B01AC5A68000B9CA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Debug;
+		};
+		892000B11AC5A68000B9CA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Release;
+		};
+		892000C41AC5A76700B9CA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Debug;
+		};
+		892000C51AC5A76700B9CA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SEPARATE_SYMBOL_EDIT = YES;
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Release;
+		};
+		892000D71AC5A7E700B9CA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Debug;
+		};
+		892000D81AC5A7E700B9CA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SEPARATE_SYMBOL_EDIT = YES;
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Release;
+		};
+		892000EB1AC5A86D00B9CA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Debug;
+		};
+		892000EC1AC5A86D00B9CA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SEPARATE_SYMBOL_EDIT = YES;
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Release;
+		};
+		892000FE1AC5A8D200B9CA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Debug;
+		};
+		892000FF1AC5A8D200B9CA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
+				OBJROOT = "$(inherited)";
+				SEPARATE_SYMBOL_EDIT = YES;
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
 			};
 			name = Release;
 		};
@@ -3081,7 +3710,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3104,7 +3732,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3128,7 +3755,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3150,7 +3776,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3176,7 +3801,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3200,7 +3824,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3227,7 +3850,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3253,7 +3875,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_SYMBOL_EDIT = YES;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
@@ -3269,7 +3890,7 @@
 				FRAMEWORK_VERSION = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = $SRCROOT/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "";
@@ -3287,7 +3908,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_VERSION = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = $SRCROOT/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "";
@@ -3312,10 +3933,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3334,10 +3953,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3361,7 +3978,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.dilate;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3383,7 +3999,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.dilate;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3407,7 +4022,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.erode;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3429,7 +4043,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.erode;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3454,7 +4067,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.binedge;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3478,7 +4090,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.binedge;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3502,7 +4113,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.bounds;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3524,7 +4134,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.bounds;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3548,7 +4157,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.centroids;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3570,7 +4178,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.centroids;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3594,7 +4201,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.direction;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3616,7 +4222,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.direction;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3640,7 +4245,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.elongation;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3662,7 +4266,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = cv.jit.blobs.elongation;
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3686,7 +4289,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3708,7 +4310,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3732,7 +4333,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3754,7 +4354,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3779,7 +4378,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3802,7 +4400,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3826,7 +4423,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3848,7 +4444,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3869,11 +4464,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3892,11 +4485,9 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3921,7 +4512,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3944,7 +4534,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3967,7 +4556,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -3988,7 +4576,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4011,7 +4598,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4032,7 +4618,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4055,7 +4640,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4076,7 +4660,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4101,7 +4684,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4124,7 +4706,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4149,7 +4730,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4172,7 +4752,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4195,7 +4774,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4216,7 +4794,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4239,7 +4816,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4260,7 +4836,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4284,7 +4859,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4306,7 +4880,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4328,10 +4901,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4351,10 +4922,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4375,10 +4944,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4397,10 +4964,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4420,10 +4985,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4441,10 +5004,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4464,10 +5025,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4485,10 +5044,8 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4509,11 +5066,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4535,11 +5090,9 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4560,11 +5113,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4583,11 +5134,9 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(inherited)";
-				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4610,7 +5159,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4631,7 +5179,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4656,7 +5203,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4679,7 +5225,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4704,7 +5249,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4727,7 +5271,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4751,7 +5294,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4773,7 +5315,6 @@
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4798,7 +5339,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4821,7 +5361,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4846,7 +5385,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4869,7 +5407,6 @@
 				INSTALL_PATH = "$(inherited)";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../lib\"";
 				OBJROOT = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SHARED_PRECOMPS_DIR = "$(inherited)";
 				SYMROOT = "$(inherited)";
 				WARNING_CFLAGS = "$(inherited)";
@@ -4885,6 +5422,51 @@
 			buildConfigurations = (
 				4FADC23808B4156C00ABE55E /* Debug */,
 				4FADC23908B4156C00ABE55E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		892000AF1AC5A68000B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.calibration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				892000B01AC5A68000B9CA6D /* Debug */,
+				892000B11AC5A68000B9CA6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		892000C31AC5A76700B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.findchessboardcorners" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				892000C41AC5A76700B9CA6D /* Debug */,
+				892000C51AC5A76700B9CA6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		892000D61AC5A7E700B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.findhomography" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				892000D71AC5A7E700B9CA6D /* Debug */,
+				892000D81AC5A7E700B9CA6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		892000EA1AC5A86D00B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.getperspective" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				892000EB1AC5A86D00B9CA6D /* Debug */,
+				892000EC1AC5A86D00B9CA6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		892000FD1AC5A8D200B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.perspective" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				892000FE1AC5A8D200B9CA6D /* Debug */,
+				892000FF1AC5A8D200B9CA6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

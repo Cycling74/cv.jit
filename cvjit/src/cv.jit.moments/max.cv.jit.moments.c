@@ -56,7 +56,7 @@ t_symbol *ps_getmoments,*ps_gethu,*ps_getcents,*ps_getmass;
 #ifdef __cplusplus
 extern "C"
 #endif	
-int main(void)
+int ext_main(void)
 {	
 	void *p,*q;
 	

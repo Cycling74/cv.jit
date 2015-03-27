@@ -65,8 +65,10 @@ static void	*max_cv_jit_calibration_class = NULL;
 
 
 /************************************************************************************/
-
-int main(void)
+#ifdef __cplusplus
+extern "C"
+#endif
+int ext_main(void)
 {	
 	void *p, *q;
 	

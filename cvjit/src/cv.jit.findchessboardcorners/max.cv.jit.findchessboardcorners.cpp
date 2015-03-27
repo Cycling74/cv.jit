@@ -66,7 +66,7 @@ static void	*max_cv_jit_findchessboardcorners_class = NULL;
 #ifdef __cplusplus
 extern "C"
 #endif		 	
-int main(void)
+int ext_main(void)
 {	
 	void *p, *q;
 	

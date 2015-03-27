@@ -44,7 +44,7 @@ void max_cv_jit_blobs_moments_free(t_max_cv_jit_blobs_moments *x);
 
 void *max_cv_jit_blobs_moments_class;
 		 	
-int main(void)
+int ext_main(void)
 {	
 	void *p,*q;
 	

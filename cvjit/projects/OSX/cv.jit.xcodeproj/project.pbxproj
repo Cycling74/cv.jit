@@ -489,6 +489,7 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		892000A61AC5A53E00B9CA6D /* exports.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = exports.exp; sourceTree = "<group>"; };
 		B45339F210EDAC94002BE988 /* cv.jit.opticalflow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.opticalflow.cpp; sourceTree = "<group>"; };
 		B4584BF910100DFB00DA7DA9 /* cv.jit.threshold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.threshold.c; path = ../../src/cv.jit.threshold/cv.jit.threshold.c; sourceTree = SOURCE_ROOT; };
 		B4584BFA10100DFB00DA7DA9 /* max.cv.jit.threhsold.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.threhsold.c; path = ../../src/cv.jit.threshold/max.cv.jit.threhsold.c; sourceTree = SOURCE_ROOT; };
@@ -965,6 +966,7 @@
 		089C166AFE841209C02AAC07 /* cv_jit */ = {
 			isa = PBXGroup;
 			children = (
+				892000A61AC5A53E00B9CA6D /* exports.exp */,
 				B460570F10E9993C002B2AD8 /* cv.jit.surf.match */,
 				B4A3B99C1016E17500C56B11 /* cv.jit.surf */,
 				B4B5DCBE0CEF323400CE6A66 /* cv.jit.binedge */,
@@ -2968,6 +2970,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
+				EXPORTED_SYMBOLS_FILE = exports.exp;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../c74support/**";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
@@ -3018,6 +3021,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
+				EXPORTED_SYMBOLS_FILE = exports.exp;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../c74support/**";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;

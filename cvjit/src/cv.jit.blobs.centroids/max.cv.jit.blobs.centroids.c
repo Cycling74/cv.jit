@@ -47,7 +47,7 @@ void *max_cv_jit_blobs_centroids_class;
 #ifdef __cplusplus
 extern "C"
 #endif		 	
-int main(void)
+int ext_main(void)
 {	
 	void *p,*q;
 	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;

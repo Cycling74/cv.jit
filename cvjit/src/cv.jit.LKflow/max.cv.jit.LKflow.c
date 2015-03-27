@@ -45,7 +45,7 @@ void *max_cv_jit_LKflow_class;
 #ifdef __cplusplus
 extern "C"
 #endif		 	
-int main(void)
+int ext_main(void)
 {	
 	void *p,*q;
 	

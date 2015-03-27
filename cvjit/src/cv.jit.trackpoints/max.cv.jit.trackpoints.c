@@ -43,7 +43,7 @@ void *max_cv_jit_trackpoints_new(t_symbol *s, long argc, t_atom *argv);
 void max_cv_jit_trackpoints_free(t_max_cv_jit_trackpoints *x);
 void *max_cv_jit_trackpoints_class;
 		 	
-int main(void)
+int ext_main(void)
 {	
 	void *p,*q;
 	

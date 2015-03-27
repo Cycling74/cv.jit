@@ -62,7 +62,7 @@ t_symbol *ps_getmass;
 #ifdef __cplusplus
 extern "C"
 #endif
-int main(void)
+int ext_main(void)
 {	
 	void *p,*q;
 	

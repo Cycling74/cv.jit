@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.blobs.orientation.mxe
 
 EXPORTS
-	main
+	ext_main

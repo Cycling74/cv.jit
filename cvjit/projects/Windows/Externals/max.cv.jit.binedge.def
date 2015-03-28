@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.binedge.mxe
 
 EXPORTS
-	main
+	ext_main

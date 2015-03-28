@@ -42,8 +42,11 @@ t_jit_err cv_jit_trackpoints_init(void);
 void *max_cv_jit_trackpoints_new(t_symbol *s, long argc, t_atom *argv);
 void max_cv_jit_trackpoints_free(t_max_cv_jit_trackpoints *x);
 void *max_cv_jit_trackpoints_class;
-		 	
-int ext_main(void)
+
+#ifdef __cplusplus
+extern "C" 
+#endif
+void ext_main(void* unused)
 {	
 	void *p,*q;
 	
@@ -58,8 +61,6 @@ int ext_main(void)
     max_jit_classex_mop_wrap(p,q,0); 		//name/type/dim/planecount/bang/outputmatrix/etc
     max_jit_classex_standard_wrap(p,q,0); 	//getattributes/dumpout/maxjitclassaddmethods/etc
     addmess((method)max_jit_mop_assist, "assist", A_CANT,0);  //standard mop assist fn
-	
-	return 0;
 }
 
 void max_cv_jit_trackpoints_free(t_max_cv_jit_trackpoints *x)

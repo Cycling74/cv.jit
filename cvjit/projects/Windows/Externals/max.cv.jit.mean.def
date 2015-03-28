@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.mean.mxe
 
 EXPORTS
-	main
+	ext_main

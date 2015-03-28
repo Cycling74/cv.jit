@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.mass.mxe
 
 EXPORTS
-	main
+	ext_main

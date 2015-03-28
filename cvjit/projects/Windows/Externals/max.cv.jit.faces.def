@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.faces.mxe
 
 EXPORTS
-	main
+	ext_main

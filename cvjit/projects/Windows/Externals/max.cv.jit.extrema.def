@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.extrema.mxe
 
 EXPORTS
-	main
+	ext_main

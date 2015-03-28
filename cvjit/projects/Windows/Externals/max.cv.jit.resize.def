@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.resize.mxe
 
 EXPORTS
-	main
+	ext_main

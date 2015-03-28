@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.centroids.mxe
 
 EXPORTS
-	main
+	ext_main

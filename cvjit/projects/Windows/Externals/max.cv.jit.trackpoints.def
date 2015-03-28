@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.trackpoints.mxe
 
 EXPORTS
-	main
+	ext_main

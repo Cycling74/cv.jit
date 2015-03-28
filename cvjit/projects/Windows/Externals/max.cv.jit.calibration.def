@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.calibration.mxe
 
 EXPORTS
-	main
+	ext_main

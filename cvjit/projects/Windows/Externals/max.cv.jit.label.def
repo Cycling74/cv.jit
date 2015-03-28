@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.label.mxe
 
 EXPORTS
-	main
+	ext_main

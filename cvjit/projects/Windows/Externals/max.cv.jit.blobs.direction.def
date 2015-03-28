@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.blobs.direction.mxe
 
 EXPORTS
-	main
+	ext_main

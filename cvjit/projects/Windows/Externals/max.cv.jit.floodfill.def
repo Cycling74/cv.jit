@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.floodfill.mxe
 
 EXPORTS
-	main
+	ext_main

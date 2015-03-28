@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.learn.mxe
 
 EXPORTS
-	main
+	ext_main

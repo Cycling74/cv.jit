@@ -3,4 +3,4 @@
 LIBRARY	cv.jit.features.mxe
 
 EXPORTS
-	main
+	ext_main

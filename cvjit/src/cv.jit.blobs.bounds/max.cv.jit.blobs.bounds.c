@@ -47,7 +47,7 @@ void *max_cv_jit_blobs_bounds_class;
 #ifdef __cplusplus
 extern "C"
 #endif
-int ext_main(void)
+void ext_main(void* unused)
 {	
 	void *p,*q;
 	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;

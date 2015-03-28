@@ -61,7 +61,7 @@ static void	*max_cv_jit_perspective_class = NULL;
 #ifdef __cplusplus
 extern "C"
 #endif
-int ext_main(void)
+void ext_main(void* unused)
 {	
 	void *p, *q;
 	

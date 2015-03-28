@@ -80,7 +80,7 @@ t_symbol *ps_list;
 #ifdef __cplusplus
 extern "C"
 #endif
-int ext_main(void)
+void ext_main(void* unused)
 {
 	//Setup object
 	union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;

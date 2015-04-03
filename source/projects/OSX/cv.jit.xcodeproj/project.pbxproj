@@ -550,19 +550,19 @@
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		892000A61AC5A53E00B9CA6D /* exports.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = exports.exp; sourceTree = "<group>"; };
-		892000B21AC5A68000B9CA6D /* cv.jit.canny copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.canny copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892000B21AC5A68000B9CA6D /* cv.jit.calibration.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.calibration.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		892000B41AC5A6B200B9CA6D /* cv.jit.calibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.calibration.cpp; sourceTree = "<group>"; };
 		892000B61AC5A6B200B9CA6D /* max.cv.jit.calibration.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = max.cv.jit.calibration.c; sourceTree = "<group>"; };
-		892000C61AC5A76700B9CA6D /* cv.jit.opticalflow copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.opticalflow copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892000C61AC5A76700B9CA6D /* cv.jit.findchessboardcorners.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.findchessboardcorners.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		892000C81AC5A7AC00B9CA6D /* cv.jit.findchessboardcorners.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.findchessboardcorners.cpp; sourceTree = "<group>"; };
 		892000CA1AC5A7AC00B9CA6D /* max.cv.jit.findchessboardcorners.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = max.cv.jit.findchessboardcorners.cpp; sourceTree = "<group>"; };
-		892000D91AC5A7E700B9CA6D /* cv.jit.findchessboardcorners copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.findchessboardcorners copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892000D91AC5A7E700B9CA6D /* cv.jit.findhomography.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.findhomography.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		892000DB1AC5A83200B9CA6D /* cv.jit.findhomography.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.findhomography.cpp; sourceTree = "<group>"; };
 		892000DD1AC5A83200B9CA6D /* max.cv.jit.findhomography.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = max.cv.jit.findhomography.cpp; sourceTree = "<group>"; };
-		892000ED1AC5A86D00B9CA6D /* cv.jit.opticalflow copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.opticalflow copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892000ED1AC5A86D00B9CA6D /* cv.jit.getperspective.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.getperspective.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		892000EF1AC5A89D00B9CA6D /* cv.jit.getperspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.getperspective.cpp; sourceTree = "<group>"; };
 		892000F11AC5A89D00B9CA6D /* max.cv.jit.getperspective.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = max.cv.jit.getperspective.c; sourceTree = "<group>"; };
-		892001001AC5A8D200B9CA6D /* cv.jit.getperspective copy.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cv.jit.getperspective copy.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		892001001AC5A8D200B9CA6D /* cv.jit.perspective.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.perspective.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		892001091AC5A93500B9CA6D /* cv.jit.perspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.perspective.cpp; sourceTree = "<group>"; };
 		8920010B1AC5A93500B9CA6D /* max.cv.jit.perspective.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = max.cv.jit.perspective.c; sourceTree = "<group>"; };
 		8920010F1AC5A9DC00B9CA6D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1192,11 +1192,11 @@
 				B4CDCF3710621C0900847C22 /* cv.jit.surf.mxo */,
 				B460571D10E9995C002B2AD8 /* cv.jit.surf.match.mxo */,
 				B4C3B0CE10EB828F005A82E9 /* cv.jit.opticalflow.mxo */,
-				892000B21AC5A68000B9CA6D /* cv.jit.canny copy.mxo */,
-				892000C61AC5A76700B9CA6D /* cv.jit.opticalflow copy.mxo */,
-				892000D91AC5A7E700B9CA6D /* cv.jit.findchessboardcorners copy.mxo */,
-				892000ED1AC5A86D00B9CA6D /* cv.jit.opticalflow copy.mxo */,
-				892001001AC5A8D200B9CA6D /* cv.jit.getperspective copy.mxo */,
+				892000B21AC5A68000B9CA6D /* cv.jit.calibration.mxo */,
+				892000C61AC5A76700B9CA6D /* cv.jit.findchessboardcorners.mxo */,
+				892000D91AC5A7E700B9CA6D /* cv.jit.findhomography.mxo */,
+				892000ED1AC5A86D00B9CA6D /* cv.jit.getperspective.mxo */,
+				892001001AC5A8D200B9CA6D /* cv.jit.perspective.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1633,7 +1633,7 @@
 			);
 			name = cv.jit.calibration;
 			productName = cv.jit.dilate;
-			productReference = 892000B21AC5A68000B9CA6D /* cv.jit.canny copy.mxo */;
+			productReference = 892000B21AC5A68000B9CA6D /* cv.jit.calibration.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		892000BA1AC5A76700B9CA6D /* cv.jit.findchessboardcorners */ = {
@@ -1650,7 +1650,7 @@
 			);
 			name = cv.jit.findchessboardcorners;
 			productName = cv.jit.dilate;
-			productReference = 892000C61AC5A76700B9CA6D /* cv.jit.opticalflow copy.mxo */;
+			productReference = 892000C61AC5A76700B9CA6D /* cv.jit.findchessboardcorners.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		892000CE1AC5A7E700B9CA6D /* cv.jit.findhomography */ = {
@@ -1667,7 +1667,7 @@
 			);
 			name = cv.jit.findhomography;
 			productName = cv.jit.dilate;
-			productReference = 892000D91AC5A7E700B9CA6D /* cv.jit.findchessboardcorners copy.mxo */;
+			productReference = 892000D91AC5A7E700B9CA6D /* cv.jit.findhomography.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		892000E11AC5A86D00B9CA6D /* cv.jit.getperspective */ = {
@@ -1684,7 +1684,7 @@
 			);
 			name = cv.jit.getperspective;
 			productName = cv.jit.dilate;
-			productReference = 892000ED1AC5A86D00B9CA6D /* cv.jit.opticalflow copy.mxo */;
+			productReference = 892000ED1AC5A86D00B9CA6D /* cv.jit.getperspective.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		892000F51AC5A8D200B9CA6D /* cv.jit.perspective */ = {
@@ -1701,7 +1701,7 @@
 			);
 			name = cv.jit.perspective;
 			productName = cv.jit.dilate;
-			productReference = 892001001AC5A8D200B9CA6D /* cv.jit.getperspective copy.mxo */;
+			productReference = 892001001AC5A8D200B9CA6D /* cv.jit.perspective.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B4584BE910100D4100DA7DA9 /* cv.jit.threshold */ = {
@@ -2358,7 +2358,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = NO;
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = jovansystem;
 			};
 			buildConfigurationList = 4FADC23708B4156C00ABE55E /* Build configuration list for PBXProject "cv.jit" */;
@@ -3348,15 +3348,13 @@
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
 				EXPORTED_SYMBOLS_FILE = exports.exp;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../c74support/**";
-				GCC_ALTIVEC_EXTENSIONS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../max-sdk/source/c74support/**";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c objective-c c++ objective-c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "../../c74support/max-includes/macho-prefix.pch";
-				GCC_USE_GCC3_PFE_SUPPORT = NO;
+				GCC_PREFIX_HEADER = "../../max-sdk/source/c74support/max-includes/macho-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = C74_NO_DEPRECATION;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
@@ -3364,24 +3362,23 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../c74support/**",
+					"$(SRCROOT)/../../max-sdk/source/c74support/**",
 					"$(SRCROOT)/../../include",
 					"$(SRCROOT)/../../OpenCVsupport/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
-				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
+				INSTALL_PATH = /../../../externals;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-lmx",
 					"-lz",
 					"-lcv",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
-				VERSION = 1.8.0;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -3400,19 +3397,14 @@
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
 				EXPORTED_SYMBOLS_FILE = exports.exp;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../c74support/**";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_ENABLE_SSE3_EXTENSIONS = YES;
-				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../max-sdk/source/c74support/**";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_INPUT_FILETYPE = automatic;
-				GCC_PFE_FILE_C_DIALECTS = "c objective-c c++ objective-c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "../../c74support/max-includes/macho-prefix.pch";
+				GCC_PREFIX_HEADER = "../../max-sdk/source/c74support/max-includes/macho-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = C74_NO_DEPRECATION;
 				GCC_UNROLL_LOOPS = YES;
-				GCC_USE_GCC3_PFE_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
@@ -3420,24 +3412,23 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../c74support/**",
+					"$(SRCROOT)/../../max-sdk/source/c74support/**",
 					"$(SRCROOT)/../../include",
 					"$(SRCROOT)/../../OpenCVsupport/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_OWNER = "$(USER)";
-				INSTALL_PATH = "/../../build/OSX/$(CONFIGURATION)";
+				INSTALL_PATH = /../../../externals;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-lmx",
 					"-lz",
 					"-lcv",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = "non-global";
-				VERSION = 1.8.0;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -3450,6 +3441,7 @@
 		892000B01AC5A68000B9CA6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3473,6 +3465,7 @@
 		892000B11AC5A68000B9CA6D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3494,6 +3487,7 @@
 		892000C41AC5A76700B9CA6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3519,6 +3513,7 @@
 		892000C51AC5A76700B9CA6D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3544,6 +3539,7 @@
 		892000D71AC5A7E700B9CA6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3569,6 +3565,7 @@
 		892000D81AC5A7E700B9CA6D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3594,6 +3591,7 @@
 		892000EB1AC5A86D00B9CA6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3619,6 +3617,7 @@
 		892000EC1AC5A86D00B9CA6D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3644,6 +3643,7 @@
 		892000FE1AC5A8D200B9CA6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3670,6 +3670,7 @@
 		892000FF1AC5A8D200B9CA6D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3696,6 +3697,7 @@
 		B4584BF310100D4100DA7DA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3720,6 +3722,7 @@
 		B4584BF410100D4100DA7DA9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3742,6 +3745,7 @@
 		B460571B10E9995C002B2AD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3765,6 +3769,7 @@
 		B460571C10E9995C002B2AD8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3786,6 +3791,7 @@
 		B4A3B9601016E16500C56B11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3811,6 +3817,7 @@
 		B4A3B9611016E16500C56B11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3834,6 +3841,7 @@
 		B4C3B0CC10EB828F005A82E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3860,6 +3868,7 @@
 		B4C3B0CD10EB828F005A82E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3923,6 +3932,7 @@
 		B4EE2ECA0D780844001E050C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3945,6 +3955,7 @@
 		B4EE2ECB0D780844001E050C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -3965,6 +3976,7 @@
 		B4FEAB080CEE97BF00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -3988,6 +4000,7 @@
 		B4FEAB090CEE97BF00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4009,6 +4022,7 @@
 		B4FEAB110CEE97E400C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4032,6 +4046,7 @@
 		B4FEAB120CEE97E400C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4053,6 +4068,7 @@
 		B4FEACEE0CEF01BF00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4063,7 +4079,6 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
@@ -4077,6 +4092,7 @@
 		B4FEACEF0CEF01BF00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4086,7 +4102,6 @@
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(inherited)";
 				INFOPLIST_FILE = "$(inherited)";
 				INSTALL_PATH = "$(inherited)";
 				OBJROOT = "$(inherited)";
@@ -4100,6 +4115,7 @@
 		B4FEAD010CEF020C00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4123,6 +4139,7 @@
 		B4FEAD020CEF020C00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4144,6 +4161,7 @@
 		B4FEAD100CEF021200C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4167,6 +4185,7 @@
 		B4FEAD110CEF021200C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4188,6 +4207,7 @@
 		B4FEAD1F0CEF021600C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4211,6 +4231,7 @@
 		B4FEAD200CEF021600C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4232,6 +4253,7 @@
 		B4FEAD2E0CEF021900C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4255,6 +4277,7 @@
 		B4FEAD2F0CEF021900C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4276,6 +4299,7 @@
 		B4FEAD430CEF02C000C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4299,6 +4323,7 @@
 		B4FEAD440CEF02C000C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4320,6 +4345,7 @@
 		B4FEAD5F0CEF05ED00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4343,6 +4369,7 @@
 		B4FEAD600CEF05ED00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4364,6 +4391,7 @@
 		B4FEAD700CEF06B400C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4388,6 +4416,7 @@
 		B4FEAD710CEF06B400C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4410,6 +4439,7 @@
 		B4FEAD810CEF06D700C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4433,6 +4463,7 @@
 		B4FEAD820CEF06D700C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4454,6 +4485,7 @@
 		B4FEAD920CEF06F700C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4477,6 +4509,7 @@
 		B4FEAD930CEF06F700C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4498,6 +4531,7 @@
 		B4FEADA20CEF088800C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4522,6 +4556,7 @@
 		B4FEADA30CEF088800C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4544,6 +4579,7 @@
 		B4FEADAE0CEF089800C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4566,6 +4602,7 @@
 		B4FEADAF0CEF089800C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4586,6 +4623,7 @@
 		B4FEADBE0CEF08E800C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4608,6 +4646,7 @@
 		B4FEADBF0CEF08E800C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4628,6 +4667,7 @@
 		B4FEADCC0CEF091F00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4650,6 +4690,7 @@
 		B4FEADCD0CEF091F00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4670,6 +4711,7 @@
 		B4FEADDA0CEF095000C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4694,6 +4736,7 @@
 		B4FEADDB0CEF095000C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4716,6 +4759,7 @@
 		B4FEADE80CEF09D100C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4740,6 +4784,7 @@
 		B4FEADE90CEF09D100C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4762,6 +4807,7 @@
 		B4FEADF60CEF0A0A00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4784,6 +4830,7 @@
 		B4FEADF70CEF0A0A00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4804,6 +4851,7 @@
 		B4FEAE040CEF0A3200C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4826,6 +4874,7 @@
 		B4FEAE050CEF0A3200C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4846,6 +4895,7 @@
 		B4FEAE140CEF0AD100C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4869,6 +4919,7 @@
 		B4FEAE150CEF0AD100C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4890,6 +4941,7 @@
 		B4FEAE220CEF0AF700C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4913,6 +4965,7 @@
 		B4FEAE230CEF0AF700C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4934,6 +4987,7 @@
 		B4FEAE300CEF0B7000C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4956,6 +5010,7 @@
 		B4FEAE310CEF0B7000C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -4976,6 +5031,7 @@
 		B4FEAE4C0CEF0BBB00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -4997,6 +5053,7 @@
 		B4FEAE4D0CEF0BBB00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -5016,6 +5073,7 @@
 		B4FEAE5A0CEF0BFA00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -5037,6 +5095,7 @@
 		B4FEAE5B0CEF0BFA00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -5056,6 +5115,7 @@
 		B4FEAE680CEF0C1F00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -5079,6 +5139,7 @@
 		B4FEAE690CEF0C1F00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -5103,6 +5164,7 @@
 		B4FEAE760CEF0C4500C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -5126,6 +5188,7 @@
 		B4FEAE770CEF0C4500C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -5147,6 +5210,7 @@
 		B4FEAE860CEF0CEA00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -5169,6 +5233,7 @@
 		B4FEAE870CEF0CEA00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -5189,6 +5254,7 @@
 		B4FEAE940CEF0D0100C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -5213,6 +5279,7 @@
 		B4FEAE950CEF0D0100C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -5235,6 +5302,7 @@
 		B4FEAF130CEF128D00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -5259,6 +5327,7 @@
 		B4FEAF140CEF128D00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -5281,6 +5350,7 @@
 		B4FEAF230CEF132200C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -5304,6 +5374,7 @@
 		B4FEAF240CEF132200C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -5325,6 +5396,7 @@
 		B4FEAF310CEF134B00C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -5349,6 +5421,7 @@
 		B4FEAF320CEF134B00C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;
@@ -5371,6 +5444,7 @@
 		B4FEAF3F0CEF136900C2A20C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = NO;
@@ -5395,6 +5469,7 @@
 		B4FEAF400CEF136900C2A20C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(inherited)";
 				CONFIGURATION_TEMP_DIR = "$(inherited)";
 				COPY_PHASE_STRIP = YES;

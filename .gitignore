@@ -11,9 +11,8 @@ xcuserdata
 *.wwdb
 *.user
 *.sdf
-*/ipch/
 ipch
 *.opensdf
 
 externals
-
+temp

@@ -211,6 +211,7 @@ public:
 
         for (int i = 0; i < n; i++) {
             closestDistSq[i] = distance_(dataset_[indices[i]], dataset_[indices[index]], dataset_.cols);
+            closestDistSq[i] = ensureSquareDistance<Distance>( closestDistSq[i] );
             currentPot += closestDistSq[i];
         }
 
@@ -236,7 +237,10 @@ public:
 
                 // Compute the new potential
                 double newPot = 0;
-                for (int i = 0; i < n; i++) newPot += std::min( distance_(dataset_[indices[i]], dataset_[indices[index]], dataset_.cols), closestDistSq[i] );
+                for (int i = 0; i < n; i++) {
+                    DistanceType dist = distance_(dataset_[indices[i]], dataset_[indices[index]], dataset_.cols);
+                    newPot += std::min( ensureSquareDistance<Distance>(dist), closestDistSq[i] );
+                }
 
                 // Store the best result
                 if ((bestNewPot < 0)||(newPot < bestNewPot)) {
@@ -248,7 +252,10 @@ public:
             // Add the appropriate center
             centers[centerCount] = indices[bestNewIndex];
             currentPot = bestNewPot;
-            for (int i = 0; i < n; i++) closestDistSq[i] = std::min( distance_(dataset_[indices[i]], dataset_[indices[bestNewIndex]], dataset_.cols), closestDistSq[i] );
+            for (int i = 0; i < n; i++) {
+                DistanceType dist = distance_(dataset_[indices[i]], dataset_[indices[bestNewIndex]], dataset_.cols);
+                closestDistSq[i] = std::min( ensureSquareDistance<Distance>(dist), closestDistSq[i] );
+            }
         }
 
         centers_length = centerCount;
@@ -674,7 +681,7 @@ private:
         }
         delete[] centers_idx;
 
-        DistanceType* radiuses = new DistanceType[branching];
+        std::vector<DistanceType> radiuses(branching);
         int* count = new int[branching];
         for (int i=0; i<branching; ++i) {
             radiuses[i] = 0;
@@ -759,10 +766,13 @@ private:
 
                     for (int k=0; k<indices_length; ++k) {
                         if (belongs_to[k]==j) {
-                            belongs_to[k] = i;
-                            count[j]--;
-                            count[i]++;
-                            break;
+                            // for cluster j, we move the furthest element from the center to the empty cluster i
+                            if ( distance_(dataset_[indices[k]], dcenters[j], veclen_) == radiuses[j] ) {
+                                belongs_to[k] = i;
+                                count[j]--;
+                                count[i]++;
+                                break;
+                            }
                         }
                     }
                     converged = false;
@@ -775,7 +785,7 @@ private:
 
         for (int i=0; i<branching; ++i) {
             centers[i] = new DistanceType[veclen_];
-            memoryCounter_ += veclen_*sizeof(DistanceType);
+            memoryCounter_ += (int)(veclen_*sizeof(DistanceType));
             for (size_t k=0; k<veclen_; ++k) {
                 centers[i][k] = (DistanceType)dcenters[i][k];
             }
@@ -817,7 +827,6 @@ private:
 
         delete[] dcenters.data;
         delete[] centers;
-        delete[] radiuses;
         delete[] count;
         delete[] belongs_to;
     }

@@ -71,7 +71,7 @@ void ext_main(void* unused)
 
     addmess((method)max_jit_mop_assist, "assist", A_CANT,0);	//Add outlet assistance to object
 
-	return 0;
+	return;
 }
 
 void max_cv_jit_erode_free(t_max_cv_jit_erode *x)

@@ -98,7 +98,7 @@ void ext_main(void* unused)
     max_jit_classex_standard_wrap(p,q,0); 	
     addmess((method)max_jit_mop_assist, "assist", A_CANT,0);
 	
-	return 0;
+	return;
 }
 
 void max_cv_jit_findhomography_free(t_max_cv_jit_findhomography *x)

@@ -48,7 +48,7 @@ typedef struct _cv_jit_floodfill
 {
 	t_object				ob;
 	long					seedcount;
-	int						seed[2];
+	long					seed[2];
 	Segment					*buffer;
 	long					bufferSize;
 } t_cv_jit_floodfill;

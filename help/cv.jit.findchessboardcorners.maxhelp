@@ -4,8 +4,8 @@
 		"appversion" : 		{
 			"major" : 7,
 			"minor" : 0,
-			"revision" : 2,
-			"architecture" : "x86",
+			"revision" : 3,
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -131,8 +131,8 @@
 						"appversion" : 						{
 							"major" : 7,
 							"minor" : 0,
-							"revision" : 2,
-							"architecture" : "x86",
+							"revision" : 3,
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -302,7 +302,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "" ],
+									"outlettype" : [ "jit_matrix" ],
 									"patching_rect" : [ 108.0, 60.0, 25.0, 25.0 ],
 									"style" : ""
 								}
@@ -450,8 +450,8 @@
 						"appversion" : 						{
 							"major" : 7,
 							"minor" : 0,
-							"revision" : 2,
-							"architecture" : "x86",
+							"revision" : 3,
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -1123,8 +1123,8 @@
 					"id" : "obj-71",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
+					"numoutlets" : 3,
+					"outlettype" : [ "jit_matrix", "jit_matrix", "" ],
 					"patching_rect" : [ 325.0, 327.0, 134.0, 20.0 ],
 					"style" : "",
 					"text" : "cv.jit.findchessboardcorners"
@@ -1425,11 +1425,11 @@
 					"id" : "obj-43",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 325.0, 178.0, 104.0, 20.0 ],
+					"numoutlets" : 2,
+					"outlettype" : [ "jit_matrix", "" ],
+					"patching_rect" : [ 325.0, 178.0, 92.0, 20.0 ],
 					"style" : "",
-					"text" : "cv.jit.grab @unique 1"
+					"text" : "jit.grab @unique 1"
 				}
 
 			}
@@ -1801,7 +1801,7 @@
 					"destination" : [ "obj-1", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"midpoints" : [ 449.5, 352.0, 489.5, 352.0 ],
+					"midpoints" : [ 392.0, 352.0, 489.5, 352.0 ],
 					"source" : [ "obj-71", 1 ]
 				}
 
@@ -1834,7 +1834,11 @@
 
 			}
  ],
-		"dependency_cache" : [  ],
+		"dependency_cache" : [ 			{
+				"name" : "cv.jit.findchessboardcorners.mxo",
+				"type" : "iLaX"
+			}
+ ],
 		"embedsnapshot" : 0
 	}
 

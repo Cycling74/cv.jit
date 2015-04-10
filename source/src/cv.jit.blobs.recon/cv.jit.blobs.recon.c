@@ -157,13 +157,13 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 	//Load file
 	
 	//Check ID code
-	count = sizeof(long);
+	count = sizeof(t_int32);
 	sysfile_read(handle, &count, &cvjt);
 	if(cvjt == FOUR_CHAR_CODE( 'cvjt' ))
 	{
 		
 		//Read list length
-		count = sizeof(long);
+		count = sizeof(t_int32);
 		sysfile_read(handle, &count, &x->size);
 		if(x->size != 7)
 		{
@@ -191,9 +191,9 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 	else if (cvjt == FOUR_CHAR_CODE( 'tjvc' )) //File was created on another platform, with different endian, switch
 	{
 		//Read list length
-		count = sizeof(long);
+		count = sizeof(t_int32);
 		sysfile_read(handle, &count, &x->size);
-		ByteSwap((unsigned char *)&x->size,sizeof(long));
+		ByteSwap((unsigned char *)&x->size,sizeof(t_int32));
 		if(x->size != 7)
 		{
 			error("Invalid data: make sure %s was trained with moments or Hu invariants from cv.jit.moments.", fname);

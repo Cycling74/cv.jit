@@ -165,7 +165,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	//Load file
 	
 	//Check ID code
-	count = sizeof(long);
+	count = sizeof(t_int32);
 	sysfile_read(handle, &count, &cvjt);
 	
 	if(cvjt == FOUR_CHAR_CODE( 'cvjt' ))
@@ -175,7 +175,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		freebytes(x->covariance, x->size * x->size * sizeof(double));
 		freebytes(x->inverse, x->size * x->size * sizeof(double));
 		//Read list length
-		count = sizeof(long);
+		count = sizeof(t_int32);
 		sysfile_read(handle, &count, &x->size);
 		//Allocate new memory for storage	
 		x->mean = (double *)getbytes(x->size * sizeof(double)); //Allocate memory for mean vector
@@ -204,9 +204,9 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		freebytes(x->covariance, x->size * x->size * sizeof(double));
 		freebytes(x->inverse, x->size * x->size * sizeof(double));
 		//Read list length
-		count = sizeof(long);
+		count = sizeof(t_int32);
 		sysfile_read(handle, &count, &x->size);
-		ByteSwap((unsigned char *)&x->size,sizeof(long));
+		ByteSwap((unsigned char *)&x->size,sizeof(t_int32));
 		//Allocate new memory for storage	
 		x->mean = (double *)getbytes(x->size * sizeof(double)); //Allocate memory for mean vector
 		x->covariance = (double *)getbytes(x->size * x->size * sizeof(double)); //Allocate memory for covariance matrix
@@ -257,11 +257,11 @@ void cv_jit_learn_write(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv
 	{
 		path_createsysfile(fname, id, FOUR_CHAR_CODE( 'cvjt' ), &handle); 
 		//Write ID code
-		count = sizeof(long);
+		count = sizeof(t_int32);
 		cvjt = FOUR_CHAR_CODE( 'cvjt' );
 		sysfile_write(handle, &count, &cvjt);
 		//Write list length
-		count = sizeof(long);
+		count = sizeof(t_int32);
 		sysfile_write(handle, &count, &x->size);
 		//Write index
 		count = sizeof(double);

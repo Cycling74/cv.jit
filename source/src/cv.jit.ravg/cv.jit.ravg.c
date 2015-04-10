@@ -236,7 +236,7 @@ void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long
 			
 			buf = (float *)bbp;
 			
-			steps = MIN(in_minfo->dimstride[1] / (4 * sizeof(long)), buf_minfo->dimstride[1] / (4 * sizeof(float)));
+			steps = MIN(in_minfo->dimstride[1] / (4 * sizeof(t_int32)), buf_minfo->dimstride[1] / (4 * sizeof(float)));
 			
 			for(i=0;i<dim[1];i++){
 				ip = bip + i * in_minfo->dimstride[1];

@@ -2,11 +2,6 @@
 
 ## Compiling cv.jit
 
-After cloning the Git repository, you will need to cd into the directory and update submodules to get the Max SDK. For example:
-
-    cd cv.jit
-    git submodule update --init
-
 You will find Visual Studio and Xcode projects in the "source/projects/Windows" and "source/projects/OSX" folders, respectively.
 
 You should be able to build all externals at once using the "build solution" option in Visual Studio or by picking "build-all" as the target in Xcode.

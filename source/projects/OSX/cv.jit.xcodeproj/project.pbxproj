@@ -3348,12 +3348,12 @@
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
 				EXPORTED_SYMBOLS_FILE = exports.exp;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../max-sdk/source/c74support/**";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../maxsdk/source/c74support/**";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "../../max-sdk/source/c74support/max-includes/macho-prefix.pch";
+				GCC_PREFIX_HEADER = "../../maxsdk/source/c74support/max-includes/macho-prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = C74_NO_DEPRECATION;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
@@ -3362,7 +3362,7 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../max-sdk/source/c74support/**",
+					"$(SRCROOT)/../../maxsdk/source/c74support/**",
 					"$(SRCROOT)/../../include",
 					"$(SRCROOT)/../../OpenCVsupport/**",
 				);
@@ -3397,12 +3397,12 @@
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)";
 				EXPORTED_SYMBOLS_FILE = exports.exp;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../max-sdk/source/c74support/**";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../maxsdk/source/c74support/**";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "../../max-sdk/source/c74support/max-includes/macho-prefix.pch";
+				GCC_PREFIX_HEADER = "../../maxsdk/source/c74support/max-includes/macho-prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = C74_NO_DEPRECATION;
 				GCC_UNROLL_LOOPS = YES;
 				GCC_VERSION = "";
@@ -3412,7 +3412,7 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../max-sdk/source/c74support/**",
+					"$(SRCROOT)/../../maxsdk/source/c74support/**",
 					"$(SRCROOT)/../../include",
 					"$(SRCROOT)/../../OpenCVsupport/**",
 				);

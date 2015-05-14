@@ -105,7 +105,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\max-sdk\source\c74support\max-includes;..\..\..\max-sdk\source\c74support\jit-includes;..\..\..\include;..\..\..\OpenCVsupport;..\..\..\OpenCVsupport\opencv;..\..\..\OpenCVsupport\opencv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\maxsdk\source\c74support\max-includes;..\..\..\maxsdk\source\c74support\jit-includes;..\..\..\include;..\..\..\OpenCVsupport;..\..\..\OpenCVsupport\opencv;..\..\..\OpenCVsupport\opencv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN_VERSION;WIN32;NDEBUG;_WINDOWS;_USRDLL;WIN_EXT_VERSION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
@@ -146,13 +146,13 @@
       <TargetMachine>MachineX86</TargetMachine>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <MapFileName>$(IntDir)$(ProjectName).map</MapFileName>
-      <AdditionalLibraryDirectories>..\..\..\max-sdk\source\c74support\max-includes\;..\..\..\max-sdk\source\c74support\msp-includes\;..\..\..\max-sdk\source\c74support\jit-includes\;..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\maxsdk\source\c74support\max-includes\;..\..\..\maxsdk\source\c74support\msp-includes\;..\..\..\maxsdk\source\c74support\jit-includes\;..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\max-sdk\source\c74support\max-includes;..\..\..\max-sdk\source\c74support\jit-includes;..\..\..\include;..\..\..\OpenCVsupport;..\..\..\OpenCVsupport\opencv;..\..\..\OpenCVsupport\opencv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\maxsdk\source\c74support\max-includes;..\..\..\maxsdk\source\c74support\jit-includes;..\..\..\include;..\..\..\OpenCVsupport;..\..\..\OpenCVsupport\opencv;..\..\..\OpenCVsupport\opencv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN_VERSION;WIN32;NDEBUG;_WINDOWS;_USRDLL;WIN_EXT_VERSION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
@@ -192,12 +192,12 @@
       <ImportLibrary>$(IntDir)$(ProjectName).lib</ImportLibrary>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <MapFileName>$(IntDir)$(ProjectName).map</MapFileName>
-      <AdditionalLibraryDirectories>..\..\..\max-sdk\source\c74support\max-includes\x64\;..\..\..\max-sdk\source\c74support\msp-includes\x64\;..\..\..\max-sdk\source\c74support\jit-includes\x64\;..\..\..\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\maxsdk\source\c74support\max-includes\x64\;..\..\..\maxsdk\source\c74support\msp-includes\x64\;..\..\..\maxsdk\source\c74support\jit-includes\x64\;..\..\..\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\max-sdk\source\c74support\max-includes;..\..\..\max-sdk\source\c74support\jit-includes;..\..\..\include;..\..\..\OpenCVsupport;..\..\..\OpenCVsupport\opencv;..\..\..\OpenCVsupport\opencv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\maxsdk\source\c74support\max-includes;..\..\..\maxsdk\source\c74support\jit-includes;..\..\..\include;..\..\..\OpenCVsupport;..\..\..\OpenCVsupport\opencv;..\..\..\OpenCVsupport\opencv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN_VERSION;WIN32;NDEBUG;_WINDOWS;_USRDLL;WIN_EXT_VERSION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -254,12 +254,12 @@
       </DataExecutionPrevention>
       <ImportLibrary>$(IntDir)$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>..\..\..\max-sdk\source\c74support\max-includes\;..\..\..\max-sdk\source\c74support\msp-includes\;..\..\..\max-sdk\source\c74support\jit-includes\;..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\maxsdk\source\c74support\max-includes\;..\..\..\maxsdk\source\c74support\msp-includes\;..\..\..\maxsdk\source\c74support\jit-includes\;..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\max-sdk\source\c74support\max-includes;..\..\..\max-sdk\source\c74support\jit-includes;..\..\..\include;..\..\..\OpenCVsupport;..\..\..\OpenCVsupport\opencv;..\..\..\OpenCVsupport\opencv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\maxsdk\source\c74support\max-includes;..\..\..\maxsdk\source\c74support\jit-includes;..\..\..\include;..\..\..\OpenCVsupport;..\..\..\OpenCVsupport\opencv;..\..\..\OpenCVsupport\opencv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN_VERSION;WIN32;NDEBUG;_WINDOWS;_USRDLL;WIN_EXT_VERSION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -308,7 +308,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(IntDir)$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>..\..\..\max-sdk\source\c74support\max-includes\x64\;..\..\..\max-sdk\source\c74support\msp-includes\x64\;..\..\..\max-sdk\source\c74support\jit-includes\x64\;..\..\..\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\maxsdk\source\c74support\max-includes\x64\;..\..\..\maxsdk\source\c74support\msp-includes\x64\;..\..\..\maxsdk\source\c74support\jit-includes\x64\;..\..\..\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -167,9 +167,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     vector<cv::Point> defect_startpt;
     
     
-    //    Mat drawing = Mat::zeros( threshold_output.size(), CV_8UC3 );
-    
-    
     t_dictionary *cv_dict = dictionary_new();
     cv_dict = dictobj_register(cv_dict, &x->dict_name);
     
@@ -188,13 +185,9 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     t_atomarray *defect_count = atomarray_new(0, NULL);
     t_atomarray *defect_dist_sum = atomarray_new(0, NULL);
     t_atomarray *hull_count = atomarray_new(0, NULL);
-    
     t_dictionary *hull_pt_array = dictionary_new();
     t_dictionary *defect_ptlist = dictionary_new();
-    //    t_atomarray *defect_ptlist = osc_message_u_allocWithAddress((char *)"/defect/points");
-    
     t_atomarray *contour_count = atomarray_new(0, NULL);
-    
     
     t_atom at;
     atom_setlong(&at, src_gray.size().width);
@@ -244,22 +237,17 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 
         Mat rot_mtx = getRotationMatrix2D(minRect[i].center, minRect[i].angle, 1.0);
 
-        //        Mat roi = src_gray( boundRect[i] ); //<< slightly faster backup, maybe better result even?
         
         focus_val[i] = 0.0;
-        if( minRect[i].size.width > 15  )
+        if( (minRect[i].size.width > 15) && (minRect[i].size.height > 15))
         {
-            /*
+
             Mat rot;
             Mat roi;
             warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
-
-             // this is crashing in the cv.jit version
             getRectSubPix(rot, minRect[i].size, minRect[i].center, roi);
-            */
-            
-            Mat roi = src_gray( boundRect[i] ); //<< slightly faster backup, maybe better result even?
 
+//            Mat roi = src_gray( boundRect[i] ); //<< alternate version for focus roi
             
             Mat lap;
             Laplacian(roi, lap, CV_16S, 5);
@@ -271,9 +259,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         {
             minEllipse[i] = fitEllipse( Mat(contours[i]) );
         }
-        
-        //filter by focus
-        //        if( focus_val[i] > 1) continue;
         
         contour_area[i] = contourArea(Mat(contours[i]));
         

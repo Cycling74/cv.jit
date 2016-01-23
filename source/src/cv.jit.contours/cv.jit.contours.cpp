@@ -153,7 +153,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         findContours( threshold_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0) );
     }
     
-    
+
     /// sizes based on contours
     vector<RotatedRect> minRect( contours.size() );
     vector<RotatedRect> minEllipse( contours.size() );
@@ -203,7 +203,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     
     
     long npix = src_gray.size().width * src_gray.size().height;
-    
+
     char buf[256];
     for( int i = 0; i < contours.size(); i++ )
     {
@@ -216,7 +216,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         convexHull( Mat(contours[i]), hullP[i], false );
         convexHull( Mat(contours[i]), hullI[i], false );
         
-        
         if( hullI[i].size() > 3 )
             convexityDefects( contours[i], hullI[i], defects[i] );
         
@@ -225,7 +224,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         t_atomarray *hull_y = atomarray_new(0, NULL);
         
         dictionary_appendlong(hullpts, addr_id, i);
-        
+
         for( long hpi = 0; hpi < hullI[i].size(); hpi++ )
         {
             atom_setfloat(&at,  hullP[i][hpi].x / (double)src_gray.size().width );
@@ -234,24 +233,28 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
             atom_setfloat(&at,  1. - (hullP[i][hpi].y / (double)src_gray.size().height) );
             atomarray_appendatom( hull_y, &at );
         }
-        
+
         dictionary_appendatomarray(hullpts, addr_x, (t_object *)hull_x);
         dictionary_appendatomarray(hullpts, addr_y, (t_object *)hull_y);
         
         sprintf(buf, "/%d", i);
         dictionary_appenddictionary(hull_pt_array, gensym(buf), (t_object *)hullpts);
-        
+
         Mat rot_mtx = getRotationMatrix2D(minRect[i].center, minRect[i].angle, 1.0);
-        Mat rot;
-        Mat roi;
-        warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
-        getRectSubPix(rot, minRect[i].size, minRect[i].center, roi);
-        
+
         //        Mat roi = src_gray( boundRect[i] ); //<< slightly faster backup, maybe better result even?
         
         focus_val[i] = 0.0;
+
         if( minRect[i].size.width > 15  )
         {
+            
+            Mat rot;
+            Mat roi;
+            warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
+            
+            getRectSubPix(rot, minRect[i].size, minRect[i].center, roi);
+            
             Mat lap;
             Laplacian(roi, lap, CV_16S, 5);
             Scalar avg = mean(lap);

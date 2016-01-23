@@ -63,6 +63,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		119260D51C52F00F001E6B87 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
+		119260D61C52F00F001E6B87 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
+		119260DD1C52F079001E6B87 /* cv.jit.contours.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119260DC1C52F079001E6B87 /* cv.jit.contours.cpp */; };
 		892000AD1AC5A68000B9CA6D /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
 		892000AE1AC5A68000B9CA6D /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
 		892000B71AC5A6B200B9CA6D /* cv.jit.calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 892000B41AC5A6B200B9CA6D /* cv.jit.calibration.cpp */; };
@@ -549,6 +552,9 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		119260DA1C52F00F001E6B87 /* cv.jit.contours.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.contours.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		119260DB1C52F00F001E6B87 /* cv.jit.blobs.moments copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "cv.jit.blobs.moments copy-Info.plist"; path = "/Users/r/Documents/dev-lib/cv.jit/source/projects/OSX/cv.jit.blobs.moments copy-Info.plist"; sourceTree = "<absolute>"; };
+		119260DC1C52F079001E6B87 /* cv.jit.contours.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.contours.cpp; path = ../../src/cv.jit.contours/cv.jit.contours.cpp; sourceTree = "<group>"; };
 		892000A61AC5A53E00B9CA6D /* exports.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = exports.exp; sourceTree = "<group>"; };
 		892000B21AC5A68000B9CA6D /* cv.jit.calibration.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.calibration.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		892000B41AC5A6B200B9CA6D /* cv.jit.calibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.calibration.cpp; sourceTree = "<group>"; };
@@ -615,8 +621,8 @@
 		B4CDCF3510621C0900847C22 /* cv.jit.track.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.track.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CDCF3610621C0900847C22 /* cv.jit.threshold.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.threshold.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CDCF3710621C0900847C22 /* cv.jit.surf.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.surf.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4D4E633147610900086335B /* JitterAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JitterAPI.framework; path = "../../c74support/jit-includes/JitterAPI.framework"; sourceTree = "<group>"; };
-		B4D4E65A147610AA0086335B /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../../c74support/max-includes/MaxAPI.framework"; sourceTree = "<group>"; };
+		B4D4E633147610900086335B /* JitterAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JitterAPI.framework; path = "../../maxsdk/source/c74support/jit-includes/JitterAPI.framework"; sourceTree = "<group>"; };
+		B4D4E65A147610AA0086335B /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../../maxsdk/source/c74support/max-includes/MaxAPI.framework"; sourceTree = "<group>"; };
 		B4E73BAE0E18708E001E52BE /* cv.jit.binedge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.binedge.c; path = ../../src/cv.jit.binedge/cv.jit.binedge.c; sourceTree = SOURCE_ROOT; };
 		B4E73BAF0E18708E001E52BE /* max.cv.jit.binedge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = max.cv.jit.binedge.c; path = ../../src/cv.jit.binedge/max.cv.jit.binedge.c; sourceTree = SOURCE_ROOT; };
 		B4E73BB20E18709F001E52BE /* cv.jit.blobs.bounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cv.jit.blobs.bounds.c; path = ../../src/cv.jit.blobs.bounds/cv.jit.blobs.bounds.c; sourceTree = SOURCE_ROOT; };
@@ -691,6 +697,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		119260D41C52F00F001E6B87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119260D51C52F00F001E6B87 /* JitterAPI.framework in Frameworks */,
+				119260D61C52F00F001E6B87 /* MaxAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		892000AC1AC5A68000B9CA6D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1100,6 +1115,7 @@
 				B4B5DCA40CEF30BF00CE6A66 /* cv.jit.blobs.orientation */,
 				B4B5DCA50CEF30CE00CE6A66 /* cv.jit.blobs.recon */,
 				B4B5DCA60CEF30E100CE6A66 /* cv.jit.blobs.sort */,
+				119260DC1C52F079001E6B87 /* cv.jit.contours.cpp */,
 				892000B31AC5A6B200B9CA6D /* cv.jit.calibration */,
 				B4B5DCA80CEF310500CE6A66 /* cv.jit.canny */,
 				B4B5DCA90CEF310C00CE6A66 /* cv.jit.centroids */,
@@ -1135,6 +1151,7 @@
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 				B49818B31071DC2400FACBCA /* Utilities */,
+				119260DB1C52F00F001E6B87 /* cv.jit.blobs.moments copy-Info.plist */,
 			);
 			name = cv_jit;
 			sourceTree = "<group>";
@@ -1197,6 +1214,7 @@
 				892000D91AC5A7E700B9CA6D /* cv.jit.findhomography.mxo */,
 				892000ED1AC5A86D00B9CA6D /* cv.jit.getperspective.mxo */,
 				892001001AC5A8D200B9CA6D /* cv.jit.perspective.mxo */,
+				119260DA1C52F00F001E6B87 /* cv.jit.contours.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1619,6 +1637,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		119260CF1C52F00F001E6B87 /* cv.jit.contours */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 119260D71C52F00F001E6B87 /* Build configuration list for PBXNativeTarget "cv.jit.contours" */;
+			buildPhases = (
+				119260D01C52F00F001E6B87 /* Resources */,
+				119260D11C52F00F001E6B87 /* Sources */,
+				119260D41C52F00F001E6B87 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cv.jit.contours;
+			productName = cv.jit.dilate;
+			productReference = 119260DA1C52F00F001E6B87 /* cv.jit.contours.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
 		892000A71AC5A68000B9CA6D /* cv.jit.calibration */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 892000AF1AC5A68000B9CA6D /* Build configuration list for PBXNativeTarget "cv.jit.calibration" */;
@@ -2388,6 +2423,7 @@
 				B4FEAD9A0CEF088800C2A20C /* cv.jit.canny */,
 				892000A71AC5A68000B9CA6D /* cv.jit.calibration */,
 				B4FEADA60CEF089800C2A20C /* cv.jit.centroids */,
+				119260CF1C52F00F001E6B87 /* cv.jit.contours */,
 				B4FEADB60CEF08E800C2A20C /* cv.jit.covariance */,
 				B4FEAB040CEE97BE00C2A20C /* cv.jit.dilate */,
 				B4FEAB0D0CEE97E400C2A20C /* cv.jit.erode */,
@@ -2424,6 +2460,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		119260D01C52F00F001E6B87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		892000A81AC5A68000B9CA6D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2728,6 +2771,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		119260D11C52F00F001E6B87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119260DD1C52F079001E6B87 /* cv.jit.contours.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		892000A91AC5A68000B9CA6D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3338,6 +3389,74 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		119260D81C52F00F001E6B87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INFOPLIST_FILE = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-lmx",
+					"-lz",
+					"-lcv",
+					"@$(SRCROOT)/../../maxsdk/source/c74support/max-includes/c74_linker_flags.txt",
+				);
+				PRODUCT_NAME = cv.jit.contours;
+				SDKROOT = macosx10.10;
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Debug;
+		};
+		119260D91C52F00F001E6B87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(inherited)";
+				CONFIGURATION_TEMP_DIR = "$(inherited)";
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(inherited)";
+				INFOPLIST_FILE = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				OBJROOT = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-lmx",
+					"-lz",
+					"-lcv",
+					"@$(SRCROOT)/../../maxsdk/source/c74support/max-includes/c74_linker_flags.txt",
+				);
+				PRODUCT_NAME = cv.jit.contours;
+				SDKROOT = macosx10.10;
+				SHARED_PRECOMPS_DIR = "$(inherited)";
+				SYMROOT = "$(inherited)";
+				WARNING_CFLAGS = "$(inherited)";
+				WRAPPER_EXTENSION = "$(inherited)";
+			};
+			name = Release;
+		};
 		4FADC23808B4156C00ABE55E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5492,6 +5611,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		119260D71C52F00F001E6B87 /* Build configuration list for PBXNativeTarget "cv.jit.contours" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119260D81C52F00F001E6B87 /* Debug */,
+				119260D91C52F00F001E6B87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4FADC23708B4156C00ABE55E /* Build configuration list for PBXProject "cv.jit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

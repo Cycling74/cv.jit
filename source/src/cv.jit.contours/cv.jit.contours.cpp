@@ -190,6 +190,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     t_atomarray *hull_count = atomarray_new(0, NULL);
     
     t_dictionary *hull_pt_array = dictionary_new();
+    t_dictionary *defect_ptlist = dictionary_new();
     //    t_atomarray *defect_ptlist = osc_message_u_allocWithAddress((char *)"/defect/points");
     
     t_atomarray *contour_count = atomarray_new(0, NULL);
@@ -238,29 +239,34 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         dictionary_appendatomarray(hullpts, addr_y, (t_object *)hull_y);
         
         sprintf(buf, "/%d", i);
-        dictionary_appenddictionary(hull_pt_array, gensym(buf), (t_object *)hullpts);
+        t_symbol *idr = gensym(buf);
+        dictionary_appenddictionary(hull_pt_array, idr, (t_object *)hullpts);
 
         Mat rot_mtx = getRotationMatrix2D(minRect[i].center, minRect[i].angle, 1.0);
 
         //        Mat roi = src_gray( boundRect[i] ); //<< slightly faster backup, maybe better result even?
         
         focus_val[i] = 0.0;
-
         if( minRect[i].size.width > 15  )
         {
-            
+            /*
             Mat rot;
             Mat roi;
             warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
-            
+
+             // this is crashing in the cv.jit version
             getRectSubPix(rot, minRect[i].size, minRect[i].center, roi);
+            */
+            
+            Mat roi = src_gray( boundRect[i] ); //<< slightly faster backup, maybe better result even?
+
             
             Mat lap;
             Laplacian(roi, lap, CV_16S, 5);
             Scalar avg = mean(lap);
             focus_val[i] = avg[0];
         }
-        
+
         if( contours[i].size() > 5 )
         {
             minEllipse[i] = fitEllipse( Mat(contours[i]) );
@@ -304,7 +310,8 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atom_setfloat(&at, focus_val[i] );
         atomarray_appendatom(focus, &at);
         
-        atom_setlong(&at, (defects[i].size() > 0 ) ? (defects[i].size() / (double)hullI[i].size()) : 0);
+        //(defects[i].size() > 0 ) ? (defects[i].size() / (double)hullI[i].size()) : 0
+        atom_setlong(&at, defects[i].size() );
         atomarray_appendatom(defect_count, &at);
         
         atom_setlong(&at, hullI[i].size() );
@@ -328,50 +335,55 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
          
          */
         
+
+        t_dictionary *defectpts = dictionary_new();
+        t_atomarray *defect_x = atomarray_new(0, NULL);
+        t_atomarray *defect_y = atomarray_new(0, NULL);
+
+        double dist_sum = 0;
+        vector<double> defect_dist;
+        vector<Vec4i>::iterator d = defects[i].begin();
+        while ( d != defects[i].end() )
+        {
+            Vec4i& v = (*d);
+            cv::Point ptStart(  contours[ i ][ v[0] ] );
+            cv::Point ptEnd(    contours[ i ][ v[1] ] );
+            cv::Point ptFar(    contours[ i ][ v[2] ] );
+
+            atom_setfloat(&at, ptFar.x / (double)src_gray.size().width );
+            atomarray_appendatom(defect_x, &at);
+
+            atom_setfloat(&at, 1. - (ptFar.y / (double)src_gray.size().height)  );
+            atomarray_appendatom(defect_y, &at);
+
+
+            //float depth = v[3] / 256.; // depth from center of contour
+            double dist = norm(ptFar - ptStart);
+            dist_sum += dist;
+            defect_startpt.push_back( ptStart );
+            defect_dist.push_back( dist / npix);
+            // drawing
+            //             if( draw && dist > 0 )
+            //             {
+            //             line( drawing, ptStart, ptFar, color, 1 );
+            //             line( drawing, ptFar, ptEnd, color, 1 );
+            //             int thick = (dist <= 255 ? dist : 255) / 10;
+            //             //  printf("dist %f\n", dist);
+            //             circle( drawing, ptStart, 4, color, thick );
+            //             }
+
+            d++;
+        }
+        atom_setfloat(&at, dist_sum);
+        atomarray_appendatom(defect_dist_sum, &at);
         
-        /*
-         
-         t_osc_bndl_u *defectpts = osc_bundle_u_alloc();
-         t_osc_msg_u *defect_x = osc_message_u_allocWithAddress((char *)"/x");
-         t_osc_msg_u *defect_y = osc_message_u_allocWithAddress((char *)"/y");
-         
-         double dist_sum = 0;
-         vector<double> defect_dist;
-         vector<Vec4i>::iterator d = defects[i].begin();
-         while ( d != defects[i].end() )
-         {
-         Vec4i& v = (*d);
-         cv::Point ptStart(  contours[ i ][ v[0] ] );
-         cv::Point ptEnd(    contours[ i ][ v[1] ] );
-         cv::Point ptFar(    contours[ i ][ v[2] ] );
-         
-         osc_message_u_appendDouble(defect_x, ptFar.x / (double)src_gray.size().width );
-         osc_message_u_appendDouble(defect_y, 1. - (ptFar.y / (double)src_gray.size().height) );
-         
-         
-         //float depth = v[3] / 256.; // depth from center of contour
-         double dist = norm(ptFar - ptStart);
-         dist_sum += dist;
-         defect_startpt.push_back( ptStart );
-         defect_dist.push_back( dist / npix);
-         // drawing
-         //             if( draw && dist > 0 )
-         //             {
-         //             line( drawing, ptStart, ptFar, color, 1 );
-         //             line( drawing, ptFar, ptEnd, color, 1 );
-         //             int thick = (dist <= 255 ? dist : 255) / 10;
-         //             //  printf("dist %f\n", dist);
-         //             circle( drawing, ptStart, 4, color, thick );
-         //             }
-         
-         d++;
-         }
-         osc_message_u_appendDouble(defect_dist_sum, dist_sum);
-         
-         osc_bundle_u_addMsg(defectpts, defect_x);
-         osc_bundle_u_addMsg(defectpts, defect_y);
-         osc_message_u_appendBndl_u(defect_ptlist, defectpts);
-         */
+        dictionary_appendatomarray(defectpts, addr_x, (t_object *)defect_x);
+        dictionary_appendatomarray(defectpts, addr_y, (t_object *)defect_y);
+        
+        dictionary_appendlong(defectpts, addr_id, i);
+        
+        dictionary_appenddictionary(defect_ptlist, idr, (t_object *)defectpts);
+
     }
     
 //    vector<std::pair<int, double> > sorted = sort_indexes( contour_area );
@@ -393,12 +405,13 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     dictionary_appendatomarray(cv_dict, addr_srcdim, (t_object *)srcdim);
     
     dictionary_appendatomarray(cv_dict, addr_defect_count, (t_object *)defect_count);
-    //    dictionary_appendatomarray(cv_dict, addr_dist_sum, (t_object *)defect_dist_sum);
+    dictionary_appendatomarray(cv_dict, addr_defect_dist_sum, (t_object *)defect_dist_sum);
     dictionary_appendatomarray(cv_dict, addr_hull_count, (t_object *)hull_count);
     
     dictionary_appendatomarray(cv_dict, addr_contour_count, (t_object *)contour_count);
     
     dictionary_appenddictionary(cv_dict, addr_hull_pt_array, (t_object *)hull_pt_array);
+    dictionary_appenddictionary(cv_dict, addr_defect_ptlist, (t_object *)defect_ptlist);
     
     
     atom_setsym(&at, x->dict_name);
@@ -790,7 +803,6 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
         x->thresh = 100;
         x->invert = 0;
         
-        x->dict_mode = true;
         x->dict_name = symbol_unique();
         
         t_dictionary *d = NULL;

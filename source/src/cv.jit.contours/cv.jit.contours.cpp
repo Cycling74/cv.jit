@@ -57,6 +57,8 @@ t_class	*cv_contours_class = NULL;
 
 t_symbol *addr_cx;
 t_symbol *addr_cy;
+t_symbol *addr_centroidx;
+t_symbol *addr_centroidy;
 t_symbol *addr_sx;
 t_symbol *addr_sy;
 t_symbol *addr_angle;
@@ -69,15 +71,24 @@ t_symbol *addr_convex;
 t_symbol *addr_srcdim;
 t_symbol *addr_defect_count;
 t_symbol *addr_defect_dist_sum;
+t_symbol *addr_depth;
+t_symbol *addr_defect_ptlist;
 t_symbol *addr_hull_count;
 t_symbol *addr_hull_pt_array;
-t_symbol *addr_defect_ptlist;
 t_symbol *addr_contour_count;
 t_symbol *addr_x;
 t_symbol *addr_y;
+t_symbol *addr_startx;
+t_symbol *addr_starty;
+t_symbol *addr_endx;
+t_symbol *addr_endy;
 t_symbol *addr_id;
+t_symbol *addr_eccentricity;
+t_symbol *addr_rotheight;
+t_symbol *addr_rotwidth;
 
-
+/*
+ not quite working, so removed, also you might want to sort by other aspects
 template <typename T>
 struct sort_pred {
     bool operator()(const std::pair<int,T> &left, const std::pair<int,T> &right) {
@@ -88,18 +99,21 @@ struct sort_pred {
 template <typename T>
 vector<std::pair<int, T> > sort_indexes( const vector<T> &v )
 {
+    
+    
     vector<std::pair<int, T> >  idx_v( v.size() );
     for (size_t i = 0; i != idx_v.size(); ++i)
     {
         idx_v[i].first = i;
         idx_v[i].second = v[i];
+        post("%d %f %f", idx_v[i].first, idx_v[i].second, v[i]);
     }
     
     std::sort( idx_v.begin(), idx_v.end(), sort_pred<T>() );
     
     return idx_v;
 }
-
+*/
 
 static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 {
@@ -111,8 +125,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         Mat src_color_sized;
         cv::resize( frame, src_color_sized, cv::Size(), x->resize_scale, x->resize_scale, INTER_AREA );
         
-        //        flip(src_color_sized, src_color_sized, 1);
-        
         cvtColor(src_color_sized, src_gray, CV_BGR2GRAY);
         
         if(x->invert > 0)
@@ -123,8 +135,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     
     if( src_gray.data == NULL )
         return;
-    
-    //blur(src_gray, src_gray, Size(3,3));
     
     GaussianBlur(src_gray, src_gray, cv::Size((int)x->gauss_ksize, (int)x->gauss_ksize), x->gauss_sigma, x->gauss_sigma);
     
@@ -145,7 +155,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     //analyze
     vector<vector<cv::Point> > contours;
     vector<Vec4i> hierarchy;
-    
+
     {
         Mat threshold_output;
         threshold( src_gray, threshold_output, x->thresh, 255, THRESH_BINARY );
@@ -163,50 +173,167 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     vector<vector<Vec4i> >defects( contours.size() );
     vector<double>focus_val( contours.size() );
     vector<double>contour_area( contours.size() );
+    
+    
     //flat vector for optical flow
     vector<cv::Point> defect_startpt;
-    
     
     t_dictionary *cv_dict = dictionary_new();
     cv_dict = dictobj_register(cv_dict, &x->dict_name);
     
+    t_atomarray *srcdim = atomarray_new(0, NULL);
+    
+    t_atomarray *contour_count = atomarray_new(0, NULL);
     t_atomarray *cx = atomarray_new(0, NULL);
     t_atomarray *cy = atomarray_new(0, NULL);
     t_atomarray *sx = atomarray_new(0, NULL);
     t_atomarray *sy = atomarray_new(0, NULL);
+    
+    t_atomarray *centroidx = atomarray_new(0, NULL);
+    t_atomarray *centroidy = atomarray_new(0, NULL);
+    
     t_atomarray *angle = atomarray_new(0, NULL);
+    t_atomarray *eccentricity = atomarray_new(0, NULL);
+    t_atomarray *rotwidth = atomarray_new(0, NULL);
+    t_atomarray *rotheight = atomarray_new(0, NULL);
+    
     t_atomarray *area = atomarray_new(0, NULL);
-    t_atomarray *hullarea = atomarray_new(0, NULL);
-    t_atomarray *area_sort = atomarray_new(0, NULL);
-    t_atomarray *convex = atomarray_new(0, NULL);
     t_atomarray *child_of = atomarray_new(0, NULL);
+
     t_atomarray *focus = atomarray_new(0, NULL);
-    t_atomarray *srcdim = atomarray_new(0, NULL);
+    
+    t_atomarray *convex = atomarray_new(0, NULL);
+    t_atomarray *hull_count = atomarray_new(0, NULL);
+    t_atomarray *hullarea = atomarray_new(0, NULL);
+    t_dictionary *hull_pt_array = dictionary_new();
     t_atomarray *defect_count = atomarray_new(0, NULL);
     t_atomarray *defect_dist_sum = atomarray_new(0, NULL);
-    t_atomarray *hull_count = atomarray_new(0, NULL);
-    t_dictionary *hull_pt_array = dictionary_new();
     t_dictionary *defect_ptlist = dictionary_new();
-    t_atomarray *contour_count = atomarray_new(0, NULL);
-    
+
+    t_dictionary *minrect_pts = dictionary_new();
+
     t_atom at;
     atom_setlong(&at, src_gray.size().width);
     atomarray_appendatom(srcdim, &at);
     atom_setlong(&at, src_gray.size().height);
     atomarray_appendatom(srcdim, &at);
     
-    
     long npix = src_gray.size().width * src_gray.size().height;
+
 
     char buf[256];
     for( int i = 0; i < contours.size(); i++ )
     {
+        sprintf(buf, "/%d", i);
+        t_symbol *idr = gensym(buf);
+        
         atom_setlong(&at, contours[i].size());
         atomarray_appendatom(contour_count, &at);
+        
+        atom_setlong(&at, hierarchy[i][3] );
+        atomarray_appendatom(child_of, &at);
+        
+        // contour stats
+        
+        contour_area[i] = contourArea(Mat(contours[i]));
+        
+        atom_setfloat(&at, contour_area[i] / (double)npix );
+        atomarray_appendatom(area, &at);
         
         boundRect[i] = boundingRect( Mat(contours[i]) );
         minRect[i] = minAreaRect( Mat(contours[i]) );
         
+        double centerx = minRect[i].center.x / (double)src_gray.size().width;
+        double centery = 1. - (minRect[i].center.y / (double)src_gray.size().height);
+
+        t_dictionary *minrect_pts_sub = dictionary_new();
+        t_atomarray *minr_ptx = atomarray_new(0, NULL);
+        t_atomarray *minr_pty = atomarray_new(0, NULL);
+        
+        Point2f pts[4];
+        minRect[i].points(pts);
+        
+        for(int i = 0; i < 4; i++)
+        {
+            printf("%f %f\n", pts[i].x, pts[i].y);
+            atom_setfloat(&at, pts[i].x / (double)src_gray.size().width );
+            atomarray_appendatom(minr_ptx, &at);
+            atom_setfloat(&at, 1. - (pts[i].y / (double)src_gray.size().height) );
+            atomarray_appendatom(minr_pty, &at);
+        }
+        
+        dictionary_appendatomarray(minrect_pts_sub, addr_x, (t_object *)minr_ptx);
+        dictionary_appendatomarray(minrect_pts_sub, addr_y, (t_object *)minr_pty);
+        dictionary_appenddictionary(minrect_pts, idr, (t_object *)minrect_pts_sub);
+        
+        
+        atom_setfloat(&at, minRect[i].size.width / (double)src_gray.size().width);
+        atomarray_appendatom(rotwidth, &at);
+
+        atom_setfloat(&at, minRect[i].size.height / (double)src_gray.size().height);
+        atomarray_appendatom(rotheight, &at);
+        
+        atom_setfloat(&at, centerx );
+        atomarray_appendatom(cx, &at);
+        
+        atom_setfloat(&at, centery );
+        atomarray_appendatom(cy, &at);
+        
+        atom_setfloat(&at, boundRect[i].width / (double)src_gray.size().width );
+        atomarray_appendatom(sx, &at);
+        
+        atom_setfloat(&at, boundRect[i].height / (double)src_gray.size().height );
+        atomarray_appendatom(sy, &at);
+        
+        
+        // momements
+        // http://breckon.eu/toby/teaching/dip/opencv/SimpleImageAnalysisbyMoments.pdf
+
+        Moments contour_moments = moments( contours[i] );
+        double hu[7];
+        HuMoments( contour_moments, hu );
+        
+        if( contour_area[i] > 0 )
+        {
+            atom_setfloat(&at, (contour_moments.m10 / contour_area[i]) / (double)src_gray.size().width );
+            atomarray_appendatom(centroidx, &at);
+            
+            atom_setfloat(&at, 1. - ((contour_moments.m01 / contour_area[i]) / (double)src_gray.size().height) );
+            atomarray_appendatom(centroidy, &at);
+        }
+        else
+        {
+            atom_setfloat(&at, centerx );
+            atomarray_appendatom(centroidx, &at);
+            
+            atom_setfloat(&at, centery );
+            atomarray_appendatom(centroidy, &at);
+            
+        }
+        
+
+        atom_setfloat(&at, minRect[i].angle );
+        atomarray_appendatom(angle, &at);
+        
+        
+        atom_setlong(&at, isContourConvex(Mat(contours[i])) );
+        atomarray_appendatom(convex, &at);
+
+        double mumin = contour_moments.mu20 - contour_moments.mu02;
+        double muplu = contour_moments.mu20 + contour_moments.mu02;
+        double mu11 = contour_moments.mu11;
+        double ecc = (mumin*mumin - 4.0*mu11*mu11) / (muplu*muplu);
+
+/*
+        double mumin = contour_moments.mu20 - contour_moments.mu02;
+        double muplu = contour_moments.mu20 + contour_moments.mu02;
+        double eccsqrt = sqrt(mumin*mumin + 4*contour_moments.mu11*contour_moments.mu11);
+        double ecc = (muplu + eccsqrt) / (muplu - eccsqrt);
+*/
+        atom_setfloat(&at, ecc);
+        atomarray_appendatom(eccentricity, &at);
+        
+        // hull
         convexHull( Mat(contours[i]), hullP[i], false );
         convexHull( Mat(contours[i]), hullI[i], false );
         
@@ -230,9 +357,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 
         dictionary_appendatomarray(hullpts, addr_x, (t_object *)hull_x);
         dictionary_appendatomarray(hullpts, addr_y, (t_object *)hull_y);
-        
-        sprintf(buf, "/%d", i);
-        t_symbol *idr = gensym(buf);
         dictionary_appenddictionary(hull_pt_array, idr, (t_object *)hullpts);
 
         Mat rot_mtx = getRotationMatrix2D(minRect[i].center, minRect[i].angle, 1.0);
@@ -258,9 +382,8 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         if( contours[i].size() > 5 )
         {
             minEllipse[i] = fitEllipse( Mat(contours[i]) );
+//            post("%d %f %f", i, minRect[i].angle, minEllipse[i].angle );
         }
-        
-        contour_area[i] = contourArea(Mat(contours[i]));
         
         Mat convexcontour;
         approxPolyDP(Mat(hullP[i]), convexcontour, 0.001, true);
@@ -268,29 +391,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atom_setfloat(&at, contourArea(convexcontour) / (double)npix );
         atomarray_appendatom(hullarea, &at);
         
-        atom_setfloat(&at, minRect[i].center.x / (double)src_gray.size().width );
-        atomarray_appendatom(cx, &at);
-        
-        atom_setfloat(&at, 1. - (minRect[i].center.y / (double)src_gray.size().height) );
-        atomarray_appendatom(cy, &at);
-        
-        atom_setfloat(&at, minRect[i].size.width / (double)src_gray.size().width );
-        atomarray_appendatom(sx, &at);
-        
-        atom_setfloat(&at, minRect[i].size.height / (double)src_gray.size().height );
-        atomarray_appendatom(sy, &at);
-        
-        atom_setfloat(&at, minRect[i].angle );
-        atomarray_appendatom(angle, &at);
-        
-        atom_setfloat(&at, contour_area[i] / (double)npix );
-        atomarray_appendatom(area, &at);
-        
-        atom_setlong(&at, isContourConvex(Mat(contours[i])) );
-        atomarray_appendatom(convex, &at);
-        
-        atom_setlong(&at, hierarchy[i][3] );
-        atomarray_appendatom(child_of, &at);
         
         atom_setfloat(&at, focus_val[i] );
         atomarray_appendatom(focus, &at);
@@ -302,29 +402,17 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atom_setlong(&at, hullI[i].size() );
         atomarray_appendatom(hull_count, &at);
         
-        
-        // convex hull defects
-        // if( contours[i].size() < 300 ) continue; //skip if contour is small
-        
-        // might want to collect data on all the set of defects and only send general information rather than overloading ... but maybe the points are interesting too...
-        
-        //        Mat dist_stats = Mat::zeros((int)defects[i].size(), 1, CV_64FC1);
-        
-        /*
-         
-         - number of extruding points
-         
-         - size of concavity... right now this is far-start distance, but maybe should be distance from convex hull line in middle
-         -- this might also want to be a min/max/mean situation?  or maybe just send the points and deal with it in max?
-         
-         
-         */
-        
 
         t_dictionary *defectpts = dictionary_new();
         t_atomarray *defect_x = atomarray_new(0, NULL);
         t_atomarray *defect_y = atomarray_new(0, NULL);
+        t_atomarray *defect_depth = atomarray_new(0, NULL);
 
+        t_atomarray *defect_startx = atomarray_new(0, NULL);
+        t_atomarray *defect_starty = atomarray_new(0, NULL);
+        t_atomarray *defect_endx = atomarray_new(0, NULL);
+        t_atomarray *defect_endy = atomarray_new(0, NULL);
+        
         double dist_sum = 0;
         vector<double> defect_dist;
         vector<Vec4i>::iterator d = defects[i].begin();
@@ -341,6 +429,20 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
             atom_setfloat(&at, 1. - (ptFar.y / (double)src_gray.size().height)  );
             atomarray_appendatom(defect_y, &at);
 
+            atom_setfloat(&at, ptStart.x / (double)src_gray.size().width );
+            atomarray_appendatom(defect_startx, &at);
+            
+            atom_setfloat(&at, 1. - (ptStart.y / (double)src_gray.size().height)  );
+            atomarray_appendatom(defect_starty, &at);
+            
+            atom_setfloat(&at, ptEnd.x / (double)src_gray.size().width );
+            atomarray_appendatom(defect_endx, &at);
+            
+            atom_setfloat(&at, 1. - (ptEnd.y / (double)src_gray.size().height)  );
+            atomarray_appendatom(defect_endy, &at);
+            
+            atom_setfloat(&at, v[3] / 256.0);
+            atomarray_appendatom(defect_depth, &at);
 
             //float depth = v[3] / 256.; // depth from center of contour
             double dist = norm(ptFar - ptStart);
@@ -362,28 +464,53 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atom_setfloat(&at, dist_sum);
         atomarray_appendatom(defect_dist_sum, &at);
         
+        dictionary_appendatomarray(defectpts, addr_startx, (t_object *)defect_startx);
+        dictionary_appendatomarray(defectpts, addr_starty, (t_object *)defect_starty);
+        dictionary_appendatomarray(defectpts, addr_endx, (t_object *)defect_endx);
+        dictionary_appendatomarray(defectpts, addr_endy, (t_object *)defect_endy);
         dictionary_appendatomarray(defectpts, addr_x, (t_object *)defect_x);
         dictionary_appendatomarray(defectpts, addr_y, (t_object *)defect_y);
-        
+        dictionary_appendatomarray(defectpts, addr_depth, (t_object *)defect_depth);
         dictionary_appendlong(defectpts, addr_id, i);
         
         dictionary_appenddictionary(defect_ptlist, idr, (t_object *)defectpts);
-
+        
     }
     
-//    vector<std::pair<int, double> > sorted = sort_indexes( contour_area );
+    /*
+    if( contour_area.size() > 0 )
+    {
+        vector<std::pair<int, double> > sorted = sort_indexes<double>( contour_area );
+
+        for( int i = 0; i < sorted.size(); i++ )
+        {
+            atom_setlong(&at, sorted[i].first);
+            atomarray_appendatom(area_sort, &at);
+        }
+    }
     
 //    for_each(sorted.begin(), sorted.end(),
 //             [&area_sort](int ii){ t_atom aa; atom_setlong(&aa, ii); atomarray_appendatom(area_sort, &aa); });
+    */
     
+    dictionary_appenddictionary(cv_dict, gensym("/minrect"), (t_object *)minrect_pts);
+
     dictionary_appendatomarray(cv_dict, addr_cx, (t_object *)cx);
     dictionary_appendatomarray(cv_dict, addr_cy, (t_object *)cy);
     dictionary_appendatomarray(cv_dict, addr_sx, (t_object *)sx);
     dictionary_appendatomarray(cv_dict, addr_sy, (t_object *)sy);
+    
+    dictionary_appendatomarray(cv_dict, addr_centroidx, (t_object *)centroidx);
+    dictionary_appendatomarray(cv_dict, addr_centroidy, (t_object *)centroidy);
+    dictionary_appendatomarray(cv_dict, addr_eccentricity, (t_object *)eccentricity);
+
+    dictionary_appendatomarray(cv_dict, addr_rotwidth, (t_object *)rotwidth);
+    dictionary_appendatomarray(cv_dict, addr_rotheight, (t_object *)rotheight);
+    
     dictionary_appendatomarray(cv_dict, addr_angle, (t_object *)angle);
     dictionary_appendatomarray(cv_dict, addr_area, (t_object *)area);
     dictionary_appendatomarray(cv_dict, addr_hullarea, (t_object *)hullarea);
-    dictionary_appendatomarray(cv_dict, addr_area_sort, (t_object *)area_sort);
+//    dictionary_appendatomarray(cv_dict, addr_area_sort, (t_object *)area_sort);
     dictionary_appendatomarray(cv_dict, addr_convex, (t_object *)convex);
     dictionary_appendatomarray(cv_dict, addr_child_of, (t_object *)child_of);
     dictionary_appendatomarray(cv_dict, addr_focus, (t_object *)focus);
@@ -397,6 +524,8 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     
     dictionary_appenddictionary(cv_dict, addr_hull_pt_array, (t_object *)hull_pt_array);
     dictionary_appenddictionary(cv_dict, addr_defect_ptlist, (t_object *)defect_ptlist);
+    
+    
     
     
     atom_setsym(&at, x->dict_name);
@@ -841,8 +970,13 @@ void ext_main(void* unused)
     
     addr_cx = gensym("/center/x");
     addr_cy = gensym("/center/y");
+    addr_rotheight = gensym("/rotrect/height");
+    addr_rotwidth = gensym("/rotrect/width");
     addr_sx = gensym("/size/x");
     addr_sy = gensym("/size/y");
+    
+    addr_centroidx = gensym("/centroid/x");
+    addr_centroidy = gensym("/centroid/y");
     addr_angle = gensym("/angle");
     addr_area = gensym("/area");
     addr_hullarea = gensym("/hull/area");
@@ -856,9 +990,16 @@ void ext_main(void* unused)
     addr_hull_count = gensym("/hull/count");
     addr_hull_pt_array = gensym("/hull/points");
     addr_defect_ptlist = gensym("/defect/points");
+    addr_depth = gensym("/depth");
     addr_contour_count = gensym("/contour/count");
     addr_x = gensym("/x");
     addr_y = gensym("/y");
+    addr_startx = gensym("/start/x");
+    addr_starty = gensym("/start/y");
+    addr_endx = gensym("/end/x");
+    addr_endy = gensym("/end/y");
+    addr_eccentricity = gensym("/eccentricity");
+
     addr_id = gensym("/id");
     return;
 }

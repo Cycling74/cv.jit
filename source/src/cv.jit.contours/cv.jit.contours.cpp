@@ -87,6 +87,8 @@ t_symbol *addr_eccentricity;
 t_symbol *addr_rotheight;
 t_symbol *addr_rotwidth;
 
+t_symbol *temp_addr_minrect;
+
 /*
  not quite working, so removed, also you might want to sort by other aspects
 template <typename T>
@@ -136,15 +138,17 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
             object_error((t_object *)x, "unsupported plane number");
             return;
         }
-                 
-        if(x->invert > 0)
-        {
-            bitwise_not(src_gray, src_gray);
-        }
+        
+        if( src_gray.data == NULL )
+            return;
+        
     }
     
-    if( src_gray.data == NULL )
-        return;
+    if(x->invert > 0)
+    {
+        bitwise_not(src_gray, src_gray);
+    }
+
     
     GaussianBlur(src_gray, src_gray, cv::Size((int)x->gauss_ksize, (int)x->gauss_ksize), x->gauss_sigma, x->gauss_sigma);
     
@@ -215,12 +219,10 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     t_atomarray *convex = atomarray_new(0, NULL);
     t_atomarray *hull_count = atomarray_new(0, NULL);
     t_atomarray *hullarea = atomarray_new(0, NULL);
-    t_dictionary *hull_pt_array = dictionary_new();
+
     t_atomarray *defect_count = atomarray_new(0, NULL);
     t_atomarray *defect_dist_sum = atomarray_new(0, NULL);
-    t_dictionary *defect_ptlist = dictionary_new();
 
-    t_dictionary *minrect_pts = dictionary_new();
 
     t_atom at;
     atom_setlong(&at, src_gray.size().width);
@@ -230,12 +232,18 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     
     long npix = src_gray.size().width * src_gray.size().height;
 
-
     char buf[256];
+    
+    t_dictionary *contour_dict = dictionary_new();
+    
     for( int i = 0; i < contours.size(); i++ )
     {
+        
+        t_dictionary *contour_sub = dictionary_new();
+        
         sprintf(buf, "/%d", i);
         t_symbol *idr = gensym(buf);
+        dictionary_appendlong(contour_sub, addr_id, i);
         
         atom_setlong(&at, contours[i].size());
         atomarray_appendatom(contour_count, &at);
@@ -251,6 +259,8 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atomarray_appendatom(area, &at);
         
         boundRect[i] = boundingRect( Mat(contours[i]) );
+        
+        // NOTE: minAreaRect function also computes convex hull internally, so this could be optimized later
         minRect[i] = minAreaRect( Mat(contours[i]) );
         
         double centerx = minRect[i].center.x / (double)src_gray.size().width;
@@ -274,8 +284,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         
         dictionary_appendatomarray(minrect_pts_sub, addr_x, (t_object *)minr_ptx);
         dictionary_appendatomarray(minrect_pts_sub, addr_y, (t_object *)minr_pty);
-        dictionary_appenddictionary(minrect_pts, idr, (t_object *)minrect_pts_sub);
-        
+        dictionary_appenddictionary(contour_sub, temp_addr_minrect, (t_object *)minrect_pts_sub);
         
         atom_setfloat(&at, minRect[i].size.width / (double)src_gray.size().width);
         atomarray_appendatom(rotwidth, &at);
@@ -353,8 +362,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         t_dictionary *hullpts = dictionary_new();
         t_atomarray *hull_x = atomarray_new(0, NULL);
         t_atomarray *hull_y = atomarray_new(0, NULL);
-        
-        dictionary_appendlong(hullpts, addr_id, i);
 
         for( long hpi = 0; hpi < hullI[i].size(); hpi++ )
         {
@@ -367,7 +374,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 
         dictionary_appendatomarray(hullpts, addr_x, (t_object *)hull_x);
         dictionary_appendatomarray(hullpts, addr_y, (t_object *)hull_y);
-        dictionary_appenddictionary(hull_pt_array, idr, (t_object *)hullpts);
+        dictionary_appenddictionary(contour_sub, addr_hull_pt_array, (t_object *)hullpts);
 
         Mat rot_mtx = getRotationMatrix2D(minRect[i].center, minRect[i].angle, 1.0);
 
@@ -482,9 +489,11 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         dictionary_appendatomarray(defectpts, addr_y, (t_object *)defect_y);
         dictionary_appendatomarray(defectpts, addr_depth, (t_object *)defect_depth);
         dictionary_appendlong(defectpts, addr_id, i);
+        dictionary_appenddictionary(contour_sub, addr_defect_ptlist, (t_object *)defectpts);
         
-        dictionary_appenddictionary(defect_ptlist, idr, (t_object *)defectpts);
-        
+        // add contour id sub to main dict
+        dictionary_appenddictionary(contour_dict, idr, (t_object *)contour_sub);
+
     }
     
     /*
@@ -503,7 +512,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 //             [&area_sort](int ii){ t_atom aa; atom_setlong(&aa, ii); atomarray_appendatom(area_sort, &aa); });
     */
     
-    dictionary_appenddictionary(cv_dict, gensym("/minrect"), (t_object *)minrect_pts);
 
     dictionary_appendatomarray(cv_dict, addr_cx, (t_object *)cx);
     dictionary_appendatomarray(cv_dict, addr_cy, (t_object *)cy);
@@ -532,10 +540,11 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     
     dictionary_appendatomarray(cv_dict, addr_contour_count, (t_object *)contour_count);
     
-    dictionary_appenddictionary(cv_dict, addr_hull_pt_array, (t_object *)hull_pt_array);
-    dictionary_appenddictionary(cv_dict, addr_defect_ptlist, (t_object *)defect_ptlist);
+    //dictionary_appenddictionary(cv_dict, addr_hull_pt_array, (t_object *)hull_pt_array);
+    //dictionary_appenddictionary(cv_dict, addr_defect_ptlist, (t_object *)defect_ptlist);
     
-    
+    dictionary_appenddictionary(cv_dict, gensym("/contour/pts"), (t_object *)contour_dict);
+    // add contour id sub bundles to main contour stats bundle
     
     
     atom_setsym(&at, x->dict_name);
@@ -1010,6 +1019,8 @@ void ext_main(void* unused)
     addr_endy = gensym("/end/y");
     addr_eccentricity = gensym("/eccentricity");
 
+    temp_addr_minrect = gensym("/minrect");
+    
     addr_id = gensym("/id");
     return;
 }

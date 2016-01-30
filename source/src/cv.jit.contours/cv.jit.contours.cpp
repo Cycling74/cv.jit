@@ -125,8 +125,18 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         Mat src_color_sized;
         cv::resize( frame, src_color_sized, cv::Size(), x->resize_scale, x->resize_scale, INTER_AREA );
         
-        cvtColor(src_color_sized, src_gray, CV_BGR2GRAY);
-        
+        if (frame.channels() == 1)
+            src_gray = frame.clone();
+        else if( frame.channels() == 4 )
+            cvtColor(src_color_sized, src_gray, CV_RGBA2GRAY);
+        else if (frame.channels() == 3)
+            cvtColor(src_color_sized, src_gray, CV_RGB2GRAY);
+        else
+        {
+            object_error((t_object *)x, "unsupported plane number");
+            return;
+        }
+                 
         if(x->invert > 0)
         {
             bitwise_not(src_gray, src_gray);
@@ -255,7 +265,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         
         for(int i = 0; i < 4; i++)
         {
-            printf("%f %f\n", pts[i].x, pts[i].y);
+//            printf("%f %f\n", pts[i].x, pts[i].y);
             atom_setfloat(&at, pts[i].x / (double)src_gray.size().width );
             atomarray_appendatom(minr_ptx, &at);
             atom_setfloat(&at, 1. - (pts[i].y / (double)src_gray.size().height) );

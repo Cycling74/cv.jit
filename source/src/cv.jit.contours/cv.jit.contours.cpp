@@ -86,8 +86,8 @@ t_symbol *addr_endx;
 t_symbol *addr_endy;
 t_symbol *addr_id;
 t_symbol *addr_eccentricity;
-t_symbol *addr_rotheight;
-t_symbol *addr_rotwidth;
+t_symbol *addr_rotmaj;
+t_symbol *addr_rotmin;
 
 t_symbol *temp_addr_minrect;
 
@@ -215,8 +215,8 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     t_atomarray *parimeter = atomarray_new(0, NULL);
     t_atomarray *angle = atomarray_new(0, NULL);
     t_atomarray *eccentricity = atomarray_new(0, NULL);
-    t_atomarray *rotwidth = atomarray_new(0, NULL);
-    t_atomarray *rotheight = atomarray_new(0, NULL);
+    t_atomarray *rotmin = atomarray_new(0, NULL);
+    t_atomarray *rotmaj = atomarray_new(0, NULL);
     
     t_atomarray *area = atomarray_new(0, NULL);
     t_atomarray *child_of = atomarray_new(0, NULL);
@@ -295,12 +295,25 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         dictionary_appendatomarray(minrect_pts_sub, addr_y, (t_object *)minr_pty);
         dictionary_appenddictionary(contour_sub, temp_addr_minrect, (t_object *)minrect_pts_sub);
         
-        atom_setfloat(&at, minRect[i].size.width / (double)src_gray.size().width);
-        atomarray_appendatom(rotwidth, &at);
-
         atom_setfloat(&at, minRect[i].size.height / (double)src_gray.size().height);
-        atomarray_appendatom(rotheight, &at);
+        atomarray_appendatom(rotmaj, &at);
         
+        atom_setfloat(&at, minRect[i].size.width / (double)src_gray.size().width);
+        atomarray_appendatom(rotmin, &at);
+        
+        if( minRect[i].size.height > minRect[i].size.width )
+        {
+            atom_setfloat(&at, -minRect[i].angle + 90.0);
+            atomarray_appendatom(angle, &at);
+        }
+        else
+        {
+            atom_setfloat(&at, -minRect[i].angle);
+            atomarray_appendatom(angle, &at);
+        }
+        
+        // to do: offset angle based on centroid offset from center
+
         atom_setfloat(&at, centerx );
         atomarray_appendatom(cx, &at);
         
@@ -319,6 +332,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 
         Moments moms = moments( contours[i] );
         
+        /*
         if( moms.m00 != 0.0 )
         {
             double ctrd_x = moms.m10/moms.m00;
@@ -326,17 +340,34 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
             post("mu20 %f u20 %f ( %f )", moms.mu20, u20, moms.mu20 - u20);
             
         }
+        */
         
-        double hu[7];
-        HuMoments( moms, hu );
+//        double hu[7];
+//        HuMoments( moms, hu );
         
-        if( contour_area[i] > 0 )
+        if( moms.m00 != 0.0 )
         {
-            atom_setfloat(&at, (moms.m10 / contour_area[i]) / (double)src_gray.size().width );
+            atom_setfloat(&at, (moms.m10 / moms.m00) / (double)src_gray.size().width );
             atomarray_appendatom(centroidx, &at);
             
-            atom_setfloat(&at, 1. - ((moms.m01 / contour_area[i]) / (double)src_gray.size().height) );
+            atom_setfloat(&at, 1. - ((moms.m01 / moms.m00) / (double)src_gray.size().height) );
             atomarray_appendatom(centroidy, &at);
+            
+            /*
+            double uu20 = moms.mu20/moms.m00;
+            double uu02 = moms.mu02/moms.m00;
+            double uu11 = moms.mu11/moms.m00;
+            
+            double duu = uu20 - uu02;
+            double theta;
+            
+            if( duu != 0)
+                theta = 0.5 * atan( (2.0 * uu11) / (uu20 - uu02) );
+            else
+                theta = 0;
+    */
+
+
             
         }
         else
@@ -348,11 +379,12 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
             atom_setfloat(&at, centery );
             atomarray_appendatom(centroidy, &at);
             
+            atom_setfloat(&at, minRect[i].angle);
+            atomarray_appendatom(angle, &at);
+            
         }
         
 
-        atom_setfloat(&at, minRect[i].angle );
-        atomarray_appendatom(angle, &at);
         
         
         atom_setlong(&at, isContourConvex(Mat(contours[i])) );
@@ -542,8 +574,8 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     dictionary_appendatomarray(cv_dict, addr_centroidy, (t_object *)centroidy);
     dictionary_appendatomarray(cv_dict, addr_eccentricity, (t_object *)eccentricity);
 
-    dictionary_appendatomarray(cv_dict, addr_rotwidth, (t_object *)rotwidth);
-    dictionary_appendatomarray(cv_dict, addr_rotheight, (t_object *)rotheight);
+    dictionary_appendatomarray(cv_dict, addr_rotmin, (t_object *)rotmin);
+    dictionary_appendatomarray(cv_dict, addr_rotmaj, (t_object *)rotmaj);
     
     dictionary_appendatomarray(cv_dict, addr_angle, (t_object *)angle);
     dictionary_appendatomarray(cv_dict, addr_area, (t_object *)area);
@@ -1010,14 +1042,15 @@ void ext_main(void* unused)
     
     addr_cx = gensym("/center/x");
     addr_cy = gensym("/center/y");
-    addr_rotheight = gensym("/rotrect/height");
-    addr_rotwidth = gensym("/rotrect/width");
+    addr_rotmaj = gensym("/rotrect/major");
+    addr_rotmin= gensym("/rotrect/minor");
     addr_sx = gensym("/size/x");
     addr_sy = gensym("/size/y");
     
     addr_centroidx = gensym("/centroid/x");
     addr_centroidy = gensym("/centroid/y");
     addr_angle = gensym("/angle");
+    
     addr_area = gensym("/area");
     addr_hullarea = gensym("/hull/area");
     addr_area_sort = gensym("/area_sort");

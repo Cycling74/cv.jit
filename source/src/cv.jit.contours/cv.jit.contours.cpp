@@ -19,31 +19,42 @@
 
 #include "opencv2/opencv.hpp"
 
+#include "cv.jit.contour.flow.h"
+
+#define CV_JIT_MAX_IDS 100
+
 using namespace std;
 using namespace cv;
 
 typedef struct _cv_contours
 {
-    t_object        ob;
-    void            *obex;
-    
-    void            *outlet;
-    t_critical      lock;
-    
+    t_object    ob;
+    void        *obex;
+    void        *outlet;
+    t_critical  lock;
     
     //attrs
-    long         erosion_size;
-    long         dilation_size;
-    long         gauss_sigma;
-    long         gauss_ksize;
-    double          resize_scale;
-    long            thresh;
-    long         invert;
+    long        erosion_size;
+    long        dilation_size;
+    long        gauss_sigma;
+    long        gauss_ksize;
+    double      resize_scale;
+    long        thresh;
+    long        invert;
     
+    double      track_radius;
+    
+    t_dictionary *attr_dict; //to do
     
     // dict
-    long            dict_mode;
-    t_symbol        *dict_name;
+    long        dict_mode;
+    t_symbol    *dict_name;
+    
+    ContourFlow flow;
+    
+    vector<Point2f> prev_centroids;
+    vector<int>     prev_centroid_id;
+    int             id_used[CV_JIT_MAX_IDS];
     
 } t_cv_contours;
 
@@ -91,33 +102,6 @@ t_symbol *addr_rotmin;
 
 t_symbol *temp_addr_minrect;
 
-/*
- not quite working, so removed, also you might want to sort by other aspects
-template <typename T>
-struct sort_pred {
-    bool operator()(const std::pair<int,T> &left, const std::pair<int,T> &right) {
-        return left.second < right.second;
-    }
-};
-
-template <typename T>
-vector<std::pair<int, T> > sort_indexes( const vector<T> &v )
-{
-    
-    
-    vector<std::pair<int, T> >  idx_v( v.size() );
-    for (size_t i = 0; i != idx_v.size(); ++i)
-    {
-        idx_v[i].first = i;
-        idx_v[i].second = v[i];
-        post("%d %f %f", idx_v[i].first, idx_v[i].second, v[i]);
-    }
-    
-    std::sort( idx_v.begin(), idx_v.end(), sort_pred<T>() );
-    
-    return idx_v;
-}
-*/
 
 static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 {
@@ -186,7 +170,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 
     /// sizes based on contours
     vector<RotatedRect> minRect( contours.size() );
-    vector<RotatedRect> minEllipse( contours.size() );
+//    vector<RotatedRect> minEllipse( contours.size() ); //<< just using minRect for now
     vector<cv::Rect> boundRect( contours.size() );
     vector<vector<cv::Point> >hullP( contours.size() );
     vector<vector<int> >hullI( contours.size() );
@@ -194,6 +178,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     vector<double>focus_val( contours.size() );
     vector<double>contour_area( contours.size() );
     
+    vector<Point2f> centroids( contours.size() );
     
     //flat vector for optical flow
     vector<cv::Point> defect_startpt;
@@ -271,9 +256,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         
         // NOTE: minAreaRect function also computes convex hull internally, so this could be optimized later
         minRect[i] = minAreaRect( Mat(contours[i]) );
-        
-        double centerx = minRect[i].center.x / (double)src_gray.size().width;
-        double centery = 1. - (minRect[i].center.y / (double)src_gray.size().height);
 
         t_dictionary *minrect_pts_sub = dictionary_new();
         t_atomarray *minr_ptx = atomarray_new(0, NULL);
@@ -301,23 +283,14 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atom_setfloat(&at, minRect[i].size.width / (double)src_gray.size().width);
         atomarray_appendatom(rotmin, &at);
         
-        if( minRect[i].size.height > minRect[i].size.width )
-        {
-            atom_setfloat(&at, -minRect[i].angle + 90.0);
-            atomarray_appendatom(angle, &at);
-        }
-        else
-        {
-            atom_setfloat(&at, -minRect[i].angle);
-            atomarray_appendatom(angle, &at);
-        }
         
-        // to do: offset angle based on centroid offset from center
-
-        atom_setfloat(&at, centerx );
+        double centerx = minRect[i].center.x;
+        double centery = minRect[i].center.y;
+        
+        atom_setfloat(&at, centerx / (double)src_gray.size().width );
         atomarray_appendatom(cx, &at);
         
-        atom_setfloat(&at, centery );
+        atom_setfloat(&at, 1. - (centery / (double)src_gray.size().height) );
         atomarray_appendatom(cy, &at);
         
         atom_setfloat(&at, boundRect[i].width / (double)src_gray.size().width );
@@ -326,75 +299,72 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atom_setfloat(&at, boundRect[i].height / (double)src_gray.size().height );
         atomarray_appendatom(sy, &at);
         
-        
-        // momements
-        // http://breckon.eu/toby/teaching/dip/opencv/SimpleImageAnalysisbyMoments.pdf
+        double ctrdx = centerx;
+        double ctrdy = centery;
 
         Moments moms = moments( contours[i] );
+        if( moms.m00 != 0.0 )
+        {
+            ctrdx = moms.m10 / moms.m00;
+            ctrdy = moms.m01 / moms.m00;
+
+        }
+        
+        atom_setfloat(&at, ctrdx / (double)src_gray.size().width );
+        atomarray_appendatom(centroidx, &at);
+        
+        atom_setfloat(&at, 1. - (ctrdy / (double)src_gray.size().height) );
+        atomarray_appendatom(centroidy, &at);
+
+        centroids[i].x = ctrdx;
+        centroids[i].y = ctrdy;
         
         /*
-        if( moms.m00 != 0.0 )
-        {
-            double ctrd_x = moms.m10/moms.m00;
-            double u20 = (moms.m20/moms.m00) - (ctrd_x*ctrd_x);
-            post("mu20 %f u20 %f ( %f )", moms.mu20, u20, moms.mu20 - u20);
-            
-        }
-        */
-        
-//        double hu[7];
-//        HuMoments( moms, hu );
-        
-        if( moms.m00 != 0.0 )
-        {
-            atom_setfloat(&at, (moms.m10 / moms.m00) / (double)src_gray.size().width );
-            atomarray_appendatom(centroidx, &at);
-            
-            atom_setfloat(&at, 1. - ((moms.m01 / moms.m00) / (double)src_gray.size().height) );
-            atomarray_appendatom(centroidy, &at);
-            
-            /*
-            double uu20 = moms.mu20/moms.m00;
-            double uu02 = moms.mu02/moms.m00;
-            double uu11 = moms.mu11/moms.m00;
-            
-            double duu = uu20 - uu02;
-            double theta;
-            
-            if( duu != 0)
-                theta = 0.5 * atan( (2.0 * uu11) / (uu20 - uu02) );
-            else
-                theta = 0;
-    */
+         double uu20 = moms.mu20/moms.m00;
+         double uu02 = moms.mu02/moms.m00;
+         double uu11 = moms.mu11/moms.m00;
+         
+         double duu = uu20 - uu02;
+         double theta;
+         
+         if( duu != 0)
+         theta = 0.5 * atan( (2.0 * uu11) / (uu20 - uu02) );
+         else
+         theta = 0;
+         */
 
-
-            
+        /*
+        double cdx = centerx - ctrdx;
+        double cdy = centery - ctrdy;
+        double cdtheta = atan2(cdy, cdx)*57.2958;
+         //idea: make sure angle is the same direction as angle between centroid and minrect center
+         // maybe not necessary
+         */
+        
+        double r_angle = minRect[i].angle;
+        double out_angle = 0.0;
+        if( minRect[i].size.height > minRect[i].size.width )
+        {
+            out_angle = -r_angle + 90.0;
         }
         else
         {
-            post("%i area zero %f", i, moms.m00);
-            atom_setfloat(&at, centerx );
-            atomarray_appendatom(centroidx, &at);
-            
-            atom_setfloat(&at, centery );
-            atomarray_appendatom(centroidy, &at);
-            
-            atom_setfloat(&at, minRect[i].angle);
-            atomarray_appendatom(angle, &at);
-            
+            out_angle = -r_angle;
         }
+//        printf("%d %f %f %f\n", i, out_angle, cdtheta, out_angle - cdtheta);
         
-
-        
+        atom_setfloat(&at, out_angle);
+        atomarray_appendatom(angle, &at);
         
         atom_setlong(&at, isContourConvex(Mat(contours[i])) );
         atomarray_appendatom(convex, &at);
 
+        
+        // eccentricity (could be just major/minor of min rect?)
         double mumin = moms.mu20 - moms.mu02;
         double muplu = moms.mu20 + moms.mu02;
         double mu11 = moms.mu11;
         double ecc = (mumin*mumin - 4.0*mu11*mu11) / (muplu*muplu);
-
 /*
         double mumin = moms.mu20 - moms.mu02;
         double muplu = moms.mu20 + moms.mu02;
@@ -448,11 +418,13 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
             focus_val[i] = avg[0];
         }
 
+/*
         if( contours[i].size() > 5 )
         {
             minEllipse[i] = fitEllipse( Mat(contours[i]) );
 //            post("%d %f %f", i, minRect[i].angle, minEllipse[i].angle );
         }
+*/
         
         Mat convexcontour;
         approxPolyDP(Mat(hullP[i]), convexcontour, 0.001, true);
@@ -518,15 +490,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
             dist_sum += dist;
             defect_startpt.push_back( ptStart );
             defect_dist.push_back( dist / npix);
-            // drawing
-            //             if( draw && dist > 0 )
-            //             {
-            //             line( drawing, ptStart, ptFar, color, 1 );
-            //             line( drawing, ptFar, ptEnd, color, 1 );
-            //             int thick = (dist <= 255 ? dist : 255) / 10;
-            //             //  printf("dist %f\n", dist);
-            //             circle( drawing, ptStart, 4, color, thick );
-            //             }
 
             d++;
         }
@@ -547,57 +510,166 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         dictionary_appenddictionary(contour_dict, idr, (t_object *)contour_sub);
 
     }
-    
-    /*
-    if( contour_area.size() > 0 )
-    {
-        vector<std::pair<int, double> > sorted = sort_indexes<double>( contour_area );
 
-        for( int i = 0; i < sorted.size(); i++ )
+    t_atomarray *idlist = atomarray_new(0, NULL);
+    if( x->prev_centroids.size() == 0 )
+    {
+        vector<int> new_ids( centroids.size(), -1 );
+
+        for( int i = 0; i < centroids.size(); i++ )
         {
-            atom_setlong(&at, sorted[i].first);
-            atomarray_appendatom(area_sort, &at);
+            x->id_used[i] = 1;
+            new_ids[i] = i;
+//            printf("assigning new %d \n", new_ids[i] );
+
+            atom_setlong(&at, i);
+            atomarray_appendatom(idlist, &at);
         }
+        
+        x->prev_centroids = centroids;
+        x->prev_centroid_id = new_ids;
+    }
+    else
+    {
+        // if prev centroids are accounted for, then keep the same ids, if not found release id for prev centroid
+        vector<int> new_ids( centroids.size(), -1 );
+        
+        int closest_id = -1;
+        double radius_max = x->track_radius * src_gray.size().height;
+        double min = radius_max;
+        
+        // fist check if previous points are found
+        for( int j = 0; j < x->prev_centroids.size(); j++ )
+        {
+//            printf("old check %d %d\n", j, x->prev_centroid_id[j] );
+
+            min = radius_max;
+            closest_id = -1;
+
+            for( int i = 0; i < centroids.size(); i++ )
+            {
+                double delta = norm(centroids[i] - x->prev_centroids[j]);
+                
+                // if within range and if not yet assigned, do assignment
+                if( delta <= radius_max && new_ids[i] == -1 )
+                {
+                    if( min >= delta )
+                    {
+                        min = delta;
+                        closest_id = i;
+                    }
+                }
+            }
+            
+            if( closest_id > -1 )
+            {
+                new_ids[closest_id] = x->prev_centroid_id[j];
+            }
+            else
+            {
+                x->id_used[ x->prev_centroid_id[j] ] = 0;
+            }
+        }
+        
+        // check for unassigned new_ids, and then find the first unused id number:
+        for( int i = 0; i < centroids.size(); i++ )
+        {
+//            printf("new check %d %d\n", i, new_ids[i] );
+
+            if( new_ids[i] == -1 )
+            {
+//                printf("assigning new %d \t", i );
+
+                for( int n = 0; n < CV_JIT_MAX_IDS; n++ )
+                {
+                    if( x->id_used[n] == 0)
+                    {
+                        new_ids[i] = n;
+                        x->id_used[n] = 1;
+                        break;
+                    }
+                }
+//                printf("is %d \n", new_ids[i] );
+            }
+            
+            atom_setlong(&at, new_ids[i]);
+            atomarray_appendatom(idlist, &at);
+        }
+     
+        x->prev_centroids = centroids;
+        x->prev_centroid_id = new_ids;
     }
     
-//    for_each(sorted.begin(), sorted.end(),
-//             [&area_sort](int ii){ t_atom aa; atom_setlong(&aa, ii); atomarray_appendatom(area_sort, &aa); });
+    /*
+    printf("*********\n");
+    for( int n = 0; n < CV_JIT_MAX_IDS; n++ )
+        printf("%d ", x->id_used[n] );
+    
+    printf("*********\n");
     */
     
+    /* TO DO: for better tracking, try using optical flow:
+        1) set previous points
+        2) do flow calc
+        3) check resulting points from flow track
+        4) compare with centroids and assign ids based on balence between centriod distances and optical flow pixel tracking
+     */
+    
+    dictionary_appendatomarray(cv_dict, gensym("/ids"), (t_object *)idlist);
+    
+    
+    /*
+    t_atomarray *flowPtsx = atomarray_new(0, NULL);
+    t_atomarray *flowPtsy = atomarray_new(0, NULL);
+    t_atomarray *flowstatus = atomarray_new(0, NULL);
 
+    {
+        // after iterating contours, send centroids to optical flow analysis
+        vector<uchar> status;
+        vector<float> err;
+        vector<Point2f> out_points;
+        x->flow.processFrame(src_gray, centroids, out_points, status, err);
+
+        for( int i = 0; i < out_points.size(); i++)
+        {
+            atom_setlong(&at, status[i]);
+            atomarray_appendatom(flowstatus, &at);
+            atom_setfloat(&at, out_points[i].x / (double)src_gray.size().width );
+            atomarray_appendatom(flowPtsx, &at);
+            atom_setfloat(&at, 1.0 - (out_points[i].y / (double)src_gray.size().height) );
+            atomarray_appendatom(flowPtsy, &at);
+        }
+        std::swap(centroids, x->prev_centroids);
+    }
+
+    dictionary_appendatomarray(cv_dict, gensym("/flow/x"), (t_object *)flowPtsx);
+    dictionary_appendatomarray(cv_dict, gensym("/flow/y"), (t_object *)flowPtsy);
+    dictionary_appendatomarray(cv_dict, gensym("/flow/status"), (t_object *)flowstatus);
+     */
+    
     dictionary_appendatomarray(cv_dict, addr_cx, (t_object *)cx);
     dictionary_appendatomarray(cv_dict, addr_cy, (t_object *)cy);
     dictionary_appendatomarray(cv_dict, addr_sx, (t_object *)sx);
     dictionary_appendatomarray(cv_dict, addr_sy, (t_object *)sy);
-    
     dictionary_appendatomarray(cv_dict, addr_centroidx, (t_object *)centroidx);
     dictionary_appendatomarray(cv_dict, addr_centroidy, (t_object *)centroidy);
     dictionary_appendatomarray(cv_dict, addr_eccentricity, (t_object *)eccentricity);
-
     dictionary_appendatomarray(cv_dict, addr_rotmin, (t_object *)rotmin);
     dictionary_appendatomarray(cv_dict, addr_rotmaj, (t_object *)rotmaj);
-    
     dictionary_appendatomarray(cv_dict, addr_angle, (t_object *)angle);
     dictionary_appendatomarray(cv_dict, addr_area, (t_object *)area);
     dictionary_appendatomarray(cv_dict, addr_hullarea, (t_object *)hullarea);
     dictionary_appendatomarray(cv_dict, addr_parimeter, (t_object *)parimeter);
-    
     dictionary_appendatomarray(cv_dict, addr_convex, (t_object *)convex);
     dictionary_appendatomarray(cv_dict, addr_child_of, (t_object *)child_of);
     dictionary_appendatomarray(cv_dict, addr_focus, (t_object *)focus);
     dictionary_appendatomarray(cv_dict, addr_srcdim, (t_object *)srcdim);
-    
     dictionary_appendatomarray(cv_dict, addr_defect_count, (t_object *)defect_count);
     dictionary_appendatomarray(cv_dict, addr_defect_dist_sum, (t_object *)defect_dist_sum);
     dictionary_appendatomarray(cv_dict, addr_hull_count, (t_object *)hull_count);
-    
     dictionary_appendatomarray(cv_dict, addr_contour_count, (t_object *)contour_count);
     
-    //dictionary_appenddictionary(cv_dict, addr_hull_pt_array, (t_object *)hull_pt_array);
-    //dictionary_appenddictionary(cv_dict, addr_defect_ptlist, (t_object *)defect_ptlist);
-    
     dictionary_appenddictionary(cv_dict, gensym("/contour/pts"), (t_object *)contour_dict);
-    // add contour id sub bundles to main contour stats bundle
     
     
     atom_setsym(&at, x->dict_name);
@@ -606,261 +678,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     object_free(cv_dict);
     
 }
-
-/*
-static void ojit_calc_send(t_cv_contours *x, const Mat frame)
-{
-    
-    
-    // preprocess
-    
-    Mat src_gray;
-    
-    {
-        Mat src_color_sized;
-        cv::resize( frame, src_color_sized, cv::Size(), x->resize_scale, x->resize_scale, INTER_AREA );
-        
-        //        flip(src_color_sized, src_color_sized, 1);
-        
-        cvtColor(src_color_sized, src_gray, CV_BGR2GRAY);
-        
-        if(x->invert > 0)
-        {
-            bitwise_not(src_gray, src_gray);
-        }
-    }
-    
-    //blur(src_gray, src_gray, Size(3,3));
-    
-    GaussianBlur(src_gray, src_gray, cv::Size((int)x->gauss_ksize, (int)x->gauss_ksize), x->gauss_sigma, x->gauss_sigma);
-    
-    {
-        Mat di_element = getStructuringElement( MORPH_RECT,
-                                               cv::Size( 2*(int)x->dilation_size + 1, 2*(int)x->dilation_size+1 ),
-                                               cv::Point( (int)x->dilation_size, (int)x->dilation_size ) );
-        dilate( src_gray, src_gray, di_element );
-    }
-    
-    {
-        Mat er_element = getStructuringElement( MORPH_RECT,
-                                               cv::Size( 2*(int)x->erosion_size + 1, 2*(int)x->erosion_size+1 ),
-                                               cv::Point( (int)x->erosion_size, (int)x->erosion_size ) );
-        erode( src_gray, src_gray, er_element );
-    }
-    
-    //analyze
-    vector<vector<cv::Point> > contours;
-    vector<Vec4i> hierarchy;
-    
-    {
-        Mat threshold_output;
-        threshold( src_gray, threshold_output, x->thresh, 255, THRESH_BINARY );
-        
-        findContours( threshold_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0) );
-    }
-    
-    
-    /// sizes based on contours
-    vector<RotatedRect> minRect( contours.size() );
-    vector<RotatedRect> minEllipse( contours.size() );
-    vector<cv::Rect> boundRect( contours.size() );
-    vector<vector<cv::Point> >hullP( contours.size() );
-    vector<vector<int> >hullI( contours.size() );
-    vector<vector<Vec4i> >defects( contours.size() );
-    vector<double>focus_val( contours.size() );
-    vector<double>contour_area( contours.size() );
-    //flat vector for optical flow
-    vector<cv::Point> defect_startpt;
-    
-    
-    //    Mat drawing = Mat::zeros( threshold_output.size(), CV_8UC3 );
-    
-    t_osc_bndl_u *bndl = osc_bundle_u_alloc();
-    t_osc_msg_u *cx = osc_message_u_allocWithAddress((char *)"/center/x");
-    t_osc_msg_u *cy = osc_message_u_allocWithAddress((char *)"/center/y");
-    t_osc_msg_u *sx = osc_message_u_allocWithAddress((char *)"/size/x");
-    t_osc_msg_u *sy = osc_message_u_allocWithAddress((char *)"/size/y");
-    t_osc_msg_u *angle = osc_message_u_allocWithAddress((char *)"/angle");
-    t_osc_msg_u *area = osc_message_u_allocWithAddress((char *)"/area");
-    t_osc_msg_u *hullarea = osc_message_u_allocWithAddress((char *)"/hull/area");
-    t_osc_msg_u *area_sort = osc_message_u_allocWithAddress((char *)"/area_sort");
-    t_osc_msg_u *convex = osc_message_u_allocWithAddress((char *)"/isconvex");
-    t_osc_msg_u *child_of = osc_message_u_allocWithAddress((char *)"/child_of");
-    t_osc_msg_u *focus = osc_message_u_allocWithAddress((char *)"/focus");
-    t_osc_msg_u *srcdim = osc_message_u_allocWithAddress((char *)"/dim_xy");
-    t_osc_msg_u *defect_count = osc_message_u_allocWithAddress((char *)"/defect/count");
-    t_osc_msg_u *defect_dist_sum = osc_message_u_allocWithAddress((char *)"/defect/dist_sum");
-    t_osc_msg_u *hull_count = osc_message_u_allocWithAddress((char *)"/hull/count");
-    
-    t_osc_msg_u *hull_pt_array = osc_message_u_allocWithAddress((char *)"/hull/points");
-    t_osc_msg_u *defect_ptlist = osc_message_u_allocWithAddress((char *)"/defect/points");
-    
-    t_osc_msg_u *contour_count = osc_message_u_allocWithAddress((char *)"/contour/count");
-    
-    
-    osc_message_u_appendInt32(srcdim, src_gray.size().width);
-    osc_message_u_appendInt32(srcdim, src_gray.size().height);
-    
-    long npix = src_gray.size().width * src_gray.size().height;
-    
-    for( int i = 0; i < contours.size(); i++ )
-    {
-        osc_message_u_appendInt64(contour_count, contours[i].size());
-        
-        boundRect[i] = boundingRect( Mat(contours[i]) );
-        minRect[i] = minAreaRect( Mat(contours[i]) );
-        
-        convexHull( Mat(contours[i]), hullP[i], false );
-        convexHull( Mat(contours[i]), hullI[i], false );
-        convexityDefects( contours[i], hullI[i], defects[i] );
-        
-        
-        t_osc_bndl_u *hullpts = osc_bundle_u_alloc();
-        t_osc_msg_u *hull_x = osc_message_u_allocWithAddress((char *)"/x");
-        t_osc_msg_u *hull_y = osc_message_u_allocWithAddress((char *)"/y");
-        
-        for( long hpi = 0; hpi < hullI[i].size(); hpi++ )
-        {
-            osc_message_u_appendDouble(hull_x, hullP[i][hpi].x / (double)src_gray.size().width );
-            osc_message_u_appendDouble(hull_y, 1. - (hullP[i][hpi].y / (double)src_gray.size().height) );
-        }
-        
-        osc_bundle_u_addMsg(hullpts, hull_x);
-        osc_bundle_u_addMsg(hullpts, hull_y);
-        osc_message_u_appendBndl_u(hull_pt_array, hullpts);
-        
-        Mat rot_mtx = getRotationMatrix2D(minRect[i].center, minRect[i].angle, 1.0);
-        Mat rot;
-        Mat roi;
-        warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
-        getRectSubPix(rot, minRect[i].size, minRect[i].center, roi);
-        
-        //        Mat roi = src_gray( boundRect[i] ); //<< slightly faster backup, maybe better result even?
-        
-        focus_val[i] = 0.0;
-        if( minRect[i].size.width > 15  )
-        {
-            Mat lap;
-            Laplacian(roi, lap, CV_16S, 5);
-            Scalar avg = mean(lap);
-            focus_val[i] = avg[0];
-        }
-        
-        if( contours[i].size() > 5 )
-        {
-            minEllipse[i] = fitEllipse( Mat(contours[i]) );
-        }
-        
-        //filter by focus
-        //        if( focus_val[i] > 1) continue;
-        
-        contour_area[i] = contourArea(Mat(contours[i]));
-        
-        Mat convexcontour;
-        approxPolyDP(Mat(hullP[i]), convexcontour, 0.001, true);
-        osc_message_u_appendFloat(hullarea, contourArea(convexcontour) / (double)npix );
-        
-        osc_message_u_appendFloat(cx, minRect[i].center.x / (double)src_gray.size().width);
-        osc_message_u_appendFloat(cy, 1. - (minRect[i].center.y / (double)src_gray.size().height));
-        osc_message_u_appendFloat(sx, minRect[i].size.width / (double)src_gray.size().width);
-        osc_message_u_appendFloat(sy, minRect[i].size.height / (double)src_gray.size().height);
-        osc_message_u_appendFloat(angle, minRect[i].angle);
-        osc_message_u_appendFloat(area, contour_area[i] / (double)npix);
-        osc_message_u_appendInt32(convex, isContourConvex(Mat(contours[i])));
-        osc_message_u_appendInt32(child_of, hierarchy[i][3]);
-        osc_message_u_appendDouble(focus, focus_val[i]);
-        osc_message_u_appendDouble(defect_count, defects[i].size() / (double)hullI[i].size());
-        osc_message_u_appendInt64(hull_count, hullI[i].size());
-        
-        
-        
-        // convex hull defects
-        // if( contours[i].size() < 300 ) continue; //skip if contour is small
-        
-        // might want to collect data on all the set of defects and only send general information rather than overloading ... but maybe the points are interesting too...
-        
-        //        Mat dist_stats = Mat::zeros((int)defects[i].size(), 1, CV_64FC1);
-
-        
-        t_osc_bndl_u *defectpts = osc_bundle_u_alloc();
-        t_osc_msg_u *defect_x = osc_message_u_allocWithAddress((char *)"/x");
-        t_osc_msg_u *defect_y = osc_message_u_allocWithAddress((char *)"/y");
-        
-        double dist_sum = 0;
-        vector<double> defect_dist;
-        vector<Vec4i>::iterator d = defects[i].begin();
-        while ( d != defects[i].end() )
-        {
-            Vec4i& v = (*d);
-            cv::Point ptStart(  contours[ i ][ v[0] ] );
-            cv::Point ptEnd(    contours[ i ][ v[1] ] );
-            cv::Point ptFar(    contours[ i ][ v[2] ] );
-            
-            osc_message_u_appendDouble(defect_x, ptFar.x / (double)src_gray.size().width );
-            osc_message_u_appendDouble(defect_y, 1. - (ptFar.y / (double)src_gray.size().height) );
-            
-            
-            //float depth = v[3] / 256.; // depth from center of contour
-            double dist = norm(ptFar - ptStart);
-            dist_sum += dist;
-            defect_startpt.push_back( ptStart );
-            defect_dist.push_back( dist / npix);
-
-            
-            d++;
-        }
-        osc_message_u_appendDouble(defect_dist_sum, dist_sum);
-        
-        osc_bundle_u_addMsg(defectpts, defect_x);
-        osc_bundle_u_addMsg(defectpts, defect_y);
-        osc_message_u_appendBndl_u(defect_ptlist, defectpts);
-        
-        
-    }
-    
-    
-//
-//     Mat stat, err;
-//     if( prev_pts.size() > 0)
-//     calcOpticalFlowPyrLK(prev_frame, threshold_output, prev_pts, defect_startpt, stat, err);
-//     prev_pts = defect_startpt;
-//     prev_frame = threshold_output.clone();
-
-    t_osc_msg_u *tmsg = osc_message_u_allocWithAddress((char *)"/timetag");
-    osc_message_u_appendTimetag(tmsg, osc_timetag_now());
-    
-    vector<size_t> sorted = sort_indexes( contour_area );
-    for_each(sorted.begin(), sorted.end(),
-             [&area_sort](int ii){ osc_message_u_appendInt32(area_sort, ii); });
-    
-    
-    osc_bundle_u_addMsg(bndl, cx);
-    osc_bundle_u_addMsg(bndl, cy);
-    osc_bundle_u_addMsg(bndl, sx);
-    osc_bundle_u_addMsg(bndl, sy);
-    osc_bundle_u_addMsg(bndl, angle);
-    osc_bundle_u_addMsg(bndl, area);
-    osc_bundle_u_addMsg(bndl, convex);
-    osc_bundle_u_addMsg(bndl, child_of);
-    osc_bundle_u_addMsg(bndl, focus);
-    osc_bundle_u_addMsg(bndl, tmsg);
-    osc_bundle_u_addMsg(bndl, contour_count);
-    osc_bundle_u_addMsg(bndl, area_sort);
-    osc_bundle_u_addMsg(bndl, srcdim);
-    osc_bundle_u_addMsg(bndl, defect_count);
-    osc_bundle_u_addMsg(bndl, defect_dist_sum);
-    osc_bundle_u_addMsg(bndl, hull_count);
-    osc_bundle_u_addMsg(bndl, hullarea);
-    osc_bundle_u_addMsg(bndl, hull_pt_array);
-    osc_bundle_u_addMsg(bndl, defect_ptlist);
-    
-    omax_util_outletOSC_u(x->bndl_out, bndl);
-    
-    if(bndl)
-        osc_bundle_u_free(bndl);
-    
-}
-*/
 
 void cv_contours_jit_matrix(t_cv_contours *x, t_symbol *s, long argc, t_atom *argv)
 {
@@ -899,7 +716,7 @@ void cv_contours_jit_matrix(t_cv_contours *x, t_symbol *s, long argc, t_atom *ar
             
             if(in_minfo.dimcount != 2)
             {
-                object_error((t_object *)x, "Error converting Jitter matrix: invalid dimension count.");
+                object_error((t_object *)x, "invalid dimension count.");
                 goto out;
             }
             
@@ -988,9 +805,13 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
         x->resize_scale = 0.5;
         x->thresh = 100;
         x->invert = 0;
-        
+        x->track_radius = 0.1;
         x->dict_name = symbol_unique();
         
+        for( int i = 0; i < CV_JIT_MAX_IDS; i++ )
+        {
+            x->id_used[i] = 0;
+        }
         t_dictionary *d = NULL;
         d = dictionary_new();
         
@@ -1029,6 +850,9 @@ void ext_main(void* unused)
     
     CLASS_ATTR_DOUBLE(c, "resize_scale", 0, t_cv_contours, resize_scale);
     CLASS_ATTR_FILTER_MIN(c, "resize_scale", 0);
+
+    CLASS_ATTR_DOUBLE(c, "track_radius", 0, t_cv_contours, track_radius);
+    CLASS_ATTR_FILTER_MIN(c, "track_radius", 0);
     
     CLASS_ATTR_LONG(c, "thresh", 0, t_cv_contours, thresh);
     CLASS_ATTR_STYLE_LABEL(c, "thresh", 0, "text", "threshold");

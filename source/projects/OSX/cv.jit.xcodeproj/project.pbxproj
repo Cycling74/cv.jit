@@ -66,6 +66,7 @@
 		119260D51C52F00F001E6B87 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
 		119260D61C52F00F001E6B87 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
 		119260DD1C52F079001E6B87 /* cv.jit.contours.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119260DC1C52F079001E6B87 /* cv.jit.contours.cpp */; };
+		11CEC4531C5E9FCD0043173D /* cv.jit.contour.flow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11CEC4511C5E9FCD0043173D /* cv.jit.contour.flow.cpp */; };
 		892000AD1AC5A68000B9CA6D /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
 		892000AE1AC5A68000B9CA6D /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
 		892000B71AC5A6B200B9CA6D /* cv.jit.calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 892000B41AC5A6B200B9CA6D /* cv.jit.calibration.cpp */; };
@@ -555,6 +556,8 @@
 		119260DA1C52F00F001E6B87 /* cv.jit.contours.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.contours.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		119260DB1C52F00F001E6B87 /* cv.jit.blobs.moments copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "cv.jit.blobs.moments copy-Info.plist"; path = "/Users/r/Documents/dev-lib/cv.jit/source/projects/OSX/cv.jit.blobs.moments copy-Info.plist"; sourceTree = "<absolute>"; };
 		119260DC1C52F079001E6B87 /* cv.jit.contours.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.contours.cpp; path = ../../src/cv.jit.contours/cv.jit.contours.cpp; sourceTree = "<group>"; };
+		11CEC4511C5E9FCD0043173D /* cv.jit.contour.flow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.contour.flow.cpp; path = ../../src/cv.jit.contours/cv.jit.contour.flow.cpp; sourceTree = "<group>"; };
+		11CEC4521C5E9FCD0043173D /* cv.jit.contour.flow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cv.jit.contour.flow.h; path = ../../src/cv.jit.contours/cv.jit.contour.flow.h; sourceTree = "<group>"; };
 		892000A61AC5A53E00B9CA6D /* exports.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = exports.exp; sourceTree = "<group>"; };
 		892000B21AC5A68000B9CA6D /* cv.jit.calibration.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.calibration.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		892000B41AC5A6B200B9CA6D /* cv.jit.calibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cv.jit.calibration.cpp; sourceTree = "<group>"; };
@@ -1115,7 +1118,7 @@
 				B4B5DCA40CEF30BF00CE6A66 /* cv.jit.blobs.orientation */,
 				B4B5DCA50CEF30CE00CE6A66 /* cv.jit.blobs.recon */,
 				B4B5DCA60CEF30E100CE6A66 /* cv.jit.blobs.sort */,
-				119260DC1C52F079001E6B87 /* cv.jit.contours.cpp */,
+				11CEC4501C5E9F860043173D /* cv.jit.contours */,
 				892000B31AC5A6B200B9CA6D /* cv.jit.calibration */,
 				B4B5DCA80CEF310500CE6A66 /* cv.jit.canny */,
 				B4B5DCA90CEF310C00CE6A66 /* cv.jit.centroids */,
@@ -1166,6 +1169,16 @@
 				08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */,
 			);
 			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		11CEC4501C5E9F860043173D /* cv.jit.contours */ = {
+			isa = PBXGroup;
+			children = (
+				119260DC1C52F079001E6B87 /* cv.jit.contours.cpp */,
+				11CEC4511C5E9FCD0043173D /* cv.jit.contour.flow.cpp */,
+				11CEC4521C5E9FCD0043173D /* cv.jit.contour.flow.h */,
+			);
+			name = cv.jit.contours;
 			sourceTree = "<group>";
 		};
 		19C28FB4FE9D528D11CA2CBB /* Products */ = {
@@ -2776,6 +2789,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				119260DD1C52F079001E6B87 /* cv.jit.contours.cpp in Sources */,
+				11CEC4531C5E9FCD0043173D /* cv.jit.contour.flow.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

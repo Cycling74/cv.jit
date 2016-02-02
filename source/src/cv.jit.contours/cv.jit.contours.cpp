@@ -54,6 +54,7 @@ typedef struct _cv_contours
     
     vector<Point2f> prev_centroids;
     vector<int>     prev_centroid_id;
+    vector<double>  prev_area;
     int             id_used[CV_JIT_MAX_IDS];
     
 } t_cv_contours;
@@ -247,9 +248,9 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atomarray_appendatom(parimeter, &at);
 
         
-        contour_area[i] = contourArea(Mat(contours[i]));
+        contour_area[i] = contourArea(Mat(contours[i])) / (double)npix;
         
-        atom_setfloat(&at, contour_area[i] / (double)npix );
+        atom_setfloat(&at, contour_area[i] );
         atomarray_appendatom(area, &at);
         
         boundRect[i] = boundingRect( Mat(contours[i]) );
@@ -528,6 +529,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         
         x->prev_centroids = centroids;
         x->prev_centroid_id = new_ids;
+        x->prev_area = contour_area;
     }
     else
     {
@@ -553,7 +555,8 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
                 // if within range and if not yet assigned, do assignment
                 if( delta <= radius_max && new_ids[i] == -1 )
                 {
-                    if( min >= delta )
+                    double area_delta = abs(contour_area[i] - x->prev_area[j]);
+                    if( min >= delta && area_delta < 0.2)
                     {
                         min = delta;
                         closest_id = i;
@@ -598,6 +601,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
      
         x->prev_centroids = centroids;
         x->prev_centroid_id = new_ids;
+        x->prev_area = contour_area;
     }
     
     /*

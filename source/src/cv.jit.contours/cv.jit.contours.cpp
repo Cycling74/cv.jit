@@ -100,15 +100,18 @@ t_symbol *addr_id;
 t_symbol *addr_eccentricity;
 t_symbol *addr_rotmaj;
 t_symbol *addr_rotmin;
+t_symbol *addr_ids;
+
+t_symbol *addr_contourpts;
 
 t_symbol *temp_addr_minrect;
-
+t_symbol *ps_dict;
 
 static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 {
     // preprocess
-    
-    Mat src_gray;
+
+    Mat src_gray, src_blur_gray;
     
     {
         Mat src_color_sized;
@@ -141,20 +144,20 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     }
 
     
-    GaussianBlur(src_gray, src_gray, cv::Size((int)x->gauss_ksize, (int)x->gauss_ksize), x->gauss_sigma, x->gauss_sigma);
+    GaussianBlur(src_gray, src_blur_gray, cv::Size((int)x->gauss_ksize, (int)x->gauss_ksize), x->gauss_sigma, x->gauss_sigma);
     
     {
         Mat di_element = getStructuringElement( MORPH_RECT,
                                                cv::Size( 2*(int)x->dilation_size + 1, 2*(int)x->dilation_size+1 ),
                                                cv::Point( (int)x->dilation_size, (int)x->dilation_size ) );
-        dilate( src_gray, src_gray, di_element );
+        dilate( src_blur_gray, src_blur_gray, di_element );
     }
     
     {
         Mat er_element = getStructuringElement( MORPH_RECT,
                                                cv::Size( 2*(int)x->erosion_size + 1, 2*(int)x->erosion_size+1 ),
                                                cv::Point( (int)x->erosion_size, (int)x->erosion_size ) );
-        erode( src_gray, src_gray, er_element );
+        erode( src_blur_gray, src_blur_gray, er_element );
     }
     
     //analyze
@@ -163,7 +166,7 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 
     {
         Mat threshold_output;
-        threshold( src_gray, threshold_output, x->thresh, 255, THRESH_BINARY );
+        threshold( src_blur_gray, threshold_output, x->thresh, 255, THRESH_BINARY );
         
         findContours( threshold_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0) );
     }
@@ -248,9 +251,9 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atomarray_appendatom(parimeter, &at);
 
         
-        contour_area[i] = contourArea(Mat(contours[i])) / (double)npix;
+        contour_area[i] = contourArea(Mat(contours[i]));
         
-        atom_setfloat(&at, contour_area[i] );
+        atom_setfloat(&at, contour_area[i] / (double)npix );
         atomarray_appendatom(area, &at);
         
         boundRect[i] = boundingRect( Mat(contours[i]) );
@@ -406,17 +409,27 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         if( (minRect[i].size.width > 15) && (minRect[i].size.height > 15))
         {
 
+            /*
+              this would be cool, but not working yet
+            Mat contour_mask = Mat::zeros( src_gray.size(), src_gray.type() );
+            drawContours(contour_mask, contours, i, Scalar(255, 255, 255), CV_FILLED);
+            Mat src_masked;
+            src_gray.copyTo(src_masked, contour_mask);
+            Mat roi = src_masked( boundRect[i] );
+             */
+
+            
             Mat rot;
             Mat roi;
             warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
             getRectSubPix(rot, minRect[i].size, minRect[i].center, roi);
 
-//            Mat roi = src_gray( boundRect[i] ); //<< alternate version for focus roi
-            
-            Mat lap;
-            Laplacian(roi, lap, CV_16S, 5);
-            Scalar avg = mean(lap);
-            focus_val[i] = avg[0];
+            Mat sob;
+            Scalar _mean, _stdv;
+            Sobel(roi, sob, CV_32F, 1, 1);
+            meanStdDev(sob, _mean, _stdv);
+            focus_val[i] = (_stdv[0]*_stdv[0]) ;
+
         }
 
 /*
@@ -521,7 +534,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         {
             x->id_used[i] = 1;
             new_ids[i] = i;
-//            printf("assigning new %d \n", new_ids[i] );
 
             atom_setlong(&at, i);
             atomarray_appendatom(idlist, &at);
@@ -529,7 +541,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         
         x->prev_centroids = centroids;
         x->prev_centroid_id = new_ids;
-        x->prev_area = contour_area;
     }
     else
     {
@@ -539,7 +550,9 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         int closest_id = -1;
         double radius_max = x->track_radius * src_gray.size().height;
         double min = radius_max;
+        int debug_count = 0;
         
+//        printf("max %f\n", radius_max);
         // fist check if previous points are found
         for( int j = 0; j < x->prev_centroids.size(); j++ )
         {
@@ -547,23 +560,26 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
 
             min = radius_max;
             closest_id = -1;
+            debug_count = 0;
 
             for( int i = 0; i < centroids.size(); i++ )
             {
+
                 double delta = norm(centroids[i] - x->prev_centroids[j]);
                 
                 // if within range and if not yet assigned, do assignment
                 if( delta <= radius_max && new_ids[i] == -1 )
                 {
-                    double area_delta = abs(contour_area[i] - x->prev_area[j]);
-                    if( min >= delta && area_delta < 0.2)
+                    if( min >= delta )
                     {
                         min = delta;
                         closest_id = i;
+//                        debug_count++;
                     }
                 }
+
             }
-            
+
             if( closest_id > -1 )
             {
                 new_ids[closest_id] = x->prev_centroid_id[j];
@@ -572,17 +588,15 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
             {
                 x->id_used[ x->prev_centroid_id[j] ] = 0;
             }
+
+ 
         }
         
         // check for unassigned new_ids, and then find the first unused id number:
         for( int i = 0; i < centroids.size(); i++ )
         {
-//            printf("new check %d %d\n", i, new_ids[i] );
-
             if( new_ids[i] == -1 )
             {
-//                printf("assigning new %d \t", i );
-
                 for( int n = 0; n < CV_JIT_MAX_IDS; n++ )
                 {
                     if( x->id_used[n] == 0)
@@ -592,7 +606,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
                         break;
                     }
                 }
-//                printf("is %d \n", new_ids[i] );
             }
             
             atom_setlong(&at, new_ids[i]);
@@ -601,7 +614,6 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
      
         x->prev_centroids = centroids;
         x->prev_centroid_id = new_ids;
-        x->prev_area = contour_area;
     }
     
     /*
@@ -616,10 +628,11 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         1) set previous points
         2) do flow calc
         3) check resulting points from flow track
-        4) compare with centroids and assign ids based on balence between centriod distances and optical flow pixel tracking
+        4) if flow point is inside the contour, then use preexisting number,
+            if there are multiple old points inside the new contour, use the id with the largest area
      */
     
-    dictionary_appendatomarray(cv_dict, gensym("/ids"), (t_object *)idlist);
+    dictionary_appendatomarray(cv_dict, addr_ids, (t_object *)idlist);
     
     
     /*
@@ -673,11 +686,11 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     dictionary_appendatomarray(cv_dict, addr_hull_count, (t_object *)hull_count);
     dictionary_appendatomarray(cv_dict, addr_contour_count, (t_object *)contour_count);
     
-    dictionary_appenddictionary(cv_dict, gensym("/contour/pts"), (t_object *)contour_dict);
+    dictionary_appenddictionary(cv_dict, addr_contourpts, (t_object *)contour_dict);
     
     
     atom_setsym(&at, x->dict_name);
-    outlet_anything(x->outlet, gensym("dictionary"), 1, &at);
+    outlet_anything(x->outlet, ps_dict, 1, &at);
     
     object_free(cv_dict);
     
@@ -903,8 +916,11 @@ void ext_main(void* unused)
 
     addr_parimeter = gensym("/parimeter");
     temp_addr_minrect = gensym("/minrect");
-    
+    addr_ids = gensym("/ids");
     addr_id = gensym("/id");
+    
+    addr_contourpts = gensym("/contour/pts");
+    ps_dict = gensym("dictionary");
     return;
 }
 END_USING_C_LINKAGE

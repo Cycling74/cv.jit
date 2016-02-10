@@ -58,6 +58,7 @@ typedef struct _cv_contours
     t_symbol    *dict_name;
     
     ContourFlow flow;
+    Mat         prev_src_gray;
     
     vector<Point2f> prev_centroids;
     vector<int>     prev_centroid_id;
@@ -113,6 +114,9 @@ t_symbol *addr_contourpts;
 
 t_symbol *temp_addr_minrect;
 t_symbol *ps_dict;
+
+t_symbol *addr_flow_r;
+t_symbol *addr_flow_theta;
 
 void mat2Jitter(Mat *mat, void *jitMat)
 {
@@ -192,7 +196,7 @@ struct Stats {
 
 // TODO: send in bounding box to reduce overhead!  I think this will help a lot
 //template <typename T>
-void getStatsChar( const Mat src, const Mat mask, const cv::Rect roi, vector<Stats>& _stats)
+void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mask, const cv::Rect roi, vector<Stats>& _stats)
 {
     //const int plane, T& min, T& max, T& varience
     
@@ -203,21 +207,24 @@ void getStatsChar( const Mat src, const Mat mask, const cv::Rect roi, vector<Sta
         return;
     }
 
-    vector<Stats> stats( src.channels() );
+    int nchans = src.channels();
+    int nstats = nchans + 3; // focus, flow(2)
+
+    int flow_test = !flow.empty();
     
-    /*
-    stats = Mat(1, nchans, src.type() );
-    uchar *stats_ptr = stats.data;
-    */
-//    int nonZcount = countNonZero(mask);
+    int focus = nchans;
+    int flowx = nchans+1;
+    int flowy = nchans+2;
+    
+    vector<Stats> stats( nstats );
     
     vector<cv::Point> index;
     index.reserve( roi.area() );
-//    printf("area %d -> nonzero: ", roi.area() );
     
     const uchar *mask_p = NULL;
     const uchar *src_p = NULL;
-    int nchans = src.channels();
+    const float *sobel_p = NULL;
+    const Point2f *flow_p = NULL;
     
     int row_start = roi.y;
     int row_end = roi.y + roi.height;
@@ -231,7 +238,9 @@ void getStatsChar( const Mat src, const Mat mask, const cv::Rect roi, vector<Sta
         
         // do type check above here
         src_p = src.ptr<uchar>(i);
-        
+        sobel_p = sobel.ptr<float>(i);
+        flow_p = flow.ptr<Point2f>(i);
+
         for( int j = col_start; j < col_end; ++j )
         {
             if( mask_p[j] )
@@ -239,6 +248,7 @@ void getStatsChar( const Mat src, const Mat mask, const cv::Rect roi, vector<Sta
                 // test emplace_back (
                 index.push_back( cv::Point(j, i) );
                 
+                // src
                 for( int c = 0; c < nchans; ++c)
                 {
                     if( src_p[j + c] < stats[c].min )
@@ -249,19 +259,52 @@ void getStatsChar( const Mat src, const Mat mask, const cv::Rect roi, vector<Sta
 
                     
                     stats[c].sum += src_p[j + c];
+                    
                 }
                 
+                //sobel
+                if( sobel_p[j] < stats[focus].min )
+                    stats[focus].min = sobel_p[j];
+                
+                if( sobel_p[j] > stats[focus].max )
+                    stats[focus].max = sobel_p[j];
+                
+                stats[focus].sum += sobel_p[j];
+                
+                
+                // flow
+                if( flow_test )
+                {
+                    if( flow_p[j].x < stats[flowx].min )
+                    stats[flowx].min = flow_p[j].x;
+                    
+                    if( flow_p[j].x > stats[flowx].max )
+                        stats[flowx].max = flow_p[j].x;
+                    
+                    stats[flowx].sum += flow_p[j].x;
+                    
+                    if( flow_p[j].y < stats[flowy].min )
+                        stats[flowy].min = flow_p[j].y;
+                    
+                    if( flow_p[j].y > stats[flowy].max )
+                        stats[flowy].max = flow_p[j].y;
+                    
+                    stats[flowy].sum += flow_p[j].y;
+                    
+                }
             }
             
         }
     }
     
-//    printf(" %lu\n", index.size() );
-    
     for( int c = 0; c < nchans; ++c)
     {
         stats[c].mean = stats[c].sum / index.size();
     }
+    
+    stats[focus].mean = stats[focus].sum / index.size();
+    stats[flowx].mean = stats[flowx].sum / index.size();
+    stats[flowy].mean = stats[flowy].sum / index.size();
     
     int row, col;
     int size = index.size();
@@ -271,11 +314,26 @@ void getStatsChar( const Mat src, const Mat mask, const cv::Rect roi, vector<Sta
         row = index[i].y;
         
         src_p = src.ptr<uchar>(row);
+        sobel_p = sobel.ptr<float>(row);
+        flow_p = flow.ptr<Point2f>(row);
         
         for( int c = 0; c < nchans; ++c)
         {
             double dx = src_p[ col + c ] - stats[c].mean;
             stats[c].dev_sum += (dx*dx);
+        }
+        
+        double dx = sobel_p[ col ] - stats[focus].mean;
+        stats[focus].dev_sum += (dx*dx);
+        
+        // flow
+        if( flow_test )
+        {
+            dx = flow_p[ col ].x - stats[flowx].mean;
+            stats[flowx].dev_sum += (dx*dx);
+            
+            dx = flow_p[ col ].y - stats[flowy].mean;
+            stats[flowy].dev_sum += (dx*dx);
         }
     }
     
@@ -284,6 +342,10 @@ void getStatsChar( const Mat src, const Mat mask, const cv::Rect roi, vector<Sta
         stats[c].variance = stats[c].dev_sum / index.size();
     }
     
+    stats[focus].variance = stats[focus].dev_sum / index.size();
+    stats[flowx].variance = stats[flowx].dev_sum / index.size();
+    stats[flowy].variance = stats[flowy].dev_sum / index.size();
+
     _stats = stats;
 //    printf("exit\n");
 }
@@ -292,7 +354,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 {
     
     // preprocess
-
+    int n_src_channels = frame.channels();
     Mat src_gray, src_blur_gray, src_color_sized;
     
     {
@@ -302,19 +364,22 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
             
         cv::resize( frame, src_color_sized, cv::Size(), x->resize_scale, x->resize_scale, INTER_AREA );
         
-        if (frame.channels() == 1)
-            src_gray = frame.clone();
-        else if( frame.channels() == 4 )
-            cvtColor(src_color_sized, src_gray, CV_RGBA2GRAY);
-        else if (frame.channels() == 3)
-            cvtColor(src_color_sized, src_gray, CV_RGB2GRAY);
-        else
-        {
-            object_error((t_object *)x, "unsupported plane number");
-            return;
+        switch ( n_src_channels ) {
+            case 1:
+                src_gray = frame.clone();
+                break;
+            case 4:
+                cvtColor(src_color_sized, src_gray, CV_RGBA2GRAY);
+                break;
+            case 3:
+                cvtColor(src_color_sized, src_gray, CV_RGB2GRAY);
+                break;
+            default:
+                object_error((t_object *)x, "unsupported plane number");
+                break;
         }
         
-        if( src_gray.data == NULL )
+        if( src_gray.empty() )
             return;
         
     }
@@ -351,30 +416,21 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         findContours( threshold_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0) );
     }
-    
-    /*
-            per contour bounding boxes, etc. don't need to be stored.
-            moving these to inside the loop
-     
-     /// sizes based on contours
-     vector<RotatedRect> minRect( contours.size() );
-     //    vector<RotatedRect> minEllipse( contours.size() ); //<< just using minRect for now
-     vector<cv::Rect> boundRect( contours.size() );
-     vector<vector<cv::Point> >hullP( contours.size() );
-     vector<vector<int> >hullI( contours.size() );
-     vector<vector<Vec4i> >defects( contours.size() );
-     vector<double>focus_val( contours.size() );
-     
-     vector<double>contour_area( contours.size() );
-     
-     */
 
-   
+    Mat flow;
+    if( !x->prev_src_gray.empty() && x->prev_src_gray.size() == src_gray.size() )
+    {
+        calcOpticalFlowFarneback( x->prev_src_gray, src_gray, flow, 0.5, 1, 15, 1, 5, 1.1, 0);
+        
+    }
+    src_gray.copyTo(x->prev_src_gray);
+    
+    // focus measurement via sobel
+    Mat sob;
+    Sobel(src_gray, sob, CV_32F, 1, 1);
+    
     vector<Point2f> centroids;
     centroids.reserve( contours.size() );
-    
-    //flat vector for optical flow
-    vector<cv::Point> defect_startpt;
     
     t_dictionary *cv_dict = dictionary_new();
     cv_dict = dictobj_register(cv_dict, &x->dict_name);
@@ -408,7 +464,9 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     t_atomarray *defect_count = atomarray_new(0, NULL);
     t_atomarray *defect_dist_sum = atomarray_new(0, NULL);
 
-
+    t_atomarray *flow_r = atomarray_new(0, NULL);
+    t_atomarray *flow_theta = atomarray_new(0, NULL);
+    
     double src_width = (double)src_gray.size().width;
     double src_height = (double)src_gray.size().height;
     
@@ -435,12 +493,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         double contour_a = contourArea( Mat(contours[i]) ) / npix;
 
-
-//    todo: implement max size, probably will need to add a separate counter, or push_back points...
-//        need to figure out what the most efficient is.
-//          one major reason to do this is to avoid getting the minmax values for too large regions
-        
-
        if( (contour_a > x->max_size) || (contour_a < x->min_size) )
            continue;
         
@@ -449,6 +501,40 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         sprintf( buf, "/%d", count );
         t_symbol *idr = gensym(buf);
         dictionary_appendlong( contour_sub, addr_id, count );
+        
+        cv::Rect boundRect = boundingRect( Mat(contours[i]) );
+        
+        // NOTE: minAreaRect function also computes convex hull internally, so this could be optimized later
+        RotatedRect minRect = minAreaRect( Mat(contours[i]) );
+        
+        Mat contour_mask = Mat::zeros( src_color_sized.size(), CV_8UC1 );
+        drawContours(contour_mask, contours, i, Scalar(255), CV_FILLED);
+        
+        vector<Stats> stats;
+        getStatsChar(src_color_sized, sob, flow, contour_mask, boundRect, stats);
+        /*
+         printf("stats: \n");
+         printf("\t focus varience %f\n", stats[n_src_channels].variance);
+         printf("\t flowx %f\n", stats[n_src_channels+1].mean);
+         printf("\t flowy %f\n", stats[n_src_channels+2].mean);
+         */
+        {
+            double flx, fly;
+            flx = stats[n_src_channels+1].mean / src_width;
+            fly = -1. * stats[n_src_channels+2].mean / src_height;
+            
+            atom_setfloat(&at, sqrt(flx*flx + fly*fly) );
+            atomarray_appendatom(flow_r, &at);
+            
+            atom_setfloat(&at, atan2(fly, flx) );
+            atomarray_appendatom(flow_theta, &at);
+            
+        }
+        
+        atom_setfloat(&at, stats[n_src_channels].variance );
+        atomarray_appendatom(focus, &at);
+        
+        
         
         atom_setlong(&at, contours[i].size());
         atomarray_appendatom(contour_count, &at);
@@ -462,10 +548,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         atom_setfloat(&at, contour_a );
         atomarray_appendatom(area, &at);
         
-        cv::Rect boundRect = boundingRect( Mat(contours[i]) );
-        
-        // NOTE: minAreaRect function also computes convex hull internally, so this could be optimized later
-        RotatedRect minRect = minAreaRect( Mat(contours[i]) );
 
         t_dictionary *minrect_pts_sub = dictionary_new();
         t_atomarray *minr_ptx = atomarray_new(0, NULL);
@@ -526,32 +608,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         atomarray_appendatom(centroidy, &at);
 
         centroids.push_back( Point2f(ctrdx, ctrdy) );
-        
-//        centroids[i].x = ctrdx;
-//        centroids[i].y = ctrdy;
-        
-        /*
-         double uu20 = moms.mu20/moms.m00;
-         double uu02 = moms.mu02/moms.m00;
-         double uu11 = moms.mu11/moms.m00;
-         
-         double duu = uu20 - uu02;
-         double theta;
-         
-         if( duu != 0)
-         theta = 0.5 * atan( (2.0 * uu11) / (uu20 - uu02) );
-         else
-         theta = 0;
-         */
 
-        /*
-        double cdx = centerx - ctrdx;
-        double cdy = centery - ctrdy;
-        double cdtheta = atan2(cdy, cdx)*57.2958;
-         //idea: make sure angle is the same direction as angle between centroid and minrect center
-         // maybe not necessary
-         */
-        
         double r_angle = minRect.angle;
         double out_angle = 0.0;
         if( minRect.size.height > minRect.size.width )
@@ -562,7 +619,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         {
             out_angle = -r_angle;
         }
-//        printf("%d %f %f %f\n", i, out_angle, cdtheta, out_angle - cdtheta);
         
         atom_setfloat(&at, out_angle);
         atomarray_appendatom(angle, &at);
@@ -614,87 +670,42 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         dictionary_appendatomarray(hullpts, addr_y, (t_object *)hull_y);
         dictionary_appenddictionary(contour_sub, addr_hull_pt_array, (t_object *)hullpts);
 
-        Mat rot_mtx = getRotationMatrix2D(minRect.center, minRect.angle, 1.0);
-
+//        Mat rot_mtx = getRotationMatrix2D(minRect.center, minRect.angle, 1.0);
         
-        double focus_val = 0.0;
+        
+        /* todo : compare focus values more carfully
         if( (minRect.size.width > 15) && (minRect.size.height > 15))
         {
-           // if( i == 0) {
-            // alternatively, could do use algorithm inside stats
-            Mat contour_mask = Mat::zeros( src_color_sized.size(), CV_8UC1 );
-            drawContours(contour_mask, contours, i, Scalar(255), CV_FILLED);
-            
-            // probably best to just get nonZeros and then iterate them?
-//            Mat contour_coords;
-          //  findNonZero(contour_mask, contour_coords);
-
-  
-//            this works but is kind of slow
-            vector<Stats> stats;
-            getStatsChar(src_color_sized, contour_mask, boundRect, stats);
-//            }
-         //   printf("%f %f\n", stats[1].min, stats[1].variance );
-
-            /*
-            Mat src_masked;
-            src_color_sized.copyTo(src_masked, contour_mask);
-
-            vector<Mat> argb;
-            split(src_masked, argb);
-
-            
-            SparseMat sparse_color( argb[1] );
-            sparse_color.convertTo(sparse_color, CV_32F);
-            printf("nonzero %ld csize %d %d \n", sparse_color.nzcount(), sparse_color.size(0), sparse_color.size(1) );
-
-            
-            double minv, maxv;
-            int locx, locy;
-            minMaxLoc(sparse_color, &minv, &maxv, &locx, &locy);
-            printf("min %f max %f \n", minv, maxv);
-            */
-            
-            /*
-            Mat contour_coords;
-            findNonZero(src_masked, contour_coords);
-            */
-            
-            // this
-            /*
-//            Mat mask_roi = src_masked( boundRect[i] );
-//            Mat mask_roi = Mat::zeros( boundRect[i].size(), src_color_sized.type() );
-//            mask_roi = src_color_sized.clone();
-            
-            
-            if( x->debug_matrix && i == 0)
-            {
-                mat2Jitter( &mask_roi, x->matrix );
-                printf("size %d %d\n", boundRect[i].size().width, boundRect[i].size().height  );
-            }
-            */
-// would like to get pixels in region and do more specific analysis of just that region
-// for instance to get rgb values
-// also for sobel
-// and for potential other uses like analyzing polar data from optcial flow
-
-
+ 
             Mat rot;
             Mat roi;
             warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
             getRectSubPix(rot, minRect.size, minRect.center, roi);
 
 
-            
-            Mat sob;
-            Scalar _mean, _stdv;
-            Sobel(roi, sob, CV_32F, 1, 1);
-            meanStdDev(sob, _mean, _stdv);
-            focus_val = (_stdv[0]*_stdv[0]) ;
+            {
+                Mat sob;
+                Scalar _mean, _stdv;
+                Sobel(roi, sob, CV_32F, 1, 1);
+                meanStdDev(sob, _mean, _stdv); // << this could be combined with the stats iteration
+                focus_val = (_stdv[0]*_stdv[0]) ;
+                printf("\t alt focus varience %f\n", focus_val );
 
+            }
 
         }
-
+         */
+        
+       
+        
+        /*
+         if( x->debug_matrix && i == 0)
+         {
+         mat2Jitter( &mask_roi, x->matrix );
+         printf("size %d %d\n", boundRect[i].size().width, boundRect[i].size().height  );
+         }
+         */
+        
 /*
         if( contours[i].size() > 5 )
         {
@@ -708,10 +719,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         atom_setfloat(&at, contourArea(convexcontour) / npix );
         atomarray_appendatom(hullarea, &at);
-        
-        
-        atom_setfloat(&at, focus_val );
-        atomarray_appendatom(focus, &at);
         
         //(defects[i].size() > 0 ) ? (defects[i].size() / (double)hullI[i].size()) : 0
         atom_setlong(&at, defects.size() );
@@ -730,6 +737,8 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         t_atomarray *defect_starty = atomarray_new(0, NULL);
         t_atomarray *defect_endx = atomarray_new(0, NULL);
         t_atomarray *defect_endy = atomarray_new(0, NULL);
+        
+//        vector<cv::Point> defect_startpt;
         
         double dist_sum = 0;
         vector<double> defect_dist;
@@ -764,12 +773,14 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
             atom_setfloat(&at, v[3] / 256.0);
             atomarray_appendatom(defect_depth, &at);
 
+            /*
             //float depth = v[3] / 256.; // depth from center of contour
             double dist = norm(ptFar - ptStart);
             dist_sum += dist;
             defect_startpt.push_back( ptStart );
             defect_dist.push_back( dist / npix);
-
+             */
+            
             d++;
         }
         atom_setfloat(&at, dist_sum);
@@ -946,12 +957,15 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     dictionary_appendatomarray(cv_dict, addr_parimeter, (t_object *)parimeter);
     dictionary_appendatomarray(cv_dict, addr_convex, (t_object *)convex);
     dictionary_appendatomarray(cv_dict, addr_child_of, (t_object *)child_of);
-    dictionary_appendatomarray(cv_dict, addr_focus, (t_object *)focus);
     dictionary_appendatomarray(cv_dict, addr_srcdim, (t_object *)srcdim);
     dictionary_appendatomarray(cv_dict, addr_defect_count, (t_object *)defect_count);
     dictionary_appendatomarray(cv_dict, addr_defect_dist_sum, (t_object *)defect_dist_sum);
     dictionary_appendatomarray(cv_dict, addr_hull_count, (t_object *)hull_count);
     dictionary_appendatomarray(cv_dict, addr_contour_count, (t_object *)contour_count);
+    
+    dictionary_appendatomarray(cv_dict, addr_focus, (t_object *)focus);
+    dictionary_appendatomarray(cv_dict, addr_flow_r, (t_object *)flow_r);
+    dictionary_appendatomarray(cv_dict, addr_flow_theta, (t_object *)flow_theta);
     
     dictionary_appenddictionary(cv_dict, addr_contourpts, (t_object *)contour_dict);
     
@@ -1110,6 +1124,7 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
         x->max_size = 0.9;
         x->min_size = 0.;
         
+        
         for( int i = 0; i < CV_JIT_MAX_IDS; i++ )
         {
             x->id_used[i] = 0;
@@ -1233,6 +1248,9 @@ void ext_main(void* unused)
     temp_addr_minrect = gensym("/minrect");
     addr_ids = gensym("/ids");
     addr_id = gensym("/id");
+    
+    addr_flow_r = gensym("/flow/r");
+    addr_flow_theta = gensym("/flow/theta");
     
     addr_contourpts = gensym("/contour/pts");
     ps_dict = gensym("dictionary");

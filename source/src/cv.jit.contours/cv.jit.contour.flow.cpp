@@ -17,6 +17,9 @@ void ContourFlow::processFrame( Mat& src_gray, vector<Point2f> in_points, vector
     {
         calcOpticalFlowPyrLK( m_prevGray, src_gray, m_points[0], m_points[1], status, err, m_winSize, 3, m_termcrit, 0, 0.001);
         
+        Mat flow;
+        calcOpticalFlowFarneback(m_prevGray, src_gray, flow, 0.5, 1, 15, 1, 5, 1.1, 0);
+
         out_points = m_points[1];
         
         /*

@@ -212,7 +212,7 @@ void getStatsChar( const Mat src, const Mat mask, const cv::Rect roi, vector<Sta
 //    int nonZcount = countNonZero(mask);
     
     vector<cv::Point> index;
-    index.reserve(roi.area());
+    index.reserve( roi.area() );
 //    printf("area %d -> nonzero: ", roi.area() );
     
     const uchar *mask_p = NULL;
@@ -352,18 +352,26 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         findContours( threshold_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0) );
     }
     
+    /*
+            per contour bounding boxes, etc. don't need to be stored.
+            moving these to inside the loop
+     
+     /// sizes based on contours
+     vector<RotatedRect> minRect( contours.size() );
+     //    vector<RotatedRect> minEllipse( contours.size() ); //<< just using minRect for now
+     vector<cv::Rect> boundRect( contours.size() );
+     vector<vector<cv::Point> >hullP( contours.size() );
+     vector<vector<int> >hullI( contours.size() );
+     vector<vector<Vec4i> >defects( contours.size() );
+     vector<double>focus_val( contours.size() );
+     
+     vector<double>contour_area( contours.size() );
+     
+     */
 
-    /// sizes based on contours
-    vector<RotatedRect> minRect( contours.size() );
-//    vector<RotatedRect> minEllipse( contours.size() ); //<< just using minRect for now
-    vector<cv::Rect> boundRect( contours.size() );
-    vector<vector<cv::Point> >hullP( contours.size() );
-    vector<vector<int> >hullI( contours.size() );
-    vector<vector<Vec4i> >defects( contours.size() );
-    vector<double>focus_val( contours.size() );
-    vector<double>contour_area( contours.size() );
-    
-    vector<Point2f> centroids( contours.size() );
+   
+    vector<Point2f> centroids;
+    centroids.reserve( contours.size() );
     
     //flat vector for optical flow
     vector<cv::Point> defect_startpt;
@@ -401,15 +409,18 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     t_atomarray *defect_dist_sum = atomarray_new(0, NULL);
 
 
+    double src_width = (double)src_gray.size().width;
+    double src_height = (double)src_gray.size().height;
+    
     t_atom at;
-    atom_setlong(&at, src_gray.size().width);
+    atom_setlong(&at, src_width );
     atomarray_appendatom(srcdim, &at);
-    atom_setlong(&at, src_gray.size().height);
+    atom_setlong(&at, src_height );
     atomarray_appendatom(srcdim, &at);
     
-    long npix = src_gray.size().width * src_gray.size().height;
+    double npix = src_width * src_height;
     
-    atom_setfloat(&at, (double)src_gray.size().width / (double)src_gray.size().height );
+    atom_setfloat(&at, src_width / src_height );
     dictionary_appendatom(cv_dict, addr_aspect, &at);
 
     char buf[256];
@@ -417,26 +428,27 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     t_dictionary *contour_dict = dictionary_new();
     
     long ncontours = contours.size();
+    
+    int count = 0;
     for( int i = 0; i < ncontours; ++i )
     {
         
-        double contour_a = contourArea(Mat(contours[i])) / (double)npix;
+        double contour_a = contourArea( Mat(contours[i]) ) / npix;
 
 
 //    todo: implement max size, probably will need to add a separate counter, or push_back points...
 //        need to figure out what the most efficient is.
 //          one major reason to do this is to avoid getting the minmax values for too large regions
         
-        /*
-       if( (contour_area[i] > x->max_size) || (contour_area[i] < x->min_size) )
+
+       if( (contour_a > x->max_size) || (contour_a < x->min_size) )
            continue;
-        */
         
         t_dictionary *contour_sub = dictionary_new();
         
-        sprintf(buf, "/%d", i);
+        sprintf( buf, "/%d", count );
         t_symbol *idr = gensym(buf);
-        dictionary_appendlong(contour_sub, addr_id, i);
+        dictionary_appendlong( contour_sub, addr_id, count );
         
         atom_setlong(&at, contours[i].size());
         atomarray_appendatom(contour_count, &at);
@@ -446,30 +458,27 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 
         atom_setfloat(&at, arcLength(contours[i], true));
         atomarray_appendatom(parimeter, &at);
-
-        contour_area[i] = contour_a;
         
-        atom_setfloat(&at, contour_area[i] );
+        atom_setfloat(&at, contour_a );
         atomarray_appendatom(area, &at);
         
-        boundRect[i] = boundingRect( Mat(contours[i]) );
+        cv::Rect boundRect = boundingRect( Mat(contours[i]) );
         
         // NOTE: minAreaRect function also computes convex hull internally, so this could be optimized later
-        minRect[i] = minAreaRect( Mat(contours[i]) );
+        RotatedRect minRect = minAreaRect( Mat(contours[i]) );
 
         t_dictionary *minrect_pts_sub = dictionary_new();
         t_atomarray *minr_ptx = atomarray_new(0, NULL);
         t_atomarray *minr_pty = atomarray_new(0, NULL);
         
         Point2f pts[4];
-        minRect[i].points(pts);
+        minRect.points( pts );
         
-        for(int i = 0; i < 4; i++)
+        for( int i = 0; i < 4; ++i )
         {
-//            printf("%f %f\n", pts[i].x, pts[i].y);
-            atom_setfloat(&at, pts[i].x / (double)src_gray.size().width );
+            atom_setfloat(&at, pts[i].x / src_width );
             atomarray_appendatom(minr_ptx, &at);
-            atom_setfloat(&at, 1. - (pts[i].y / (double)src_gray.size().height) );
+            atom_setfloat(&at, 1. - (pts[i].y / src_height) );
             atomarray_appendatom(minr_pty, &at);
         }
         
@@ -477,26 +486,26 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         dictionary_appendatomarray(minrect_pts_sub, addr_y, (t_object *)minr_pty);
         dictionary_appenddictionary(contour_sub, temp_addr_minrect, (t_object *)minrect_pts_sub);
         
-        atom_setfloat(&at, minRect[i].size.height / (double)src_gray.size().height);
+        atom_setfloat(&at, minRect.size.height / src_height);
         atomarray_appendatom(rotmaj, &at);
         
-        atom_setfloat(&at, minRect[i].size.width / (double)src_gray.size().width);
+        atom_setfloat(&at, minRect.size.width / src_width);
         atomarray_appendatom(rotmin, &at);
         
         
-        double centerx = minRect[i].center.x;
-        double centery = minRect[i].center.y;
+        double centerx = minRect.center.x;
+        double centery = minRect.center.y;
         
-        atom_setfloat(&at, centerx / (double)src_gray.size().width );
+        atom_setfloat(&at, centerx / src_width );
         atomarray_appendatom(cx, &at);
         
-        atom_setfloat(&at, 1. - (centery / (double)src_gray.size().height) );
+        atom_setfloat(&at, 1. - (centery / src_height) );
         atomarray_appendatom(cy, &at);
         
-        atom_setfloat(&at, boundRect[i].width / (double)src_gray.size().width );
+        atom_setfloat(&at, boundRect.width / src_width );
         atomarray_appendatom(sx, &at);
         
-        atom_setfloat(&at, boundRect[i].height / (double)src_gray.size().height );
+        atom_setfloat(&at, boundRect.height / src_height );
         atomarray_appendatom(sy, &at);
         
         double ctrdx = centerx;
@@ -510,14 +519,16 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 
         }
         
-        atom_setfloat(&at, ctrdx / (double)src_gray.size().width );
+        atom_setfloat(&at, ctrdx / src_width );
         atomarray_appendatom(centroidx, &at);
         
-        atom_setfloat(&at, 1. - (ctrdy / (double)src_gray.size().height) );
+        atom_setfloat(&at, 1. - (ctrdy / src_height) );
         atomarray_appendatom(centroidy, &at);
 
-        centroids[i].x = ctrdx;
-        centroids[i].y = ctrdy;
+        centroids.push_back( Point2f(ctrdx, ctrdy) );
+        
+//        centroids[i].x = ctrdx;
+//        centroids[i].y = ctrdy;
         
         /*
          double uu20 = moms.mu20/moms.m00;
@@ -541,9 +552,9 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
          // maybe not necessary
          */
         
-        double r_angle = minRect[i].angle;
+        double r_angle = minRect.angle;
         double out_angle = 0.0;
-        if( minRect[i].size.height > minRect[i].size.width )
+        if( minRect.size.height > minRect.size.width )
         {
             out_angle = -r_angle + 90.0;
         }
@@ -575,22 +586,27 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         atomarray_appendatom(eccentricity, &at);
         
         // hull
-        convexHull( Mat(contours[i]), hullP[i], false );
-        convexHull( Mat(contours[i]), hullI[i], false );
+        vector<cv::Point> hullP;
+        vector<int> hullI;
+        vector<Vec4i> defects;
         
-        if( hullI[i].size() > 3 )
-            convexityDefects( contours[i], hullI[i], defects[i] );
+        convexHull( Mat(contours[i]), hullP, false );
+        convexHull( Mat(contours[i]), hullI, false );
+
+        int hullI_size = hullI.size();
+        if( hullI_size > 3 )
+            convexityDefects( contours[i], hullI, defects );
         
         t_dictionary *hullpts = dictionary_new();
         t_atomarray *hull_x = atomarray_new(0, NULL);
         t_atomarray *hull_y = atomarray_new(0, NULL);
 
-        for( long hpi = 0; hpi < hullI[i].size(); hpi++ )
+        for( long hpi = 0; hpi < hullI_size; hpi++ )
         {
-            atom_setfloat(&at,  hullP[i][hpi].x / (double)src_gray.size().width );
+            atom_setfloat(&at,  hullP[hpi].x / src_width );
             atomarray_appendatom( hull_x, &at );
             
-            atom_setfloat(&at,  1. - (hullP[i][hpi].y / (double)src_gray.size().height) );
+            atom_setfloat(&at,  1. - (hullP[hpi].y / src_height) );
             atomarray_appendatom( hull_y, &at );
         }
 
@@ -598,11 +614,11 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         dictionary_appendatomarray(hullpts, addr_y, (t_object *)hull_y);
         dictionary_appenddictionary(contour_sub, addr_hull_pt_array, (t_object *)hullpts);
 
-        Mat rot_mtx = getRotationMatrix2D(minRect[i].center, minRect[i].angle, 1.0);
+        Mat rot_mtx = getRotationMatrix2D(minRect.center, minRect.angle, 1.0);
 
         
-        focus_val[i] = 0.0;
-        if( (minRect[i].size.width > 15) && (minRect[i].size.height > 15))
+        double focus_val = 0.0;
+        if( (minRect.size.width > 15) && (minRect.size.height > 15))
         {
            // if( i == 0) {
             // alternatively, could do use algorithm inside stats
@@ -616,7 +632,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
   
 //            this works but is kind of slow
             vector<Stats> stats;
-            getStatsChar(src_color_sized, contour_mask, boundRect[i], stats);
+            getStatsChar(src_color_sized, contour_mask, boundRect, stats);
 //            }
          //   printf("%f %f\n", stats[1].min, stats[1].variance );
 
@@ -666,7 +682,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
             Mat rot;
             Mat roi;
             warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
-            getRectSubPix(rot, minRect[i].size, minRect[i].center, roi);
+            getRectSubPix(rot, minRect.size, minRect.center, roi);
 
 
             
@@ -674,7 +690,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
             Scalar _mean, _stdv;
             Sobel(roi, sob, CV_32F, 1, 1);
             meanStdDev(sob, _mean, _stdv);
-            focus_val[i] = (_stdv[0]*_stdv[0]) ;
+            focus_val = (_stdv[0]*_stdv[0]) ;
 
 
         }
@@ -688,20 +704,20 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 */
         
         Mat convexcontour;
-        approxPolyDP(Mat(hullP[i]), convexcontour, 0.001, true);
+        approxPolyDP( Mat(hullP), convexcontour, 0.001, true);
         
-        atom_setfloat(&at, contourArea(convexcontour) / (double)npix );
+        atom_setfloat(&at, contourArea(convexcontour) / npix );
         atomarray_appendatom(hullarea, &at);
         
         
-        atom_setfloat(&at, focus_val[i] );
+        atom_setfloat(&at, focus_val );
         atomarray_appendatom(focus, &at);
         
         //(defects[i].size() > 0 ) ? (defects[i].size() / (double)hullI[i].size()) : 0
-        atom_setlong(&at, defects[i].size() );
+        atom_setlong(&at, defects.size() );
         atomarray_appendatom(defect_count, &at);
         
-        atom_setlong(&at, hullI[i].size() );
+        atom_setlong(&at, hullI.size() );
         atomarray_appendatom(hull_count, &at);
         
 
@@ -717,30 +733,32 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         double dist_sum = 0;
         vector<double> defect_dist;
-        vector<Vec4i>::iterator d = defects[i].begin();
-        while ( d != defects[i].end() )
+        vector<Vec4i>::iterator d = defects.begin();
+        vector<Vec4i>::iterator d_end = defects.end();
+        
+        while ( d != d_end )
         {
             Vec4i& v = (*d);
             cv::Point ptStart(  contours[ i ][ v[0] ] );
             cv::Point ptEnd(    contours[ i ][ v[1] ] );
             cv::Point ptFar(    contours[ i ][ v[2] ] );
 
-            atom_setfloat(&at, ptFar.x / (double)src_gray.size().width );
+            atom_setfloat(&at, ptFar.x / src_width );
             atomarray_appendatom(defect_x, &at);
 
-            atom_setfloat(&at, 1. - (ptFar.y / (double)src_gray.size().height)  );
+            atom_setfloat(&at, 1. - (ptFar.y / src_height)  );
             atomarray_appendatom(defect_y, &at);
 
-            atom_setfloat(&at, ptStart.x / (double)src_gray.size().width );
+            atom_setfloat(&at, ptStart.x / src_width );
             atomarray_appendatom(defect_startx, &at);
             
-            atom_setfloat(&at, 1. - (ptStart.y / (double)src_gray.size().height)  );
+            atom_setfloat(&at, 1. - (ptStart.y / src_height)  );
             atomarray_appendatom(defect_starty, &at);
             
-            atom_setfloat(&at, ptEnd.x / (double)src_gray.size().width );
+            atom_setfloat(&at, ptEnd.x / src_width );
             atomarray_appendatom(defect_endx, &at);
             
-            atom_setfloat(&at, 1. - (ptEnd.y / (double)src_gray.size().height)  );
+            atom_setfloat(&at, 1. - (ptEnd.y / src_height)  );
             atomarray_appendatom(defect_endy, &at);
             
             atom_setfloat(&at, v[3] / 256.0);
@@ -764,11 +782,13 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         dictionary_appendatomarray(defectpts, addr_x, (t_object *)defect_x);
         dictionary_appendatomarray(defectpts, addr_y, (t_object *)defect_y);
         dictionary_appendatomarray(defectpts, addr_depth, (t_object *)defect_depth);
-        dictionary_appendlong(defectpts, addr_id, i);
+        dictionary_appendlong(defectpts, addr_id, count);
         dictionary_appenddictionary(contour_sub, addr_defect_ptlist, (t_object *)defectpts);
         
         // add contour id sub to main dict
         dictionary_appenddictionary(contour_dict, idr, (t_object *)contour_sub);
+        
+        count++;
 
     }
 
@@ -795,7 +815,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         vector<int> new_ids( centroids.size(), -1 );
         
         int closest_id = -1;
-        double radius_max = x->track_radius * src_gray.size().height;
+        double radius_max = x->track_radius * src_height;
         double min = radius_max;
         int debug_count = 0;
         

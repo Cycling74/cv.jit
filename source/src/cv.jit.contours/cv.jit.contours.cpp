@@ -1,5 +1,4 @@
 
-
 //#include "opencv2/imgproc/imgproc.hpp"
 //#include "opencv2/imgcodecs.hpp"
 //#include "opencv2/highgui.hpp"
@@ -18,7 +17,6 @@
 #include "ext_dictobj.h"
 
 #include "opencv2/opencv.hpp"
-
 #include "cv.jit.contour.flow.h"
 
 #define CV_JIT_MAX_IDS 100
@@ -30,6 +28,11 @@ typedef struct _cv_contours
 {
     t_object    ob;
     void        *obex;
+    
+    void        *matrix;
+    t_atom      matrix_name;
+    void        *matrix_outlet;
+    
     void        *outlet;
     t_critical  lock;
     
@@ -43,6 +46,10 @@ typedef struct _cv_contours
     long        invert;
     
     double      track_radius;
+    long        debug_matrix;
+    
+    double      max_size;
+    double      min_size;
     
     t_dictionary *attr_dict; //to do
     
@@ -78,11 +85,11 @@ t_symbol *addr_area;
 t_symbol *addr_parimeter;
 
 t_symbol *addr_hullarea;
-t_symbol *addr_area_sort;
 t_symbol *addr_child_of;
 t_symbol *addr_focus;
 t_symbol *addr_convex;
 t_symbol *addr_srcdim;
+t_symbol *addr_aspect;
 t_symbol *addr_defect_count;
 t_symbol *addr_defect_dist_sum;
 t_symbol *addr_depth;
@@ -107,14 +114,188 @@ t_symbol *addr_contourpts;
 t_symbol *temp_addr_minrect;
 t_symbol *ps_dict;
 
-static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
+void mat2Jitter(Mat *mat, void *jitMat)
 {
+    t_jit_matrix_info info;
+    
+    if((!jitMat)||(!mat))
+    {
+        error("Error converting to Jitter matrix: invalid pointer.");
+        return;
+    }
+    
+    jit_object_method(jitMat,_jit_sym_getinfo,&info);
+    info.dimcount = 2;
+    info.planecount = mat->channels() ;
+    info.dim[0] = mat->cols;
+    info.dim[1] = mat->rows;
+    switch(  mat->depth() ){
+        case CV_8U:
+            info.type = _jit_sym_char;
+            info.dimstride[0] = sizeof(char);
+            break;
+        case CV_32S:
+            info.type = _jit_sym_long;
+            info.dimstride[0] = sizeof(long);
+            break;
+        case CV_32F:
+            info.type = _jit_sym_float32;
+            info.dimstride[0] = sizeof(double);
+            break;
+        case CV_64F:
+            info.type = _jit_sym_float64;
+            info.dimstride[0] = sizeof(double);
+            break;
+        default:
+            error("Error converting to Jitter matrix: unsupported depth.");
+            return;
+    }
+    info.dimstride[1] = mat->step;
+    info.size = mat->step * mat->rows;
+//    info.flags = JIT_MATRIX_DATA_REFERENCE | JIT_MATRIX_DATA_FLAGS_USE;
+    jit_object_method(jitMat, _jit_sym_setinfo_ex, &info);
+    jit_object_method(jitMat, _jit_sym_data, mat->data);
+}
+
+string type2str(int type) {
+    string r;
+    
+    uchar depth = type & CV_MAT_DEPTH_MASK;
+    uchar chans = 1 + (type >> CV_CN_SHIFT);
+    
+    switch ( depth ) {
+        case CV_8U:  r = "8U"; break;
+        case CV_8S:  r = "8S"; break;
+        case CV_16U: r = "16U"; break;
+        case CV_16S: r = "16S"; break;
+        case CV_32S: r = "32S"; break;
+        case CV_32F: r = "32F"; break;
+        case CV_64F: r = "64F"; break;
+        default:     r = "User"; break;
+    }
+    
+    r += "C";
+    r += (chans+'0');
+    
+    return r;
+}
+
+struct Stats {
+    double min = std::numeric_limits<double>::max();
+    double max = 0;
+    double mean = 0;
+    double sum = 0;
+    double dev_sum = 0;
+    double variance = 0;
+};
+
+
+// TODO: send in bounding box to reduce overhead!  I think this will help a lot
+//template <typename T>
+void getStatsChar( const Mat src, const Mat mask, const cv::Rect roi, vector<Stats>& _stats)
+{
+    //const int plane, T& min, T& max, T& varience
+    
+    // test roi
+    if( src.size() != mask.size() )
+    {
+        printf("size mismatch\n");
+        return;
+    }
+
+    vector<Stats> stats( src.channels() );
+    
+    /*
+    stats = Mat(1, nchans, src.type() );
+    uchar *stats_ptr = stats.data;
+    */
+//    int nonZcount = countNonZero(mask);
+    
+    vector<cv::Point> index;
+    index.reserve(roi.area());
+//    printf("area %d -> nonzero: ", roi.area() );
+    
+    const uchar *mask_p = NULL;
+    const uchar *src_p = NULL;
+    int nchans = src.channels();
+    
+    int row_start = roi.y;
+    int row_end = roi.y + roi.height;
+    
+    int col_start = roi.x;
+    int col_end = roi.x + roi.width;
+    
+    for( int i = row_start; i < row_end; ++i )
+    {
+        mask_p = mask.ptr<uchar>(i);
+        
+        // do type check above here
+        src_p = src.ptr<uchar>(i);
+        
+        for( int j = col_start; j < col_end; ++j )
+        {
+            if( mask_p[j] )
+            {
+                // test emplace_back (
+                index.push_back( cv::Point(j, i) );
+                
+                for( int c = 0; c < nchans; ++c)
+                {
+                    if( src_p[j + c] < stats[c].min )
+                        stats[c].min = src_p[ j+c ];
+                    
+                    if( src_p[j + c] > stats[c].max )
+                        stats[c].max = src_p[ j+c ];
+
+                    
+                    stats[c].sum += src_p[j + c];
+                }
+                
+            }
+            
+        }
+    }
+    
+//    printf(" %lu\n", index.size() );
+    
+    for( int c = 0; c < nchans; ++c)
+    {
+        stats[c].mean = stats[c].sum / index.size();
+    }
+    
+    int row, col;
+    int size = index.size();
+    for( int i = 0; i < size; ++i )
+    {
+        col = index[i].x;
+        row = index[i].y;
+        
+        src_p = src.ptr<uchar>(row);
+        
+        for( int c = 0; c < nchans; ++c)
+        {
+            double dx = src_p[ col + c ] - stats[c].mean;
+            stats[c].dev_sum += (dx*dx);
+        }
+    }
+    
+    for( int c = 0; c < nchans; ++c)
+    {
+        stats[c].variance = stats[c].dev_sum / index.size();
+    }
+    
+    _stats = stats;
+//    printf("exit\n");
+}
+
+static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
+{
+    
     // preprocess
 
-    Mat src_gray, src_blur_gray;
+    Mat src_gray, src_blur_gray, src_color_sized;
     
     {
-        Mat src_color_sized;
         
         if( (frame.size().height * x->resize_scale) < 1.0 )
             x->resize_scale += (1.0/frame.size().height) - x->resize_scale;
@@ -227,13 +408,29 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     atomarray_appendatom(srcdim, &at);
     
     long npix = src_gray.size().width * src_gray.size().height;
+    
+    atom_setfloat(&at, (double)src_gray.size().width / (double)src_gray.size().height );
+    dictionary_appendatom(cv_dict, addr_aspect, &at);
 
     char buf[256];
     
     t_dictionary *contour_dict = dictionary_new();
     
-    for( int i = 0; i < contours.size(); i++ )
+    long ncontours = contours.size();
+    for( int i = 0; i < ncontours; ++i )
     {
+        
+        double contour_a = contourArea(Mat(contours[i])) / (double)npix;
+
+
+//    todo: implement max size, probably will need to add a separate counter, or push_back points...
+//        need to figure out what the most efficient is.
+//          one major reason to do this is to avoid getting the minmax values for too large regions
+        
+        /*
+       if( (contour_area[i] > x->max_size) || (contour_area[i] < x->min_size) )
+           continue;
+        */
         
         t_dictionary *contour_sub = dictionary_new();
         
@@ -250,10 +447,9 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         atom_setfloat(&at, arcLength(contours[i], true));
         atomarray_appendatom(parimeter, &at);
 
+        contour_area[i] = contour_a;
         
-        contour_area[i] = contourArea(Mat(contours[i]));
-        
-        atom_setfloat(&at, contour_area[i] / (double)npix );
+        atom_setfloat(&at, contour_area[i] );
         atomarray_appendatom(area, &at);
         
         boundRect[i] = boundingRect( Mat(contours[i]) );
@@ -408,27 +604,78 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
         focus_val[i] = 0.0;
         if( (minRect[i].size.width > 15) && (minRect[i].size.height > 15))
         {
+           // if( i == 0) {
+            // alternatively, could do use algorithm inside stats
+            Mat contour_mask = Mat::zeros( src_color_sized.size(), CV_8UC1 );
+            drawContours(contour_mask, contours, i, Scalar(255), CV_FILLED);
+            
+            // probably best to just get nonZeros and then iterate them?
+//            Mat contour_coords;
+          //  findNonZero(contour_mask, contour_coords);
+
+  
+//            this works but is kind of slow
+            vector<Stats> stats;
+            getStatsChar(src_color_sized, contour_mask, boundRect[i], stats);
+//            }
+         //   printf("%f %f\n", stats[1].min, stats[1].variance );
 
             /*
-              this would be cool, but not working yet
-            Mat contour_mask = Mat::zeros( src_gray.size(), src_gray.type() );
-            drawContours(contour_mask, contours, i, Scalar(255, 255, 255), CV_FILLED);
             Mat src_masked;
-            src_gray.copyTo(src_masked, contour_mask);
-            Mat roi = src_masked( boundRect[i] );
-             */
+            src_color_sized.copyTo(src_masked, contour_mask);
+
+            vector<Mat> argb;
+            split(src_masked, argb);
 
             
+            SparseMat sparse_color( argb[1] );
+            sparse_color.convertTo(sparse_color, CV_32F);
+            printf("nonzero %ld csize %d %d \n", sparse_color.nzcount(), sparse_color.size(0), sparse_color.size(1) );
+
+            
+            double minv, maxv;
+            int locx, locy;
+            minMaxLoc(sparse_color, &minv, &maxv, &locx, &locy);
+            printf("min %f max %f \n", minv, maxv);
+            */
+            
+            /*
+            Mat contour_coords;
+            findNonZero(src_masked, contour_coords);
+            */
+            
+            // this
+            /*
+//            Mat mask_roi = src_masked( boundRect[i] );
+//            Mat mask_roi = Mat::zeros( boundRect[i].size(), src_color_sized.type() );
+//            mask_roi = src_color_sized.clone();
+            
+            
+            if( x->debug_matrix && i == 0)
+            {
+                mat2Jitter( &mask_roi, x->matrix );
+                printf("size %d %d\n", boundRect[i].size().width, boundRect[i].size().height  );
+            }
+            */
+// would like to get pixels in region and do more specific analysis of just that region
+// for instance to get rgb values
+// also for sobel
+// and for potential other uses like analyzing polar data from optcial flow
+
+
             Mat rot;
             Mat roi;
             warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
             getRectSubPix(rot, minRect[i].size, minRect[i].center, roi);
 
+
+            
             Mat sob;
             Scalar _mean, _stdv;
             Sobel(roi, sob, CV_32F, 1, 1);
             meanStdDev(sob, _mean, _stdv);
             focus_val[i] = (_stdv[0]*_stdv[0]) ;
+
 
         }
 
@@ -691,8 +938,15 @@ static void cv_contours_dict_out(t_cv_contours *x, const Mat frame)
     
     atom_setsym(&at, x->dict_name);
     outlet_anything(x->outlet, ps_dict, 1, &at);
-    
     object_free(cv_dict);
+    
+    
+    if( x->debug_matrix )
+    {
+        
+        if(x->matrix)
+            outlet_anything(x->matrix_outlet, _jit_sym_jit_matrix, 1, &x->matrix_name);
+    }
     
 }
 
@@ -736,6 +990,7 @@ void cv_contours_jit_matrix(t_cv_contours *x, t_symbol *s, long argc, t_atom *ar
                 object_error((t_object *)x, "invalid dimension count.");
                 goto out;
             }
+            
             
             if(in_minfo.type == _jit_sym_char)
             {
@@ -800,6 +1055,10 @@ t_max_err cv_contours_gauss_sigma_get(t_cv_contours *x, t_object *attr, long *ar
 BEGIN_USING_C_LINKAGE
 void cv_contours_free(t_cv_contours *x)
 {
+    
+    if( x->matrix )
+        jit_object_free(x->matrix);
+    
     critical_free(x->lock);
     
     max_jit_object_free(x);
@@ -815,6 +1074,9 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
         x->outlet = outlet_new(x, NULL);
         critical_new(&(x->lock));
         
+        x->matrix = NULL;
+        x->debug_matrix = 0;
+        
         x->erosion_size = 0;
         x->dilation_size = 0;
         x->gauss_sigma = 3;
@@ -824,6 +1086,9 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
         x->invert = 0;
         x->track_radius = 0.1;
         x->dict_name = symbol_unique();
+        
+        x->max_size = 0.9;
+        x->min_size = 0.;
         
         for( int i = 0; i < CV_JIT_MAX_IDS; i++ )
         {
@@ -836,6 +1101,24 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
             attr_args_dictionary(d, argc, argv);
             attr_dictionary_process(x, d);
             object_free(d);
+        }
+        
+        if( x->debug_matrix )
+        {
+            x->matrix_outlet = outlet_new(x, "jit_matrix");
+            
+            t_jit_matrix_info matrix_info;
+            
+            t_symbol *matrix_name_unique = symbol_unique();
+            jit_matrix_info_default(&matrix_info);
+            matrix_info.type = _jit_sym_char;
+            matrix_info.planecount = 4;
+            matrix_info.dim[0] = 1920;
+            matrix_info.dim[1] = 1080;
+            x->matrix = jit_object_new(_jit_sym_jit_matrix, &matrix_info);
+            x->matrix = jit_object_method(x->matrix, _jit_sym_register, matrix_name_unique);
+            atom_setsym( &x->matrix_name, matrix_name_unique );
+
         }
         
     }
@@ -877,6 +1160,18 @@ void ext_main(void* unused)
     
     CLASS_ATTR_LONG(c, "invert", 0, t_cv_contours, invert);
     CLASS_ATTR_STYLE_LABEL(c, "invert", 0, "onoff", "invert cv image b/w");
+
+    CLASS_ATTR_DOUBLE(c, "max_size", 0, t_cv_contours, max_size);
+    CLASS_ATTR_FILTER_MIN(c, "max_size", 0);
+    CLASS_ATTR_FILTER_MAX(c, "max_size", 1);
+
+    CLASS_ATTR_DOUBLE(c, "min_size", 0, t_cv_contours, min_size);
+    CLASS_ATTR_FILTER_MIN(c, "min_size", 0);
+    CLASS_ATTR_FILTER_MAX(c, "min_size", 1);
+    
+    CLASS_ATTR_LONG(c, "debug_matrix", 0, t_cv_contours, debug_matrix);
+    CLASS_ATTR_INVISIBLE(c, "debug_matrix", 0);
+    
     
     class_register(CLASS_BOX, c);
     cv_contours_class = c;
@@ -894,11 +1189,11 @@ void ext_main(void* unused)
     
     addr_area = gensym("/area");
     addr_hullarea = gensym("/hull/area");
-    addr_area_sort = gensym("/area_sort");
-    addr_child_of = gensym("/child_of");
+    addr_child_of = gensym("/parent");
     addr_convex = gensym("/isconvex");
     addr_focus = gensym("/focus");
     addr_srcdim = gensym("/dim_xy");
+    addr_aspect = gensym("/aspect");
     addr_defect_count = gensym("/defect/count");
     addr_defect_dist_sum = gensym("/defect/dist_sum");
     addr_hull_count = gensym("/hull/count");

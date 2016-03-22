@@ -1,0 +1,3 @@
+[submodule "source/max-sdk-core"]
+	path = source/max-sdk-core
+	url = https://github.com/tap/max-sdk-core.git

@@ -8,14 +8,7 @@
 
 
 
-/*Includes*/
-#ifdef JITTER
-#ifndef __JIT_COMMON_H__
-extern "C"{
-#include "jit.common.h"
-}
-#endif
-#endif
+#include "ext_jitter.h"
 
 #ifdef OPENCV
 #ifndef _CV_H_

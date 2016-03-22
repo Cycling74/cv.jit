@@ -37,7 +37,7 @@ in Jitter externals.
 
 
 #include <cv.h>
-#include <jit.common.h>
+#include "ext_jitter.h"
 
 void cvJitter2CvMat(void *jitMat, CvMat *mat);
 void cvMat2Jitter(CvMat *mat, void *jitMat);

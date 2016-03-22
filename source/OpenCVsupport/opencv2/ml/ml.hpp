@@ -54,10 +54,10 @@
 // that interferes with a method definiton in this header
 #undef check
 
-
+#ifdef __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Woverloaded-virtual"
-
+#endif
 
 /****************************************************************************************\
 *                               Main struct definitions                                  *
@@ -2146,7 +2146,9 @@ CV_EXPORTS bool initModule_ml(void);
 
 }
 
+#ifdef __clang__
 #pragma clang diagnostic pop
+#endif
 
 #endif // __cplusplus
 #endif // __OPENCV_ML_HPP__

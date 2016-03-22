@@ -19,4 +19,15 @@ if(APPLE)
 		${CMAKE_CURRENT_SOURCE_DIR}/../../lib/libz.a
 	)
 else()
+	if(WIN64)
+		set(EXTRA_LIBS
+			${CMAKE_CURRENT_SOURCE_DIR}/../../lib/x64/opencv.lib
+			${CMAKE_CURRENT_SOURCE_DIR}/../../lib/x64/zlib.lib
+		)
+	else ()
+		set(EXTRA_LIBS
+			${CMAKE_CURRENT_SOURCE_DIR}/../../lib/opencv.lib
+			${CMAKE_CURRENT_SOURCE_DIR}/../../lib/zlib.lib
+		)
+	endif ()
 endif()

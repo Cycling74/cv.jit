@@ -1,5 +1,7 @@
 .DS_Store
 build/
+build32
+build64
 *.pbxuser
 *.mode1v3
 xcuserdata
@@ -16,3 +18,4 @@ ipch
 
 externals
 temp
+tmp

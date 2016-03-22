@@ -18,6 +18,7 @@ if(APPLE)
 	set(PLATFORM_CODE 
 		${CMAKE_CURRENT_SOURCE_DIR}/OSX/cv.erode.cpp 
 		${CMAKE_CURRENT_SOURCE_DIR}/../../lib/libcv.a
+		${PROJECT_NAME}.cpp
 	)
 	FIND_LIBRARY(ACCELERATE_LIBRARY Accelerate)
 	MARK_AS_ADVANCED (ACCELERATE_LIBRARY)
@@ -29,7 +30,6 @@ endif()
 add_library( 
 	${PROJECT_NAME} 
 	MODULE
-	${PROJECT_NAME}.cpp
 	max.${PROJECT_NAME}.cpp
 	${PLATFORM_CODE}
 )

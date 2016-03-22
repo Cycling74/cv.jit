@@ -251,7 +251,7 @@ void cv_jit_covariance_calculate_ndim(t_cv_jit_covariance *x, long *dim, t_jit_m
 			for(i=0;i<size;i++)
 			{
 				temp = ipf[i] - meanf[i];
-				varf[i] = (varf[i]*nn + (temp/n));
+				varf[i] = (float)(varf[i]*nn + (temp/n));
 			}	
 		}
 	

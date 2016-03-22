@@ -41,8 +41,7 @@ typedef struct{
 #define CVJIT_MODE_BIN 0
 #define CVJIT_MODE_GREY 1
 
-class Erode
-{
+class Erode {
 private:
 	int _mode;
 	Image _input;

@@ -24,17 +24,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 /*Note: This is the Windows implementation of the cv.jit.erode external.*/
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include "jit.common.h"
-
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-
-#include "jit.common.h"
+#include "ext_jitter.h"
 
 typedef struct _cv_jit_erode 
 {
@@ -64,7 +54,7 @@ t_jit_err cv_jit_erode_init(void)
 	
 	//add attributes
 	// mode
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	attr = (t_object *)jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_erode,mode));
 	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
 	jit_class_addattr(_cv_jit_erode_class,attr);

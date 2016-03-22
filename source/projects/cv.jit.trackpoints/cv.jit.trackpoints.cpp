@@ -27,7 +27,7 @@ Note:
 	This external has been deprecated. It is provided only for backward compatibility.
 */
 
-#include "jit.common.h"
+#include "ext_jitter.h"
 
 typedef struct _cv_jit_trackpoints 
 {
@@ -64,7 +64,7 @@ t_jit_err cv_jit_trackpoints_init(void)
 	jit_class_addmethod(_cv_jit_trackpoints_class, (method)cv_jit_trackpoints_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 
 	//add attributes	
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset_array, "size", _jit_sym_long, 2, attrflags, (method)0L, (method)0L, calcoffset(t_cv_jit_trackpoints, dimcount),calcoffset(t_cv_jit_trackpoints,dim));
 	jit_class_addattr(_cv_jit_trackpoints_class,attr);
@@ -204,7 +204,7 @@ t_cv_jit_trackpoints *cv_jit_trackpoints_new(void)
 {
 	t_cv_jit_trackpoints *x;
 			
-	if (x=(t_cv_jit_trackpoints *)jit_object_alloc(_cv_jit_trackpoints_class)) {
+	if ((x=(t_cv_jit_trackpoints *)jit_object_alloc(_cv_jit_trackpoints_class))) {
 		x->dim[0] = 320;
 		x->dim[1] = 240;
 	

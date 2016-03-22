@@ -78,7 +78,7 @@ void *max_cv_jit_erode_new(t_symbol *s, long argc, t_atom *argv)
 	void *o;
 
 	if ((x=(t_max_cv_jit_erode *)max_jit_obex_new(max_cv_jit_erode_class,gensym("cv_jit_erode")))) {  //Create a new instance of Jitter object class
-		if ((o=jit_object_new(gensym("cv_jit_erode")))) { //Create a new erode object
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_erode")))) { //Create a new erode object
 			max_jit_mop_setup_simple(x,o,argc,argv);  //Matrix operator setup
 			max_jit_attr_args(x,argc,argv); //Arguments and attributes
 		} else {

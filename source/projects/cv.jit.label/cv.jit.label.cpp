@@ -22,14 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-#include <stdlib.h>
+#include "ext_jitter.h"
 
 //Blob struct definition
 typedef struct
@@ -103,7 +96,7 @@ t_jit_err cv_jit_label_init(void)
 	_cv_jit_label_class = jit_class_new("cv_jit_label",(method)cv_jit_label_new,(method)cv_jit_label_free,sizeof(t_cv_jit_label),0L);
 
 	//add mop
-	mop = jit_object_new(_jit_sym_jit_mop,1,1);
+	mop = (t_jit_object*)jit_object_new(_jit_sym_jit_mop,1,1);
 	jit_class_addadornment(_cv_jit_label_class,mop);
 
 	//add methods
@@ -112,15 +105,15 @@ t_jit_err cv_jit_label_init(void)
 	//add attributes
 	//
 	// threshold : the minimum blob size
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
-	attr = jit_object_new(_jit_sym_jit_attr_offset,"threshold",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_label,threshold));
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
+	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"threshold",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_label,threshold));
 	jit_class_addattr(_cv_jit_label_class,attr);
 	//mode : 0: label sequentially, 1: label with mass
-	attr = jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_label,mode));
+	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_label,mode));
 	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
 	jit_class_addattr(_cv_jit_label_class,attr);
 	//charmode: 0: output is long, 1: output is char
-	attr = jit_object_new(_jit_sym_jit_attr_offset,"charmode",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_label,charmode));
+	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"charmode",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_label,charmode));
 	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
 	jit_class_addattr(_cv_jit_label_class,attr);
 
@@ -771,7 +764,7 @@ t_cv_jit_label *cv_jit_label_new(void)
 	void *m;
 	t_jit_matrix_info info;
 		
-	if (x=(t_cv_jit_label *)jit_object_alloc(_cv_jit_label_class)) 
+	if ((x=(t_cv_jit_label *)jit_object_alloc(_cv_jit_label_class))) 
 	{
 			x->threshold = 0;
 			x->mode = 0;
@@ -781,7 +774,7 @@ t_cv_jit_label *cv_jit_label_new(void)
 			info.type = _jit_sym_char;
 			info.dimcount = 1;
 			info.planecount = 1;
-			m = jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
+			m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
 			if(!m) error("could not allocate internal matrix!");
 			jit_object_method(m,_jit_sym_clear);						//Clear data
 			x->buf = m;												//Copy matrix pointer to jitter object
@@ -790,7 +783,7 @@ t_cv_jit_label *cv_jit_label_new(void)
 			info.type = _jit_sym_long;
 			info.dimcount = 2;
 			info.planecount = 1;
-			m = jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
+			m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
 			if(!m) error("could not allocate internal matrix!");
 			jit_object_method(m,_jit_sym_clear);						//Clear data
 			x->ctemp = m;												//Copy matrix pointer to jitter object		

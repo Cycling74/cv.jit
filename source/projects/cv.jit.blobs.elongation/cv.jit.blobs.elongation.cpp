@@ -48,7 +48,7 @@ t_jit_err cv_jit_blobs_elongation_init(void)
 		sizeof(t_cv_jit_blobs_elongation),0L); 
 
 	//add mop
-	mop = jit_object_new(_jit_sym_jit_mop,1,1);  //Object has one input and one output
+	mop = (t_jit_object*)jit_object_new(_jit_sym_jit_mop,1,1);  //Object has one input and one output
 
    	jit_mop_single_type(mop,_jit_sym_float32);   //Set input type and planecount
    	jit_mop_single_planecount(mop,17);  

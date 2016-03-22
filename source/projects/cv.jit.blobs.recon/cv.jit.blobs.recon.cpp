@@ -71,7 +71,7 @@ t_jit_err cv_jit_blobs_recon_init(void)
 		sizeof(t_cv_jit_blobs_recon),0L); 
 
 	//add mop
-	mop = jit_object_new(_jit_sym_jit_mop,1,1);  //Object has one input and one output
+	mop = (t_jit_object*)jit_object_new(_jit_sym_jit_mop,1,1);  //Object has one input and one output
 
    	jit_mop_single_type(mop,_jit_sym_float32);   //Set input type and planecount
    	jit_mop_single_planecount(mop,17);  
@@ -93,7 +93,7 @@ t_jit_err cv_jit_blobs_recon_init(void)
 
 	//add attributes	
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
-	attr = jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_long,attrflags,
+	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_long,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_blobs_recon,mode));
 	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
 	jit_class_addattr(_cv_jit_blobs_recon_class,(t_jit_object *)attr);

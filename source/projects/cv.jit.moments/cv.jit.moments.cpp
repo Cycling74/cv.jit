@@ -22,14 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-
+#include "ext_jitter.h"
 typedef struct _cv_jit_moments 
 {
 	t_object	ob;
@@ -63,26 +56,26 @@ t_jit_err cv_jit_moments_init(void)
 	_cv_jit_moments_class = jit_class_new("cv_jit_moments",(method)cv_jit_moments_new,(method)cv_jit_moments_free, sizeof(t_cv_jit_moments),0L);
 		
 	//add mop
-	mop = jit_object_new(_jit_sym_jit_mop,1,0);
+	mop = (t_jit_object*)jit_object_new(_jit_sym_jit_mop,1,0);
 	jit_class_addadornment(_cv_jit_moments_class,mop);
 	//add methods
 	jit_class_addmethod(_cv_jit_moments_class, (method)cv_jit_moments_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 	//add attributes	
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_OPAQUE_USER;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_OPAQUE_USER;
 	
-	attr = jit_object_new(_jit_sym_jit_attr_offset_array,"moments",_jit_sym_float32,7,attrflags,
+	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset_array,"moments",_jit_sym_float32,7,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_moments,momcount),calcoffset(t_cv_jit_moments,moments));
 	jit_class_addattr(_cv_jit_moments_class,attr);
 	
-	attr = jit_object_new(_jit_sym_jit_attr_offset_array,"hu",_jit_sym_float32,7,attrflags,
+	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset_array,"hu",_jit_sym_float32,7,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_moments,momcount),calcoffset(t_cv_jit_moments,hu));
 	jit_class_addattr(_cv_jit_moments_class,attr);
 	
-	attr = jit_object_new(_jit_sym_jit_attr_offset_array,"centroids",_jit_sym_float32,2,attrflags,
+	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset_array,"centroids",_jit_sym_float32,2,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_moments,centcount),calcoffset(t_cv_jit_moments,centroids));
 	jit_class_addattr(_cv_jit_moments_class,attr);
 	
-	attr = jit_object_new(	_jit_sym_jit_attr_offset,"mass",_jit_sym_float32,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_moments,mass));			
+	attr = (t_jit_object*)jit_object_new(	_jit_sym_jit_attr_offset,"mass",_jit_sym_float32,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_moments,mass));			
 	jit_class_addattr(_cv_jit_moments_class,attr);
 	
 	//Register class
@@ -302,7 +295,7 @@ void cv_jit_moments_calculate(t_cv_jit_moments *x, long *dim, t_jit_matrix_info 
 	//scale3 = jit_math_pow(x->m00, 2.5);
 	
 	scale2 = mass*mass;
-	scale3 = jit_math_pow(mass, 2.5);
+	scale3 = std::pow(mass, 2.5);
 	
 	/*	
 	x->nu20 = x->m20 - 2 * x->m10 * x->coords[0] + x->coords[0] * x->coords[0] * x->m00;
@@ -386,7 +379,7 @@ t_cv_jit_moments *cv_jit_moments_new(void)
 {
 	t_cv_jit_moments *x;
 		
-	if (x=(t_cv_jit_moments *)jit_object_alloc(_cv_jit_moments_class)) {
+	if ((x=(t_cv_jit_moments *)jit_object_alloc(_cv_jit_moments_class))) {
 		x->momcount = 7;
 		x->centcount = 2;
 

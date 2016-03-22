@@ -22,13 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 
 typedef struct _cv_jit_mass_vecdata_char
 {
@@ -91,13 +85,13 @@ t_jit_err cv_jit_mass_init(void)
 		sizeof(t_cv_jit_mass),0L);
 
 	//add mop
-	mop = jit_object_new(_jit_sym_jit_mop,1,0);
+	mop = (t_jit_object*)jit_object_new(_jit_sym_jit_mop,1,0);
 	jit_class_addadornment(_cv_jit_mass_class,mop);
 	//add methods
 	jit_class_addmethod(_cv_jit_mass_class, (method)cv_jit_mass_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 	//add attributes	
-	attrflags = JIT_ATTR_SET_OPAQUE_USER | JIT_ATTR_GET_OPAQUE_USER;
-	attr = jit_object_new(_jit_sym_jit_attr_offset_array,"Mass",_jit_sym_atom,JIT_MATRIX_MAX_PLANECOUNT,attrflags,
+	attrflags = ATTR_SET_OPAQUE_USER | ATTR_GET_OPAQUE_USER;
+	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset_array,"Mass",_jit_sym_atom,JIT_MATRIX_MAX_PLANECOUNT,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_mass,planecount),calcoffset(t_cv_jit_mass,Mass));
 	jit_class_addattr(_cv_jit_mass_class,attr);
 	
@@ -397,7 +391,7 @@ t_cv_jit_mass *cv_jit_mass_new(void)
 {
 	t_cv_jit_mass *x;
 		
-	if (x=(t_cv_jit_mass *)jit_object_alloc(_cv_jit_mass_class)) 
+	if ((x=(t_cv_jit_mass *)jit_object_alloc(_cv_jit_mass_class)))
 	{
 		x->planecount = 0;
 	} else 

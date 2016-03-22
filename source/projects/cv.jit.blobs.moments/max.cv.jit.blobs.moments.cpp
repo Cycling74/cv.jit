@@ -74,7 +74,7 @@ void *max_cv_jit_blobs_moments_new(t_symbol *s, long argc, t_atom *argv)
 	void *o;
 
 	if ((x=(t_max_cv_jit_blobs_moments *)max_jit_obex_new(max_cv_jit_blobs_moments_class,gensym("cv_jit_blobs_moments")))) {
-		if ((o=jit_object_new(gensym("cv_jit_blobs_moments")))) {
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_blobs_moments")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
 			max_jit_attr_args(x,argc,argv);
 		} else {

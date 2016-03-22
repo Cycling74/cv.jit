@@ -22,14 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-
+#include "ext_jitter.h"
 typedef struct _cv_jit_mean 
 {
 	t_object			ob;
@@ -63,7 +56,7 @@ t_jit_err cv_jit_mean_init(void)
 	_cv_jit_mean_class = jit_class_new("cv_jit_mean",(method)cv_jit_mean_new,(method)cv_jit_mean_free,sizeof(t_cv_jit_mean),0L);
 
 	//add mop
-	mop = jit_object_new(_jit_sym_jit_mop,1,1);
+	mop = (t_jit_object*)jit_object_new(_jit_sym_jit_mop,1,1);
 	jit_class_addadornment(_cv_jit_mean_class,mop);
 	
 	//add methods
@@ -140,7 +133,7 @@ t_jit_err cv_jit_mean_matrix_calc(t_cv_jit_mean *x, void *inputs, void *outputs)
 		{
 			x->index = 0;
 			if(x->buffer)
-				sysmem_freeptr(x->buffer,x->buf_size);
+				sysmem_freeptr(x->buffer);
 			
 			//dim[0] is 16-bit aligned
 			x->buf_size = (((dim[0] * planecount * sizeof(double)) >> 4)+1)<<4;
@@ -297,7 +290,7 @@ t_cv_jit_mean *cv_jit_mean_new(void)
 {
 	t_cv_jit_mean *x;
 		
-	if (x=(t_cv_jit_mean *)jit_object_alloc(_cv_jit_mean_class)) 
+	if ((x=(t_cv_jit_mean *)jit_object_alloc(_cv_jit_mean_class))) 
 	{
 		x->index = 0;
 		x->buffer = (double *)0;
@@ -314,7 +307,7 @@ t_cv_jit_mean *cv_jit_mean_new(void)
 void cv_jit_mean_free(t_cv_jit_mean *x)
 {
 	if(x->buffer)
-		sysmem_freeptr(x->buffer,x->buf_size);
+		sysmem_freeptr(x->buffer);
 }
 
 void cv_jit_mean_clear(t_cv_jit_mean *x)

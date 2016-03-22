@@ -22,17 +22,9 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#include "max.jit.mop.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 
-typedef struct _max_cv_jit_ravg 
-{
+typedef struct _max_cv_jit_ravg {
 	t_object		ob;
 	void			*obex;
 } t_max_cv_jit_ravg;
@@ -61,8 +53,6 @@ void ext_main(void* unused)
     max_jit_classex_mop_wrap(p,q,0); 		
     max_jit_classex_standard_wrap(p,q,0); 	
     addmess((method)max_jit_mop_assist, "assist", A_CANT,0);
-	
-	return 0;
 }
 
 void max_cv_jit_ravg_free(t_max_cv_jit_ravg *x)
@@ -77,8 +67,8 @@ void *max_cv_jit_ravg_new(t_symbol *s, long argc, t_atom *argv)
 	t_max_cv_jit_ravg *x;
 	void *o;
 
-	if (x=(t_max_cv_jit_ravg *)max_jit_obex_new(max_cv_jit_ravg_class,gensym("cv_jit_ravg"))) {
-		if (o=jit_object_new(gensym("cv_jit_ravg"))) {
+	if ((x=(t_max_cv_jit_ravg *)max_jit_obex_new(max_cv_jit_ravg_class,gensym("cv_jit_ravg")))) {
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_ravg")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
 			max_jit_attr_args(x,argc,argv);
 		} else {

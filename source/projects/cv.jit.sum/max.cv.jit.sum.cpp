@@ -138,7 +138,7 @@ void *max_cv_jit_sum_new(t_symbol *s, long argc, t_atom *argv)
 	void *o;
 
 	if ((x=(t_max_cv_jit_sum *)max_jit_obex_new(max_cv_jit_sum_class,gensym("cv_jit_sum")))) {
-		if ((o=jit_object_new(gensym("cv_jit_sum")))) {
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_sum")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
 			x->sumout 	= outlet_new(x,0L); 
 			x->av		= (t_atom*)sysmem_newptr(sizeof(t_atom)*JIT_MATRIX_MAX_PLANECOUNT);

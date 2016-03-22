@@ -85,7 +85,7 @@ void *max_cv_jit_findchessboardcorners_new(t_symbol *s, long argc, t_atom *argv)
 	
 	x = (t_max_cv_jit_findchessboardcorners*)max_jit_obex_new(max_cv_jit_findchessboardcorners_class, gensym("cv_jit_findchessboardcorners"));
 	if (x) {
-		o = jit_object_new(gensym("cv_jit_findchessboardcorners"));
+		o = (t_jit_object*)jit_object_new(gensym("cv_jit_findchessboardcorners"));
 		if (o) {
 			max_jit_mop_setup_simple(x, o, argc, argv);
 			max_jit_attr_args(x, argc, argv);

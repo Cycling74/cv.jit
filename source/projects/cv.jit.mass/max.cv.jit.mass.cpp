@@ -138,12 +138,12 @@ void *max_cv_jit_mass_new(t_symbol *s, long argc, t_atom *argv)
 	t_max_cv_jit_mass *x;
 	void *o;
 
-	if (x(x=(t_max_cv_jit_mass *)max_jit_obex_new(max_cv_jit_mass_class,gensym("cv_jit_mass"))) {
-		if (o=jit_object_new(gensym("cv_jit_mass"))) {
+	if ((x=(t_max_cv_jit_mass*)max_jit_obex_new(max_cv_jit_mass_class,gensym("cv_jit_mass")))) {
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_mass")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
 			//add additional non-matrix outputs
 			x->Massout 	= outlet_new(x,0L); 
-			x->av		= sysmem_newptr(sizeof(t_atom)*JIT_MATRIX_MAX_PLANECOUNT);
+			x->av		= (t_atom*)sysmem_newptr(sizeof(t_atom)*JIT_MATRIX_MAX_PLANECOUNT);
 			max_jit_attr_args(x,argc,argv);
 		} else {
 			error("cv.jit.mass: could not allocate object");

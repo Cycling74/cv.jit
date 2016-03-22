@@ -31,13 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -93,7 +87,7 @@ t_jit_err cv_jit_resize_init(void)
 	jit_class_addmethod(_cv_jit_resize_class, (method)cv_jit_resize_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 
 	//add attributes	
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset_array,"size",_jit_sym_long,2,attrflags,
 		(method)0L,(method)cv_jit_resize_size_set,calcoffset(t_cv_jit_resize,sizecount),calcoffset(t_cv_jit_resize,size));
 	jit_attr_addfilterset_clip(attr,1,0,TRUE,FALSE);  //2009-09 size cannot be less than 1 (bad access error if it is)
@@ -183,7 +177,7 @@ t_cv_jit_resize *cv_jit_resize_new(void)
 {
 	t_cv_jit_resize *x;
 
-	if (x=(t_cv_jit_resize *)jit_object_alloc(_cv_jit_resize_class)) 
+	if ((x=(t_cv_jit_resize *)jit_object_alloc(_cv_jit_resize_class)))
 	{
 		x->size[0] = 160;
 		x->size[1] = 120;

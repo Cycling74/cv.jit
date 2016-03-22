@@ -320,7 +320,7 @@ t_cv_jit_covariance *cv_jit_covariance_new(void)
 		info.dimcount = 2;
 		info.planecount = 1;
 		x->matnameA = symbol_unique();							//Get a unique identifier for matrix creation
-		m = jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
+		m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
 		m = jit_object_method(m, _jit_sym_register, x->matnameA);	//Register matrix name
 		if(!m) error("could not allocate internal matrix!");
 		jit_object_attach(x->matnameA, x);							//Attach matrix to jitter object
@@ -332,7 +332,7 @@ t_cv_jit_covariance *cv_jit_covariance_new(void)
 		info.dimcount = 2;
 		info.planecount = 1;
 		x->matnameB = symbol_unique();							//Get a unique identifier for matrix creation
-		m = jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
+		m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
 		m = jit_object_method(m, _jit_sym_register, x->matnameB);	//Register matrix name
 		if(!m) error("could not allocate internal matrix!");
 		jit_object_attach(x->matnameB, x);							//Attach matrix to jitter object

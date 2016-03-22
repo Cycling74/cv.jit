@@ -68,7 +68,7 @@ void *max_cv_jit_covariance_new(t_symbol *s, long argc, t_atom *argv)
 	t_max_cv_jit_covariance *x;
 	void *o;
 	if ((x=(t_max_cv_jit_covariance *)max_jit_obex_new(max_cv_jit_covariance_class,gensym("cv_jit_covariance")))) {
-		if ((o=jit_object_new(gensym("cv_jit_covariance")))) {
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_covariance")))) {
 			
 			max_jit_mop_setup_simple(x,o,argc,argv);
 						

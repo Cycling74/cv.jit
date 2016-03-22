@@ -1,6 +1,0 @@
-;cv.jit.blobs.direction.def
-
-LIBRARY	cv.jit.blobs.direction.mxe
-
-EXPORTS
-	ext_main

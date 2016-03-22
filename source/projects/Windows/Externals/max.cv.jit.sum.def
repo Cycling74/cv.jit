@@ -1,6 +1,0 @@
-;cv.jit.sum.def
-
-LIBRARY	cv.jit.sum.mxe
-
-EXPORTS
-	ext_main

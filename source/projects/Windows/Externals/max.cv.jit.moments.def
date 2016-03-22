@@ -1,6 +1,0 @@
-;cv.jit.moments.def
-
-LIBRARY	cv.jit.moments.mxe
-
-EXPORTS
-	ext_main

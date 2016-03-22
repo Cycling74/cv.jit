@@ -22,14 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#include "max.jit.mop.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 
 typedef struct _max_cv_jit_moments 
 {
@@ -69,7 +62,7 @@ void ext_main(void* unused)
 	p = max_jit_classex_setup(calcoffset(t_max_cv_jit_moments,obex));
 	q = jit_class_findbyname(gensym("cv_jit_moments"));    
     	max_jit_classex_mop_wrap(p,q,MAX_JIT_MOP_FLAGS_OWN_BANG|MAX_JIT_MOP_FLAGS_OWN_OUTPUTMATRIX); //custom bang/outputmatrix 		
-    	max_jit_classex_mop_mproc(p,q,max_cv_jit_moments_mproc); 	//custom mproc
+    	max_jit_classex_mop_mproc(p, q, (void*)max_cv_jit_moments_mproc); 	//custom mproc
     	max_jit_classex_standard_wrap(p,q,0); 	
  	addmess((method)max_cv_jit_moments_assist, "assist", A_CANT,0);
 
@@ -77,8 +70,6 @@ void ext_main(void* unused)
 	ps_gethu = gensym("gethu");
 	ps_getcents = gensym("getcentroids");
 	ps_getmass = gensym("getmass");
-	
-	return 0;
 }
 
 
@@ -91,11 +82,11 @@ void max_cv_jit_moments_mproc(t_max_cv_jit_moments *x, void *mop)
 	
 	//Get pointer to Jitter object
 	o = max_jit_obex_jitob_get(x);
-	if (err=(t_jit_err) jit_object_method(  //Call matrix_calc method
+	if ((err=(t_jit_err) jit_object_method(  //Call matrix_calc method
 		o,
 		_jit_sym_matrix_calc,
 		jit_object_method(mop,_jit_sym_getinputlist),
-		jit_object_method(mop,_jit_sym_getoutputlist))) 
+		jit_object_method(mop,_jit_sym_getoutputlist))))
 	{
 		jit_error_code(x,err); 
 	} else {
@@ -109,7 +100,7 @@ void max_cv_jit_moments_mproc(t_max_cv_jit_moments *x, void *mop)
 			outlet_anything(x->massout,_jit_sym_list,ac,av);
 			break;
 		}
-		if (av) sysmem_freeptr(av,(ac)*sizeof(t_atom));
+		if (av) sysmem_freeptr(av);
 		av=NULL; ac=0;
 		
 		//Get centroids and output
@@ -123,7 +114,7 @@ void max_cv_jit_moments_mproc(t_max_cv_jit_moments *x, void *mop)
 			outlet_anything(x->centout,_jit_sym_list,ac,av);
 			break;
 		}
-		if (av) sysmem_freeptr(av,(ac)*sizeof(t_atom));
+		if (av) sysmem_freeptr(av);
 		av=NULL; ac=0;
 		
 		//Get Hu invariants and output
@@ -136,7 +127,7 @@ void max_cv_jit_moments_mproc(t_max_cv_jit_moments *x, void *mop)
 			outlet_anything(x->huout,_jit_sym_list,ac,av);
 			break;
 		}
-		if (av) sysmem_freeptr(av,(ac)*sizeof(t_atom));
+		if (av) sysmem_freeptr(av);
 		av=NULL; ac=0;
 		
 		//Get moments and output
@@ -149,7 +140,7 @@ void max_cv_jit_moments_mproc(t_max_cv_jit_moments *x, void *mop)
 			outlet_anything(x->momout,_jit_sym_list,ac,av);
 			break;
 		}
-		if (av) sysmem_freeptr(av,(ac)*sizeof(t_atom));
+		if (av) sysmem_freeptr(av);
 		av=NULL; ac=0;
 	}
 }
@@ -191,8 +182,8 @@ void *max_cv_jit_moments_new(t_symbol *s, long argc, t_atom *argv)
 	t_max_cv_jit_moments *x;
 	void *o;
 
-	if (x=(t_max_cv_jit_moments *)max_jit_obex_new(max_cv_jit_moments_class,gensym("cv_jit_moments"))) {
-		if (o=jit_object_new(gensym("cv_jit_moments"))) {
+	if ((x=(t_max_cv_jit_moments *)max_jit_obex_new(max_cv_jit_moments_class,gensym("cv_jit_moments")))) {
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_moments")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
 			//add additional non-matrix outputs
 			x->massout 	= outlet_new(x,0L);	

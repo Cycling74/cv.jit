@@ -31,13 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 #include "cv.h"
 #include "OpticalFlow.h"
 #include "jitOpenCV.h"
@@ -108,7 +102,7 @@ t_jit_err cv_jit_opticalflow_set_method(t_cv_jit_opticalflow *x, void *attr, lon
 	}
 	
 	if(av->a_type == A_SYM){
-		t_symbol *s = jit_atom_getsym(av);
+		t_symbol *s = atom_getsym(av);
 		if(s)
 			x->of->setMethod(s->s_name);
 		else {
@@ -154,7 +148,7 @@ t_jit_err cv_jit_opticalflow_get_method(t_cv_jit_opticalflow *x, void *attr, lon
 	char *str = new char[x->of->getMethodName().length()+1];
 	strcpy(str, x->of->getMethodName().c_str());
 	
-	jit_atom_setsym(*av, gensym(str));
+	atom_setsym(*av, gensym(str));
 	delete[] str;
 	
 	return JIT_ERR_NONE;
@@ -351,7 +345,7 @@ t_jit_err cv_jit_opticalflow_init(void)
 	jit_class_addmethod(_cv_jit_opticalflow_class, (method)cv_jit_opticalflow_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 
 	//add attributes	
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"method",_jit_sym_atom,attrflags,(method)cv_jit_opticalflow_get_method,(method)cv_jit_opticalflow_set_method,calcoffset(t_cv_jit_opticalflow,method));
 	jit_class_addattr(_cv_jit_opticalflow_class,attr);
@@ -378,7 +372,7 @@ t_jit_err cv_jit_opticalflow_init(void)
 	jit_class_addattr(_cv_jit_opticalflow_class,attr);
 	
 	
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_OPAQUE; //Those parameters are better left to their default values
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_OPAQUE; //Those parameters are better left to their default values
 	
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"fb_poly_n",_jit_sym_long,attrflags,(method)0L,(method)cv_jit_opticalflow_set_fb_poly_n,calcoffset(t_cv_jit_opticalflow,fb_poly_n));
 	jit_class_addattr(_cv_jit_opticalflow_class,attr);
@@ -474,7 +468,7 @@ t_cv_jit_opticalflow *cv_jit_opticalflow_new(void)
 {
 	t_cv_jit_opticalflow *x;
 
-	if (x=(t_cv_jit_opticalflow *)jit_object_alloc(_cv_jit_opticalflow_class)) 
+	if ((x=(t_cv_jit_opticalflow *)jit_object_alloc(_cv_jit_opticalflow_class))) 
 	{
 		x->of = new OpticalFlow;
 		

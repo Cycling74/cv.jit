@@ -32,16 +32,7 @@ in Jitter externals.
 */
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include "jit.common.h"
-
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-
+#include "ext_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -170,7 +161,7 @@ t_cv_jit_threshold *cv_jit_threshold_new(void)
 {
 	t_cv_jit_threshold *x;
 		
-	if (x=(t_cv_jit_threshold *)jit_object_alloc(_cv_jit_threshold_class)) {
+	if ((x=(t_cv_jit_threshold *)jit_object_alloc(_cv_jit_threshold_class))) {
 		x->threshold = 5;
 		x->radius = 1;
 		x->inverse = 0;

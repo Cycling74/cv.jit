@@ -1,6 +1,0 @@
-;cv.jit.perspective.def
-
-LIBRARY	cv.jit.perspective.mxe
-
-EXPORTS
-	ext_main

@@ -1,6 +1,0 @@
-;cv.jit.opticalflow.def
-
-LIBRARY	cv.jit.opticalflow.mxe
-
-EXPORTS
-	ext_main

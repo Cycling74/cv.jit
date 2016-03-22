@@ -31,14 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus
-}
-#endif
-
+#include "ext_jitter.h"
 #include "cv.h"
 
 
@@ -96,8 +89,6 @@ void ext_main(void* unused)
 	addmess((method)cv_jit_learn_assist,"assist",A_CANT,0);
 	
 	ps_list = gensym("list");
-	
-	return 0;			
 }
 
 void cv_jit_learn_clear(t_cv_jit_learn *x)
@@ -171,9 +162,9 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	if(cvjt == FOUR_CHAR_CODE( 'cvjt' ))
 	{
 		//Free storage
-		sysmem_freeptr(x->mean, x->size * sizeof(double));
-		sysmem_freeptr(x->covariance, x->size * x->size * sizeof(double));
-		sysmem_freeptr(x->inverse, x->size * x->size * sizeof(double));
+		sysmem_freeptr(x->mean);
+		sysmem_freeptr(x->covariance);
+		sysmem_freeptr(x->inverse);
 		//Read list length
 		count = sizeof(t_int32);
 		sysfile_read(handle, &count, &x->size);
@@ -200,9 +191,9 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	else if (cvjt == FOUR_CHAR_CODE( 'tjvc' )) //File was created on another platform, with different endian, switch
 	{
 		//Free storage
-		sysmem_freeptr(x->mean, x->size * sizeof(double));
-		sysmem_freeptr(x->covariance, x->size * x->size * sizeof(double));
-		sysmem_freeptr(x->inverse, x->size * x->size * sizeof(double));
+		sysmem_freeptr(x->mean);
+		sysmem_freeptr(x->covariance);
+		sysmem_freeptr(x->inverse);
 		//Read list length
 		count = sizeof(t_int32);
 		sysfile_read(handle, &count, &x->size);
@@ -358,7 +349,7 @@ void cv_jit_learn_list(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 
 void cv_jit_learn_assist(t_cv_jit_learn *x, void *b, long m, long a, char *s)
 {
-	if (m==ASSIST_INLET) 
+	if (m==1)
 	{ 
 		switch (a) 
 		{ 
@@ -369,7 +360,7 @@ void cv_jit_learn_assist(t_cv_jit_learn *x, void *b, long m, long a, char *s)
 			sprintf(s,"List to learn"); 
 			break; 
 		} 
-	} else if (m==ASSIST_OUTLET) 
+	} else if (m==2)
 	{ 
 		sprintf(s,"Statistical distance"); 
 	} 
@@ -378,11 +369,11 @@ void cv_jit_learn_assist(t_cv_jit_learn *x, void *b, long m, long a, char *s)
 void cv_jit_learn_free(t_cv_jit_learn *x)
 {
 	//Free proxy
-	freeobject((t_object *)x->m_proxy);
+	freeobject((t_object*)x->m_proxy);
 	//Free data
-	sysmem_freeptr(x->mean, x->size * sizeof(double));
-	sysmem_freeptr(x->covariance, x->size * x->size * sizeof(double));
-	sysmem_freeptr(x->inverse, x->size * x->size * sizeof(double));
+	sysmem_freeptr(x->mean);
+	sysmem_freeptr(x->covariance);
+	sysmem_freeptr(x->inverse);
 }
 
 void *cv_jit_learn_new(long arg)

@@ -197,7 +197,7 @@ t_jit_err cv_jit_findchessboardcorners_matrix_calc(t_cv_jit_findchessboardcorner
 	CvMat				in_cv;
 	
 	int					corners_count, board_point_nb, found, i;
-	CvPoint2D32f		*corners = nullptr, *corners_data;
+	CvPoint2D32f		*corners = NULL, *corners_data;
 	IplImage			*color_image, *gray_image, in_image;
 	CvSize				image_size;
 	float				*out2_data;

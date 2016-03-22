@@ -34,8 +34,7 @@
  in Jitter externals.
  */
 
-#include "jit.common.h"
-#include "max.jit.mop.h"
+#include "ext_jitter.h"
 
 
 // Max object instance data
@@ -73,7 +72,6 @@ void ext_main(void* unused)
     max_jit_classex_mop_wrap(p, q, 0);							// attrs & methods for name, type, dim, planecount, bang, outputmatrix, etc
     max_jit_classex_standard_wrap(p, q, 0);						// attrs & methods for getattributes, dumpout, maxjitclassaddmethods, etc
     addmess((method)max_jit_mop_assist, "assist", A_CANT, 0);	// standard matrix-operator (mop) assist fn
-	return 0;
 }
 
 
@@ -92,7 +90,7 @@ void *max_cv_jit_perspective_new(t_symbol *s, long argc, t_atom *argv)
 	
 	x = (t_max_cv_jit_perspective*)max_jit_obex_new(max_cv_jit_perspective_class, gensym("cv_jit_perspective"));
 	if (x) {
-		o = jit_object_new(gensym("cv_jit_perspective"));
+		o = (t_jit_object*)jit_object_new(gensym("cv_jit_perspective"));
 		if (o) {
 			max_jit_mop_setup_simple(x, o, argc, argv);	
 			

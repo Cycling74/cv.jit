@@ -1,6 +1,0 @@
-;cv.jit.mean.def
-
-LIBRARY	cv.jit.mean.mxe
-
-EXPORTS
-	ext_main

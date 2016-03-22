@@ -1,6 +1,0 @@
-;cv.jit.blobs.elongation.def
-
-LIBRARY	cv.jit.blobs.elongation.mxe
-
-EXPORTS
-	ext_main

@@ -78,7 +78,7 @@ void *max_cv_jit_dilate_new(t_symbol *s, long argc, t_atom *argv)
 	void *o;
 
 	if ((x=(t_max_cv_jit_dilate *)max_jit_obex_new(max_cv_jit_dilate_class,gensym("cv_jit_dilate")))) {  //Create a new instance of Jitter object class
-		if ((o=jit_object_new(gensym("cv_jit_dilate")))) { //Create a new dilate object
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_dilate")))) { //Create a new dilate object
 			max_jit_mop_setup_simple(x,o,argc,argv);  //Matrix operator setup
 			max_jit_attr_args(x,argc,argv); //Arguments and attributes
 		} else {

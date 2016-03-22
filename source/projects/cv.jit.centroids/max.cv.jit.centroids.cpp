@@ -157,7 +157,7 @@ void *max_cv_jit_centroids_new(t_symbol *s, long argc, t_atom *argv)
 	void *o;
 
 	if ((x=(t_max_cv_jit_centroids *)max_jit_obex_new(max_cv_jit_centroids_class,gensym("cv_jit_centroids")))) {
-		if ((o=jit_object_new(gensym("cv_jit_centroids")))) {
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_centroids")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
 			//add additional non-matrix outputs
 			x->massout 	= outlet_new(x,0L); 

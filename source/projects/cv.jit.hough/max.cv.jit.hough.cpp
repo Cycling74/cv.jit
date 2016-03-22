@@ -24,14 +24,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#include "max.jit.mop.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 
 typedef struct _max_cv_jit_hough 
 {
@@ -62,9 +55,7 @@ void ext_main(void* unused)
 	q = jit_class_findbyname(gensym("cv_jit_hough"));    
     max_jit_classex_mop_wrap(p,q,0); 		
     max_jit_classex_standard_wrap(p,q,0); 	
-    addmess((method)max_jit_mop_assist, "assist", A_CANT,0);  
-	
-	return 0;
+    addmess((method)max_jit_mop_assist, "assist", A_CANT,0);
 }
 
 void max_cv_jit_hough_free(t_max_cv_jit_hough *x)
@@ -79,8 +70,8 @@ void *max_cv_jit_hough_new(t_symbol *s, long argc, t_atom *argv)
 	t_max_cv_jit_hough *x;
 	void *o;
 
-	if (x=(t_max_cv_jit_hough *)max_jit_obex_new(max_cv_jit_hough_class,gensym("cv_jit_hough"))) {
-		if (o=jit_object_new(gensym("cv_jit_hough"))) {
+	if ((x=(t_max_cv_jit_hough *)max_jit_obex_new(max_cv_jit_hough_class,gensym("cv_jit_hough")))) {
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_hough")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
 			max_jit_attr_args(x,argc,argv);
 		} else {

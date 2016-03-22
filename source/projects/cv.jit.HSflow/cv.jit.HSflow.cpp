@@ -31,13 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -75,7 +69,7 @@ t_jit_err cv_jit_HSflow_init(void)
 	jit_class_addmethod(_cv_jit_HSflow_class, (method)cv_jit_HSflow_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 	
 	//add attributes	
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"maxiter",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_HSflow,maxIter));
 	jit_class_addattr(_cv_jit_HSflow_class,attr);
 	
@@ -188,7 +182,7 @@ t_jit_err cv_jit_HSflow_matrix_calc(t_cv_jit_HSflow *x, void *inputs, void *outp
 		}
 		
 		//Save matrix for next pass
-		jit_object_method(prev_matrix,_jit_sym_frommatrix,in_matrix,NULL); 
+		jit_object_method(prev_matrix,_jit_sym_frommatrix,in_matrix,NULL);
 	} 
 	else 
 	{
@@ -212,7 +206,7 @@ t_cv_jit_HSflow *cv_jit_HSflow_new(void)
 	void *m;				//matrix pointer for previous frame 
 	t_jit_matrix_info info;	//info struct for prev. frame matrix
 		
-	if (x=(t_cv_jit_HSflow *)jit_object_alloc(_cv_jit_HSflow_class)) {
+	if ((x=(t_cv_jit_HSflow *)jit_object_alloc(_cv_jit_HSflow_class))) {
 	
 		x->lambda      = (float)0.001;		
 		x->usePrevious = 0;
@@ -223,7 +217,7 @@ t_cv_jit_HSflow *cv_jit_HSflow_new(void)
 		info.type = _jit_sym_char;
 		info.dimcount = 2;
 		info.planecount = 1;
-		m = jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
+		m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
 		if(!m) error("could not allocate internal matrix!");
 		jit_object_method(m,_jit_sym_clear);						//Clear data
 		x->imgA = m;												//Copy matrix pointer to jitter object

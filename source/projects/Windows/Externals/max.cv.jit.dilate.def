@@ -1,6 +1,0 @@
-;cv.jit.dilate.def
-
-LIBRARY	cv.jit.dilate.mxe
-
-EXPORTS
-	ext_main

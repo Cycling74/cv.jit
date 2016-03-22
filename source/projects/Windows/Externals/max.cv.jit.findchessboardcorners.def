@@ -1,6 +1,0 @@
-;cv.jit.findchessboardcorners.def
-
-LIBRARY	cv.jit.findchessboardcorners.mxe
-
-EXPORTS
-	ext_main

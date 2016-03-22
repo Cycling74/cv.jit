@@ -1,6 +1,0 @@
-;cv.jit.lines.def
-
-LIBRARY	cv.jit.lines.mxe
-
-EXPORTS
-	ext_main

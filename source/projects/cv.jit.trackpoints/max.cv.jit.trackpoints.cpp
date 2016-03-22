@@ -22,14 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#include "max.jit.mop.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 
 typedef struct _max_cv_jit_trackpoints 
 {
@@ -76,11 +69,11 @@ void *max_cv_jit_trackpoints_new(t_symbol *s, long argc, t_atom *argv)
 	void *o,*m;
 	t_jit_matrix_info info;
 
-	if (x=(t_max_cv_jit_trackpoints *)max_jit_obex_new(max_cv_jit_trackpoints_class,gensym("cv_jit_trackpoints"))) {
-		if (o=jit_object_new(gensym("cv_jit_trackpoints"))) {
+	if ((x=(t_max_cv_jit_trackpoints *)max_jit_obex_new(max_cv_jit_trackpoints_class,gensym("cv_jit_trackpoints")))) {
+		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_trackpoints")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
 			//1-plane char out
-			m = max_jit_mop_getoutput(x,1);			
+			m = max_jit_mop_getoutput(x,1);
 			jit_object_method(m,_jit_sym_getinfo,&info);			
 			info.type 		= _jit_sym_char;
 			info.planecount = 1;

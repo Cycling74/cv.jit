@@ -1,6 +1,0 @@
-;cv.jit.learn.def
-
-LIBRARY	cv.jit.learn.mxe
-
-EXPORTS
-	ext_main

@@ -1,5 +1,0 @@
-//
-// Prefix header for all source files of the 'cv_jit' target in the 'cv_jit' project.
-//
-
-#include <Carbon/Carbon.h>

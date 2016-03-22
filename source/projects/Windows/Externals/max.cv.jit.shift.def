@@ -1,6 +1,0 @@
-;cv.jit.shift.def
-
-LIBRARY	cv.jit.shift.mxe
-
-EXPORTS
-	ext_main

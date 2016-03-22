@@ -242,7 +242,7 @@ t_cv_jit_faces *cv_jit_faces_new(void)
 {
 	t_cv_jit_faces *x;
 
-	if (x=(t_cv_jit_faces *)jit_object_alloc(_cv_jit_faces_class)) {
+	if ((x=(t_cv_jit_faces *)jit_object_alloc(_cv_jit_faces_class))) {
 		
 		x->model = 1;
 		if(cv_jit_faces_load(x,cascade1))

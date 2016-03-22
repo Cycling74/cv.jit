@@ -1,6 +1,0 @@
-;cv.jit.faces.def
-
-LIBRARY	cv.jit.faces.mxe
-
-EXPORTS
-	ext_main

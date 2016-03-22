@@ -22,14 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-
+#include "ext_jitter.h"
 #include "cvjitVectorOps.h"
 
 typedef struct _cv_jit_ravg 
@@ -61,15 +54,15 @@ t_jit_err cv_jit_ravg_init(void)
 	_cv_jit_ravg_class = jit_class_new("cv_jit_ravg",(method)cv_jit_ravg_new,(method)cv_jit_ravg_free,sizeof(t_cv_jit_ravg),0L);
 
 	//add mop
-	mop = jit_object_new(_jit_sym_jit_mop,1,1);
+	mop = (t_jit_object*)jit_object_new(_jit_sym_jit_mop,1,1);
 	jit_class_addadornment(_cv_jit_ravg_class,mop);
 	
 	//add methods
 	jit_class_addmethod(_cv_jit_ravg_class, (method)cv_jit_ravg_matrix_calc, "matrix_calc", A_CANT, 0L);
 	
 	//add attributes	
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
-	attr = jit_object_new(_jit_sym_jit_attr_offset,"alpha",_jit_sym_float64,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_ravg,alpha));
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
+	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"alpha",_jit_sym_float64,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_ravg,alpha));
 	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
 	jit_class_addattr(_cv_jit_ravg_class,attr);
 	
@@ -176,7 +169,7 @@ void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long
 {
 	long i,j;
 	uchar *ip,*op,*bp;
-	double a, b;
+	float a, b;
 	float *buf;
 	int steps=0;
 	
@@ -335,7 +328,7 @@ t_cv_jit_ravg *cv_jit_ravg_new(void)
 	void *m;
 	t_jit_matrix_info info;
 		
-	if (x=(t_cv_jit_ravg *)jit_object_alloc(_cv_jit_ravg_class)) 
+	if ((x=(t_cv_jit_ravg *)jit_object_alloc(_cv_jit_ravg_class)))
 	{
 		x->buffer = (float *)0;
 		x->buf_size = 0;
@@ -345,7 +338,7 @@ t_cv_jit_ravg *cv_jit_ravg_new(void)
 		info.type = _jit_sym_float32;
 		info.dimcount = 2;
 		info.planecount = 1;
-		m = jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
+		m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
 		if(!m) error("could not allocate internal matrix!");
 		jit_object_method(m,_jit_sym_clear);						//Clear data
 		x->bufMat = m;
@@ -360,7 +353,7 @@ t_cv_jit_ravg *cv_jit_ravg_new(void)
 void cv_jit_ravg_free(t_cv_jit_ravg *x)
 {
 	if(x->buffer)
-		sysmem_freeptr(x->buffer,x->buf_size);
+		sysmem_freeptr(x->buffer);
 	if(x->bufMat)
 		jit_object_free(x->bufMat);
 }

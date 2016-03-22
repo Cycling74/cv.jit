@@ -1,6 +1,0 @@
-;cv.jit.mass.def
-
-LIBRARY	cv.jit.mass.mxe
-
-EXPORTS
-	ext_main

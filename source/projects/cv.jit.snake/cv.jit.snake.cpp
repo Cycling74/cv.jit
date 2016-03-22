@@ -31,13 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 #include "jitOpenCV.h"
 
 typedef struct _cv_jit_snake 
@@ -250,7 +244,7 @@ t_cv_jit_snake *cv_jit_snake_new(void)
 {
 	t_cv_jit_snake *x;
 		
-	if (x=(t_cv_jit_snake *)jit_object_alloc(_cv_jit_snake_class)) {
+	if ((x=(t_cv_jit_snake *)jit_object_alloc(_cv_jit_snake_class))) {
 		x->iterations = 10;
 		x->ratio = 0.5;
 		x->window = 3;

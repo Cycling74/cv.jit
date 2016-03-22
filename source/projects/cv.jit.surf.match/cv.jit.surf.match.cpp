@@ -32,14 +32,7 @@ in Jitter externals.
 */
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-
+#include "ext_jitter.h"
 #include <vector>
 
 typedef struct _feature_match{
@@ -115,7 +108,7 @@ t_jit_err cv_jit_surf_match_init(void)
 	jit_class_addmethod(_cv_jit_surf_match_class, (method)cv_jit_surf_match_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);	
 	
 	//add attributes
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	/*
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"threshold",_jit_sym_float32,
 										  attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_surf_match,threshold));
@@ -300,7 +293,7 @@ t_cv_jit_surf_match *cv_jit_surf_match_new(void)
 {
 	t_cv_jit_surf_match *x;
 		
-	if (x=(t_cv_jit_surf_match *)jit_object_alloc(_cv_jit_surf_match_class)) {
+	if ((x=(t_cv_jit_surf_match *)jit_object_alloc(_cv_jit_surf_match_class))) {
 		//x->matches = 0;
 		x->threshold = 0;
 

@@ -54,6 +54,11 @@
 // that interferes with a method definiton in this header
 #undef check
 
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverloaded-virtual"
+
+
 /****************************************************************************************\
 *                               Main struct definitions                                  *
 \****************************************************************************************/
@@ -2140,6 +2145,8 @@ template<> CV_EXPORTS void Ptr<CvDTreeSplit>::delete_obj();
 CV_EXPORTS bool initModule_ml(void);
 
 }
+
+#pragma clang diagnostic pop
 
 #endif // __cplusplus
 #endif // __OPENCV_ML_HPP__

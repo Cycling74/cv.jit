@@ -84,7 +84,7 @@ void *max_cv_jit_calibration_new(t_symbol *s, long argc, t_atom *argv)
 
 	x = (t_max_cv_jit_calibration*)max_jit_obex_new(max_cv_jit_calibration_class, gensym("cv_jit_calibration"));
 	if (x) {
-		o = jit_object_new(gensym("cv_jit_calibration"));
+		o = (t_jit_object*)jit_object_new(gensym("cv_jit_calibration"));
 		if (o) {
 			max_jit_mop_setup_simple(x, o, argc, argv);	
 			

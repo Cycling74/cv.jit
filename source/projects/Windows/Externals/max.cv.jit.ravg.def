@@ -1,6 +1,0 @@
-;cv.jit.ravg.def
-
-LIBRARY	cv.jit.ravg.mxe
-
-EXPORTS
-	ext_main

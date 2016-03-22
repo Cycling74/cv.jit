@@ -34,16 +34,7 @@
  in Jitter externals.
  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
-#include "jit.common.h"
-	
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-
+#include "ext_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 

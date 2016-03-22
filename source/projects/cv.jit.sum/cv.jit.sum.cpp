@@ -22,14 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-
+#include "ext_jitter.h"
 typedef struct _cv_jit_sum_vecdata_char
 {
 	long 				sum[JIT_MATRIX_MAX_PLANECOUNT];
@@ -95,7 +88,7 @@ t_jit_err cv_jit_sum_init(void)
 	//add methods
 	jit_class_addmethod(_cv_jit_sum_class, (method)cv_jit_sum_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 	//add attributes	
-	attrflags = JIT_ATTR_SET_OPAQUE_USER | JIT_ATTR_GET_OPAQUE_USER;
+	attrflags = ATTR_SET_OPAQUE_USER | ATTR_GET_OPAQUE_USER;
 	
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset_array,"sum",_jit_sym_atom,JIT_MATRIX_MAX_PLANECOUNT,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_sum,planecount),calcoffset(t_cv_jit_sum,sum));
@@ -367,7 +360,7 @@ t_cv_jit_sum *cv_jit_sum_new(void)
 {
 	t_cv_jit_sum *x;
 		
-	if (x=(t_cv_jit_sum *)jit_object_alloc(_cv_jit_sum_class)) {
+	if ((x=(t_cv_jit_sum *)jit_object_alloc(_cv_jit_sum_class))) {
 		x->planecount = 0;
 	} else {
 		x = NULL;

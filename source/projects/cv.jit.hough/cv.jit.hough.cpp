@@ -43,8 +43,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
  
 */
 
-#include "jit.common.h"
-#include "ext_strings.h"
+#include "ext_jitter.h"
 
 #ifndef PI
 #define	PI (double)3.141592653589793
@@ -121,7 +120,7 @@ t_jit_err cv_jit_hough_init(void)
 										0L	); 					// end
 
 	// add mop
-	mop = jit_object_new(	_jit_sym_jit_mop,	// create mop
+	mop = (t_jit_object*)jit_object_new(	_jit_sym_jit_mop,	// create mop
 							1,					// 1 input
 							1	);				// 1 output
 	
@@ -141,10 +140,10 @@ t_jit_err cv_jit_hough_init(void)
 							0L	);
 
 	// set attribute flags
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	
 	// setup attribute
-	attr = jit_object_new(	_jit_sym_jit_attr_offset,	// setup attribute		
+	attr = (t_jit_object*)jit_object_new(	_jit_sym_jit_attr_offset,	// setup attribute		
 							"rho",						// attribute
 							_jit_sym_float64,			// attribute type
 							attrflags, 					// attribute flags
@@ -156,7 +155,7 @@ t_jit_err cv_jit_hough_init(void)
 	jit_class_addattr(_cv_jit_hough_class, attr);
 	
 	// setup attribute					
-	attr = jit_object_new(	_jit_sym_jit_attr_offset,
+	attr = (t_jit_object*)jit_object_new(	_jit_sym_jit_attr_offset,
 							"theta",
 							_jit_sym_float64,
 							attrflags, 
@@ -304,8 +303,8 @@ t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *output
 	/** fill sin and cos tables precalculate sin and cos for each angle step */
     for( ang = 0, n = 0; n < numangle; ang += theta, n++ )	
     {
-        x->tab_sin[n] = jit_math_sin( ang );
-        x->tab_cos[n] = jit_math_cos( ang );
+		x->tab_sin[n] = std::sin( ang );
+		x->tab_cos[n] = std::cos( ang );
     }
 	
 
@@ -332,7 +331,7 @@ t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *output
 					//  set the output pointer to index value of "out_bp + n * out_minfo.dimstride[1] "
 								
 					// r = xcos(theta) + ysin(theta)
-					r = (long)jit_math_round( (j * x->tab_cos[n] + i * x->tab_sin[n]) * irho );
+					r = (long)round( (j * x->tab_cos[n] + i * x->tab_sin[n]) * irho );
 					r += (numrho - 1) / 2;
 					
 					// increment r/theta cell in hough space
@@ -371,7 +370,7 @@ t_cv_jit_hough *cv_jit_hough_new(void)
 	//long i;						// iteration variable
 	
 	// allocate memory
-	if (x=(t_cv_jit_hough *)jit_object_alloc(_cv_jit_hough_class)) {
+	if ((x=(t_cv_jit_hough *)jit_object_alloc(_cv_jit_hough_class))) {
 	
 		// init attributes
 		x->rho = 4.0;

@@ -33,13 +33,7 @@ in Jitter externals.
 */
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
+#include "ext_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -117,7 +111,7 @@ t_jit_err cv_jit_surf_init(void)
 	jit_class_addmethod(_cv_jit_surf_class, (method)cv_jit_surf_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);	
 
 	//add attributes	
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	
 	//threshold
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"threshold",_jit_sym_float64,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_surf,threshold));			
@@ -372,7 +366,7 @@ t_cv_jit_surf *cv_jit_surf_new(void)
 {
 	t_cv_jit_surf *x;
 		
-	if (x=(t_cv_jit_surf *)jit_object_alloc(_cv_jit_surf_class)) {
+	if ((x=(t_cv_jit_surf *)jit_object_alloc(_cv_jit_surf_class))) {
 	
 		x->threshold = 500;
 		x->roi[0] = x->roi[1] = x->roi[2] = x->roi[3] = 0;

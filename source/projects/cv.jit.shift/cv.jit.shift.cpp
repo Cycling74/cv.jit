@@ -32,14 +32,7 @@ in Jitter externals.
 */
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "jit.common.h"
-#ifdef __cplusplus 
-} //extern "C"
-#endif
-
+#include "ext_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -94,7 +87,7 @@ t_jit_err cv_jit_shift_init(void)
 	jit_class_addmethod(_cv_jit_shift_class, (method)cv_jit_shift_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 
 	//add attributes	
-	attrflags = JIT_ATTR_SET_OPAQUE_USER | JIT_ATTR_GET_OPAQUE_USER;
+	attrflags = ATTR_SET_OPAQUE_USER | ATTR_GET_OPAQUE_USER;
 	//box: the resulting bounding rectangle, passed to the Max wrapper
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset_array,"box",_jit_sym_atom,4,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_shift,boxcount),calcoffset(t_cv_jit_shift,box));
@@ -110,7 +103,7 @@ t_jit_err cv_jit_shift_init(void)
 		(method)0L,(method)0L,calcoffset(t_cv_jit_shift,mass));
 	jit_class_addattr(_cv_jit_shift_class,attr);
 	
-	attrflags = JIT_ATTR_GET_DEFER_LOW | JIT_ATTR_SET_USURP_LOW;
+	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	//rect: the start bounding rectangle
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset_array,"rect",_jit_sym_long,4,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_shift,rectcount),calcoffset(t_cv_jit_shift,rect));
@@ -251,7 +244,7 @@ t_cv_jit_shift *cv_jit_shift_new(void)
 {
 	t_cv_jit_shift *x;
 
-	if (x=(t_cv_jit_shift *)jit_object_alloc(_cv_jit_shift_class)) 
+	if ((x=(t_cv_jit_shift *)jit_object_alloc(_cv_jit_shift_class))) 
 	{
 		x->epsilon = 2;
 		x->maxiters = 10;

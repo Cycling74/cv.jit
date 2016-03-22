@@ -1,6 +1,0 @@
-;cv.jit.getperspective.def
-
-LIBRARY	cv.jit.getperspective.mxe
-
-EXPORTS
-	ext_main

@@ -1,6 +1,0 @@
-;cv.jit.centroids.def
-
-LIBRARY	cv.jit.centroids.mxe
-
-EXPORTS
-	ext_main

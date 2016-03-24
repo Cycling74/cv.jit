@@ -15,9 +15,11 @@
 #include "jit.common.h"
 #include "max.jit.mop.h"
 #include "ext_dictobj.h"
+//#include "jit.gl.h"
 
 #include "opencv2/opencv.hpp"
 #include "cv.jit.contour.flow.h"
+
 
 #define CV_JIT_MAX_IDS 100
 
@@ -51,6 +53,8 @@ typedef struct _cv_contours
     double      max_size;
     double      min_size;
     
+    long        parents_only;
+    
     t_dictionary *attr_dict; //to do
     
     // dict
@@ -58,6 +62,7 @@ typedef struct _cv_contours
     t_symbol    *dict_name;
     
     ContourFlow flow;
+    long        enable_flow;
     Mat         prev_src_gray;
     
     vector<Point2f> prev_centroids;
@@ -366,7 +371,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         switch ( n_src_channels ) {
             case 1:
-                src_gray = frame.clone();
+                src_gray = src_color_sized.clone();
                 break;
             case 4:
                 cvtColor(src_color_sized, src_gray, CV_RGBA2GRAY);
@@ -418,10 +423,13 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     }
 
     Mat flow;
-    if( !x->prev_src_gray.empty() && x->prev_src_gray.size() == src_gray.size() )
+    if( x->enable_flow && !x->prev_src_gray.empty() && x->prev_src_gray.size() == src_gray.size() )
     {
-        calcOpticalFlowFarneback( x->prev_src_gray, src_gray, flow, 0.5, 1, 15, 1, 5, 1.1, 0);
         
+//        float start = (float)getTickCount();
+        calcOpticalFlowFarneback( x->prev_src_gray, src_gray, flow, 0.1, 1, 15, 1, 5, 1.1, 0);
+//        printf("calcOpticalFlowSF : %lf sec\n", (getTickCount() - start) / getTickFrequency());
+
     }
     src_gray.copyTo(x->prev_src_gray);
     
@@ -466,6 +474,13 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 
     t_atomarray *flow_r = atomarray_new(0, NULL);
     t_atomarray *flow_theta = atomarray_new(0, NULL);
+
+    t_atomarray *channel_means[n_src_channels];
+    for( int ch = 0; ch < n_src_channels; ++ch )
+    {
+        channel_means[ch] = atomarray_new(0, NULL);
+    }
+    
     
     double src_width = (double)src_gray.size().width;
     double src_height = (double)src_gray.size().height;
@@ -493,7 +508,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         double contour_a = contourArea( Mat(contours[i]) ) / npix;
 
-       if( (contour_a > x->max_size) || (contour_a < x->min_size) )
+        if( (contour_a > x->max_size) || (contour_a < x->min_size) || (x->parents_only && (hierarchy[i][3] != -1)) )
            continue;
         
         t_dictionary *contour_sub = dictionary_new();
@@ -518,6 +533,14 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
          printf("\t flowx %f\n", stats[n_src_channels+1].mean);
          printf("\t flowy %f\n", stats[n_src_channels+2].mean);
          */
+        
+        for( int ch = 0; ch < n_src_channels; ++ch )
+        {
+            atom_setfloat(&at, stats[ch].mean );
+            atomarray_appendatom(channel_means[ch], &at);
+        }
+        
+        if( x->enable_flow )
         {
             double flx, fly;
             flx = stats[n_src_channels+1].mean / src_width;
@@ -538,7 +561,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         atom_setlong(&at, contours[i].size());
         atomarray_appendatom(contour_count, &at);
-        
+
         atom_setlong(&at, hierarchy[i][3] );
         atomarray_appendatom(child_of, &at);
 
@@ -964,9 +987,33 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     dictionary_appendatomarray(cv_dict, addr_contour_count, (t_object *)contour_count);
     
     dictionary_appendatomarray(cv_dict, addr_focus, (t_object *)focus);
-    dictionary_appendatomarray(cv_dict, addr_flow_r, (t_object *)flow_r);
-    dictionary_appendatomarray(cv_dict, addr_flow_theta, (t_object *)flow_theta);
     
+
+    switch (n_src_channels) {
+        case 4:
+            dictionary_appendatomarray(cv_dict, gensym("/mean/r"), (t_object *)channel_means[0]);
+            dictionary_appendatomarray(cv_dict, gensym("/mean/g"), (t_object *)channel_means[1]);
+            dictionary_appendatomarray(cv_dict, gensym("/mean/b"), (t_object *)channel_means[2]);
+            dictionary_appendatomarray(cv_dict, gensym("/mean/a"), (t_object *)channel_means[3]);
+            break;
+        case 3:
+            dictionary_appendatomarray(cv_dict, gensym("/mean/r"), (t_object *)channel_means[0]);
+            dictionary_appendatomarray(cv_dict, gensym("/mean/g"), (t_object *)channel_means[1]);
+            dictionary_appendatomarray(cv_dict, gensym("/mean/b"), (t_object *)channel_means[2]);
+            break;
+        case 1:
+            dictionary_appendatomarray(cv_dict, gensym("/mean/lum"), (t_object *)channel_means[0]);
+            break;
+        default:
+            break;
+    }
+
+    
+    //if( x->enable_flow )
+    {
+        dictionary_appendatomarray(cv_dict, addr_flow_r, (t_object *)flow_r);
+        dictionary_appendatomarray(cv_dict, addr_flow_theta, (t_object *)flow_theta);
+    }
     dictionary_appenddictionary(cv_dict, addr_contourpts, (t_object *)contour_dict);
     
     
@@ -1110,12 +1157,13 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
         
         x->matrix = NULL;
         x->debug_matrix = 0;
+        x->enable_flow = 0;
         
         x->erosion_size = 0;
         x->dilation_size = 0;
         x->gauss_sigma = 3;
         x->gauss_ksize = (x->gauss_sigma*5)|1;
-        x->resize_scale = 0.5;
+        x->resize_scale = 0.25;
         x->thresh = 100;
         x->invert = 0;
         x->track_radius = 0.1;
@@ -1123,7 +1171,7 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
         
         x->max_size = 0.9;
         x->min_size = 0.;
-        
+        x->parents_only = 0;
         
         for( int i = 0; i < CV_JIT_MAX_IDS; i++ )
         {
@@ -1173,11 +1221,11 @@ void ext_main(void* unused)
     
     class_addmethod(c, (method)cv_contours_jit_matrix, (char *)"jit_matrix", A_GIMME, 0);
     
-    CLASS_ATTR_LONG(c, "dilation_size", 0, t_cv_contours, dilation_size);
-    CLASS_ATTR_FILTER_MIN(c, "dilation_size", 0);
+    CLASS_ATTR_LONG(c, "dilation", 0, t_cv_contours, dilation_size);
+    CLASS_ATTR_FILTER_MIN(c, "dilation", 0);
     
-    CLASS_ATTR_LONG(c, "erosion_size", 0, t_cv_contours, erosion_size);
-    CLASS_ATTR_FILTER_MIN(c, "erosion_size", 0);
+    CLASS_ATTR_LONG(c, "erosion", 0, t_cv_contours, erosion_size);
+    CLASS_ATTR_FILTER_MIN(c, "erosion", 0);
     
     CLASS_ATTR_LONG(c, "gauss_sigma", 0, t_cv_contours, gauss_sigma);
     CLASS_ATTR_ACCESSORS(c, "gauss_sigma", cv_contours_gauss_sigma_get, cv_contours_gauss_sigma_set);
@@ -1194,8 +1242,14 @@ void ext_main(void* unused)
     CLASS_ATTR_FILTER_MIN(c, "thresh", 0);
     
     CLASS_ATTR_LONG(c, "invert", 0, t_cv_contours, invert);
-    CLASS_ATTR_STYLE_LABEL(c, "invert", 0, "onoff", "invert cv image b/w");
+    CLASS_ATTR_STYLE_LABEL(c, "invert", 0, "onoff", "invert b/w");
 
+    CLASS_ATTR_LONG(c, "parents_only", 0, t_cv_contours, parents_only);
+    CLASS_ATTR_STYLE_LABEL(c, "parents_only", 0, "onoff", "supress child contours");
+    
+    CLASS_ATTR_LONG(c, "optical_flow", 0, t_cv_contours, enable_flow);
+    CLASS_ATTR_STYLE_LABEL(c, "optical_flow", 0, "onoff", "optical flow on/off");
+    
     CLASS_ATTR_DOUBLE(c, "max_size", 0, t_cv_contours, max_size);
     CLASS_ATTR_FILTER_MIN(c, "max_size", 0);
     CLASS_ATTR_FILTER_MAX(c, "max_size", 1);

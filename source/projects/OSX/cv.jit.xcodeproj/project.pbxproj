@@ -63,6 +63,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		114B5E001C73FFF100147976 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114B5DFF1C73FFF100147976 /* OpenGL.framework */; };
 		119260D51C52F00F001E6B87 /* JitterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E633147610900086335B /* JitterAPI.framework */; };
 		119260D61C52F00F001E6B87 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4E65A147610AA0086335B /* MaxAPI.framework */; };
 		119260DD1C52F079001E6B87 /* cv.jit.contours.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119260DC1C52F079001E6B87 /* cv.jit.contours.cpp */; };
@@ -552,6 +553,7 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		114B5DFF1C73FFF100147976 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		119260DA1C52F00F001E6B87 /* cv.jit.contours.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cv.jit.contours.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		119260DB1C52F00F001E6B87 /* cv.jit.blobs.moments copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "cv.jit.blobs.moments copy-Info.plist"; path = "/Users/r/Documents/dev-lib/cv.jit/source/projects/OSX/cv.jit.blobs.moments copy-Info.plist"; sourceTree = "<absolute>"; };
 		119260DC1C52F079001E6B87 /* cv.jit.contours.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cv.jit.contours.cpp; path = ../../src/cv.jit.contours/cv.jit.contours.cpp; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114B5E001C73FFF100147976 /* OpenGL.framework in Frameworks */,
 				119260D51C52F00F001E6B87 /* JitterAPI.framework in Frameworks */,
 				119260D61C52F00F001E6B87 /* MaxAPI.framework in Frameworks */,
 			);
@@ -1102,6 +1105,7 @@
 		089C166AFE841209C02AAC07 /* cv_jit */ = {
 			isa = PBXGroup;
 			children = (
+				114B5DFF1C73FFF100147976 /* OpenGL.framework */,
 				8920010F1AC5A9DC00B9CA6D /* Info.plist */,
 				892000A61AC5A53E00B9CA6D /* exports.exp */,
 				B460570F10E9993C002B2AD8 /* cv.jit.surf.match */,

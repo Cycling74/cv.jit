@@ -31,7 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -62,7 +62,7 @@ void 				cv_jit_track_free(t_cv_jit_track *x);
 t_jit_err 			cv_jit_track_matrix_calc(t_cv_jit_track *x, void *inputs, void *outputs);
 t_jit_err			cv_jit_track_calculate(t_cv_jit_track *x, long *dim, t_jit_matrix_info *in_minfo, char *bip);
 t_jit_err 			cv_jit_track_set_npoints(t_cv_jit_track *x, void *attr, long ac, t_atom *av);
-void				cv_jit_track_setpoint(t_cv_jit_track *x,Symbol *s,short argc,Atom *argv);
+void				cv_jit_track_setpoint(t_cv_jit_track *x, t_symbol *s,short argc, t_atom *argv);
 
 t_jit_err cv_jit_track_init(void) 
 {
@@ -101,11 +101,11 @@ t_jit_err cv_jit_track_init(void)
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"radius",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_track,radius));
-	jit_attr_addfilterset_clip(attr,1,0,TRUE,FALSE);	//Greater than 0
+	jit_attr_addfilterset_clip(attr,1,0,true,false);	//Greater than 0
 	jit_class_addattr(_cv_jit_track_class,attr);
 	
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"maxiter",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_track,maxIter));
-	jit_attr_addfilterset_clip(attr,1,0,TRUE,FALSE);	//Greater than 0
+	jit_attr_addfilterset_clip(attr,1,0,true,false);	//Greater than 0
 	jit_class_addattr(_cv_jit_track_class,attr);
 	
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"npoints",_jit_sym_long,attrflags,(method)0L,(method)cv_jit_track_set_npoints,calcoffset(t_cv_jit_track,npoints));
@@ -122,7 +122,7 @@ t_jit_err cv_jit_track_set_npoints(t_cv_jit_track *x, void *attr, long ac, t_ato
 	long val;
 	if((ac < 1)||(!av))
 	{
-   		error("Invalid argument for npoints attribute.");
+   		object_error((t_object*)x, "Invalid argument for npoints attribute.");
    		return JIT_ERR_GENERIC;
 	}
 	
@@ -153,12 +153,12 @@ t_jit_err cv_jit_track_set_npoints(t_cv_jit_track *x, void *attr, long ac, t_ato
    return JIT_ERR_NONE;
 }
 
-void cv_jit_track_setpoint(t_cv_jit_track *x,Symbol *s,short argc,Atom *argv)
+void cv_jit_track_setpoint(t_cv_jit_track *x, t_symbol *s, short argc, t_atom *argv)
 {
 	long i=0;
 	if(argc != 3)
 	{
-		error("Wrong arguments for 'set'.");
+		object_error((t_object*)x, "Wrong arguments for 'set'.");
 		return;
 	}
 	
@@ -166,7 +166,7 @@ void cv_jit_track_setpoint(t_cv_jit_track *x,Symbol *s,short argc,Atom *argv)
 	
 	if (i >= x->npoints)
 	{
-		error("Point index out of range!");
+		object_error((t_object*)x, "Point index out of range!");
 		return;
 	}
 	

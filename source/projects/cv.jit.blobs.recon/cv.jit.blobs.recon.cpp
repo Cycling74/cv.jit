@@ -31,9 +31,10 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
+
 
 typedef struct _cv_jit_blobs_recon 
 {
@@ -95,7 +96,7 @@ t_jit_err cv_jit_blobs_recon_init(void)
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_long,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_blobs_recon,mode));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_blobs_recon_class,(t_jit_object *)attr);
 		
 	jit_class_register(_cv_jit_blobs_recon_class);
@@ -115,23 +116,23 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 	double index;
 	int i;
 	
-	code = FOUR_CHAR_CODE( 'maxb' );
+	code =  ( 'maxb' );
 	
 	if(argc > 0)
 	{
 		if(argv[0].a_type != A_SYM)
 		{
-			error("Invalid argument to read command. Make sure argument is a symbol.");
+			object_error((t_object*)x, "Invalid argument to read command. Make sure argument is a symbol.");
 			return;
 		}
 		strcpy(fname,argv[0].a_w.w_sym->s_name);
 		if(!locatefile_extended(fname,&id,&type,&type,-1))
 		{
-			path_opensysfile(argv[0].a_w.w_sym->s_name, id, &handle, READ_PERM); 
+			path_opensysfile(argv[0].a_w.w_sym->s_name, id, &handle, READ_PERM);
 		}
 		else
 		{
-			error("Could not find file %s",argv[0].a_w.w_sym->s_name);
+			object_error((t_object*)x, "Could not find file %s",argv[0].a_w.w_sym->s_name);
 			return;
 		}
 	}
@@ -141,7 +142,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 		//Open file
 		if(path_opensysfile(fname, id, &handle, READ_PERM))
 		{
-			error("Could not open file %s",fname);
+			object_error((t_object*)x, "Could not open file %s",fname);
 			return;
 		}
 	}
@@ -153,7 +154,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 	//Check ID code
 	count = sizeof(t_int32);
 	sysfile_read(handle, &count, &cvjt);
-	if(cvjt == FOUR_CHAR_CODE( 'cvjt' ))
+	if(cvjt ==  ( 'cvjt' ))
 	{
 		
 		//Read list length
@@ -161,7 +162,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 		sysfile_read(handle, &count, &x->size);
 		if(x->size != 7)
 		{
-			error("Invalid data: make sure %s was trained with moments or Hu invariants from cv.jit.moments.", fname);
+			object_error((t_object*)x, "Invalid data: make sure %s was trained with moments or Hu invariants from cv.jit.moments.", fname);
 			sysfile_close(handle);
 			x->size = 7;
 			return;
@@ -182,7 +183,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 		//Close file
 		sysfile_close(handle);
 	}
-	else if (cvjt == FOUR_CHAR_CODE( 'tjvc' )) //File was created on another platform, with different endian, switch
+	else if (cvjt ==  ( 'tjvc' )) //File was created on another platform, with different endian, switch
 	{
 		//Read list length
 		count = sizeof(t_int32);
@@ -190,7 +191,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 		ByteSwap((unsigned char *)&x->size,sizeof(t_int32));
 		if(x->size != 7)
 		{
-			error("Invalid data: make sure %s was trained with moments or Hu invariants from cv.jit.moments.", fname);
+			object_error((t_object*)x, "Invalid data: make sure %s was trained with moments or Hu invariants from cv.jit.moments.", fname);
 			sysfile_close(handle);
 			x->size = 7;
 			return;
@@ -220,7 +221,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 	}
 	else
 	{
-		error("File %s was not created by cv.jit.learn.", fname);
+		object_error((t_object*)x, "File %s was not created by cv.jit.learn.", fname);
 		sysfile_close(handle);
 		return;
 	}
@@ -262,19 +263,19 @@ t_jit_err cv_jit_blobs_recon_matrix_calc(t_cv_jit_blobs_recon *x, void *inputs, 
 		if(in_minfo.dimcount != 1)
 		{
 			err = JIT_ERR_MISMATCH_DIM;
-			error("Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
+			object_error((t_object*)x, "Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
 			goto out;
 		}
 		if(in_minfo.planecount != 17)
 		{
 			err = JIT_ERR_MISMATCH_PLANE;
-			error("Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
+			object_error((t_object*)x, "Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
 			goto out;
 		}
 		if(in_minfo.type != _jit_sym_float32)
 		{
 			err = JIT_ERR_MISMATCH_TYPE;
-			error("Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
+			object_error((t_object*)x, "Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
 			goto out;
 		}
 
@@ -358,7 +359,7 @@ t_cv_jit_blobs_recon *cv_jit_blobs_recon_new(void)
 		//Error checking
 		if (!x->mean || !x->covariance || !x->inverse)
 		{
-			error("Could not allocate memory.");
+			object_error((t_object*)x, "Could not allocate memory.");
 			return NULL;
 		}
 

@@ -27,7 +27,7 @@ Note:
 	This external has been deprecated. It is provided only for backward compatibility.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 typedef struct _cv_jit_trackpoints 
 {

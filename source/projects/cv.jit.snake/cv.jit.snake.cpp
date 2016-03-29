@@ -31,7 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "jitOpenCV.h"
 
 typedef struct _cv_jit_snake 
@@ -89,16 +89,16 @@ t_jit_err cv_jit_snake_init(void)
 	
 	//add attributes
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"iterations",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_snake,iterations));
-	jit_attr_addfilterset_clip(attr,1,0,TRUE,FALSE);	//clip to 1~
+	jit_attr_addfilterset_clip(attr,1,0,true,false);	//clip to 1~
 	jit_class_addattr(_cv_jit_snake_class,attr);	
 	
 	//add attributes
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"radius",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_snake,window));
-	jit_attr_addfilterset_clip(attr,3,0,TRUE,FALSE);	//clip to 1~
+	jit_attr_addfilterset_clip(attr,3,0,true,false);	//clip to 1~
 	jit_class_addattr(_cv_jit_snake_class,attr);	
 	
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"ratio",_jit_sym_float32,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_snake,ratio));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_snake_class,attr);	
 
 	
@@ -151,22 +151,22 @@ t_jit_err cv_jit_snake_matrix_calc(t_cv_jit_snake *x, void *inputs, void *output
 		//Check snake validity
 		if(in2_minfo.type != _jit_sym_float32)
 		{
-			error("Snake must be float32.");
+			object_error((t_object*)x, "Snake must be float32.");
 			goto out;
 		}
 		if(in2_minfo.planecount != 5)
 		{
-			error("Snake must have 5 planes.");
+			object_error((t_object*)x, "Snake must have 5 planes.");
 			goto out;
 		}
 		if(in2_minfo.dimcount != 1)
 		{
-			error("Snake must have only 1 dimension.");
+			object_error((t_object*)x, "Snake must have only 1 dimension.");
 			goto out;
 		}
 		if(in2_minfo.dim[0] < 2)
 		{
-			error("Snake is too short: define at least two points.");
+			object_error((t_object*)x, "Snake is too short: define at least two points.");
 			goto out;
 		}
 		

@@ -210,6 +210,6 @@ void Dilate::dilate()
 	
 	if(err != kvImageNoError)
 	{
-		CV_REPORT_ERROR("cv.jit.dilate: Error while processing data. Code: %d", err);
+		CV_REPORT_ERROR("cv.jit.dilate: Error while processing data.");
 	}
 }

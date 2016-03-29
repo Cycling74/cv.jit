@@ -27,8 +27,10 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 /*Note: removed experimental code that was commented out. --jmp*/
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
+#define CLAMP(a, lo, hi) ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) )
+#define CLIP_ASSIGN(a, lo, hi) ((a) = ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) ))
 
 // max points allowed 
 #ifndef MAX_POINTS
@@ -227,19 +229,19 @@ t_jit_err cv_jit_extrema_matrix_calc(t_cv_jit_extrema *x, void *inputs, void *ou
 	if (in_minfo.type != _jit_sym_long) 
 	{ 
 		err = JIT_ERR_MISMATCH_TYPE; 
-		error("The input must come from cv.jit.hough!"); //Added a friendly reminder -- jmp
+		object_error((t_object*)x, "The input must come from cv.jit.hough!"); //Added a friendly reminder -- jmp
 		goto out;
 	}		
 	if (in_minfo.planecount != 1)
 	{ 
 		err = JIT_ERR_MISMATCH_PLANE; 
-		error("The input must come from cv.jit.hough!"); //Added a friendly reminder -- jmp
+		object_error((t_object*)x, "The input must come from cv.jit.hough!"); //Added a friendly reminder -- jmp
 		goto out;
 	}
 	if (in_minfo.dimcount != 2) 
 	{ 
 		err = JIT_ERR_MISMATCH_DIM; 
-		error("The input must come from cv.jit.hough!"); //Added a friendly reminder -- jmp
+		object_error((t_object*)x, "The input must come from cv.jit.hough!"); //Added a friendly reminder -- jmp
 		goto out;
 	}
 	

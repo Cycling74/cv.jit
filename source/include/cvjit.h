@@ -8,7 +8,7 @@
 
 
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 #ifdef OPENCV
 #ifndef _CV_H_
@@ -40,7 +40,7 @@
 
 /*Error handling*/
 #ifdef JITTER
-#define CV_REPORT_ERROR error
+#define CV_REPORT_ERROR(str) object_error(NULL, str)
 #endif
 
 /*Type definitions*/

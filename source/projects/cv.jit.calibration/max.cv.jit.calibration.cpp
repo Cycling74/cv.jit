@@ -34,7 +34,7 @@
  in Jitter externals.
  */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 // Max object instance data
 // Note: most instance data is in the Jitter object which we will wrap
@@ -122,7 +122,7 @@ void *max_cv_jit_calibration_new(t_symbol *s, long argc, t_atom *argv)
 		} 
 		else {
 			object_error((t_object*)x, "cv.jit.calibration : could not allocate object");
-			freeobject((t_object*)x);
+			object_free((t_object*)x);
 			x = NULL;
 		}
 	}

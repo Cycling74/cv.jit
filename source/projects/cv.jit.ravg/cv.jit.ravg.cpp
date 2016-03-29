@@ -22,8 +22,10 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cvjitVectorOps.h"
+#include <algorithm>
+
 
 typedef struct _cv_jit_ravg 
 {
@@ -63,7 +65,7 @@ t_jit_err cv_jit_ravg_init(void)
 	//add attributes	
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"alpha",_jit_sym_float64,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_ravg,alpha));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_ravg_class,attr);
 	
 	jit_class_register(_cv_jit_ravg_class);
@@ -110,12 +112,12 @@ t_jit_err cv_jit_ravg_matrix_calc(t_cv_jit_ravg *x, void *inputs, void *outputs)
 		dimcount   = out_minfo.dimcount;
 		planecount = out_minfo.planecount;			
 		for (i=0;i<dimcount;i++) {
-			dim[i] = MIN(in_minfo.dim[i],out_minfo.dim[i]);
+			dim[i] = std::min(in_minfo.dim[i],out_minfo.dim[i]);
 		}
 		
 		if(in_minfo.size != out_minfo.size){
 			err=JIT_ERR_GENERIC;
-			error("Mismatched sizes");
+			object_error((t_object*)x, "Mismatched sizes");
 			goto out;
 		}
 		
@@ -195,7 +197,7 @@ void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long
 			op = bop;
 			buf = (float *)bbp;
 			
-			steps = MIN(in_minfo->dimstride[1] / 4, buf_minfo->dimstride[1] / (4 * sizeof(float)));
+			steps = std::min<int>(in_minfo->dimstride[1] / 4, buf_minfo->dimstride[1] / (4 * sizeof(float)));
 			
 			for(i=0;i<dim[1];i++){
 				ip = bip + i * in_minfo->dimstride[1];
@@ -229,7 +231,7 @@ void cv_jit_ravg_calculate_ndim(t_cv_jit_ravg *x, long dimcount, long *dim, long
 			
 			buf = (float *)bbp;
 			
-			steps = MIN(in_minfo->dimstride[1] / (4 * sizeof(t_int32)), buf_minfo->dimstride[1] / (4 * sizeof(float)));
+			steps = std::min(in_minfo->dimstride[1] / (4 * sizeof(t_int32)), buf_minfo->dimstride[1] / (4 * sizeof(float)));
 			
 			for(i=0;i<dim[1];i++){
 				ip = bip + i * in_minfo->dimstride[1];
@@ -339,7 +341,7 @@ t_cv_jit_ravg *cv_jit_ravg_new(void)
 		info.dimcount = 2;
 		info.planecount = 1;
 		m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
-		if(!m) error("could not allocate internal matrix!");
+		if(!m) object_error((t_object*)x, "could not allocate internal matrix!");
 		jit_object_method(m,_jit_sym_clear);						//Clear data
 		x->bufMat = m;
 	} 

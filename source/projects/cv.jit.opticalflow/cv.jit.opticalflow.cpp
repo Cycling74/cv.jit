@@ -31,7 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "OpticalFlow.h"
 #include "jitOpenCV.h"
@@ -106,7 +106,7 @@ t_jit_err cv_jit_opticalflow_set_method(t_cv_jit_opticalflow *x, void *attr, lon
 		if(s)
 			x->of->setMethod(s->s_name);
 		else {
-			error("Invalid symbol pointer.");
+			object_error((t_object*)x, "Invalid symbol pointer.");
 			return JIT_ERR_INVALID_PTR;
 		}
 

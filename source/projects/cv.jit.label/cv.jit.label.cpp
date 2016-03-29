@@ -22,7 +22,8 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
+#include <algorithm>
 
 //Blob struct definition
 typedef struct
@@ -110,11 +111,11 @@ t_jit_err cv_jit_label_init(void)
 	jit_class_addattr(_cv_jit_label_class,attr);
 	//mode : 0: label sequentially, 1: label with mass
 	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_label,mode));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_label_class,attr);
 	//charmode: 0: output is long, 1: output is char
 	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"charmode",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_label,charmode));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_label_class,attr);
 
 	//Register class
@@ -215,7 +216,7 @@ t_jit_err cv_jit_label_matrix_calc(t_cv_jit_label *x, void *inputs, void *output
 		planecount = out_minfo.planecount;			
 		for (i=0;i<dimcount;i++) 	
 		{
-			dim[i] = MIN(in_minfo.dim[i],out_minfo.dim[i]);
+			dim[i] = std::min(in_minfo.dim[i],out_minfo.dim[i]);
 		}	
 				
 		//calculate
@@ -260,7 +261,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     height  = dim[1];
 	equiv = x->equiv;
     
-    thresh = MAX(0, x->threshold);
+	thresh = std::max(0l, x->threshold);
     
     in = bip;
     out = bop;
@@ -281,7 +282,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     			if((((t_int32 *)out)[j]==0)&&(in[j]!=0))    //We found a new blob
     			{
     				ndx++;
-					ndx = MIN(ndx, 2048);
+					ndx = std::min(ndx, 2048);
 					blobs[ndx].index=ndx;
 					blobs[ndx].size = fillBlobLong(i, j, ndx, &j, dim, step, outstep, bip, bop, st);
     			}
@@ -300,7 +301,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     			if((((t_int32 *)cTemp)[j]==0)&&(in[j]!=0))    //We found a new blob
     			{
     				ndx++;
-					ndx = MIN(ndx, 2048);
+					ndx = std::min(ndx, 2048);
 					blobs[ndx].index=ndx;
 					blobs[ndx].size = fillBlobLong(i, j, ndx, &j, dim, step, cstep, bip, tmp, st);
     			}
@@ -775,7 +776,7 @@ t_cv_jit_label *cv_jit_label_new(void)
 			info.dimcount = 1;
 			info.planecount = 1;
 			m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
-			if(!m) error("could not allocate internal matrix!");
+			if(!m) object_error((t_object*)x, "could not allocate internal matrix!");
 			jit_object_method(m,_jit_sym_clear);						//Clear data
 			x->buf = m;												//Copy matrix pointer to jitter object
 
@@ -784,7 +785,7 @@ t_cv_jit_label *cv_jit_label_new(void)
 			info.dimcount = 2;
 			info.planecount = 1;
 			m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
-			if(!m) error("could not allocate internal matrix!");
+			if(!m) object_error((t_object*)x, "could not allocate internal matrix!");
 			jit_object_method(m,_jit_sym_clear);						//Clear data
 			x->ctemp = m;												//Copy matrix pointer to jitter object		
 	} else 

@@ -22,7 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 typedef struct _max_cv_jit_moments 
 {
@@ -192,8 +192,8 @@ void *max_cv_jit_moments_new(t_symbol *s, long argc, t_atom *argv)
 			x->momout = outlet_new(x,0L);
 			max_jit_attr_args(x,argc,argv);
 		} else {
-			error("cv.jit.moments: could not allocate object");
-			freeobject((t_object *)x);
+			object_error((t_object*)x, "cv.jit.moments: could not allocate object");
+			object_free((t_object *)x);
 		}
 	}
 	return (x);

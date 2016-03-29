@@ -32,7 +32,7 @@ in Jitter externals.
 */
 
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -122,7 +122,7 @@ t_jit_err cv_jit_shift_init(void)
 	//The mode, 0: meanshift -- 1: camshift
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_char,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_shift,mode));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);
+	jit_attr_addfilterset_clip(attr,0,1,true,true);
 	jit_class_addattr(_cv_jit_shift_class,attr);
 			
 	jit_class_register(_cv_jit_shift_class);

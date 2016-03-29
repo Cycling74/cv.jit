@@ -43,7 +43,10 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
  
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
+
+#define CLAMP(a, lo, hi) ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) )
+#define CLIP_ASSIGN(a, lo, hi) ((a) = ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) ))
 
 #ifndef PI
 #define	PI (double)3.141592653589793

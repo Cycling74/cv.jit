@@ -29,7 +29,7 @@ Note:
 	to simply use malloc() instead.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 typedef struct _cv_jit_covariance 
 {
@@ -322,7 +322,7 @@ t_cv_jit_covariance *cv_jit_covariance_new(void)
 		x->matnameA = symbol_unique();							//Get a unique identifier for matrix creation
 		m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
 		m = jit_object_method(m, _jit_sym_register, x->matnameA);	//Register matrix name
-		if(!m) error("could not allocate internal matrix!");
+		if(!m) object_error((t_object*)x, "could not allocate internal matrix!");
 		jit_object_attach(x->matnameA, x);							//Attach matrix to jitter object
 		jit_object_method(m,_jit_sym_clear);						//Clear data
 		x->var = m;													//Copy matrix pointer to jitter object
@@ -334,7 +334,7 @@ t_cv_jit_covariance *cv_jit_covariance_new(void)
 		x->matnameB = symbol_unique();							//Get a unique identifier for matrix creation
 		m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
 		m = jit_object_method(m, _jit_sym_register, x->matnameB);	//Register matrix name
-		if(!m) error("could not allocate internal matrix!");
+		if(!m) object_error((t_object*)x, "could not allocate internal matrix!");
 		jit_object_attach(x->matnameB, x);							//Attach matrix to jitter object
 		jit_object_method(m,_jit_sym_clear);						//Clear data
 		x->mean = m;												//Copy matrix pointer to jitter object

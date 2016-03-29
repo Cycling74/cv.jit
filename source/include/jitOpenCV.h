@@ -37,7 +37,7 @@ in Jitter externals.
 
 
 #include <cv.h>
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 void cvJitter2CvMat(void *jitMat, CvMat *mat);
 void cvMat2Jitter(CvMat *mat, void *jitMat);
@@ -52,7 +52,7 @@ void cvJitter2CvMat(void *jitMat, CvMat *mat)
 
 	if((!jitMat)||(!mat))
 	{
-		error("Error converting Jitter matrix: invalid pointer.");
+		object_error(NULL, "Error converting Jitter matrix: invalid pointer.");
 		return;
 	}
 
@@ -60,7 +60,7 @@ void cvJitter2CvMat(void *jitMat, CvMat *mat)
 
 	if(info.dimcount != 2)
 	{
-		error("Error converting Jitter matrix: invalid dimension count.");
+		object_error(NULL, "Error converting Jitter matrix: invalid dimension count.");
 		return;
 	}
 
@@ -94,7 +94,7 @@ void cvMat2Jitter(CvMat *mat, void *jitMat)
 	
 	if((!jitMat)||(!mat))
 	{
-		error("Error converting to Jitter matrix: invalid pointer.");
+		object_error(NULL, "Error converting to Jitter matrix: invalid pointer.");
 		return;
 	}
 	
@@ -121,7 +121,7 @@ void cvMat2Jitter(CvMat *mat, void *jitMat)
 			info.dimstride[0] = sizeof(double);
 			break;
 		default:
-			error("Error converting to Jitter matrix: unsupported depth.");
+			object_error(NULL, "Error converting to Jitter matrix: unsupported depth.");
 			return;
 	}
 	info.dimstride[1] = mat->step;

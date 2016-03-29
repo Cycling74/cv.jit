@@ -29,7 +29,7 @@ Possible improvements:
 	performance.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 typedef struct _cv_jit_centroids 
 {

@@ -32,9 +32,12 @@ in Jitter externals.
 */
 
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
+
+#define CLAMP(a, lo, hi) ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) )
+#define CLIP_ASSIGN(a, lo, hi) ((a) = ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) ))
 
 typedef struct _cv_jit_features 
 {
@@ -96,12 +99,12 @@ t_jit_err cv_jit_features_init(void)
 	
 	//threshold
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"threshold",_jit_sym_float64,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_features,threshold));			
-	jit_attr_addfilterset_clip(attr,0.001,1,TRUE,TRUE);	//clip to 0.001-1
+	jit_attr_addfilterset_clip(attr,0.001,1,true,true);	//clip to 0.001-1
 	jit_class_addattr(_cv_jit_features_class, attr);
 	
 	//minimum distance
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"distance",_jit_sym_float64,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_features,distance));			
-	jit_attr_addfilterset_clip(attr,0,0,TRUE,FALSE);	//clip to 0
+	jit_attr_addfilterset_clip(attr,0,0,true,false);	//clip to 0
 	jit_class_addattr(_cv_jit_features_class, attr);
 	
 	//roi
@@ -109,12 +112,12 @@ t_jit_err cv_jit_features_init(void)
 	jit_class_addattr(_cv_jit_features_class, attr);
 	
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"useroi",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_features,useroi));			
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_features_class, attr);
 	
 	//Precision
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"precision",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_features,precision));			
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_features_class, attr);
 			
 	jit_class_register(_cv_jit_features_class);

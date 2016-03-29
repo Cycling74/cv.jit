@@ -30,7 +30,7 @@ Note:
 	code is still used instead.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.dilate.h"
 
 typedef struct _cv_jit_dilate 
@@ -65,18 +65,18 @@ t_jit_err cv_jit_dilate_init(void)
 	// mode (square or cross)
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_dilate,mode));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_dilate_class,attr);
 	
 	//We don't use these anymore, but leave them here for backwards-compatibility
 	// binary/greyscale
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"greyscale",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_dilate,grey));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_dilate_class,attr);
 	
 	// binary/greyscale
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"grayscale",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_dilate,grey));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_dilate_class,attr);
 	
 	//add methods

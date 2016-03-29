@@ -22,7 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 typedef struct _max_cv_jit_blobs_elongation 
 {
@@ -81,8 +81,8 @@ void *max_cv_jit_blobs_elongation_new(t_symbol *s, long argc, t_atom *argv)
 			max_jit_mop_setup_simple(x,o,argc,argv);			
 			max_jit_attr_args(x,argc,argv);
 		} else {
-			error("cv.jit.blobs.elongation: could not allocate object");
-			freeobject((t_object *)x);
+			object_error((t_object*)x, "cv.jit.blobs.elongation: could not allocate object");
+			object_free((t_object *)x);
 		}
 	}
 	return (x);

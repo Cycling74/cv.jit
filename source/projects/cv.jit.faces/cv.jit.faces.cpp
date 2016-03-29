@@ -32,7 +32,7 @@ in Jitter externals.
 */
 
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -96,7 +96,7 @@ t_jit_err cv_jit_faces_init(void)
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"model",_jit_sym_long,attrflags,(method)0L,(method)cv_jit_faces_model,calcoffset(t_cv_jit_faces,model));			
-	jit_attr_addfilterset_clip(attr,1,4,TRUE,TRUE);	//clip to 1-4
+	jit_attr_addfilterset_clip(attr,1,4,true,true);	//clip to 1-4
 	jit_class_addattr(_cv_jit_faces_class, attr);
 	
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_OPAQUE;
@@ -264,19 +264,19 @@ void cv_jit_faces_read(t_cv_jit_faces *x, t_symbol *s, short argc, t_atom *argv)
 	t_fourcc code;
 
 
-	code = FOUR_CHAR_CODE( 'TEXT' );
+	code =  'TEXT' ;
 	
 	if(argc > 0)
 	{
 		if(argv[0].a_type != A_SYM)
 		{
-			error("Invalid argument to read command. Make sure argument is a symbol.");
+			object_error((t_object*)x, "Invalid argument to read command. Make sure argument is a symbol.");
 			return;
 		}
 		strcpy(fname,argv[0].a_w.w_sym->s_name);
 		if(locatefile_extended(fname,&id,&type,&type,-1))
 		{
-			error("Could not find file %s",argv[0].a_w.w_sym->s_name);
+			object_error((t_object*)x, "Could not find file %s",argv[0].a_w.w_sym->s_name);
 			return;
 		}
 
@@ -290,7 +290,7 @@ void cv_jit_faces_read(t_cv_jit_faces *x, t_symbol *s, short argc, t_atom *argv)
 	{
 		if(open_dialog(fname, &id, &type,&code,1))
 		{
-			error("Could not find file %s",fname);
+			object_error((t_object*)x, "Could not find file %s",fname);
 			return;
 		}
 		path_topathname(id, fname, pname); 
@@ -299,7 +299,7 @@ void cv_jit_faces_read(t_cv_jit_faces *x, t_symbol *s, short argc, t_atom *argv)
 		x->cascade = (CvHaarClassifierCascade*)cvLoad( fname, 0, 0, 0 );
 		if(!x->cascade)
 		{
-			error("Can't load face description file: %s",fname); 
+			object_error((t_object*)x, "Can't load face description file: %s",fname); 
 			x->model = 0;
 			return;
 		}
@@ -323,7 +323,7 @@ short cv_jit_faces_load(t_cv_jit_faces *x,const char *m)
 	
 	if (locatefile_extended(name,&path,&type,&type,-1)) 
 	{
-		error("Can't find face description file: %s",name); 
+		object_error((t_object*)x, "Can't find face description file: %s",name); 
 		x->cascade = NULL;
 		return 1;
 	}	
@@ -337,7 +337,7 @@ short cv_jit_faces_load(t_cv_jit_faces *x,const char *m)
 				x->cascade = (CvHaarClassifierCascade*)cvLoad( conform_name, 0, 0, 0 );
 				if(!x->cascade)
 				{
-						error("Can't load face description file: %s",conform_name); 
+						object_error((t_object*)x, "Can't load face description file: %s",conform_name); 
 						return 1;
 				}
 			}

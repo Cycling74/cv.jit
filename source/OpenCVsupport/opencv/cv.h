@@ -43,6 +43,22 @@
 #ifndef __OPENCV_OLD_CV_H__
 #define __OPENCV_OLD_CV_H__
 
+#define CLAMP(a, lo, hi) ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) )
+#define CLIP_ASSIGN(a, lo, hi) ((a) = ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) ))
+
+#include "c74_jitter.h"
+#include "ext_sysfile.h"
+typedef enum {
+	PATH_READ_PERM = 1,		///< Read mode
+	PATH_WRITE_PERM = 2,	///< Write mode
+	PATH_RW_PERM = 3		///< Read/Write mode
+} e_max_openfile_permissions;
+#define READ_PERM		PATH_READ_PERM		// for backwards compatibility
+#define WRITE_PERM		PATH_WRITE_PERM		// for backwards compatibility
+#define RW_PERM			PATH_RW_PERM		// for backwards compatibility
+extern "C" short path_opensysfile(const char *name, const short path, t_filehandle *ref, short perm);
+extern "C" short path_createsysfile(const char *name, short path, t_fourcc type, t_filehandle *ref);
+
 #if defined(_MSC_VER)
     #define CV_DO_PRAGMA(x) __pragma(x)
     #define __CVSTR2__(x) #x

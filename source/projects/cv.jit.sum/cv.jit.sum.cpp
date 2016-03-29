@@ -22,7 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 typedef struct _cv_jit_sum_vecdata_char
 {
 	long 				sum[JIT_MATRIX_MAX_PLANECOUNT];

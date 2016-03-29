@@ -31,7 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -69,7 +69,7 @@ t_jit_err cv_jit_LKflow_init(void)
 	//add attributes	
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"radius",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_LKflow,radius));
-	jit_attr_addfilterset_clip(attr,1,7,TRUE,TRUE);	//clip to 1-7
+	jit_attr_addfilterset_clip(attr,1,7,true,true);	//clip to 1-7
 	jit_class_addattr(_cv_jit_LKflow_class,attr);
 	
 	jit_class_register(_cv_jit_LKflow_class);
@@ -132,7 +132,7 @@ t_jit_err cv_jit_LKflow_matrix_calc(t_cv_jit_LKflow *x, void *inputs, void *outp
 		
 		//Check to see if image isn't too small
 		if((in_minfo.dim[0] < radius)||(in_minfo.dim[1] < radius)){
-			error("Matrix height and width must be at least %d", radius);
+			object_error((t_object*)x, "Matrix height and width must be at least %d", radius);
 			err = JIT_ERR_GENERIC;
 			goto out;
 		}
@@ -143,14 +143,14 @@ t_jit_err cv_jit_LKflow_matrix_calc(t_cv_jit_LKflow *x, void *inputs, void *outp
 		flowY = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		
 		if(!flowX || !flowY){
-			error("Failed to create internal data.");
+			object_error((t_object*)x, "Failed to create internal data.");
 			goto out;
 		}
 		
 		if(!x->previous){
 			x->previous = cvCreateMat(current.rows, current.cols, current.type);
 			if(!x->previous){
-				error("Failed to create internal matrix.");
+				object_error((t_object*)x, "Failed to create internal matrix.");
 				goto out;
 			}
 		}
@@ -160,14 +160,14 @@ t_jit_err cv_jit_LKflow_matrix_calc(t_cv_jit_LKflow *x, void *inputs, void *outp
 			//returned by cvCreateMat, hence we need to fudge things by hand.
 			x->previous = cvCreateMatHeader(current.rows, current.cols, current.type);
 			if(!x->previous){
-				error("Failed to create internal matrix (2).");
+				object_error((t_object*)x, "Failed to create internal matrix (2).");
 				err = JIT_ERR_GENERIC;
 				goto out;
 			}
 			cvInitMatHeader(x->previous, current.rows, current.cols, current.type, 0, current.step);
 			cvCreateData(x->previous);
 			if(!x->previous->data.ptr){
-				error("Failed to allocate internal memory.");
+				object_error((t_object*)x, "Failed to allocate internal memory.");
 				err = JIT_ERR_GENERIC;
 				cvReleaseMat(&x->previous);
 				goto out;

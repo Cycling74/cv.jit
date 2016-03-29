@@ -22,7 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 typedef struct _cv_jit_blobs_direction {
 	t_object				ob;
@@ -73,12 +73,12 @@ t_jit_err cv_jit_blobs_direction_init(void)
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"mode",_jit_sym_long,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_blobs_direction,mode));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_blobs_direction_class,attr);
 	
 	attr = (t_jit_object*)jit_object_new(_jit_sym_jit_attr_offset,"flip",_jit_sym_long,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_blobs_direction,flip));
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_blobs_direction_class,attr);
 		
 	jit_class_register(_cv_jit_blobs_direction_class);
@@ -112,19 +112,19 @@ t_jit_err cv_jit_blobs_direction_matrix_calc(t_cv_jit_blobs_direction *x, void *
 		if(in_minfo.dimcount != 1)
 		{
 			err = JIT_ERR_MISMATCH_DIM;
-			error("Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
+			object_error((t_object*)x, "Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
 			goto out;
 		}
 		if(in_minfo.planecount != 17)
 		{
 			err = JIT_ERR_MISMATCH_PLANE;
-			error("Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
+			object_error((t_object*)x, "Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
 			goto out;
 		}
 		if(in_minfo.type != _jit_sym_float32)
 		{
 			err = JIT_ERR_MISMATCH_TYPE;
-			error("Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
+			object_error((t_object*)x, "Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
 			goto out;
 		}
 

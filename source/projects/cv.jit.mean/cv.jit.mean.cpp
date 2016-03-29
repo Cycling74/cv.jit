@@ -22,9 +22,10 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "ext_jitter.h"
-typedef struct _cv_jit_mean 
-{
+#include "c74_jitter.h"
+#include <algorithm>
+
+typedef struct _cv_jit_mean {
 	t_object			ob;
 	double				index;
 	
@@ -125,7 +126,7 @@ t_jit_err cv_jit_mean_matrix_calc(t_cv_jit_mean *x, void *inputs, void *outputs)
 		dimcount   = out_minfo.dimcount;
 		planecount = out_minfo.planecount;			
 		for (i=0;i<dimcount;i++) {
-			dim[i] = MIN(in_minfo.dim[i],out_minfo.dim[i]);
+			dim[i] = std::min(in_minfo.dim[i],out_minfo.dim[i]);
 		}		
 		
 		//Do we need to resize buffer?

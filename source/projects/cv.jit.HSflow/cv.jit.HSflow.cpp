@@ -31,7 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -154,7 +154,7 @@ t_jit_err cv_jit_HSflow_matrix_calc(t_cv_jit_HSflow *x, void *inputs, void *outp
 		flowY = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		
 		if(!flowX || !flowY){
-			error("Failed to created internal data.");
+			object_error((t_object*)x, "Failed to created internal data.");
 			goto out;
 		}
 		
@@ -218,7 +218,7 @@ t_cv_jit_HSflow *cv_jit_HSflow_new(void)
 		info.dimcount = 2;
 		info.planecount = 1;
 		m = (t_jit_object*)jit_object_new(_jit_sym_jit_matrix, &info);				//Create a new matrix
-		if(!m) error("could not allocate internal matrix!");
+		if(!m) object_error((t_object*)x, "could not allocate internal matrix!");
 		jit_object_method(m,_jit_sym_clear);						//Clear data
 		x->imgA = m;												//Copy matrix pointer to jitter object
 		

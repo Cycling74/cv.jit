@@ -22,7 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 typedef struct _cv_jit_blobs_elongation 
 {
@@ -101,19 +101,19 @@ t_jit_err cv_jit_blobs_elongation_matrix_calc(t_cv_jit_blobs_elongation *x, void
 		if(in_minfo.dimcount != 1)
 		{
 			err = JIT_ERR_MISMATCH_DIM;
-			error("Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
+			object_error((t_object*)x, "Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
 			goto out;
 		}
 		if(in_minfo.planecount != 17)
 		{
 			err = JIT_ERR_MISMATCH_PLANE;
-			error("Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
+			object_error((t_object*)x, "Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
 			goto out;
 		}
 		if(in_minfo.type != _jit_sym_float32)
 		{
 			err = JIT_ERR_MISMATCH_TYPE;
-			error("Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
+			object_error((t_object*)x, "Make sure object is connected to leftmost outlet of cv.jit.blobs.moments!");
 			goto out;
 		}
 

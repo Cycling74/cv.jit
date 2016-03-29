@@ -34,7 +34,7 @@
  in Jitter externals.
  */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -169,7 +169,7 @@ t_jit_err cv_jit_calibration_init(void)
 	
 	// finalize class
 	jit_class_register(_cv_jit_calibration_class);
-	post("cv.jit.calibration by Antoine Villeret - build on the %s at %s.",__DATE__, __TIME__);
+	object_post(NULL, "cv.jit.calibration by Antoine Villeret - build on the %s at %s.",__DATE__, __TIME__);
 	
 	return JIT_ERR_NONE;
 }

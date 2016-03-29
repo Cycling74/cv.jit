@@ -31,7 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 
 
@@ -120,13 +120,13 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	t_fourcc code;
 	int i;
 	
-	code = FOUR_CHAR_CODE( 'maxb' );
+	code =  ( 'maxb' );
 	
 	if(argc > 0)
 	{
 		if(argv[0].a_type != A_SYM)
 		{
-			error("Invalid argument to read command. Make sure argument is a symbol.");
+			object_error((t_object*)x, "Invalid argument to read command. Make sure argument is a symbol.");
 			return;
 		}
 		strcpy(fname,argv[0].a_w.w_sym->s_name);
@@ -136,7 +136,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		}
 		else
 		{
-			error("Could not find file %s",argv[0].a_w.w_sym->s_name);
+			object_error((t_object*)x, "Could not find file %s",argv[0].a_w.w_sym->s_name);
 			return;
 		}
 	}
@@ -146,7 +146,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		//Open file
 		if(path_opensysfile(fname, id, &handle, READ_PERM))
 		{
-			error("Could not open file %s",fname);
+			object_error((t_object*)x, "Could not open file %s",fname);
 			return;
 		}
 	}
@@ -159,7 +159,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	count = sizeof(t_int32);
 	sysfile_read(handle, &count, &cvjt);
 	
-	if(cvjt == FOUR_CHAR_CODE( 'cvjt' ))
+	if(cvjt ==  ( 'cvjt' ))
 	{
 		//Free storage
 		sysmem_freeptr(x->mean);
@@ -188,7 +188,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		//Close file
 		sysfile_close(handle);
 	}
-	else if (cvjt == FOUR_CHAR_CODE( 'tjvc' )) //File was created on another platform, with different endian, switch
+	else if (cvjt ==  ( 'tjvc' )) //File was created on another platform, with different endian, switch
 	{
 		//Free storage
 		sysmem_freeptr(x->mean);
@@ -229,7 +229,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	}
 	else //No match, output error
 	{
-		error("File %s was not created by cv.jit.learn.", fname);
+		object_error((t_object*)x, "File %s was not created by cv.jit.learn.", fname);
 		sysfile_close(handle);
 		return;
 	}
@@ -243,13 +243,14 @@ void cv_jit_learn_write(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv
 	t_ptr_size count;
 	long cvjt;
 	
-	strcpy(fname,".mxb");  //Display .mxb in the dialog box	
-	if(!saveas_dialog(fname, &id, 0L))
-	{
-		path_createsysfile(fname, id, FOUR_CHAR_CODE( 'cvjt' ), &handle); 
+	strcpy(fname,".mxb");  //Display .mxb in the dialog box
+
+	if (!saveasdialog_extended(fname, &id, NULL, NULL, -1)) {
+		int type = 'cvjt';
+		path_createsysfile(fname, id, type, &handle);
 		//Write ID code
 		count = sizeof(t_int32);
-		cvjt = FOUR_CHAR_CODE( 'cvjt' );
+		cvjt =  ( 'cvjt' );
 		sysfile_write(handle, &count, &cvjt);
 		//Write list length
 		count = sizeof(t_int32);
@@ -283,7 +284,7 @@ void cv_jit_learn_list(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	//Make sure list is of proper size
 	if(argc != x->size)
 	{
-		error("Input must be a list with %d elements", x->size);
+		object_error((t_object*)x, "Input must be a list with %d elements", x->size);
 		return;
 	}
 	
@@ -296,7 +297,7 @@ void cv_jit_learn_list(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 			data[i] = (double) argv[i].a_w.w_float;
 		else
 		{
-			error("Invalid data in list, make sure it only contains numbers.");
+			object_error((t_object*)x, "Invalid data in list, make sure it only contains numbers.");
 			return;
 		}
 	}
@@ -369,7 +370,7 @@ void cv_jit_learn_assist(t_cv_jit_learn *x, void *b, long m, long a, char *s)
 void cv_jit_learn_free(t_cv_jit_learn *x)
 {
 	//Free proxy
-	freeobject((t_object*)x->m_proxy);
+	object_free((t_object*)x->m_proxy);
 	//Free data
 	sysmem_freeptr(x->mean);
 	sysmem_freeptr(x->covariance);
@@ -401,7 +402,7 @@ void *cv_jit_learn_new(long arg)
 	//Error checking
 	if (!x->mean || !x->covariance || !x->inverse)
 	{
-		error("Could not allocate memory.");
+		object_error((t_object*)x, "Could not allocate memory.");
 		return NULL;
 	}
 	

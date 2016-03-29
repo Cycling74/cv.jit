@@ -33,7 +33,7 @@ in Jitter externals.
 */
 
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -115,22 +115,22 @@ t_jit_err cv_jit_surf_init(void)
 	
 	//threshold
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"threshold",_jit_sym_float64,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_surf,threshold));			
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,FALSE);	//Must be at least 0
+	jit_attr_addfilterset_clip(attr,0,1,true,false);	//Must be at least 0
 	jit_class_addattr(_cv_jit_surf_class, attr);
 	
 	//mode 0:basic 1:extended
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"mode",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_surf,mode));			
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//0 or 1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//0 or 1
 	jit_class_addattr(_cv_jit_surf_class, attr);
 	
 	//Number of octaves
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"octaves",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_surf,octaves));			
-	jit_attr_addfilterset_clip(attr,1,1,TRUE,FALSE);	//At least 1
+	jit_attr_addfilterset_clip(attr,1,1,true,false);	//At least 1
 	jit_class_addattr(_cv_jit_surf_class, attr);
 	
 	//Number of layers per octave
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"layers",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_surf,layers));			
-	jit_attr_addfilterset_clip(attr,1,1,TRUE,FALSE);	//At least 1
+	jit_attr_addfilterset_clip(attr,1,1,true,false);	//At least 1
 	jit_class_addattr(_cv_jit_surf_class, attr);
 	
 	//roi
@@ -138,7 +138,7 @@ t_jit_err cv_jit_surf_init(void)
 	jit_class_addattr(_cv_jit_surf_class, attr);
 	
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"useroi",_jit_sym_char,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_surf,useroi));			
-	jit_attr_addfilterset_clip(attr,0,1,TRUE,TRUE);	//clip to 0-1
+	jit_attr_addfilterset_clip(attr,0,1,true,true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_surf_class, attr);
 	
 	

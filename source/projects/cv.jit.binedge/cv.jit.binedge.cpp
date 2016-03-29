@@ -21,7 +21,8 @@
 	along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
+#include <algorithm>
 
 typedef struct _cv_jit_binedge {
 	t_object				ob;
@@ -105,7 +106,7 @@ t_jit_err cv_jit_binedge_matrix_calc(t_cv_jit_binedge *x, void *inputs, void *ou
 		planecount = out_minfo.planecount;			
 		for (i=0;i<dimcount;i++) 
 		{
-			dim[i] = MIN(in_minfo.dim[i],out_minfo.dim[i]);
+			dim[i] = std::min(in_minfo.dim[i], out_minfo.dim[i]);
 		}		
 				
 		//calculate

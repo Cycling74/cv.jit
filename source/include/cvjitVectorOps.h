@@ -22,8 +22,6 @@
  
  */
 
-
-
 typedef double double2[2];
 typedef float float4[4];
 typedef long long4[4];

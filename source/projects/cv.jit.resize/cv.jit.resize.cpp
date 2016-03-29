@@ -31,7 +31,7 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -61,7 +61,7 @@ t_jit_err cv_jit_resize_size_set(t_cv_jit_resize *x, void *attr, long ac, t_atom
 		x->changed = 1;
    } else {
       // no args, don't do anything
-	  error("Invalid size argument.");
+	  object_error((t_object*)x, "Invalid size argument.");
    }
    return JIT_ERR_NONE;
 }
@@ -90,11 +90,11 @@ t_jit_err cv_jit_resize_init(void)
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset_array,"size",_jit_sym_long,2,attrflags,
 		(method)0L,(method)cv_jit_resize_size_set,calcoffset(t_cv_jit_resize,sizecount),calcoffset(t_cv_jit_resize,size));
-	jit_attr_addfilterset_clip(attr,1,0,TRUE,FALSE);  //2009-09 size cannot be less than 1 (bad access error if it is)
+	jit_attr_addfilterset_clip(attr,1,0,true,false);  //2009-09 size cannot be less than 1 (bad access error if it is)
 	jit_class_addattr(_cv_jit_resize_class,attr);
 	
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"interpolation",_jit_sym_long,attrflags,(method)0L,(method)0L,calcoffset(t_cv_jit_resize,interpolation));			
-	jit_attr_addfilterset_clip(attr,0,3,TRUE,TRUE);
+	jit_attr_addfilterset_clip(attr,0,3,true,true);
 	jit_class_addattr(_cv_jit_resize_class, attr);
 
 			

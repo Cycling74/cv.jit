@@ -32,7 +32,7 @@ in Jitter externals.
 */
 
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -68,12 +68,12 @@ t_jit_err cv_jit_canny_init(void)
 	//add attributes	
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"threshold",_jit_sym_float64,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_canny,threshold));
-	jit_attr_addfilterset_clip(attr,0,255,TRUE,TRUE);	//clip to 0-255
+	jit_attr_addfilterset_clip(attr,0,255,true,true);	//clip to 0-255
 	jit_class_addattr(_cv_jit_canny_class,attr);
 	
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset,"range",_jit_sym_float64,attrflags,
 		(method)0L,(method)0L,calcoffset(t_cv_jit_canny,range));
-	jit_attr_addfilterset_clip(attr,0,255,TRUE,TRUE);	//clip to 0-255
+	jit_attr_addfilterset_clip(attr,0,255,true,true);	//clip to 0-255
 	jit_class_addattr(_cv_jit_canny_class,attr);
 	
 	jit_class_register(_cv_jit_canny_class);

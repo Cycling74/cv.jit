@@ -22,7 +22,7 @@
  
  */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 
 
 typedef struct _max_cv_jit_shift 
@@ -110,8 +110,8 @@ void *max_cv_jit_shift_new(t_symbol *s, long argc, t_atom *argv)
 			
 			x->av = (t_atom *)sysmem_newptr(8*sizeof(t_atom));
 		} else {
-			error("cv.jit.shift: could not allocate object");
-			freeobject((t_object *)x);
+			object_error((t_object*)x, "cv.jit.shift: could not allocate object");
+			object_free((t_object *)x);
 		}
 	}
 	return (x);
@@ -131,7 +131,7 @@ void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 		jit_object_method(o,ps_getmass,&ac,&(x->av));
 		//just in case...
 		if (ac!=1)
-			error("Could not get mass from Jitter object.");
+			object_error((t_object*)x, "Could not get mass from Jitter object.");
 		else 
 		{
 			outlet_float(x->massout,atom_getfloat(x->av));
@@ -142,7 +142,7 @@ void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 		jit_object_method(o,ps_getrot,&ac,&(x->av));
 		//just in case...
 		if (ac!=8)
-			error("Could not get rotated frame from Jitter object.");
+			object_error((t_object*)x, "Could not get rotated frame from Jitter object.");
 		else 
 		{
 			outlet_anything(x->boxout2,_jit_sym_list,ac,x->av);
@@ -153,7 +153,7 @@ void max_cv_jit_shift_bang(t_max_cv_jit_shift *x)
 		jit_object_method(o,ps_getbox,&ac,&(x->av));
 		//just in case...
 		if (ac!=4)
-			error("Could not get bounding rectangle from Jitter object.");
+			object_error((t_object*)x, "Could not get bounding rectangle from Jitter object.");
 		else 
 		{
 			outlet_anything(x->boxout,_jit_sym_list,ac,x->av);

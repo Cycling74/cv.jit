@@ -32,7 +32,7 @@ in Jitter externals.
 */
 
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
 #include <vector>
 
 typedef struct _feature_match{
@@ -169,7 +169,7 @@ t_jit_err cv_jit_surf_match_matrix_calc(t_cv_jit_surf_match *x, void *inputs, vo
 		}
 		if((in1_minfo.dim[0] != 70)&&(in1_minfo.dim[0] != 134)){
 			err = JIT_ERR_GENERIC;
-			error("Wrong input size, make sure input matrix comes from cv.jit.surf!");
+			object_error((t_object*)x, "Wrong input size, make sure input matrix comes from cv.jit.surf!");
 			goto out;
 		}
 		
@@ -197,12 +197,12 @@ t_jit_err cv_jit_surf_match_matrix_calc(t_cv_jit_surf_match *x, void *inputs, vo
 		//Size of matrices must match
 		if(in1_minfo.dim[0] != in2_minfo.dim[0]){
 			err = JIT_ERR_MISMATCH_DIM;
-			error("Make sure the two input matrices were computed with the same 'mode' attribute value.\n Currently, left input mode is %d and right input is %d.",in1_minfo.dim[0] == 134, in2_minfo.dim[0] == 134);
+			object_error((t_object*)x, "Make sure the two input matrices were computed with the same 'mode' attribute value.\n Currently, left input mode is %d and right input is %d.",in1_minfo.dim[0] == 134, in2_minfo.dim[0] == 134);
 		}
 		
 		if(in2_minfo.dim[1] != fcount){
 			fcount = in2_minfo.dim[1];
-			post("Features: %d", fcount);
+			object_post(NULL, "Features: %d", fcount);
 		}
 		
 		//Get data

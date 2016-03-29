@@ -210,6 +210,6 @@ void Erode::erode()
 	
 	if(err != kvImageNoError)
 	{
-		CV_REPORT_ERROR("cv.jit.erode: Error while processing data. Code: %d", err);
+		CV_REPORT_ERROR("cv.jit.erode: Error while processing data.");
 	}
 }

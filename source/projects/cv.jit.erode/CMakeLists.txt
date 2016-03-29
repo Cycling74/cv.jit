@@ -16,6 +16,7 @@ include_directories(
 
 if(APPLE)
 	set(PLATFORM_CODE 
+		${PROJECT_NAME}.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/OSX/cv.erode.cpp 
 		${CMAKE_CURRENT_SOURCE_DIR}/../../lib/libcv.a
 		${PROJECT_NAME}.cpp

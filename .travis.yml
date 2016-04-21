@@ -1,0 +1,46 @@
+language:
+- objective-c
+- c++
+
+compiler:
+- clang
+
+sudo: false
+os: osx
+osx_image: xcode7.3
+
+script:
+- mkdir build
+- cd build
+- cmake -G Xcode ..
+- cmake --build . --config Release
+#- "make test"
+- cd ..
+- PACKAGE_NAME=`echo $TRAVIS_REPO_SLUG | sed 's/.*\///g'`
+- PACKAGE_REV=`echo $TRAVIS_COMMIT | sed -e 's/^[[:alnum:]]\{6\}/&-/g' | sed 's/-.*//'`
+- mkdir $PACKAGE_NAME
+- if [ -e *.json ]; then cp *.json $PACKAGE_NAME; fi
+- if [ -e *.md ]; then cp *.json $PACKAGE_NAME; fi
+- if [ -e *.png ]; then cp *.json $PACKAGE_NAME; fi
+- if [ -d docs ]; then cp -r docs $PACKAGE_NAME; fi
+- if [ -d externals ]; then cp -r externals $PACKAGE_NAME; fi
+- if [ -d extras ]; then cp -r extras $PACKAGE_NAME; fi
+- if [ -d help ]; then cp -r help $PACKAGE_NAME; fi
+- if [ -d init ]; then cp -r init $PACKAGE_NAME; fi
+- if [ -d javascript ]; then cp -r javascript $PACKAGE_NAME; fi
+- if [ -d media ]; then cp -r media $PACKAGE_NAME; fi
+- if [ -d misc ]; then cp -r misc $PACKAGE_NAME; fi
+- if [ -d patchers ]; then cp -r help $PACKAGE_NAME; fi
+- zip -r $PACKAGE_NAME-$PACKAGE_REV.zip $PACKAGE_NAME
+
+addons:
+  artifacts:
+    s3_region: us-west-2
+    paths:
+    - $PACKAGE_NAME-$PACKAGE_REV.zip
+
+env:
+  global:
+  - ARTIFACTS_BUCKET=74objects-ci
+  - secure: apb8DIZf6ebGTp64wzQYJ8kIFbBY7QaulTXIyD636FGSxVHu0IenVWM/tQlvWq9JQPoWeZLTZISNtJSO8V+HFNMv+cNnmjgv2xw94kuZhE9n9iAJDstCXRb6KjkNSqSV3Fyq1n7J51rlHbm03nKZXCO/z/wIqbHU5/dS64d3P8GFQ3W6hv/boSu9U9ssvrKHNmRqkkfhmtadannDKI/UHrVOxOhv5Q4G9hIflftVLRNNfoS4cRgFcW2OSLJ6OxuQC4N1tOjt4ld6MO47cvXUZ7bcXyuS4qNH4pGO8WQ1h3sdIbPZ9mmHEKI9gsN1s8qCGD1/O8hdWDK+eBGftuIlsQWVznRQEF3qOXitpOBpBeKFM+IVdbVrhPy0lAaAygE5E8LuTzZwSUAgJkpOtk6jm68XybP3S+UMguUKahRJcGHwAwLcN7QDBv8RVuBc+zFVvIQqlELwPjVFbxiNPecNSt/6q9Jist1iA9NKRpjVykJaXHdzekPNTc/Xcg40exjY9p3nfFK9Z48e1up9TUyWKPuqahraItcYocFzSLhGPgZNN5ZSA/nupSDpW4FoUzCQ7MJTLNb1vObZJfhuedNzQY4HQ8FjDlrZGjG9Q6l1Tt6GJKrE01y2zgqaVpYjjHcgEtnDcQcbQTwMIa84Dx7LSHbdPFjjpAss1IkYCzTTHI0=
+  - secure: Nqs25xDu2fWN2fv/Vsrn5L+7RYwb536MyjK2VnszvhRlPJuM4rC1vnE2bTLQ8sabbSjf0NW88xWH1W3TNme0vIUwszJe/sQROQUrB0LEfRrsI27cTWOx7dGT9iyqQdVqZVHRB+bnTaTzvsGlSN60IKCLWrY9dMLLSMuNyIHBcYqgmzKu/rHDS+gwkzDWr57bLZTI3r/znTLbxom+gK+3/zXUykTc3Egx+lYQ1dkAE4TL4NkHw3MAAHAAQNPfwzGo1/GSqfW5TFPLYd3wWo+g+Vu9mkkNjZRwyBzy9eHR/sN1f2P/Fw99KS19mCnOHc5zkdDGUeJ6swQJtMyGlFGuVIvrZUXkaWoQO/DuwqzUMuIBFbyWiL9dJax9e9eh6qSqNoupgH8ha1BCnZ9ka1u+Ri4A1isUi9yAQbbBbA/DnuzTJKuIslyx7TbDuJiRv/RCAGP9DPwi0F5g3yNq69PR8hOFnxDIIYMA3qOmyDHvvzHuKP9JdU0Gx1YoMvunuvH1Ve5gFeR6g2ZOOTq4C4GRWGW0gs+fO2OJIgRQ7+BaEt8kfx2E0SBb+jTGiSDqA8ChbHwdZVrEQrK5RrsSXaMosr/kECQ/7sq3vcpIOewR4OvF5K5y300xDYZBdXXlrPG6aYBToFjkyblxNYfxE5R4ct4qoiHQo1k0Lg/2xStZgQU=

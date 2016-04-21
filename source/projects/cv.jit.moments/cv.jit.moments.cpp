@@ -23,7 +23,9 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "c74_jitter.h"
-typedef struct _cv_jit_moments 
+
+using namespace c74::max;
+typedef struct _cv_jit_moments
 {
 	t_object	ob;
 	long	momcount;

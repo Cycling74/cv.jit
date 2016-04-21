@@ -1,6 +1,11 @@
-#ifndef _EXT_SYSFILE_H_
-#define _EXT_SYSFILE_H_
+#pragma once
 
+using t_max_err = c74::max::t_max_err;
+using t_ptr_size = c74::max::t_ptr_size;
+using t_ptr_int = c74::max::t_ptr_int;
+using t_handle = c74::max::t_handle;
+using t_object = c74::max::t_object;
+using t_fourcc = c74::max::t_fourcc;
 
 typedef struct _filestruct t_filestruct; 
 
@@ -236,6 +241,3 @@ t_max_err sysfile_openhandle(char **h, t_sysfile_flags flags, t_filehandle *fh);
 t_max_err sysfile_openptrsize(char *p, t_ptr_size length, t_sysfile_flags flags, t_filehandle *fh);
 
 END_USING_C_LINKAGE
-
-#endif // _EXT_SYSFILE_H_
-

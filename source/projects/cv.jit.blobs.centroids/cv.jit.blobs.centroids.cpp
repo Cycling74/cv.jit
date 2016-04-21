@@ -24,6 +24,8 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "c74_jitter.h"
 
+using namespace c74::max;
+
 typedef struct _cv_jit_blobs_centroids 
 {
 	t_object				ob;

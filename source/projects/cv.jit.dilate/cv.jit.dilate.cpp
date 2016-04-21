@@ -31,6 +31,8 @@ Note:
 */
 
 #include "c74_jitter.h"
+
+using namespace c74::max;
 #include "cv.dilate.h"
 
 typedef struct _cv_jit_dilate 

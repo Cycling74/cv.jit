@@ -27,6 +27,8 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "cv.dilate.h"
 
+using namespace c74::max;
+
 const unsigned char Dilate::_kernel8U [9] = {255,0,255,0,0,0,255,0,255};
 const float Dilate::_kernel32F [9] = {1,0,1,0,0,0,1,0,1};
 

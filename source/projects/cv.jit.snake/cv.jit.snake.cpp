@@ -32,6 +32,8 @@ in Jitter externals.
 */
 
 #include "c74_jitter.h"
+
+using namespace c74::max;
 #include "jitOpenCV.h"
 
 typedef struct _cv_jit_snake 

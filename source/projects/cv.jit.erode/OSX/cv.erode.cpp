@@ -26,6 +26,8 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "cv.erode.h"
 
+using namespace c74::max;
+
 
 const unsigned char Erode::_kernel8U [9] = {0,255,0,255,255,255,0,255,0};
 const float Erode::_kernel32F [9] = {0,1,0,1,1,1,0,1,0};

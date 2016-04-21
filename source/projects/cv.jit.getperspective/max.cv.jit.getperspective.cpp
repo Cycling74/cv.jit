@@ -36,6 +36,7 @@
 
 #include "c74_jitter.h"
 
+using namespace c74::max;
 
 // Max object instance data
 // Note: most instance data is in the Jitter object which we will wrap

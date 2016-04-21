@@ -32,6 +32,8 @@ in Jitter externals.
 */
 
 #include "c74_jitter.h"
+
+using namespace c74::max;
 #include "cv.h"
 #include "jitOpenCV.h"
 
@@ -95,7 +97,7 @@ t_jit_err cv_jit_track_init(void)
 	
 	//add methods
 	jit_class_addmethod(_cv_jit_track_class, (method)cv_jit_track_matrix_calc,"matrix_calc",A_CANT, 0L);
-	jit_class_addmethod(_cv_jit_track_class, (method)cv_jit_track_setpoint, "set", A_DEFER_LOW,0L);	
+	jit_class_addmethod(_cv_jit_track_class, (method)cv_jit_track_setpoint, "set", A_DEFER_LOW,0L);
 
 	//add attributes	
 	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;

@@ -35,6 +35,8 @@
  */
 
 #include "c74_jitter.h"
+
+using namespace c74::max;
 #include "cv.h"
 // #include "OpticalFlow.h"
 #include "jitOpenCV.h"

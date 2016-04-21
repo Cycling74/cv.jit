@@ -29,6 +29,8 @@ Note:
 
 #include "c74_jitter.h"
 
+using namespace c74::max;
+
 typedef struct _cv_jit_trackpoints 
 {
 	t_object				ob;

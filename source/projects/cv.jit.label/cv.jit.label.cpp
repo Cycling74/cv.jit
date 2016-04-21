@@ -23,7 +23,8 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "c74_jitter.h"
-#include <algorithm>
+
+using namespace c74::max;
 
 //Blob struct definition
 typedef struct

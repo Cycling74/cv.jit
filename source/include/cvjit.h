@@ -9,6 +9,7 @@
 
 
 #include "c74_jitter.h"
+using namespace c74::max;
 
 #ifdef OPENCV
 #ifndef _CV_H_

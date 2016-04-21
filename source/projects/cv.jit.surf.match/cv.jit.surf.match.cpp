@@ -33,6 +33,8 @@ in Jitter externals.
 
 
 #include "c74_jitter.h"
+
+using namespace c74::max;
 #include <vector>
 
 typedef struct _feature_match{

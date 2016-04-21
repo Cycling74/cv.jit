@@ -22,7 +22,8 @@
 */
 
 #include "c74_jitter.h"
-#include <algorithm>
+
+using namespace c74::max;
 
 typedef struct _cv_jit_binedge {
 	t_object				ob;

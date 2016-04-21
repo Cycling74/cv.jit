@@ -1,0 +1,24 @@
+{
+	"author" : "Jean-Marc Pelletier",
+	"description" : "A collection of max/msp/jitter externals, abstractions and help files for computer vision applications originally authored by Jean-Marc Pelletier.",
+	"homepatcher" : "cv.jit-Object Guide.maxpat",
+	"max_version_min" : "7.1",
+	"name" : "cv.jit",
+	"os" : {
+		"macintosh" : {
+			"platform" : [ "ia32", "x64" ],
+			"min_version" : "none"
+		},
+		"windows" : {
+			"platform" : [ "ia32", "x64" ],
+			"min_version" : "none"
+		}
+	},
+	"package_extra" : { 
+		"reverse_domain" : "com.cycling74",
+		"copyright" : "Copyright (c) 2016 Cycling '74"
+	},
+	"tags" : [ "jitter", "computer vision", "hardware", "camera", "externals" ],
+	"version" : "1.8.0-alpha",
+	"website" : "http://www.maxology.club/starter-kit-info/2015/4/27/starter-kit-1"
+}

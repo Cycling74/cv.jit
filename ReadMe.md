@@ -20,6 +20,32 @@ There is a conflict between the Max and OpenCV includes as both contain definiti
 
 Under Windows, when OpenCV encounters an error it reports via a message box. This causes no problem but under the OSX implementation, the error message is printed to stderr, which does not show up in Max. Since this is followed by an exit command, the result is that Max will suddenly and silently quit when something goes wrong with OpenCV. This makes debugging particularly difficult. For this reason, I have changed the implementation of the error reporting functions. If you wish to build your own OpenCV libraries under OSX, use the file "source/OpenCVsupport/jitcxerror.cpp" instead of the standard "cxerror". OpenCV errors will now be reported to the Max window. However, this is only meant for debugging! If OpenCV complains, it is because there is something wrong with the program. Be sure to properly check your data before calling any OpenCV function. Again, there should never be any OpenCV error in a release external. 
 
+## Compiling libcv
+
+These instructions based on downloading version 2.4.12 from http://opencv.org/downloads.html
+
+* `mkdir build64`
+* `cd build64`
+* `mkdir install`
+* `cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.7 -DCMAKE_OSX_SYSROOT=/Applications/Developer/MacOSX10.7.sdk -DCMAKE_OSX_ARCHITECTURES=x86_64 -DBUILD_SHARED_LIBS=NO -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=install -DWITH_FFMPEG=OFF -DWITH_OPENCL=OFF -DWITH_OPENNI=OFF -DCMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++ -Wno-narrowing" ..`
+* `make -j8`
+* `make install`
+* `libtool -static install/lib/libopencv_*.a -o install/lib/libcv.a`
+* `cd ..`
+
+* `mkdir build32`
+* `cd build32`
+* `mkdir install`
+* `cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.7 -DCMAKE_OSX_SYSROOT=/Applications/Developer/MacOSX10.7.sdk -DCMAKE_OSX_ARCHITECTURES=i386 -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 -DCMAKE_SHARED_LINKER_FLAGS=-m32 -DCMAKE_CXX_COMPILER_ARG1=-m32 -DCMAKE_C_COMPILER_ARG1=-m32 -DBUILD_SHARED_LIBS=NO -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=install -DWITH_FFMPEG=OFF -DWITH_OPENCL=OFF -DWITH_OPENNI=OFF -DCMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++ -Wno-narrowing" ..`
+* `make -j8`
+* `make install`
+* `libtool -static install/lib/libopencv_*.a -o install/lib/libcv.a`
+* `cd ..`
+
+* `mkdir build`
+* `cd build`
+* `lipo -create ../build32/install/lib/libcv.a ../build64/install/lib/libcv.a -o libcv.a`
+
 
 # cv.jit change log
 

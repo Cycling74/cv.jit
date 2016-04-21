@@ -34,12 +34,12 @@
  in Jitter externals.
  */
 
-#include "c74_jitter.h"
-
-using namespace c74::max;
 
 #include "cv.h"
 #include "jitOpenCV.h"
+#include "c74_jitter.h"
+
+using namespace c74::max;
 
 //using namespace cv;
 

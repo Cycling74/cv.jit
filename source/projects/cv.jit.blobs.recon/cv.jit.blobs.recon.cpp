@@ -31,12 +31,13 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "c74_jitter.h"
-
-using namespace c74::max;
 
 #include "cv.h"
 #include "jitOpenCV.h"
+#include "c74_jitter.h"
+#include "ext_sysfile.h"
+
+using namespace c74::max;
 
 
 typedef struct _cv_jit_blobs_recon 

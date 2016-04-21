@@ -3117,7 +3117,7 @@ public:
         size_t remaining1 = remaining/cn;
         count = count < remaining1 ? count : remaining1;
         vec.resize(count);
-        it->readRaw( string(fmt), !vec.empty() ? (uchar*)&vec[0] : 0, count*sizeof(_Tp) );
+        it->readRaw( string(fmt), !vec.empty() ? (unsigned char*)&vec[0] : 0, count*sizeof(_Tp) );
     }
     FileNodeIterator* it;
 };

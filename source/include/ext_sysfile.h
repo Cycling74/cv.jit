@@ -1,12 +1,5 @@
 #pragma once
 
-using t_max_err = c74::max::t_max_err;
-using t_ptr_size = c74::max::t_ptr_size;
-using t_ptr_int = c74::max::t_ptr_int;
-using t_handle = c74::max::t_handle;
-using t_object = c74::max::t_object;
-using t_fourcc = c74::max::t_fourcc;
-
 typedef struct _filestruct t_filestruct; 
 
 /** A t_filehandle is a cross-platform way of referring to an open file.
@@ -67,7 +60,7 @@ BEGIN_USING_C_LINKAGE
 	@param	f	The #t_filehandle structure of the file the user wants to close. 
 	@return		An error code.
 */
-t_max_err sysfile_close(t_filehandle f);
+c74::max::t_max_err sysfile_close(t_filehandle f);
 
 
 /**	Read a file from disk.
@@ -85,7 +78,7 @@ t_max_err sysfile_close(t_filehandle f);
 	@param	bufptr	Pointer to the buffer that the data will be read into.
 	@return			An error code.
 */
-t_max_err sysfile_read( t_filehandle f, t_ptr_size *count, void *bufptr);  
+c74::max::t_max_err sysfile_read(t_filehandle f, c74::max::t_ptr_size *count, void *bufptr);
 
 
 /**	Read the contents of a file into a handle.
@@ -95,7 +88,7 @@ t_max_err sysfile_read( t_filehandle f, t_ptr_size *count, void *bufptr);
 	@return 	An error code.
 	@remark		You should free the pointer, when you are done with it, using sysmem_freehandle().
 */
-t_max_err sysfile_readtohandle(t_filehandle f, char ***h);
+c74::max::t_max_err sysfile_readtohandle(t_filehandle f, char ***h);
 
 
 /**	Read the contents of a file into a pointer.
@@ -105,7 +98,7 @@ t_max_err sysfile_readtohandle(t_filehandle f, char ***h);
 	@return 	An error code.
 	@remark		You should free the pointer, when you are done with it, using sysmem_freeptr().
 */
-t_max_err sysfile_readtoptr(t_filehandle f, char **p);
+c74::max::t_max_err sysfile_readtoptr(t_filehandle f, char **p);
 
 
 /** Write part of a file to disk.
@@ -123,7 +116,7 @@ t_max_err sysfile_readtoptr(t_filehandle f, char **p);
 	@param	bufptr	Pointer to the buffer that the data will be read from. 
 	@return			An error code.
 */
-t_max_err sysfile_write(t_filehandle f, t_ptr_size *count, const void *bufptr);  
+c74::max::t_max_err sysfile_write(t_filehandle f, c74::max::t_ptr_size *count, const void *bufptr);
 
 
 /**	Set the size of a file handle.
@@ -135,7 +128,7 @@ t_max_err sysfile_write(t_filehandle f, t_ptr_size *count, const void *bufptr);
 	@param	logeof	The file size in bytes.
 	@return			An error code.
 */
-t_max_err sysfile_seteof(t_filehandle f, t_ptr_size logeof);
+c74::max::t_max_err sysfile_seteof(t_filehandle f, c74::max::t_ptr_size logeof);
 
 
 /**	Get the size of a file handle.
@@ -147,7 +140,7 @@ t_max_err sysfile_seteof(t_filehandle f, t_ptr_size logeof);
 	@param	logeof	The file size in bytes is returned to this value.
 	@return			An error code.
 */
-t_max_err sysfile_geteof(t_filehandle f, t_ptr_size *logeof);
+c74::max::t_max_err sysfile_geteof(t_filehandle f, c74::max::t_ptr_size *logeof);
 
 
 /**	Set the current file position of a file handle.
@@ -161,7 +154,7 @@ t_max_err sysfile_geteof(t_filehandle f, t_ptr_size *logeof);
 	@param	offset	The offset in bytes relative to the mode.
 	@return			An error code.
 */
-t_max_err sysfile_setpos(t_filehandle f, t_sysfile_pos_mode mode, t_ptr_int offset);
+c74::max::t_max_err sysfile_setpos(t_filehandle f, t_sysfile_pos_mode mode, c74::max::t_ptr_int offset);
 
 
 /**	Get the current file position of a file handle.
@@ -173,7 +166,7 @@ t_max_err sysfile_setpos(t_filehandle f, t_sysfile_pos_mode mode, t_ptr_int offs
 	@param	filepos	The address of a variable to hold the current file position of file handle in bytes. 
 	@return			An error code.
 */
-t_max_err sysfile_getpos(t_filehandle f, t_ptr_size *filepos);
+c74::max::t_max_err sysfile_getpos(t_filehandle f, c74::max::t_ptr_size *filepos);
 
 
 /**	Copy the contents of one file handle to another file handle.
@@ -183,12 +176,7 @@ t_max_err sysfile_getpos(t_filehandle f, t_ptr_size *filepos);
 	@param	size	The number of bytes to copy.  If 0 the size of src will be used.
 	@return			An error code.
 */
-t_max_err sysfile_spoolcopy(t_filehandle src, t_filehandle dst, t_ptr_size size);
-
-
-// private
-void sysfile_setobject(t_filehandle f, t_object *o);
-
+c74::max::t_max_err sysfile_spoolcopy(t_filehandle src, t_filehandle dst, c74::max::t_ptr_size size);
 
 
 /**	Read a text file from disk.
@@ -204,7 +192,7 @@ void sysfile_setobject(t_filehandle f, t_object *o);
 	@param	flags	Flags to set linebreak translation as defined in #t_sysfile_text_flags.
 	@return			An error code.
 */
-t_max_err sysfile_readtextfile(t_filehandle f, t_handle htext, t_ptr_size maxlen, t_sysfile_text_flags flags);
+c74::max::t_max_err sysfile_readtextfile(t_filehandle f, c74::max::t_handle htext, c74::max::t_ptr_size maxlen, t_sysfile_text_flags flags);
 
 
 /**	Write a text file to disk.
@@ -217,7 +205,7 @@ t_max_err sysfile_readtextfile(t_filehandle f, t_handle htext, t_ptr_size maxlen
 	@param	flags	Flags to set linebreak translation as defined in #t_sysfile_text_flags.
 	@return			An error code.
 */
-t_max_err sysfile_writetextfile(t_filehandle f, t_handle htext, t_sysfile_text_flags flags);
+c74::max::t_max_err sysfile_writetextfile(t_filehandle f, c74::max::t_handle htext, t_sysfile_text_flags flags);
 
 
 /**	Create a #t_filehandle from a pre-existing handle.
@@ -227,7 +215,7 @@ t_max_err sysfile_writetextfile(t_filehandle f, t_handle htext, t_sysfile_text_f
 	@param		fh		The address of a #t_filehandle which will be allocated.
 	@return				An error code.
 */
-t_max_err sysfile_openhandle(char **h, t_sysfile_flags flags, t_filehandle *fh);
+c74::max::t_max_err sysfile_openhandle(char **h, t_sysfile_flags flags, t_filehandle *fh);
 
 
 /**	Create a #t_filehandle from a pre-existing pointer.
@@ -238,6 +226,17 @@ t_max_err sysfile_openhandle(char **h, t_sysfile_flags flags, t_filehandle *fh);
 	@param		fh		The address of a #t_filehandle which will be allocated.
 	@return				An error code.
 */
-t_max_err sysfile_openptrsize(char *p, t_ptr_size length, t_sysfile_flags flags, t_filehandle *fh);
+c74::max::t_max_err sysfile_openptrsize(char *p, c74::max::t_ptr_size length, t_sysfile_flags flags, t_filehandle *fh);
 
 END_USING_C_LINKAGE
+
+typedef enum {
+	PATH_READ_PERM = 1,		///< Read mode
+	PATH_WRITE_PERM = 2,	///< Write mode
+	PATH_RW_PERM = 3		///< Read/Write mode
+} e_max_openfile_permissions;
+#define READ_PERM		PATH_READ_PERM		// for backwards compatibility
+#define WRITE_PERM		PATH_WRITE_PERM		// for backwards compatibility
+#define RW_PERM			PATH_RW_PERM		// for backwards compatibility
+extern "C" short path_opensysfile(const char *name, const short path, t_filehandle *ref, short perm);
+extern "C" short path_createsysfile(const char *name, short path, c74::max::t_fourcc type, t_filehandle *ref);

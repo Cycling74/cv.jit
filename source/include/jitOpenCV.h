@@ -46,42 +46,42 @@ void cvMat2Jitter(CvMat *mat, void *jitMat);
 
 void cvJitter2CvMat(void *jitMat, CvMat *mat)
 {
-	t_jit_matrix_info info;
+	c74::max::t_jit_matrix_info info;
 	char *data;
 	int type = 0;
 
 	if((!jitMat)||(!mat))
 	{
-		object_error(NULL, "Error converting Jitter matrix: invalid pointer.");
+		c74::max::object_error(NULL, "Error converting Jitter matrix: invalid pointer.");
 		return;
 	}
 
-	jit_object_method(jitMat,_jit_sym_getinfo,&info);
+	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_getinfo, (void*)&info);
 
 	if(info.dimcount != 2)
 	{
-		object_error(NULL, "Error converting Jitter matrix: invalid dimension count.");
+		c74::max::object_error(NULL, "Error converting Jitter matrix: invalid dimension count.");
 		return;
 	}
 
-	if(info.type == _jit_sym_char)
+	if (info.type == c74::max::_jit_sym_char)
 	{
 		type = CV_MAKETYPE(CV_8U,info.planecount);
 	}
-	else if(info.type == _jit_sym_long)
+	else if (info.type == c74::max::_jit_sym_long)
 	{
 		type = CV_MAKETYPE(CV_32S,info.planecount);
 	}
-	else if(info.type == _jit_sym_float32)
+	else if (info.type == c74::max::_jit_sym_float32)
 	{
 		type = CV_MAKETYPE(CV_32F,info.planecount);
 	}
-	else if(info.type == _jit_sym_float64)
+	else if (info.type == c74::max::_jit_sym_float64)
 	{
 		type = CV_MAKETYPE(CV_64F,info.planecount);
 	}
 
-	jit_object_method(jitMat,_jit_sym_getdata,&data);
+	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_getdata, (void*)&data);
 
 	cvInitMatHeader( mat, info.dim[1], info.dim[0], type, data, info.dimstride[1] );
 	
@@ -90,43 +90,43 @@ void cvJitter2CvMat(void *jitMat, CvMat *mat)
 
 void cvMat2Jitter(CvMat *mat, void *jitMat)
 {
-	t_jit_matrix_info info;
+	c74::max::t_jit_matrix_info info;
 	
 	if((!jitMat)||(!mat))
 	{
-		object_error(NULL, "Error converting to Jitter matrix: invalid pointer.");
+		c74::max::object_error(NULL, "Error converting to Jitter matrix: invalid pointer.");
 		return;
 	}
 	
-	jit_object_method(jitMat,_jit_sym_getinfo,&info);
+	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_getinfo, (void*)&info);
 	info.dimcount = 2;
 	info.planecount = CV_MAT_CN(mat->type);
 	info.dim[0] = mat->cols;
 	info.dim[1] = mat->rows;
 	switch(CV_MAT_DEPTH(mat->type)){
 		case CV_8U:
-			info.type = _jit_sym_char;
+			info.type = c74::max::_jit_sym_char;
 			info.dimstride[0] = sizeof(char);
 			break;
 		case CV_32S:
-			info.type = _jit_sym_long;
+			info.type = c74::max::_jit_sym_long;
 			info.dimstride[0] = sizeof(long);
 			break;
 		case CV_32F:
-			info.type = _jit_sym_float32;
+			info.type = c74::max::_jit_sym_float32;
 			info.dimstride[0] = sizeof(float);
 			break;
 		case CV_64F:	
-			info.type = _jit_sym_float64;
+			info.type = c74::max::_jit_sym_float64;
 			info.dimstride[0] = sizeof(double);
 			break;
 		default:
-			object_error(NULL, "Error converting to Jitter matrix: unsupported depth.");
+			c74::max::object_error(NULL, "Error converting to Jitter matrix: unsupported depth.");
 			return;
 	}
 	info.dimstride[1] = mat->step;
 	info.size = mat->step * mat->rows;
 	info.flags = JIT_MATRIX_DATA_REFERENCE | JIT_MATRIX_DATA_FLAGS_USE;
-	jit_object_method(jitMat,_jit_sym_setinfo_ex,&info);
-	jit_object_method(jitMat, _jit_sym_data, mat->data.ptr);
+	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_setinfo_ex, (void*)&info);
+	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_data, (void*)mat->data.ptr);
 }

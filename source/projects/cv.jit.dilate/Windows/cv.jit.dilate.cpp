@@ -24,7 +24,10 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 /*Note: This is the Windows implementation of the cv.jit.dilate external.*/
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
+using namespace c74::max;
+
+#define MAX std::max
 
 typedef struct _cv_jit_dilate 
 {

@@ -32,11 +32,11 @@ in Jitter externals.
 */
 
 
+#include "cv.h"
+#include "jitOpenCV.h"
 #include "c74_jitter.h"
 
 using namespace c74::max;
-#include "cv.h"
-#include "jitOpenCV.h"
 
 #define CLAMP(a, lo, hi) ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) )
 #define CLIP_ASSIGN(a, lo, hi) ((a) = ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) ))

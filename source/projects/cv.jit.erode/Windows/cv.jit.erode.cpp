@@ -24,7 +24,10 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 /*Note: This is the Windows implementation of the cv.jit.erode external.*/
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
+using namespace c74::max;
+
+#define MIN std::min
 
 typedef struct _cv_jit_erode 
 {
@@ -128,7 +131,7 @@ t_jit_err cv_jit_erode_matrix_calc(t_cv_jit_erode *x, void *inputs, void *output
 		planecount = out_minfo.planecount;			
 		for (i=0;i<dimcount;i++) 
 		{
-			dim[i] = MIN(in_minfo.dim[i],out_minfo.dim[i]);
+			dim[i] = std::min(in_minfo.dim[i],out_minfo.dim[i]);
 		}		
 				
 		//calculate
@@ -1149,9 +1152,9 @@ void cv_jit_erode_calculate_ndim(t_cv_jit_erode *x, long dimcount, long *dim, lo
 			op = bop;
 			line3 = ip + in_minfo->dimstride[1];;
 			
-			*op = 	MIN(*ip,
-					MIN(*(ip + step),
-					MIN(*line3,*(line3 + step))));
+			*op = 	std::min(*ip,
+				std::min(*(ip + step),
+				std::min(*line3, *(line3 + step))));
 			
 			ip += step;
 			op += step;
@@ -1160,11 +1163,11 @@ void cv_jit_erode_calculate_ndim(t_cv_jit_erode *x, long dimcount, long *dim, lo
 			//Process first line
 			for (j=1;j<dim[0]-1;j++)
 			{
-				*op = 	MIN(*(ip - step), 
-						MIN(*ip,	
-						MIN(*(ip + step),
-						MIN(*(line3 - step),
-						MIN(*line3,*(line3 + step))))));
+				*op = std::min(*(ip - step),
+					std::min(*ip,
+					std::min(*(ip + step),
+					std::min(*(line3 - step),
+					std::min(*line3, *(line3 + step))))));
 		
 				ip += step;
 				op += step;
@@ -1172,7 +1175,7 @@ void cv_jit_erode_calculate_ndim(t_cv_jit_erode *x, long dimcount, long *dim, lo
 			}
 			
 			//Process last pixel of first line
-			*op = MIN(*ip,MIN(*(ip - step),MIN(*line3,*(line3 - step))));
+			*op = std::min(*ip, std::min(*(ip - step), std::min(*line3, *(line3 - step))));
 			
 			//Process rest of image
 			for(i=1;i<dim[1]-1;i++)

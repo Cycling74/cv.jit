@@ -1,4 +1,7 @@
 # About cv.jit Development
+[![Build Status](https://travis-ci.org/Cycling74/cv.jit.svg?branch=master)](https://travis-ci.org/Cycling74/cv.jit)
+[![Build status](https://ci.appveyor.com/api/projects/status/mx8vgrk99v67ys8h?svg=true)](https://ci.appveyor.com/project/tap/cv-jit)
+
 
 ## Compiling cv.jit
 

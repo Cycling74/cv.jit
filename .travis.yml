@@ -14,7 +14,6 @@ script:
 - cd build
 - cmake -G Xcode ..
 - cmake --build . --config Release
-#- "make test"
 - cd ..
 - PACKAGE_NAME=`echo $TRAVIS_REPO_SLUG | sed 's/.*\///g'`
 - PACKAGE_REV=`echo $TRAVIS_COMMIT | sed -e 's/^[[:alnum:]]\{6\}/&-/g' | sed 's/-.*//'`
@@ -38,7 +37,7 @@ deploy:
   provider: s3
   access_key_id: AKIAIWE3SI2TMXC5AJBA
   secret_access_key:
-    secure: HUKaAnjUJOF9N4TQhhXqDb7ZJQPD/VLFOzRtf7cmt8fhLCv7yE2tmIC8GcW+CJbMKIxszgcw19Wasl9vY6gUOCRd6f8jkqFYEZr9fyD+pJ2sUniZBjuJrR6iNmZy+pBmH/z6ho8H4U/VhDKNz2rAudzjEgUzmgqDfJBR3qz2x+7CG6C+V8r4Yj71HzfT6F/vD0vO8vR+D1/h+H3J66HTCJNNd9fpYrEfEOLGxN7+4P9tSUyXGWAzWrZuzobnH9grz9mZuH3NSYXje+q9uFlgHM45lYJzAu8SLoxEcwcJ1YJPOciZRLUM/NKrDQM7j/0zFuzLHZxn+ZJgVSYQPol+xQ9AP/q/RpWTCNNMt4y9UFLigTTav6kbM8vHex1T7lu9Lub5NKOJBbtrTrVKFgIJOc5dwP6ldMxVCjvrzvX0UxU7e0lIsBLEHaNN5tn9M4wO4HbjDBjlybuqeQgIY/jzpAFMzTweO75Fc4bZSjz1EPmjxc1SREpGzRJoKa4z5iSmnKNSDY3BUuyE6ZCKeYJ3WnyMs3r6+OMe/ukP1WKMcGrZIGWmsfhlGbLTo2aDUMqD9GJoRLAO8XSFFtBP1Z7LqwOLQJI1+Dg8GGrD/w07WdJuTHguF4LYhFupABgWCIjjeohv5I1cmEiJ7Tb//F++TrTe8Qt/mmzKMwGV4Zg3PNc=
+    secure: sxtilLgWzfaEnstm6TwcEeflz5LIE2gEKyzMdOargKYUdv5oCH5jwNatvKyTo9X6kXJliBxsygK1nZJkVatmO2s9ljPmQztQ5RLXic0Yu2MSib3wbb/bL5/B7C/rkXGhgD1UUJ9O9ieOUBRarPGYAZcSMOl76r8Cr4H2rccZfXrcjpRaoTAlvcJYNoDSrDti2OVS2GOdVl2HfKFDkZVbvLW1GydRI/4WoUJdVkt/Iz2XVJSgX1pkP6hVMoHF0jRGCp9szGg1/v1GXXL0fNfAof96GfLW42fWPWs7CpAzYE9yzhS789fRyst36AhuPRMAZHcXUwjx3PJfQ+k+JsrKVQ2Hp7YaUzO2v5JiINXUkknVdDmTbytHj+lYqdc4X6C4O5nOwkTp1OZhd/wTaPHwGzAJJrwDXu4x2Uv4CaeAuyyWJL+gCFfrhX6wR3PpSjphAxXwXwsZqq8P2jpFUowYHvAC+p/zBiQteYZFvbGFR/9M2/xN3SDq16U7YLiFrB2jIjQ4ATi0dfNb8bYSCVhJcBJAIBfTHFIIzVUz84B+i7dZ2hm8p96prGyTySNQ0OK3k8Vic9012AOKscXjvOI6WwM15WRla3NFPRwDIYCYvmgrc9sBNX4xbzCe//8A3wiV+0PNwpENBB8/ZhOQyJ4Oxxmuye4PhqtL3gc7XVCDe6Y=
   bucket: cycling74-ci
   skip_cleanup: true
   local-dir: dist

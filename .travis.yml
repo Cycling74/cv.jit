@@ -31,16 +31,18 @@ script:
 - if [ -d media ]; then cp -r media $PACKAGE_NAME; fi
 - if [ -d misc ]; then cp -r misc $PACKAGE_NAME; fi
 - if [ -d patchers ]; then cp -r help $PACKAGE_NAME; fi
-- zip -r $PACKAGE_NAME-$PACKAGE_REV.zip $PACKAGE_NAME
+- mkdir dist
+- zip -r dist/$PACKAGE_NAME-$PACKAGE_REV.zip $PACKAGE_NAME
 
-addons:
-  artifacts:
-    s3_region: us-west-2
-    paths:
-    - $PACKAGE_NAME-$PACKAGE_REV.zip
-
-env:
-  global:
-  - ARTIFACTS_BUCKET=74objects-ci
-  - secure: apb8DIZf6ebGTp64wzQYJ8kIFbBY7QaulTXIyD636FGSxVHu0IenVWM/tQlvWq9JQPoWeZLTZISNtJSO8V+HFNMv+cNnmjgv2xw94kuZhE9n9iAJDstCXRb6KjkNSqSV3Fyq1n7J51rlHbm03nKZXCO/z/wIqbHU5/dS64d3P8GFQ3W6hv/boSu9U9ssvrKHNmRqkkfhmtadannDKI/UHrVOxOhv5Q4G9hIflftVLRNNfoS4cRgFcW2OSLJ6OxuQC4N1tOjt4ld6MO47cvXUZ7bcXyuS4qNH4pGO8WQ1h3sdIbPZ9mmHEKI9gsN1s8qCGD1/O8hdWDK+eBGftuIlsQWVznRQEF3qOXitpOBpBeKFM+IVdbVrhPy0lAaAygE5E8LuTzZwSUAgJkpOtk6jm68XybP3S+UMguUKahRJcGHwAwLcN7QDBv8RVuBc+zFVvIQqlELwPjVFbxiNPecNSt/6q9Jist1iA9NKRpjVykJaXHdzekPNTc/Xcg40exjY9p3nfFK9Z48e1up9TUyWKPuqahraItcYocFzSLhGPgZNN5ZSA/nupSDpW4FoUzCQ7MJTLNb1vObZJfhuedNzQY4HQ8FjDlrZGjG9Q6l1Tt6GJKrE01y2zgqaVpYjjHcgEtnDcQcbQTwMIa84Dx7LSHbdPFjjpAss1IkYCzTTHI0=
-  - secure: Nqs25xDu2fWN2fv/Vsrn5L+7RYwb536MyjK2VnszvhRlPJuM4rC1vnE2bTLQ8sabbSjf0NW88xWH1W3TNme0vIUwszJe/sQROQUrB0LEfRrsI27cTWOx7dGT9iyqQdVqZVHRB+bnTaTzvsGlSN60IKCLWrY9dMLLSMuNyIHBcYqgmzKu/rHDS+gwkzDWr57bLZTI3r/znTLbxom+gK+3/zXUykTc3Egx+lYQ1dkAE4TL4NkHw3MAAHAAQNPfwzGo1/GSqfW5TFPLYd3wWo+g+Vu9mkkNjZRwyBzy9eHR/sN1f2P/Fw99KS19mCnOHc5zkdDGUeJ6swQJtMyGlFGuVIvrZUXkaWoQO/DuwqzUMuIBFbyWiL9dJax9e9eh6qSqNoupgH8ha1BCnZ9ka1u+Ri4A1isUi9yAQbbBbA/DnuzTJKuIslyx7TbDuJiRv/RCAGP9DPwi0F5g3yNq69PR8hOFnxDIIYMA3qOmyDHvvzHuKP9JdU0Gx1YoMvunuvH1Ve5gFeR6g2ZOOTq4C4GRWGW0gs+fO2OJIgRQ7+BaEt8kfx2E0SBb+jTGiSDqA8ChbHwdZVrEQrK5RrsSXaMosr/kECQ/7sq3vcpIOewR4OvF5K5y300xDYZBdXXlrPG6aYBToFjkyblxNYfxE5R4ct4qoiHQo1k0Lg/2xStZgQU=
+deploy:
+  provider: s3
+  access_key_id: AKIAIWE3SI2TMXC5AJBA
+  secret_access_key:
+    secure: HUKaAnjUJOF9N4TQhhXqDb7ZJQPD/VLFOzRtf7cmt8fhLCv7yE2tmIC8GcW+CJbMKIxszgcw19Wasl9vY6gUOCRd6f8jkqFYEZr9fyD+pJ2sUniZBjuJrR6iNmZy+pBmH/z6ho8H4U/VhDKNz2rAudzjEgUzmgqDfJBR3qz2x+7CG6C+V8r4Yj71HzfT6F/vD0vO8vR+D1/h+H3J66HTCJNNd9fpYrEfEOLGxN7+4P9tSUyXGWAzWrZuzobnH9grz9mZuH3NSYXje+q9uFlgHM45lYJzAu8SLoxEcwcJ1YJPOciZRLUM/NKrDQM7j/0zFuzLHZxn+ZJgVSYQPol+xQ9AP/q/RpWTCNNMt4y9UFLigTTav6kbM8vHex1T7lu9Lub5NKOJBbtrTrVKFgIJOc5dwP6ldMxVCjvrzvX0UxU7e0lIsBLEHaNN5tn9M4wO4HbjDBjlybuqeQgIY/jzpAFMzTweO75Fc4bZSjz1EPmjxc1SREpGzRJoKa4z5iSmnKNSDY3BUuyE6ZCKeYJ3WnyMs3r6+OMe/ukP1WKMcGrZIGWmsfhlGbLTo2aDUMqD9GJoRLAO8XSFFtBP1Z7LqwOLQJI1+Dg8GGrD/w07WdJuTHguF4LYhFupABgWCIjjeohv5I1cmEiJ7Tb//F++TrTe8Qt/mmzKMwGV4Zg3PNc=
+  bucket: cycling74-ci
+  skip_cleanup: true
+  local-dir: dist
+  upload-dir: cv.jit
+  acl: public_read
+  on:
+    repo: Cycling74/cv.jit

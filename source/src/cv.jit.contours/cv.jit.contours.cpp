@@ -475,7 +475,10 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     t_atomarray *flow_r = atomarray_new(0, NULL);
     t_atomarray *flow_theta = atomarray_new(0, NULL);
 
-    t_atomarray *channel_means[n_src_channels];
+    //t_atomarray *channel_means[n_src_channels];
+	Vector<t_atomarray *> channel_means(n_src_channels);
+
+
     for( int ch = 0; ch < n_src_channels; ++ch )
     {
         channel_means[ch] = atomarray_new(0, NULL);

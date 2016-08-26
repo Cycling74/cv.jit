@@ -1,5 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.binedge", "Externals\cv.jit.binedge.vcxproj", "{B225D27C-8F2F-46CB-9EAC-89BB9C972B76}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.blobs.bounds", "Externals\cv.jit.blobs.bounds.vcxproj", "{A064E4AA-67CE-415A-975D-EA0E795BF172}"
@@ -81,6 +83,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.perspective", "Externals\cv.jit.perspective.vcxproj", "{5E1CFAAC-82CE-4D3B-8055-ED4EF23ABBAB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.findchessboardcorners", "Externals\cv.jit.findchessboardcorners.vcxproj", "{31B2BB6C-5E4D-45EB-AB3E-216A7D2FF816}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cv.jit.contours", "Externals\cv.jit.contours.vcxproj", "{20284197-8E65-451D-A285-7511E4E88BB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -418,6 +422,14 @@ Global
 		{31B2BB6C-5E4D-45EB-AB3E-216A7D2FF816}.Release|Win32.Build.0 = Release|Win32
 		{31B2BB6C-5E4D-45EB-AB3E-216A7D2FF816}.Release|x64.ActiveCfg = Release|x64
 		{31B2BB6C-5E4D-45EB-AB3E-216A7D2FF816}.Release|x64.Build.0 = Release|x64
+		{20284197-8E65-451D-A285-7511E4E88BB9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{20284197-8E65-451D-A285-7511E4E88BB9}.Debug|Win32.Build.0 = Debug|Win32
+		{20284197-8E65-451D-A285-7511E4E88BB9}.Debug|x64.ActiveCfg = Debug|x64
+		{20284197-8E65-451D-A285-7511E4E88BB9}.Debug|x64.Build.0 = Debug|x64
+		{20284197-8E65-451D-A285-7511E4E88BB9}.Release|Win32.ActiveCfg = Release|Win32
+		{20284197-8E65-451D-A285-7511E4E88BB9}.Release|Win32.Build.0 = Release|Win32
+		{20284197-8E65-451D-A285-7511E4E88BB9}.Release|x64.ActiveCfg = Release|x64
+		{20284197-8E65-451D-A285-7511E4E88BB9}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

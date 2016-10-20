@@ -55,6 +55,8 @@ typedef struct _cv_contours
     
     long        parents_only;
     
+    long        transform_mode;
+    
     t_dictionary *attr_dict; //to do
     
     // dict
@@ -109,7 +111,7 @@ t_symbol *addr_startx;
 t_symbol *addr_starty;
 t_symbol *addr_endx;
 t_symbol *addr_endy;
-t_symbol *addr_id;
+t_symbol *addr_idx;
 t_symbol *addr_eccentricity;
 t_symbol *addr_rotmaj;
 t_symbol *addr_rotmin;
@@ -122,6 +124,13 @@ t_symbol *ps_dict;
 
 t_symbol *addr_flow_r;
 t_symbol *addr_flow_theta;
+
+t_symbol *addr_meanR;
+t_symbol *addr_meanG;
+t_symbol *addr_meanB;
+t_symbol *addr_meanA;
+t_symbol *addr_meanLum;
+
 
 void mat2Jitter(Mat *mat, void *jitMat)
 {
@@ -397,14 +406,25 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     
     GaussianBlur(src_gray, src_blur_gray, cv::Size((int)x->gauss_ksize, (int)x->gauss_ksize), x->gauss_sigma, x->gauss_sigma);
     
-    {
+    if( x->transform_mode == 0)
+    { // opening
+        Mat er_element = getStructuringElement( MORPH_RECT,
+                                               cv::Size( 2*(int)x->erosion_size + 1, 2*(int)x->erosion_size+1 ),
+                                               cv::Point( (int)x->erosion_size, (int)x->erosion_size ) );
+        erode( src_blur_gray, src_blur_gray, er_element );
+        
         Mat di_element = getStructuringElement( MORPH_RECT,
                                                cv::Size( 2*(int)x->dilation_size + 1, 2*(int)x->dilation_size+1 ),
                                                cv::Point( (int)x->dilation_size, (int)x->dilation_size ) );
         dilate( src_blur_gray, src_blur_gray, di_element );
     }
-    
-    {
+    else
+    { // closing
+        Mat di_element = getStructuringElement( MORPH_RECT,
+                                               cv::Size( 2*(int)x->dilation_size + 1, 2*(int)x->dilation_size+1 ),
+                                               cv::Point( (int)x->dilation_size, (int)x->dilation_size ) );
+        dilate( src_blur_gray, src_blur_gray, di_element );
+        
         Mat er_element = getStructuringElement( MORPH_RECT,
                                                cv::Size( 2*(int)x->erosion_size + 1, 2*(int)x->erosion_size+1 ),
                                                cv::Point( (int)x->erosion_size, (int)x->erosion_size ) );
@@ -518,7 +538,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         sprintf( buf, "/%d", count );
         t_symbol *idr = gensym(buf);
-        dictionary_appendlong( contour_sub, addr_id, count );
+        dictionary_appendlong( contour_sub, addr_idx, count );
         
         cv::Rect boundRect = boundingRect( Mat(contours[i]) );
         
@@ -560,8 +580,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         atom_setfloat(&at, stats[n_src_channels].variance );
         atomarray_appendatom(focus, &at);
         
-        
-        
         atom_setlong(&at, contours[i].size());
         atomarray_appendatom(contour_count, &at);
 
@@ -594,10 +612,16 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         dictionary_appendatomarray(minrect_pts_sub, addr_y, (t_object *)minr_pty);
         dictionary_appenddictionary(contour_sub, temp_addr_minrect, (t_object *)minrect_pts_sub);
         
-        atom_setfloat(&at, minRect.size.height / src_height);
+        double hh = minRect.size.height / src_height;
+        double ww = minRect.size.width / src_width;
+        
+        double major = max(hh, ww);
+        double minor = min(hh, ww);
+        
+        atom_setfloat(&at, major);
         atomarray_appendatom(rotmaj, &at);
         
-        atom_setfloat(&at, minRect.size.width / src_width);
+        atom_setfloat(&at, minor);
         atomarray_appendatom(rotmin, &at);
         
         
@@ -652,18 +676,17 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         atom_setlong(&at, isContourConvex(Mat(contours[i])) );
         atomarray_appendatom(convex, &at);
 
-        
-        // eccentricity (could be just major/minor of min rect?)
+/*
+ // moments version is resulting in negative numbers!  not good
         double mumin = moms.mu20 - moms.mu02;
         double muplu = moms.mu20 + moms.mu02;
         double mu11 = moms.mu11;
-        double ecc = (mumin*mumin - 4.0*mu11*mu11) / (muplu*muplu);
-/*
-        double mumin = moms.mu20 - moms.mu02;
-        double muplu = moms.mu20 + moms.mu02;
-        double eccsqrt = sqrt(mumin*mumin + 4*moms.mu11*moms.mu11);
-        double ecc = (muplu + eccsqrt) / (muplu - eccsqrt);
+        double ecc = (mumin*mumin - 4.0*(mu11*mu11)) / (muplu*muplu);
 */
+        
+        double _a = major / 2.;
+        double _b = minor / 2.;
+        double ecc = sqrt(1 - pow(_b/_a, 2));
         atom_setfloat(&at, ecc);
         atomarray_appendatom(eccentricity, &at);
         
@@ -699,7 +722,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 //        Mat rot_mtx = getRotationMatrix2D(minRect.center, minRect.angle, 1.0);
         
         
-        /* todo : compare focus values more carfully
+        /* todo : compare focus values more carefully
         if( (minRect.size.width > 15) && (minRect.size.height > 15))
         {
  
@@ -819,7 +842,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         dictionary_appendatomarray(defectpts, addr_x, (t_object *)defect_x);
         dictionary_appendatomarray(defectpts, addr_y, (t_object *)defect_y);
         dictionary_appendatomarray(defectpts, addr_depth, (t_object *)defect_depth);
-        dictionary_appendlong(defectpts, addr_id, count);
+        dictionary_appendlong(defectpts, addr_idx, count);
         dictionary_appenddictionary(contour_sub, addr_defect_ptlist, (t_object *)defectpts);
         
         // add contour id sub to main dict
@@ -994,18 +1017,18 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 
     switch (n_src_channels) {
         case 4:
-            dictionary_appendatomarray(cv_dict, gensym("/mean/r"), (t_object *)channel_means[0]);
-            dictionary_appendatomarray(cv_dict, gensym("/mean/g"), (t_object *)channel_means[1]);
-            dictionary_appendatomarray(cv_dict, gensym("/mean/b"), (t_object *)channel_means[2]);
-            dictionary_appendatomarray(cv_dict, gensym("/mean/a"), (t_object *)channel_means[3]);
+            dictionary_appendatomarray(cv_dict, addr_meanR, (t_object *)channel_means[0]);
+            dictionary_appendatomarray(cv_dict, addr_meanG, (t_object *)channel_means[1]);
+            dictionary_appendatomarray(cv_dict, addr_meanB, (t_object *)channel_means[2]);
+            dictionary_appendatomarray(cv_dict, addr_meanA, (t_object *)channel_means[3]);
             break;
         case 3:
-            dictionary_appendatomarray(cv_dict, gensym("/mean/r"), (t_object *)channel_means[0]);
-            dictionary_appendatomarray(cv_dict, gensym("/mean/g"), (t_object *)channel_means[1]);
-            dictionary_appendatomarray(cv_dict, gensym("/mean/b"), (t_object *)channel_means[2]);
+            dictionary_appendatomarray(cv_dict, addr_meanR, (t_object *)channel_means[0]);
+            dictionary_appendatomarray(cv_dict, addr_meanG, (t_object *)channel_means[1]);
+            dictionary_appendatomarray(cv_dict, addr_meanB, (t_object *)channel_means[2]);
             break;
         case 1:
-            dictionary_appendatomarray(cv_dict, gensym("/mean/lum"), (t_object *)channel_means[0]);
+            dictionary_appendatomarray(cv_dict, addr_meanA, (t_object *)channel_means[0]);
             break;
         default:
             break;
@@ -1176,6 +1199,8 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
         x->min_size = 0.;
         x->parents_only = 0;
         
+        x->transform_mode = 0;
+        
         for( int i = 0; i < CV_JIT_MAX_IDS; i++ )
         {
             x->id_used[i] = 0;
@@ -1261,6 +1286,9 @@ void ext_main(void* unused)
     CLASS_ATTR_FILTER_MIN(c, "min_size", 0);
     CLASS_ATTR_FILTER_MAX(c, "min_size", 1);
     
+    CLASS_ATTR_LONG(c, "transform_mode", 0, t_cv_contours, transform_mode);
+    CLASS_ATTR_STYLE_LABEL(c, "transform_mode", 0, "onoff", "transform: opening/closing");
+    
     CLASS_ATTR_LONG(c, "debug_matrix", 0, t_cv_contours, debug_matrix);
     CLASS_ATTR_INVISIBLE(c, "debug_matrix", 0);
     
@@ -1304,13 +1332,25 @@ void ext_main(void* unused)
     addr_parimeter = gensym("/parimeter");
     temp_addr_minrect = gensym("/minrect");
     addr_ids = gensym("/ids");
-    addr_id = gensym("/id");
+    addr_idx = gensym("/index");
     
     addr_flow_r = gensym("/flow/r");
     addr_flow_theta = gensym("/flow/theta");
     
     addr_contourpts = gensym("/contour/pts");
+    
+    addr_meanR = gensym("/mean/r");
+    addr_meanG = gensym("/mean/g");
+    addr_meanB = gensym("/mean/b");
+    addr_meanA = gensym("/mean/a");
+    addr_meanLum = gensym("/mean/luma");
+    
     ps_dict = gensym("dictionary");
+    
+    
+    post("cv.jit.contours, by Rama Gottfried, 2016");
+
+    
     return;
 }
 END_USING_C_LINKAGE

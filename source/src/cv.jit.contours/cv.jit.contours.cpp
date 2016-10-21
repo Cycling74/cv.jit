@@ -1074,6 +1074,28 @@ t_max_err cv_contours_gauss_sigma_get(t_cv_contours *x, t_object *attr, long *ar
     return 0;
 }
 
+void cv_contours_assist(t_cv_contours *x, void *b, long m, long a, char *s)
+{
+    if (m == ASSIST_INLET)
+    {
+        sprintf(s, "jit_matrix for analysis");
+    }
+    else
+    {
+        switch (a) {
+            case 0:
+                sprintf(s, "dictionary output");
+                break;
+            case 1:
+                sprintf(s, "matrix output");
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
 BEGIN_USING_C_LINKAGE
 void cv_contours_free(t_cv_contours *x)
 {
@@ -1162,8 +1184,9 @@ void ext_main(void* unused)
                   sizeof(t_cv_contours), NULL, A_GIMME, 0);
     
     max_jit_class_obex_setup(c, calcoffset(t_cv_contours, obex));
-    
     class_addmethod(c, (method)cv_contours_jit_matrix, (char *)"jit_matrix", A_GIMME, 0);
+    class_addmethod(c, (method)cv_contours_assist, (char *)"assist", A_CANT, 0);
+    
     
     CLASS_ATTR_LONG(c, "dilation", 0, t_cv_contours, dilation_size);
     CLASS_ATTR_FILTER_MIN(c, "dilation", 0);

@@ -13,6 +13,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				11C3B98A1DBAB6BE000B5563 /* PBXTargetDependency */,
 				89E355E01AC5AC7F0086DB1F /* PBXTargetDependency */,
 				89E355E21AC5AC7F0086DB1F /* PBXTargetDependency */,
 				89E355E41AC5AC7F0086DB1F /* PBXTargetDependency */,
@@ -248,6 +249,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		11C3B9891DBAB6BE000B5563 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 119260CF1C52F00F001E6B87;
+			remoteInfo = cv.jit.contours;
+		};
 		4390398A129E742800C39448 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -3183,6 +3191,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		11C3B98A1DBAB6BE000B5563 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 119260CF1C52F00F001E6B87 /* cv.jit.contours */;
+			targetProxy = 11C3B9891DBAB6BE000B5563 /* PBXContainerItemProxy */;
+		};
 		4390398B129E742800C39448 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B460571110E9995C002B2AD8 /* cv.jit.surf.match */;

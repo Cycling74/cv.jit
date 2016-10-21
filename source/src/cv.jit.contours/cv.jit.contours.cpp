@@ -1,10 +1,34 @@
 
-//#include "opencv2/imgproc/imgproc.hpp"
-//#include "opencv2/imgcodecs.hpp"
-//#include "opencv2/highgui.hpp"
-//#include "opencv2/video/tracking.hpp"
+/*
+ Copyright (c) 2016.  The Regents of the University of California (Regents).
+ All Rights Reserved.
+ 
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for educational, research, and not-for-profit purposes, without
+ fee and without a signed licensing agreement, is hereby granted, provided that
+ the above copyright notice, this paragraph and the following two paragraphs
+ appear in all copies, modifications, and distributions.  Contact The Office of
+ Technology Licensing, UC Berkeley, 2150 Shattuck Avenue, Suite 510, Berkeley,
+ CA 94720-1620, (510) 643-7201, for commercial licensing opportunities.
+ 
+ Written by Rama Gottfried, The Center for New Music and Audio Technologies,
+ University of California, Berkeley.
+ 
+ IN NO EVENT SHALL REGENTS BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT,
+ SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS,
+ ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF
+ REGENTS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+ REGENTS SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ FOR A PARTICULAR PURPOSE. THE SOFTWARE AND ACCOMPANYING
+ DOCUMENTATION, IF ANY, PROVIDED HEREUNDER IS PROVIDED "AS IS".
+ REGENTS HAS NO OBLIGATION TO PROVI
+ */
+
 
 /*
+ To do: add OSC output option, without additional library
 #include "osc.h"
 #include "osc_bundle_u.h"
 #include "osc_bundle_s.h"
@@ -15,11 +39,8 @@
 #include "jit.common.h"
 #include "max.jit.mop.h"
 #include "ext_dictobj.h"
-//#include "jit.gl.h"
-
 #include "opencv2/opencv.hpp"
-#include "cv.jit.contour.flow.h"
-
+//#include "cv.jit.contour.flow.h" // currently not used
 
 #define CV_JIT_MAX_IDS 100
 
@@ -39,12 +60,12 @@ typedef struct _cv_contours
 {
     t_object    ob;
     void        *obex;
-    
+
     void        *matrix;
     t_atom      matrix_name;
     void        *matrix_outlet;
-    
     void        *outlet;
+
     t_critical  lock;
     
     //attrs
@@ -55,31 +76,25 @@ typedef struct _cv_contours
     double      resize_scale;
     long        thresh;
     long        invert;
-    
     double      track_radius;
     long        debug_matrix;
-    
     double      max_size;
     double      min_size;
-    
     long        parents_only;
-    
     long        transform_mode;
-    
-    t_dictionary *attr_dict; //to do
-    
-    // dict
-    long        dict_mode;
-    t_symbol    *dict_name;
-    
-    ContourFlow flow;
     long        enable_flow;
-    Mat         prev_src_gray;
-    
+
+    // storage
+    Mat             prev_src_gray;
     vector<Point2f> prev_centroids;
     vector<int>     prev_centroid_id;
     vector<double>  prev_area;
     int             id_used[CV_JIT_MAX_IDS];
+    
+    // dict
+    long        dict_mode;
+    t_symbol    *dict_name;
+    t_dictionary *attr_dict; // to do: set attrs with dictionary input
     
 } t_cv_contours;
 
@@ -1242,7 +1257,8 @@ void ext_main(void* unused)
     
     ps_dict = gensym("dictionary");
     
-    post("cv.jit.contours, by Rama Gottfried, 2016");
+    post("cv.jit.contours, by Rama Gottfried");
+    post("Copyright (c) 2016 Regents of the University of California.  All rights reserved.");
 
     return;
 }

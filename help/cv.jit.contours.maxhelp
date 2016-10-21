@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 262.0, 90.0, 1012.0, 721.0 ],
+		"rect" : [ 95.0, 79.0, 1012.0, 721.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,34 @@
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 24.0,
+					"id" : "obj-41",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 485.5, 148.5, 155.0, 33.0 ],
+					"style" : "",
+					"text" : "cv.jit.contours",
+					"textcolor" : [ 0.505882, 0.278431, 0.141176, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-40",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 645.5, 161.5, 134.0, 20.0 ],
+					"style" : "",
+					"text" : "by rama gottfried, 2016",
+					"textcolor" : [ 0.505882, 0.278431, 0.141176, 1.0 ]
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-11",
 					"maxclass" : "newobj",
@@ -264,7 +292,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 331.0, 234.0, 103.0, 22.0 ],
+					"patching_rect" : [ 308.0, 229.0, 103.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -294,7 +322,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 262.0, 116.0, 1012.0, 695.0 ],
+						"rect" : [ 95.0, 105.0, 1012.0, 695.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -323,6 +351,48 @@
 						"subpatcher_template" : "<none>",
 						"showontab" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"fontname" : "Arial Bold",
+									"id" : "obj-22",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 259.0, 507.0, 111.0, 20.0 ],
+									"presentation_rect" : [ 271.0, 494.5, 0.0, 0.0 ],
+									"style" : "",
+									"text" : "Visualization key:"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-20",
+									"linecount" : 8,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 237.0, 527.0, 69.0, 114.0 ],
+									"presentation_rect" : [ 270.0, 549.0, 0.0, 0.0 ],
+									"style" : "",
+									"text" : "number\nwhite dot\ngrey box\nblue dot\nwhite line\npink line\npurple dot\ngreen lines",
+									"textjustification" : 2
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-19",
+									"linecount" : 8,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 310.0, 527.0, 252.0, 114.0 ],
+									"style" : "",
+									"text" : "tracking id\ncentroid\nminimum bounding box (rotated rectangle)\nrotated rectangle center point\nrotated rectangle angle of rotation\nconvex hull \nconvex hull defect point\nconnection points from convex hull to defect "
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"attr" : "max_size",
 									"id" : "obj-16",
@@ -444,12 +514,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-15",
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 467.0, 87.0, 424.0, 20.0 ],
+									"patching_rect" : [ 467.0, 66.5, 427.0, 60.0 ],
 									"style" : "",
-									"text" : "Finds and tracks contours found in input matrix -- with internal pre-processing."
+									"text" : "Finds and tracks contours in input matrix -- with internal pre-processing.\nProvides convex hull coordinates, minimum bounding rectangle, and statistics report on contour morphology and hierarchy. See dictionary info and process diagram tabs for more details."
 								}
 
 							}
@@ -474,7 +545,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 467.0, 54.0, 155.0, 33.0 ],
+									"patching_rect" : [ 467.0, 33.5, 155.0, 33.0 ],
 									"style" : "",
 									"text" : "cv.jit.contours",
 									"textcolor" : [ 0.505882, 0.278431, 0.141176, 1.0 ]
@@ -581,7 +652,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 627.0, 67.0, 134.0, 20.0 ],
+									"patching_rect" : [ 627.0, 46.5, 134.0, 20.0 ],
 									"style" : "",
 									"text" : "by rama gottfried, 2016",
 									"textcolor" : [ 0.505882, 0.278431, 0.141176, 1.0 ]
@@ -704,7 +775,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "" ],
-									"patching_rect" : [ 299.0, 520.0, 103.0, 62.0 ],
+									"patching_rect" : [ 111.0, 561.0, 103.0, 62.0 ],
 									"style" : "",
 									"text" : "jit.window cam @size 400. 225. @depthbuffer 0 @floating 0"
 								}
@@ -718,7 +789,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 299.0, 490.0, 105.0, 22.0 ],
+									"patching_rect" : [ 111.0, 531.0, 105.0, 22.0 ],
 									"style" : "",
 									"text_width" : 66.0
 								}
@@ -819,7 +890,7 @@
 																	"numinlets" : 2,
 																	"numoutlets" : 1,
 																	"outlettype" : [ "" ],
-																	"patching_rect" : [ 50.0, 137.5, 187.0, 49.0 ],
+																	"patching_rect" : [ 50.0, 137.5, 190.0, 49.0 ],
 																	"style" : "",
 																	"text" : "glcolor 0. 1. 1. 1, moveto $1 $2 0, circle 0.01, glcolor 1. 1. 1. 1., linesegment $1 $2 0 $3 $4 0"
 																}
@@ -870,6 +941,18 @@
 																		"style" : "",
 																		"subpatcher_template" : "no-menus",
 																		"boxes" : [ 																			{
+																				"box" : 																				{
+																					"id" : "obj-6",
+																					"maxclass" : "comment",
+																					"numinlets" : 1,
+																					"numoutlets" : 0,
+																					"patching_rect" : [ 338.0, 226.0, 106.0, 20.0 ],
+																					"style" : "",
+																					"text" : "pi / 180 ≈ 0.0175"
+																				}
+
+																			}
+, 																			{
 																				"box" : 																				{
 																					"id" : "obj-4",
 																					"maxclass" : "newobj",
@@ -4239,7 +4322,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 50.0, 155.0, 414.0, 35.0 ],
 																					"style" : "",
-																					"text" : "moveto $1 $2 0., glcolor 0.5 1 0. 0.5, lineto $3 $4 0., glcolor 0.5 0 1. 15, circle 0.01, glcolor 0.5 1 0. 0.5, lineto $5 $6 0."
+																					"text" : "moveto $1 $2 0., glcolor 0.5 1 0. 0.5, lineto $3 $4 0., glcolor 0.5 0 1. 15, circle 0.02, glcolor 0.5 1 0. 0.25, lineto $5 $6 0."
 																				}
 
 																			}
@@ -6423,7 +6506,7 @@
 						"lines" : [  ]
 					}
 ,
-					"patching_rect" : [ 389.0, 264.0, 109.0, 22.0 ],
+					"patching_rect" : [ 346.0, 258.0, 118.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -6433,7 +6516,7 @@
 					}
 ,
 					"style" : "",
-					"text" : "p \"process details\""
+					"text" : "p \"process diagram\""
 				}
 
 			}

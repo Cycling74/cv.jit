@@ -259,7 +259,7 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
     {
         mask_p = mask.ptr<uchar>(i);
         
-        // do type check above here
+        // do type check above here, eventually would be nice to support float also
         src_p = src.ptr<uchar>(i);
         sobel_p = sobel.ptr<float>(i);
         flow_p = flow.ptr<Point2f>(i);
@@ -268,7 +268,6 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
         {
             if( mask_p[j] )
             {
-                // test emplace_back (
                 index.push_back( cv::Point(j, i) );
                 
                 // src
@@ -370,7 +369,7 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
     stats[flowy].variance = stats[flowy].dev_sum / index.size();
 
     _stats = stats;
-//    printf("exit\n");
+
 }
 
 static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
@@ -457,6 +456,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 //        float start = (float)getTickCount();
         calcOpticalFlowFarneback( x->prev_src_gray, src_gray, flow, 0.1, 1, 15, 1, 5, 1.1, 0);
 //        printf("calcOpticalFlowSF : %lf sec\n", (getTickCount() - start) / getTickFrequency());
+        
         if( x->debug_matrix )
         {
             mat2Jitter( &flow, x->matrix );
@@ -507,9 +507,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     t_atomarray *flow_r = atomarray_new(0, NULL);
     t_atomarray *flow_theta = atomarray_new(0, NULL);
 
-    //t_atomarray *channel_means[n_src_channels];
 	Vector<t_atomarray *> channel_means(n_src_channels);
-
 
     for( int ch = 0; ch < n_src_channels; ++ch )
     {
@@ -689,7 +687,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         atomarray_appendatom(convex, &at);
 
 /*
- // moments version is resulting in negative numbers!  not good
+ // moments calc is resulting in negative eccentricity, not good!  switching to min rect version
         double mumin = moms.mu20 - moms.mu02;
         double muplu = moms.mu20 + moms.mu02;
         double mu11 = moms.mu11;
@@ -843,7 +841,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         // fist check if previous points are found
         for( int j = 0; j < x->prev_centroids.size(); j++ )
         {
-//            printf("old check %d %d\n", j, x->prev_centroid_id[j] );
 
             min = radius_max;
             closest_id = -1;
@@ -861,7 +858,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
                     {
                         min = delta;
                         closest_id = i;
-//                        debug_count++;
                     }
                 }
 

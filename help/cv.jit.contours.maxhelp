@@ -358,7 +358,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 259.0, 507.0, 111.0, 20.0 ],
-									"presentation_rect" : [ 271.0, 494.5, 0.0, 0.0 ],
 									"style" : "",
 									"text" : "Visualization key:"
 								}
@@ -372,7 +371,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 237.0, 527.0, 69.0, 114.0 ],
-									"presentation_rect" : [ 270.0, 549.0, 0.0, 0.0 ],
 									"style" : "",
 									"text" : "number\nwhite dot\ngrey box\nblue dot\nwhite line\npink line\npurple dot\ngreen lines",
 									"textjustification" : 2
@@ -453,9 +451,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 577.0, 143.0, 184.0, 33.0 ],
+									"patching_rect" : [ 577.0, 143.0, 248.0, 33.0 ],
 									"style" : "",
-									"text" : "matrix to analyze\naccepts 4, 3, or 1 plane matrixes"
+									"text" : "matrix to analyze\naccepts 1, 3 or 4 plane char matrixes"
 								}
 
 							}

@@ -26,6 +26,15 @@
 using namespace std;
 using namespace cv;
 
+struct Stats {
+    double min = std::numeric_limits<double>::max();
+    double max = 0;
+    double mean = 0;
+    double sum = 0;
+    double dev_sum = 0;
+    double variance = 0;
+};
+
 typedef struct _cv_contours
 {
     t_object    ob;
@@ -91,7 +100,6 @@ t_symbol *addr_sy;
 t_symbol *addr_angle;
 t_symbol *addr_area;
 t_symbol *addr_parimeter;
-
 t_symbol *addr_hullarea;
 t_symbol *addr_child_of;
 t_symbol *addr_focus;
@@ -116,20 +124,17 @@ t_symbol *addr_eccentricity;
 t_symbol *addr_rotmaj;
 t_symbol *addr_rotmin;
 t_symbol *addr_ids;
-
 t_symbol *addr_contourpts;
-
-t_symbol *temp_addr_minrect;
-t_symbol *ps_dict;
-
+t_symbol *addr_minrect;
 t_symbol *addr_flow_r;
 t_symbol *addr_flow_theta;
-
 t_symbol *addr_meanR;
 t_symbol *addr_meanG;
 t_symbol *addr_meanB;
 t_symbol *addr_meanA;
 t_symbol *addr_meanLum;
+
+t_symbol *ps_dict;
 
 
 void mat2Jitter(Mat *mat, void *jitMat)
@@ -170,7 +175,7 @@ void mat2Jitter(Mat *mat, void *jitMat)
     }
     info.dimstride[1] = mat->step;
     info.size = mat->step * mat->rows;
-//    info.flags = JIT_MATRIX_DATA_REFERENCE | JIT_MATRIX_DATA_FLAGS_USE;
+    info.flags = JIT_MATRIX_DATA_REFERENCE | JIT_MATRIX_DATA_FLAGS_USE;
     jit_object_method(jitMat, _jit_sym_setinfo_ex, &info);
     jit_object_method(jitMat, _jit_sym_data, mat->data);
 }
@@ -198,18 +203,7 @@ string type2str(int type) {
     return r;
 }
 
-struct Stats {
-    double min = std::numeric_limits<double>::max();
-    double max = 0;
-    double mean = 0;
-    double sum = 0;
-    double dev_sum = 0;
-    double variance = 0;
-};
 
-
-// TODO: send in bounding box to reduce overhead!  I think this will help a lot
-//template <typename T>
 void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mask, const cv::Rect roi, vector<Stats>& _stats)
 {
     //const int plane, T& min, T& max, T& varience
@@ -402,7 +396,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     {
         bitwise_not(src_gray, src_gray);
     }
-
     
     GaussianBlur(src_gray, src_blur_gray, cv::Size((int)x->gauss_ksize, (int)x->gauss_ksize), x->gauss_sigma, x->gauss_sigma);
     
@@ -449,6 +442,10 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 //        float start = (float)getTickCount();
         calcOpticalFlowFarneback( x->prev_src_gray, src_gray, flow, 0.1, 1, 15, 1, 5, 1.1, 0);
 //        printf("calcOpticalFlowSF : %lf sec\n", (getTickCount() - start) / getTickFrequency());
+        if( x->debug_matrix )
+        {
+            mat2Jitter( &flow, x->matrix );
+        }
 
     }
     src_gray.copyTo(x->prev_src_gray);
@@ -610,7 +607,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         dictionary_appendatomarray(minrect_pts_sub, addr_x, (t_object *)minr_ptx);
         dictionary_appendatomarray(minrect_pts_sub, addr_y, (t_object *)minr_pty);
-        dictionary_appenddictionary(contour_sub, temp_addr_minrect, (t_object *)minrect_pts_sub);
+        dictionary_appenddictionary(contour_sub, addr_minrect, (t_object *)minrect_pts_sub);
         
         double hh = minRect.size.height / src_height;
         double ww = minRect.size.width / src_width;
@@ -719,49 +716,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         dictionary_appendatomarray(hullpts, addr_y, (t_object *)hull_y);
         dictionary_appenddictionary(contour_sub, addr_hull_pt_array, (t_object *)hullpts);
 
-//        Mat rot_mtx = getRotationMatrix2D(minRect.center, minRect.angle, 1.0);
-        
-        
-        /* todo : compare focus values more carefully
-        if( (minRect.size.width > 15) && (minRect.size.height > 15))
-        {
- 
-            Mat rot;
-            Mat roi;
-            warpAffine( src_gray, rot, rot_mtx, src_gray.size(), INTER_AREA );
-            getRectSubPix(rot, minRect.size, minRect.center, roi);
-
-
-            {
-                Mat sob;
-                Scalar _mean, _stdv;
-                Sobel(roi, sob, CV_32F, 1, 1);
-                meanStdDev(sob, _mean, _stdv); // << this could be combined with the stats iteration
-                focus_val = (_stdv[0]*_stdv[0]) ;
-                printf("\t alt focus varience %f\n", focus_val );
-
-            }
-
-        }
-         */
-        
-       
-        
-        /*
-         if( x->debug_matrix && i == 0)
-         {
-         mat2Jitter( &mask_roi, x->matrix );
-         printf("size %d %d\n", boundRect[i].size().width, boundRect[i].size().height  );
-         }
-         */
-        
-/*
-        if( contours[i].size() > 5 )
-        {
-            minEllipse[i] = fitEllipse( Mat(contours[i]) );
-//            post("%d %f %f", i, minRect[i].angle, minEllipse[i].angle );
-        }
-*/
         
         Mat convexcontour;
         approxPolyDP( Mat(hullP), convexcontour, 0.001, true);
@@ -769,7 +723,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         atom_setfloat(&at, contourArea(convexcontour) / npix );
         atomarray_appendatom(hullarea, &at);
         
-        //(defects[i].size() > 0 ) ? (defects[i].size() / (double)hullI[i].size()) : 0
         atom_setlong(&at, defects.size() );
         atomarray_appendatom(defect_count, &at);
         
@@ -786,8 +739,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         t_atomarray *defect_starty = atomarray_new(0, NULL);
         t_atomarray *defect_endx = atomarray_new(0, NULL);
         t_atomarray *defect_endy = atomarray_new(0, NULL);
-        
-//        vector<cv::Point> defect_startpt;
         
         double dist_sum = 0;
         vector<double> defect_dist;
@@ -819,16 +770,11 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
             atom_setfloat(&at, 1. - (ptEnd.y / src_height)  );
             atomarray_appendatom(defect_endy, &at);
             
-            atom_setfloat(&at, v[3] / 256.0);
+            float depth = v[3] / 256.;
+            atom_setfloat(&at, depth);
             atomarray_appendatom(defect_depth, &at);
-
-            /*
-            //float depth = v[3] / 256.; // depth from center of contour
-            double dist = norm(ptFar - ptStart);
-            dist_sum += dist;
-            defect_startpt.push_back( ptStart );
-            defect_dist.push_back( dist / npix);
-             */
+            
+            dist_sum += depth;
             
             d++;
         }
@@ -879,7 +825,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         double min = radius_max;
         int debug_count = 0;
         
-//        printf("max %f\n", radius_max);
         // fist check if previous points are found
         for( int j = 0; j < x->prev_centroids.size(); j++ )
         {
@@ -916,7 +861,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
                 x->id_used[ x->prev_centroid_id[j] ] = 0;
             }
 
- 
         }
         
         // check for unassigned new_ids, and then find the first unused id number:
@@ -951,45 +895,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     printf("*********\n");
     */
     
-    /* TO DO: for better tracking, try using optical flow:
-        1) set previous points
-        2) do flow calc
-        3) check resulting points from flow track
-        4) if flow point is inside the contour, then use preexisting number,
-            if there are multiple old points inside the new contour, use the id with the largest area
-     */
-    
     dictionary_appendatomarray(cv_dict, addr_ids, (t_object *)idlist);
-    
-    
-    /*
-    t_atomarray *flowPtsx = atomarray_new(0, NULL);
-    t_atomarray *flowPtsy = atomarray_new(0, NULL);
-    t_atomarray *flowstatus = atomarray_new(0, NULL);
-
-    {
-        // after iterating contours, send centroids to optical flow analysis
-        vector<uchar> status;
-        vector<float> err;
-        vector<Point2f> out_points;
-        x->flow.processFrame(src_gray, centroids, out_points, status, err);
-
-        for( int i = 0; i < out_points.size(); i++)
-        {
-            atom_setlong(&at, status[i]);
-            atomarray_appendatom(flowstatus, &at);
-            atom_setfloat(&at, out_points[i].x / (double)src_gray.size().width );
-            atomarray_appendatom(flowPtsx, &at);
-            atom_setfloat(&at, 1.0 - (out_points[i].y / (double)src_gray.size().height) );
-            atomarray_appendatom(flowPtsy, &at);
-        }
-        std::swap(centroids, x->prev_centroids);
-    }
-
-    dictionary_appendatomarray(cv_dict, gensym("/flow/x"), (t_object *)flowPtsx);
-    dictionary_appendatomarray(cv_dict, gensym("/flow/y"), (t_object *)flowPtsy);
-    dictionary_appendatomarray(cv_dict, gensym("/flow/status"), (t_object *)flowstatus);
-     */
     
     dictionary_appendatomarray(cv_dict, addr_cx, (t_object *)cx);
     dictionary_appendatomarray(cv_dict, addr_cy, (t_object *)cy);
@@ -1034,12 +940,8 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
             break;
     }
 
-    
-    //if( x->enable_flow )
-    {
-        dictionary_appendatomarray(cv_dict, addr_flow_r, (t_object *)flow_r);
-        dictionary_appendatomarray(cv_dict, addr_flow_theta, (t_object *)flow_theta);
-    }
+    dictionary_appendatomarray(cv_dict, addr_flow_r, (t_object *)flow_r);
+    dictionary_appendatomarray(cv_dict, addr_flow_theta, (t_object *)flow_theta);
     dictionary_appenddictionary(cv_dict, addr_contourpts, (t_object *)contour_dict);
     
     
@@ -1048,11 +950,9 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     object_free(cv_dict);
     
     
-    if( x->debug_matrix )
+    if( x->debug_matrix && x->matrix )
     {
-        
-        if(x->matrix)
-            outlet_anything(x->matrix_outlet, _jit_sym_jit_matrix, 1, &x->matrix_name);
+        outlet_anything(x->matrix_outlet, _jit_sym_jit_matrix, 1, &x->matrix_name);
     }
     
 }
@@ -1178,7 +1078,6 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
     x = (t_cv_contours *)max_jit_object_alloc( cv_contours_class, NULL );
     if( x )
     {
-        x->outlet = outlet_new(x, NULL);
         critical_new(&(x->lock));
         
         x->matrix = NULL;
@@ -1231,7 +1130,9 @@ void *cv_contours_new(t_symbol *s, long argc, t_atom *argv)
             atom_setsym( &x->matrix_name, matrix_name_unique );
 
         }
-        
+
+        x->outlet = outlet_new(x, NULL);
+
     }
     return (x);
 }
@@ -1302,11 +1203,9 @@ void ext_main(void* unused)
     addr_rotmin= gensym("/rotrect/minor");
     addr_sx = gensym("/size/x");
     addr_sy = gensym("/size/y");
-    
     addr_centroidx = gensym("/centroid/x");
     addr_centroidy = gensym("/centroid/y");
     addr_angle = gensym("/angle");
-    
     addr_area = gensym("/area");
     addr_hullarea = gensym("/hull/area");
     addr_child_of = gensym("/parent");
@@ -1328,17 +1227,13 @@ void ext_main(void* unused)
     addr_endx = gensym("/end/x");
     addr_endy = gensym("/end/y");
     addr_eccentricity = gensym("/eccentricity");
-
     addr_parimeter = gensym("/parimeter");
-    temp_addr_minrect = gensym("/minrect");
+    addr_minrect = gensym("/minrect");
     addr_ids = gensym("/ids");
     addr_idx = gensym("/index");
-    
     addr_flow_r = gensym("/flow/r");
     addr_flow_theta = gensym("/flow/theta");
-    
     addr_contourpts = gensym("/contour/pts");
-    
     addr_meanR = gensym("/mean/r");
     addr_meanG = gensym("/mean/g");
     addr_meanB = gensym("/mean/b");
@@ -1347,10 +1242,8 @@ void ext_main(void* unused)
     
     ps_dict = gensym("dictionary");
     
-    
     post("cv.jit.contours, by Rama Gottfried, 2016");
 
-    
     return;
 }
 END_USING_C_LINKAGE

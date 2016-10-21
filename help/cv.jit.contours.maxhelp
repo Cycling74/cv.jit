@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 120.0, 79.0, 1012.0, 721.0 ],
+		"rect" : [ 513.0, 79.0, 1012.0, 721.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -104,7 +104,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 637.0, 563.0, 362.0, 114.0 ],
-									"presentation_rect" : [ 648.0, 566.0, 0.0, 0.0 ],
 									"style" : "",
 									"text" : "x axis start points (on hull) for each convex hull defect\ny axis start points (on hull) for each convex hull defect\nx axis maximum distance points for each convex hull defect\ny axis maximum distance points for each convex hull defect\nx axis end points (on hull) for each convex hull defect\ny axis end points (on hull) for each convex hull defect\ndepth value for each convex hull defect\ncontour index number (not tracking id) "
 								}
@@ -118,7 +117,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 597.0, 483.0, 408.0, 74.0 ],
-									"presentation_rect" : [ 681.0, 370.0, 0.0, 0.0 ],
 									"style" : "",
 									"text" : "index number corresponding to the lists above\nminimum rotated bounding box, x axis point list for this contour\nminimum rotated bounding box, y axis point list for this contour\nconvex hull x axis point list for this contour\nconvex hull y axis point list for this contour"
 								}
@@ -296,7 +294,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 120.0, 105.0, 1012.0, 695.0 ],
+						"rect" : [ 513.0, 105.0, 1012.0, 695.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -326,13 +324,27 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"attr" : "max_size",
+									"id" : "obj-16",
+									"maxclass" : "attrui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 287.0, 308.0, 150.0, 22.0 ],
+									"presentation_rect" : [ 291.0, 283.0, 0.0, 0.0 ],
+									"style" : "",
+									"text_width" : 98.0
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontface" : 1,
 									"id" : "obj-21",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 534.0, 143.0, 44.0, 20.0 ],
-									"presentation_rect" : [ 466.0, 499.0, 0.0, 0.0 ],
 									"style" : "",
 									"text" : "input:",
 									"textjustification" : 2
@@ -346,7 +358,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 577.0, 182.0, 193.0, 20.0 ],
-									"presentation_rect" : [ 506.0, 552.0, 0.0, 0.0 ],
 									"style" : "",
 									"text" : "dictionary containing analysis data"
 								}
@@ -360,7 +371,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 527.0, 182.0, 51.0, 20.0 ],
-									"presentation_rect" : [ 517.0, 631.0, 0.0, 0.0 ],
 									"style" : "",
 									"text" : "output:",
 									"textjustification" : 2
@@ -375,7 +385,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 577.0, 143.0, 184.0, 33.0 ],
-									"presentation_rect" : [ 517.0, 593.0, 0.0, 0.0 ],
 									"style" : "",
 									"text" : "matrix to analyze\naccepts 4, 3, or 1 plane matrixes"
 								}
@@ -389,9 +398,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 577.0, 250.5, 307.0, 181.0 ],
-									"presentation_rect" : [ 576.0, 400.0, 0.0, 0.0 ],
 									"style" : "",
-									"text" : "dilation size coefficient\nerosion size coefficient\ngaussian blur sigma\ninverts the image before analysis\nmaximum contour size relative to the full image (0-1)\nminimum contour size relative to the full image (0-1)\non/off\nwhen enabled, only outermost contours are output \nscalar value for internal analysis size\n0-255, threshold for binary image stage before analysis\nmaximum radius to search for contour tracking (0-1)\n0 = opening (erode-dilate), \n1 = closing (dilate-erode) "
+									"text" : "dilation size coefficient\nerosion size coefficient\ngaussian blur sigma\ninvert grayscale image before analysis\nmaximum contour size relative to the full image (0-1)\nminimum contour size relative to the full image (0-1)\non/off\nwhen enabled, only outermost contours are output \nscalar value for internal analysis size\n0-255, threshold for binary image stage before analysis\nmaximum radius to search for contour tracking (0-1)\n0 = opening (erode-dilate), \n1 = closing (dilate-erode) "
 								}
 
 							}
@@ -403,7 +411,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 467.0, 250.5, 110.0, 167.0 ],
-									"presentation_rect" : [ 546.0, 422.0, 0.0, 0.0 ],
 									"style" : "",
 									"text" : "@dilation\n@erosion\n@gauss_sigma\n@invert\n@max_size\n@min_size\n@optical_flow\n@parents_only\n@resize_scale\n@thresh\n@track_radius\n@transform_mode",
 									"textjustification" : 2
@@ -430,7 +437,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 291.0, 221.0, 150.0, 22.0 ],
+									"patching_rect" : [ 287.0, 189.0, 150.0, 22.0 ],
 									"style" : ""
 								}
 
@@ -590,7 +597,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 291.0, 308.0, 150.0, 22.0 ],
+									"patching_rect" : [ 287.0, 276.0, 150.0, 22.0 ],
 									"style" : "",
 									"text_width" : 113.0
 								}
@@ -604,7 +611,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 291.0, 256.0, 150.0, 22.0 ],
+									"patching_rect" : [ 287.0, 224.0, 150.0, 22.0 ],
 									"style" : ""
 								}
 
@@ -656,7 +663,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 291.0, 136.5, 150.0, 22.0 ],
+									"patching_rect" : [ 287.0, 104.5, 150.0, 22.0 ],
 									"style" : ""
 								}
 
@@ -669,7 +676,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 291.0, 282.0, 150.0, 22.0 ],
+									"patching_rect" : [ 287.0, 250.0, 150.0, 22.0 ],
 									"style" : ""
 								}
 
@@ -734,7 +741,7 @@
 											"modernui" : 1
 										}
 ,
-										"rect" : [ 38.0, 79.0, 1372.0, 746.0 ],
+										"rect" : [ 34.0, 79.0, 1372.0, 746.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -4233,7 +4240,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 50.0, 155.0, 414.0, 35.0 ],
 																					"style" : "",
-																					"text" : "moveto $1 $2 0., glcolor 0.5 1 0. 0.5, lineto $3 $4 0., glcolor 0.5 0 1. 15, circle 0.03, glcolor 0.5 1 0. 0.5, lineto $5 $6 0."
+																					"text" : "moveto $1 $2 0., glcolor 0.5 1 0. 0.5, lineto $3 $4 0., glcolor 0.5 0 1. 15, circle 0.01, glcolor 0.5 1 0. 0.5, lineto $5 $6 0."
 																				}
 
 																			}
@@ -5619,221 +5626,6 @@
 											}
 , 											{
 												"box" : 												{
-													"id" : "obj-72",
-													"maxclass" : "newobj",
-													"numinlets" : 1,
-													"numoutlets" : 1,
-													"outlettype" : [ "dictionary" ],
-													"patcher" : 													{
-														"fileversion" : 1,
-														"appversion" : 														{
-															"major" : 7,
-															"minor" : 3,
-															"revision" : 1,
-															"architecture" : "x64",
-															"modernui" : 1
-														}
-,
-														"rect" : [ 766.0, 177.0, 640.0, 480.0 ],
-														"bglocked" : 0,
-														"openinpresentation" : 0,
-														"default_fontsize" : 12.0,
-														"default_fontface" : 0,
-														"default_fontname" : "Arial",
-														"gridonopen" : 1,
-														"gridsize" : [ 15.0, 15.0 ],
-														"gridsnaponopen" : 1,
-														"objectsnaponopen" : 1,
-														"statusbarvisible" : 2,
-														"toolbarvisible" : 1,
-														"lefttoolbarpinned" : 0,
-														"toptoolbarpinned" : 0,
-														"righttoolbarpinned" : 0,
-														"bottomtoolbarpinned" : 0,
-														"toolbars_unpinned_last_save" : 0,
-														"tallnewobj" : 0,
-														"boxanimatetime" : 200,
-														"enablehscroll" : 1,
-														"enablevscroll" : 1,
-														"devicewidth" : 0.0,
-														"description" : "",
-														"digest" : "",
-														"tags" : "",
-														"style" : "",
-														"subpatcher_template" : "no-menus",
-														"boxes" : [ 															{
-																"box" : 																{
-																	"id" : "obj-13",
-																	"maxclass" : "newobj",
-																	"numinlets" : 2,
-																	"numoutlets" : 1,
-																	"outlettype" : [ "dictionary" ],
-																	"patching_rect" : [ 188.0, 223.5, 51.0, 22.0 ],
-																	"style" : "",
-																	"text" : "dict.join"
-																}
-
-															}
-, 															{
-																"box" : 																{
-																	"id" : "obj-12",
-																	"maxclass" : "newobj",
-																	"numinlets" : 1,
-																	"numoutlets" : 1,
-																	"outlettype" : [ "dictionary" ],
-																	"patching_rect" : [ 220.0, 194.0, 103.0, 22.0 ],
-																	"style" : "",
-																	"text" : "dict.pack /aspect:"
-																}
-
-															}
-, 															{
-																"box" : 																{
-																	"id" : "obj-11",
-																	"maxclass" : "newobj",
-																	"numinlets" : 2,
-																	"numoutlets" : 1,
-																	"outlettype" : [ "float" ],
-																	"patching_rect" : [ 220.0, 163.0, 29.5, 22.0 ],
-																	"style" : "",
-																	"text" : "/ 1."
-																}
-
-															}
-, 															{
-																"box" : 																{
-																	"id" : "obj-10",
-																	"maxclass" : "newobj",
-																	"numinlets" : 1,
-																	"numoutlets" : 2,
-																	"outlettype" : [ "", "" ],
-																	"patching_rect" : [ 188.0, 105.0, 51.0, 22.0 ],
-																	"style" : "",
-																	"text" : "t l l"
-																}
-
-															}
-, 															{
-																"box" : 																{
-																	"id" : "obj-2",
-																	"maxclass" : "newobj",
-																	"numinlets" : 1,
-																	"numoutlets" : 1,
-																	"outlettype" : [ "" ],
-																	"patching_rect" : [ 220.0, 135.0, 119.0, 22.0 ],
-																	"style" : "",
-																	"text" : "dict.unpack /dim_xy:"
-																}
-
-															}
-, 															{
-																"box" : 																{
-																	"comment" : "",
-																	"id" : "obj-69",
-																	"maxclass" : "inlet",
-																	"numinlets" : 0,
-																	"numoutlets" : 1,
-																	"outlettype" : [ "" ],
-																	"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ],
-																	"style" : ""
-																}
-
-															}
-, 															{
-																"box" : 																{
-																	"comment" : "",
-																	"id" : "obj-70",
-																	"maxclass" : "outlet",
-																	"numinlets" : 1,
-																	"numoutlets" : 0,
-																	"patching_rect" : [ 50.0, 300.5, 30.0, 30.0 ],
-																	"style" : ""
-																}
-
-															}
- ],
-														"lines" : [ 															{
-																"patchline" : 																{
-																	"destination" : [ "obj-13", 0 ],
-																	"disabled" : 0,
-																	"hidden" : 0,
-																	"source" : [ "obj-10", 0 ]
-																}
-
-															}
-, 															{
-																"patchline" : 																{
-																	"destination" : [ "obj-2", 0 ],
-																	"disabled" : 0,
-																	"hidden" : 0,
-																	"source" : [ "obj-10", 1 ]
-																}
-
-															}
-, 															{
-																"patchline" : 																{
-																	"destination" : [ "obj-12", 0 ],
-																	"disabled" : 0,
-																	"hidden" : 0,
-																	"source" : [ "obj-11", 0 ]
-																}
-
-															}
-, 															{
-																"patchline" : 																{
-																	"destination" : [ "obj-13", 1 ],
-																	"disabled" : 0,
-																	"hidden" : 0,
-																	"source" : [ "obj-12", 0 ]
-																}
-
-															}
-, 															{
-																"patchline" : 																{
-																	"destination" : [ "obj-70", 0 ],
-																	"disabled" : 0,
-																	"hidden" : 0,
-																	"source" : [ "obj-13", 0 ]
-																}
-
-															}
-, 															{
-																"patchline" : 																{
-																	"destination" : [ "obj-11", 0 ],
-																	"disabled" : 0,
-																	"hidden" : 0,
-																	"source" : [ "obj-2", 0 ]
-																}
-
-															}
-, 															{
-																"patchline" : 																{
-																	"destination" : [ "obj-10", 0 ],
-																	"disabled" : 0,
-																	"hidden" : 0,
-																	"source" : [ "obj-69", 0 ]
-																}
-
-															}
- ]
-													}
-,
-													"patching_rect" : [ 103.333313, 93.0, 77.0, 22.0 ],
-													"saved_object_attributes" : 													{
-														"description" : "",
-														"digest" : "",
-														"globalpatchername" : "",
-														"style" : "",
-														"tags" : ""
-													}
-,
-													"style" : "",
-													"text" : "p get-aspect"
-												}
-
-											}
-, 											{
-												"box" : 												{
 													"id" : "obj-64",
 													"maxclass" : "message",
 													"numinlets" : 2,
@@ -6335,7 +6127,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 291.0, 162.5, 150.0, 22.0 ],
+									"patching_rect" : [ 287.0, 130.5, 150.0, 22.0 ],
 									"style" : ""
 								}
 
@@ -6348,7 +6140,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 291.0, 188.5, 150.0, 22.0 ],
+									"patching_rect" : [ 287.0, 156.5, 150.0, 22.0 ],
 									"style" : ""
 								}
 
@@ -6396,6 +6188,15 @@
 									"disabled" : 0,
 									"hidden" : 0,
 									"source" : [ "obj-13", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"disabled" : 0,
+									"hidden" : 0,
+									"source" : [ "obj-16", 0 ]
 								}
 
 							}

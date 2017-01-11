@@ -188,6 +188,7 @@ void mat2Jitter(Mat *mat, void *jitMat)
             error("Error converting to Jitter matrix: unsupported depth.");
             return;
     }
+//    cout << "rows " << mat->rows << " cols " << mat->cols << " channels " << mat->channels() << " step " << mat->step << endl;
     info.dimstride[1] = mat->step;
     info.size = mat->step * mat->rows;
     info.flags = JIT_MATRIX_DATA_REFERENCE | JIT_MATRIX_DATA_FLAGS_USE;
@@ -252,8 +253,8 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
     int row_start = roi.y;
     int row_end = roi.y + roi.height;
     
-    int col_start = roi.x;
-    int col_end = roi.x + roi.width;
+    int col_start = roi.x * nchans;
+    int col_end = col_start + (roi.width * nchans);
     
     for( int i = row_start; i < row_end; ++i )
     {
@@ -264,7 +265,7 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
         sobel_p = sobel.ptr<float>(i);
         flow_p = flow.ptr<Point2f>(i);
 
-        for( int j = col_start; j < col_end; ++j )
+        for( int j = col_start; j < col_end; j+=nchans )
         {
             if( mask_p[j] )
             {
@@ -273,17 +274,19 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
                 // src
                 for( int c = 0; c < nchans; ++c)
                 {
-                    if( src_p[j + c] < stats[c].min )
-                        stats[c].min = src_p[ j+c ];
+                    const uchar val = src_p[j + c];
                     
-                    if( src_p[j + c] > stats[c].max )
-                        stats[c].max = src_p[ j+c ];
+                    if( val < stats[c].min )
+                        stats[c].min = val;
+                    
+                    if( val > stats[c].max )
+                        stats[c].max = val;
 
                     
-                    stats[c].sum += src_p[j + c];
+                    stats[c].sum += val;
                     
                 }
-                
+
                 //sobel
                 if( sobel_p[j] < stats[focus].min )
                     stats[focus].min = sobel_p[j];
@@ -456,11 +459,6 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 //        float start = (float)getTickCount();
         calcOpticalFlowFarneback( x->prev_src_gray, src_gray, flow, 0.1, 1, 15, 1, 5, 1.1, 0);
 //        printf("calcOpticalFlowSF : %lf sec\n", (getTickCount() - start) / getTickFrequency());
-        
-        if( x->debug_matrix )
-        {
-            mat2Jitter( &flow, x->matrix );
-        }
 
     }
     src_gray.copyTo(x->prev_src_gray);
@@ -566,6 +564,11 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
          printf("\t flowx %f\n", stats[n_src_channels+1].mean);
          printf("\t flowy %f\n", stats[n_src_channels+2].mean);
          */
+
+        if( x->debug_matrix )
+        {
+            mat2Jitter( &frame, x->matrix );
+        }
         
         for( int ch = 0; ch < n_src_channels; ++ch )
         {
@@ -934,10 +937,10 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
 
     switch (n_src_channels) {
         case 4:
-            dictionary_appendatomarray(cv_dict, addr_meanR, (t_object *)channel_means[0]);
-            dictionary_appendatomarray(cv_dict, addr_meanG, (t_object *)channel_means[1]);
-            dictionary_appendatomarray(cv_dict, addr_meanB, (t_object *)channel_means[2]);
-            dictionary_appendatomarray(cv_dict, addr_meanA, (t_object *)channel_means[3]);
+            dictionary_appendatomarray(cv_dict, addr_meanA, (t_object *)channel_means[0]);
+            dictionary_appendatomarray(cv_dict, addr_meanR, (t_object *)channel_means[1]);
+            dictionary_appendatomarray(cv_dict, addr_meanG, (t_object *)channel_means[2]);
+            dictionary_appendatomarray(cv_dict, addr_meanB, (t_object *)channel_means[3]);
             break;
         case 3:
             dictionary_appendatomarray(cv_dict, addr_meanR, (t_object *)channel_means[0]);

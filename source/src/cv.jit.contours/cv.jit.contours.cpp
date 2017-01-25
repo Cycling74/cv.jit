@@ -253,8 +253,8 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
     int row_start = roi.y;
     int row_end = roi.y + roi.height;
     
-    int col_start = roi.x * nchans;
-    int col_end = col_start + (roi.width * nchans);
+    int col_start = roi.x;
+    int col_end = col_start + roi.width;
     
     for( int i = row_start; i < row_end; ++i )
     {
@@ -265,16 +265,17 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
         sobel_p = sobel.ptr<float>(i);
         flow_p = flow.ptr<Point2f>(i);
 
-        for( int j = col_start; j < col_end; j+=nchans )
+        for( int j = col_start; j < col_end; ++j )
         {
             if( mask_p[j] )
             {
                 index.push_back( cv::Point(j, i) );
                 
+
                 // src
                 for( int c = 0; c < nchans; ++c)
                 {
-                    const uchar val = src_p[j + c];
+                    const uchar val = src_p[ (j*nchans) + c];
                     
                     if( val < stats[c].min )
                         stats[c].min = val;
@@ -344,7 +345,7 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
         
         for( int c = 0; c < nchans; ++c)
         {
-            double dx = src_p[ col + c ] - stats[c].mean;
+            double dx = src_p[ (col*nchans) + c ] - stats[c].mean;
             stats[c].dev_sum += (dx*dx);
         }
         
@@ -558,12 +559,14 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         
         vector<Stats> stats;
         getStatsChar(src_color_sized, sob, flow, contour_mask, boundRect, stats);
+        
         /*
          printf("stats: \n");
          printf("\t focus varience %f\n", stats[n_src_channels].variance);
          printf("\t flowx %f\n", stats[n_src_channels+1].mean);
          printf("\t flowy %f\n", stats[n_src_channels+2].mean);
          */
+
 
         if( x->debug_matrix )
         {
@@ -575,6 +578,7 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
             atom_setfloat(&at, stats[ch].mean );
             atomarray_appendatom(channel_means[ch], &at);
         }
+
         
         if( x->enable_flow )
         {

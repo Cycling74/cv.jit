@@ -83,6 +83,8 @@ typedef struct _cv_contours
     long        parents_only;
     long        transform_mode;
     long        enable_flow;
+    
+    long        color_stats_format; // 0 = rgb/argb, 1 = hsl, 2 = lab
 
     // storage
     Mat             prev_src_gray;
@@ -143,11 +145,25 @@ t_symbol *addr_contourpts;
 t_symbol *addr_minrect;
 t_symbol *addr_flow_r;
 t_symbol *addr_flow_theta;
-t_symbol *addr_meanR;
-t_symbol *addr_meanG;
-t_symbol *addr_meanB;
-t_symbol *addr_meanA;
-t_symbol *addr_meanLum;
+
+t_symbol *addr_r_mean;
+t_symbol *addr_g_mean;
+t_symbol *addr_b_mean;
+t_symbol *addr_a_mean;
+t_symbol *addr_lum_mean;
+t_symbol *addr_h_mean;
+t_symbol *addr_s_mean;
+t_symbol *addr_l_mean;
+t_symbol *addr_r_var;
+t_symbol *addr_g_var;
+t_symbol *addr_b_var;
+t_symbol *addr_a_var;
+t_symbol *addr_lum_var;
+t_symbol *addr_h_var;
+t_symbol *addr_s_var;
+t_symbol *addr_l_var;
+
+t_symbol *addr_hu;
 
 t_symbol *ps_dict;
 
@@ -323,17 +339,18 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
         }
     }
     
+    int size = index.size();
+
     for( int c = 0; c < nchans; ++c)
     {
-        stats[c].mean = stats[c].sum / index.size();
+        stats[c].mean = stats[c].sum / size;
     }
     
-    stats[focus].mean = stats[focus].sum / index.size();
-    stats[flowx].mean = stats[flowx].sum / index.size();
-    stats[flowy].mean = stats[flowy].sum / index.size();
+    stats[focus].mean = stats[focus].sum / size;
+    stats[flowx].mean = stats[flowx].sum / size;
+    stats[flowy].mean = stats[flowy].sum / size;
     
     int row, col;
-    int size = index.size();
     for( int i = 0; i < size; ++i )
     {
         col = index[i].x;
@@ -365,12 +382,12 @@ void getStatsChar( const Mat src, const Mat sobel, const Mat flow, const Mat mas
     
     for( int c = 0; c < nchans; ++c)
     {
-        stats[c].variance = stats[c].dev_sum / index.size();
+        stats[c].variance = stats[c].dev_sum / size;
     }
     
-    stats[focus].variance = stats[focus].dev_sum / index.size();
-    stats[flowx].variance = stats[flowx].dev_sum / index.size();
-    stats[flowy].variance = stats[flowy].dev_sum / index.size();
+    stats[focus].variance = stats[focus].dev_sum / size;
+    stats[flowx].variance = stats[flowx].dev_sum / size;
+    stats[flowy].variance = stats[flowy].dev_sum / size;
 
     _stats = stats;
 
@@ -393,12 +410,49 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         switch ( n_src_channels ) {
             case 1:
                 src_gray = src_color_sized.clone();
+                
+                if( x->color_stats_format == 1 )
+                {
+                    cvtColor(src_color_sized, src_color_sized, CV_GRAY2RGB); // kind of pointless, but just in case of user error
+                    cvtColor(src_color_sized, src_color_sized, CV_RGB2HLS_FULL);
+                    n_src_channels = 3;
+                }
+                else if( x->color_stats_format == 2 )
+                {
+                    cvtColor(src_color_sized, src_color_sized, CV_GRAY2RGB); // kind of pointless, but just in case of user error
+                    cvtColor(src_color_sized, src_color_sized, CV_RGB2Lab);
+                    n_src_channels = 3;
+                }
+                
                 break;
             case 4:
                 cvtColor(src_color_sized, src_gray, CV_RGBA2GRAY);
+
+                if( x->color_stats_format == 1 )
+                {
+                    cvtColor(src_color_sized, src_color_sized, CV_RGBA2RGB);
+                    cvtColor(src_color_sized, src_color_sized, CV_RGB2HLS_FULL);
+                    n_src_channels = 3;
+                }
+                else if( x->color_stats_format == 2 )
+                {
+                    cvtColor(src_color_sized, src_color_sized, CV_RGBA2RGB);
+                    cvtColor(src_color_sized, src_color_sized, CV_RGB2Lab);
+                    n_src_channels = 3;
+                }
+                
                 break;
             case 3:
                 cvtColor(src_color_sized, src_gray, CV_RGB2GRAY);
+                
+                if( x->color_stats_format == 1 )
+                {
+                    cvtColor(src_color_sized, src_color_sized, CV_RGB2HLS_FULL);
+                }
+                else if( x->color_stats_format == 2 )
+                {
+                    cvtColor(src_color_sized, src_color_sized, CV_RGB2Lab);
+                }
                 break;
             default:
                 object_error((t_object *)x, "unsupported plane number");
@@ -507,12 +561,14 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     t_atomarray *flow_theta = atomarray_new(0, NULL);
 
 	Vector<t_atomarray *> channel_means(n_src_channels);
+    Vector<t_atomarray *> channel_var(n_src_channels);
 
     for( int ch = 0; ch < n_src_channels; ++ch )
     {
         channel_means[ch] = atomarray_new(0, NULL);
+        channel_var[ch] = atomarray_new(0, NULL);
+
     }
-    
     
     double src_width = (double)src_gray.size().width;
     double src_height = (double)src_gray.size().height;
@@ -531,7 +587,8 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     char buf[256];
     
     t_dictionary *contour_dict = dictionary_new();
-    
+    t_dictionary *hu_moments = dictionary_new();
+
     long ncontours = contours.size();
     
     int count = 0;
@@ -577,6 +634,9 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         {
             atom_setfloat(&at, stats[ch].mean );
             atomarray_appendatom(channel_means[ch], &at);
+            
+            atom_setfloat(&at, stats[ch].variance );
+            atomarray_appendatom(channel_var[ch], &at);
         }
 
         
@@ -661,6 +721,20 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
         double ctrdy = centery;
 
         Moments moms = moments( contours[i] );
+
+        // Hu momemnts
+        double hu[7];
+        HuMoments(moms, hu);
+        t_atomarray *hu_ar = atomarray_new(0, NULL);
+        
+        for( long hidx = 0; hidx < 7; hidx++ )
+        {
+            atom_setfloat(&at, hu[hidx] );
+            atomarray_appendatom(hu_ar, &at);
+        }
+        
+        dictionary_appendatomarray(contour_sub, addr_hu, (t_object *)hu_ar);
+        
         if( moms.m00 != 0.0 )
         {
             ctrdx = moms.m10 / moms.m00;
@@ -937,22 +1011,54 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     dictionary_appendatomarray(cv_dict, addr_contour_count, (t_object *)contour_count);
     
     dictionary_appendatomarray(cv_dict, addr_focus, (t_object *)focus);
-    
 
     switch (n_src_channels) {
         case 4:
-            dictionary_appendatomarray(cv_dict, addr_meanA, (t_object *)channel_means[0]);
-            dictionary_appendatomarray(cv_dict, addr_meanR, (t_object *)channel_means[1]);
-            dictionary_appendatomarray(cv_dict, addr_meanG, (t_object *)channel_means[2]);
-            dictionary_appendatomarray(cv_dict, addr_meanB, (t_object *)channel_means[3]);
+            dictionary_appendatomarray(cv_dict, addr_a_mean, (t_object *)channel_means[0]);
+            dictionary_appendatomarray(cv_dict, addr_r_mean, (t_object *)channel_means[1]);
+            dictionary_appendatomarray(cv_dict, addr_g_mean, (t_object *)channel_means[2]);
+            dictionary_appendatomarray(cv_dict, addr_b_mean, (t_object *)channel_means[3]);
+            dictionary_appendatomarray(cv_dict, addr_a_var, (t_object *)channel_var[0]);
+            dictionary_appendatomarray(cv_dict, addr_r_var, (t_object *)channel_var[1]);
+            dictionary_appendatomarray(cv_dict, addr_g_var, (t_object *)channel_var[2]);
+            dictionary_appendatomarray(cv_dict, addr_b_var, (t_object *)channel_var[3]);
+            
             break;
         case 3:
-            dictionary_appendatomarray(cv_dict, addr_meanR, (t_object *)channel_means[0]);
-            dictionary_appendatomarray(cv_dict, addr_meanG, (t_object *)channel_means[1]);
-            dictionary_appendatomarray(cv_dict, addr_meanB, (t_object *)channel_means[2]);
+            switch (x->color_stats_format) {
+                case 0:
+                    dictionary_appendatomarray(cv_dict, addr_r_mean, (t_object *)channel_means[0]);
+                    dictionary_appendatomarray(cv_dict, addr_g_mean, (t_object *)channel_means[1]);
+                    dictionary_appendatomarray(cv_dict, addr_b_mean, (t_object *)channel_means[2]);
+                    dictionary_appendatomarray(cv_dict, addr_r_var, (t_object *)channel_var[0]);
+                    dictionary_appendatomarray(cv_dict, addr_g_var, (t_object *)channel_var[1]);
+                    dictionary_appendatomarray(cv_dict, addr_b_var, (t_object *)channel_var[2]);
+                    break;
+                case 1:
+                    dictionary_appendatomarray(cv_dict, addr_h_mean, (t_object *)channel_means[0]);
+                    dictionary_appendatomarray(cv_dict, addr_l_mean, (t_object *)channel_means[1]);
+                    dictionary_appendatomarray(cv_dict, addr_s_mean, (t_object *)channel_means[2]);
+                    dictionary_appendatomarray(cv_dict, addr_h_var, (t_object *)channel_var[0]);
+                    dictionary_appendatomarray(cv_dict, addr_l_var, (t_object *)channel_var[1]);
+                    dictionary_appendatomarray(cv_dict, addr_s_var, (t_object *)channel_var[2]);
+                    break;
+                case 2:
+                    dictionary_appendatomarray(cv_dict, addr_l_mean, (t_object *)channel_means[0]);
+                    dictionary_appendatomarray(cv_dict, addr_a_mean, (t_object *)channel_means[1]);
+                    dictionary_appendatomarray(cv_dict, addr_b_mean, (t_object *)channel_means[2]);
+                    dictionary_appendatomarray(cv_dict, addr_l_var, (t_object *)channel_var[0]);
+                    dictionary_appendatomarray(cv_dict, addr_a_var, (t_object *)channel_var[1]);
+                    dictionary_appendatomarray(cv_dict, addr_b_var, (t_object *)channel_var[2]);
+                    break;
+
+                default:
+                    break;
+            }
             break;
         case 1:
-            dictionary_appendatomarray(cv_dict, addr_meanA, (t_object *)channel_means[0]);
+            dictionary_appendatomarray(cv_dict, addr_lum_mean, (t_object *)channel_means[0]);
+            dictionary_appendatomarray(cv_dict, addr_lum_var, (t_object *)channel_var[0]);
+            
             break;
         default:
             break;
@@ -965,7 +1071,9 @@ static void cv_contours_dict_out(t_cv_contours *x, Mat frame)
     
     atom_setsym(&at, x->dict_name);
     outlet_anything(x->outlet, ps_dict, 1, &at);
+    dictionary_clear(cv_dict);
     object_free(cv_dict);
+    // maybe should instead just have one dictionary that gets reused instead of creating a new one everytime
     
     
     if( x->debug_matrix && x->matrix )
@@ -1230,6 +1338,8 @@ void ext_main(void* unused)
     
     CLASS_ATTR_LONG(c, "transform_mode", 0, t_cv_contours, transform_mode);
     CLASS_ATTR_STYLE_LABEL(c, "transform_mode", 0, "onoff", "transform: opening/closing");
+
+    CLASS_ATTR_LONG(c, "color_stats_format", 0, t_cv_contours, color_stats_format);
     
     CLASS_ATTR_LONG(c, "debug_matrix", 0, t_cv_contours, debug_matrix);
     CLASS_ATTR_INVISIBLE(c, "debug_matrix", 0);
@@ -1275,11 +1385,30 @@ void ext_main(void* unused)
     addr_flow_r = gensym("/flow/r");
     addr_flow_theta = gensym("/flow/theta");
     addr_contourpts = gensym("/contour/pts");
-    addr_meanR = gensym("/mean/r");
-    addr_meanG = gensym("/mean/g");
-    addr_meanB = gensym("/mean/b");
-    addr_meanA = gensym("/mean/a");
-    addr_meanLum = gensym("/mean/luma");
+    
+    addr_r_mean = gensym("/pix/r/mean");
+    addr_g_mean = gensym("/pix/g/mean");
+    addr_b_mean = gensym("/pix/b/mean");
+    addr_a_mean = gensym("/pix/a/mean");
+    
+    addr_h_mean = gensym("/pix/h/mean");
+    addr_s_mean = gensym("/pix/s/mean");
+    addr_l_mean = gensym("/pix/l/mean");
+    
+    addr_lum_mean = gensym("/pix/luma/mean");
+    
+    addr_r_var = gensym("/pix/r/var");
+    addr_g_var = gensym("/pix/g/var");
+    addr_b_var = gensym("/pix/b/var");
+    addr_a_var = gensym("/pix/a/var");
+    
+    addr_h_var = gensym("/pix/h/var");
+    addr_s_var = gensym("/pix/s/var");
+    addr_l_var = gensym("/pix/l/var");
+    
+    addr_lum_var = gensym("/pix/lum/var");
+
+    addr_hu = gensym("/hu");
     
     ps_dict = gensym("dictionary");
     

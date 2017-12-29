@@ -3,7 +3,7 @@ cv.jit.hough
 	
 
 Copyright 2004, 2010, Chrstopher P. Baker, mateusz herczka and Jean-Marc Pelletier
-bakercp@umn.edu
+https://christopherbaker.net
 msz@westerplatte.net
 jmp@jmpelletier.com
 

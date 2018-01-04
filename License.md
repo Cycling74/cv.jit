@@ -2,9 +2,9 @@
 
 All externals, abstractions and help files by Jean-Marc Pelletier <jmp@iamas.ac.jp> 2003-2008 except:
 
-* `cv.jit.hough` by Christopher P. Baker <bakercp@umn.edu> and Mateusz Herczka 2004
-* `cv.jit.extrema` by Christopher P. Baker and Mateusz Herczka 2004, with modifications by Jean-Marc Pelletier 2006
-* `cv.jit.hough2lines` by Christopher P. Baker, Mateusz Herczka and Jean-Marc Pelletier 2006
+* `cv.jit.hough` by Christopher P. Baker <https://christopherbaker.net> and Mateusz Herczka 2004
+* `cv.jit.extrema` by Christopher P. Baker <https://christopherbaker.net> and Mateusz Herczka 2004, with modifications by Jean-Marc Pelletier 2006
+* `cv.jit.hough2lines` by Christopher P. Baker <https://christopherbaker.net>, Mateusz Herczka and Jean-Marc Pelletier 2006
 
 Haar cascades used by `cv.jit.faces`, originally distributed with OpenCV, created by Rainer Lienhart.
 

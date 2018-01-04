@@ -3,7 +3,7 @@ cv.jit.extrema
 	
 
 Copyright 2010, Chrstopher P. Baker and Jean-Marc Pelletier
-bakercp@umn.edu
+https://christopherbaker.net
 jmp@jmpelletier.com
 
 This file is part of cv.jit.

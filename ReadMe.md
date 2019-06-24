@@ -6,49 +6,54 @@ Mac CI Builds are [here](https://s3-us-west-2.amazonaws.com/cycling74-ci/index.h
 
 ## Compiling cv.jit
 
-You will find Visual Studio and Xcode projects in the "source/projects/Windows" and "source/projects/OSX" folders, respectively.
+cv.jit now uses CMake to generate appropriate projects on macOS and Windows. After cloning or downloading the source files, create a "build" folder and call CMake from within. Note that by default, CMake generates 32-bit projects and so you must explicitely ask it to generate projects for 64-bit architectures.
 
-You should be able to build all externals at once using the "build solution" option in Visual Studio or by picking "build-all" as the target in Xcode.
+On Windows, the following commands will generate a Visual Studio 2017 solution.
 
-The compiled externals should be found in the "externals" directory.
+```
+cd cv.jit;
+mkdir build;
+cd build;
+cmake ../ -G "Visual Studio 15 2017 Win64"
+```
+
+You will now have appropriate Visual Studio projects and solution in the build folder.
 
 ## About OpenCV
 
-Some of the cv.jit externals depend on the OpenCV library. <http://sourceforge.net/projects/opencvlibrary/>
+Some of the cv.jit externals depend on the OpenCV library. <https://opencv.org/>
 
-The necessary headers, as well as libraries for compiling cv.jit are provided. You can find them in the "source/OpenCVsupport" and "source/lib" folders.
+The necessary headers, as well as libraries for compiling cv.jit are provided. You can find them in the "source/include/opencv" and "source/lib/opencv" folders.
 
-cv.jit externals link statically to OpenCV. This decision was made because I wanted cv.jit externals to have no dependencies, at the cost of having bloated files. For this reason, those who wish to compile their own OpenCV libraries must be careful to compile them as .a (under OSX) and .lib (under Windows) static libraries.
+As of writing this text, the latest version of OpenCV is 4.1.0, and this version is provided with cv.jit. However, some externals in cv.jit are very old and require functionality that has since then been removed from OpenCV. Although it is far preferable to use the new C++ API, externals such as cv.jit.HSFlow must use the C API. Hence, two versions of OpenCV are provided: a current version and a legacy version that supports the C API. Currently these are versions 4.1.0 and 2.4.12.
 
-There is a conflict between the Max and OpenCV includes as both contain definitions of the uchar type. The easiest way to solve this problem is to simply comment out the OpenCV typedef.
+If you generated your projects using CMake, you should not need to do anything to use OpenCV in a new external. Just adding the following line to your source is enough:
 
-Under Windows, when OpenCV encounters an error it reports via a message box. This causes no problem but under the OSX implementation, the error message is printed to stderr, which does not show up in Max. Since this is followed by an exit command, the result is that Max will suddenly and silently quit when something goes wrong with OpenCV. This makes debugging particularly difficult. For this reason, I have changed the implementation of the error reporting functions. If you wish to build your own OpenCV libraries under OSX, use the file "source/OpenCVsupport/jitcxerror.cpp" instead of the standard "cxerror". OpenCV errors will now be reported to the Max window. However, this is only meant for debugging! If OpenCV complains, it is because there is something wrong with the program. Be sure to properly check your data before calling any OpenCV function. Again, there should never be any OpenCV error in a release external. 
+```
+#include <opencv2/opencv.hpp> 
+```
 
-## Compiling libcv
+Alternatively, you can also link to the following file instead which will also provide you with utility functions to wrap Jitter matrices in OpenCV matrices.
 
-These instructions based on downloading version 2.4.12 from http://opencv.org/downloads.html
+```
+#include "jitOpenCV.h"
+```
 
-* `mkdir build64`
-* `cd build64`
-* `mkdir install`
-* `cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.7 -DCMAKE_OSX_SYSROOT=/Applications/Developer/MacOSX10.7.sdk -DCMAKE_OSX_ARCHITECTURES=x86_64 -DBUILD_SHARED_LIBS=NO -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=install -DWITH_FFMPEG=OFF -DWITH_OPENCL=OFF -DWITH_OPENNI=OFF -DCMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++ -Wno-narrowing" ..`
-* `make -j8`
-* `make install`
-* `libtool -static install/lib/libopencv_*.a -o install/lib/libcv.a`
-* `cd ..`
+If, for some reason, you need to use the legacy version of OpenCV, you should add the following line at the very top of you project's CMakeLists.txt:
 
-* `mkdir build32`
-* `cd build32`
-* `mkdir install`
-* `cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.7 -DCMAKE_OSX_SYSROOT=/Applications/Developer/MacOSX10.7.sdk -DCMAKE_OSX_ARCHITECTURES=i386 -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 -DCMAKE_SHARED_LINKER_FLAGS=-m32 -DCMAKE_CXX_COMPILER_ARG1=-m32 -DCMAKE_C_COMPILER_ARG1=-m32 -DBUILD_SHARED_LIBS=NO -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=install -DWITH_FFMPEG=OFF -DWITH_OPENCL=OFF -DWITH_OPENNI=OFF -DCMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++ -Wno-narrowing" ..`
-* `make -j8`
-* `make install`
-* `libtool -static install/lib/libopencv_*.a -o install/lib/libcv.a`
-* `cd ..`
+```
+set(LEGACY ON)
+```
 
-* `mkdir build`
-* `cd build`
-* `lipo -create ../build32/install/lib/libcv.a ../build64/install/lib/libcv.a -o libcv.a`
+Look at source/projects/cv.jit.HSFlow/CMakeLists.txt for an example.
+
+Instead of a custom build, cv.jit now uses standard binaries provided with OpenCV. <https://sourceforge.net/projects/opencvlibrary/files/>
+
+cv.jit externals link statically to OpenCV. This decision was made because I wanted cv.jit externals to have no dependencies, at the cost of having bloated files. For this reason, those who wish to compile their own OpenCV libraries, or use existing binaries must be careful to compile them as .a (under OSX) and .lib (under Windows) static libraries.
+
+The correct way to add a new version of OpenCV to cv.jit is to create folders named after the version number in the source/lib/opencv and source/include/opencv folders. For header files, just copy the opencv2 folder found inside the build folder of the OpenCV distribution. For libraries, copy the required static library files to a folder named "x64" (source/lib/opencv/\<version>/x64).
+
+You will then need to update the OPENCV_VERSION_CURRENT or OPENCV_VERSION_LEGACY variables in the top CMakeLists.txt files.
 
 
 # cv.jit change log

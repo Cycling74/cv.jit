@@ -1,3 +1,5 @@
+set(LEGACY ON)
+
 include(${CMAKE_CURRENT_SOURCE_DIR}/../cvjit-pretarget.cmake)
 
 

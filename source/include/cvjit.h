@@ -63,5 +63,21 @@ inline int jit_gettype(t_jit_matrix_info *info)
 }
 #endif
 
+namespace cvjit {
+	void swapBytes(unsigned char * bytes, int length)
+	{
+		int i = 0;
+		int j = length - 1;
+		char tmp;
+		while (i < j)
+		{
+			tmp = bytes[i];
+			bytes[i] = bytes[j];
+			bytes[j] = tmp;
+			i++, j--;
+		}
+	}
+}
+
 
 #endif //#ifndef CVJIT

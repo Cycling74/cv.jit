@@ -31,7 +31,8 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "cv.h"
+#include "cvjit.h"
+#include "jitOpenCV.h"
 #include "c74_jitter.h"
 #include "ext_sysfile.h"
 using namespace c74::max;
@@ -51,9 +52,6 @@ typedef struct {
 	double *covariance; //Covariance matrix
 	double *inverse; //Pseudo-inverse of covariance matrix
 	double index; //Number of samples
-	CvMat mat1;
-	CvMat mat2;
-	CvMat mat3;
 } t_cv_jit_learn;
 
 #define cv_jit_learn_PROXY_GETINLET(x) (proxy_getinlet? proxy_getinlet((t_object *)x) : x->b_id)
@@ -65,8 +63,6 @@ void *cv_jit_learn_new(long num);
 void cv_jit_learn_clear(t_cv_jit_learn *x);
 void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv);
 void cv_jit_learn_write(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv);
-
-void ByteSwap(unsigned char * b, int n);
 
 void *cv_jit_learn_class;
 
@@ -122,7 +118,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	t_fourcc code;
 	int i;
 	
-	code =  ( 'maxb' );
+	code = ( 'maxb' );
 	
 	if(argc > 0)
 	{
@@ -131,7 +127,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 			object_error((t_object*)x, "Invalid argument to read command. Make sure argument is a symbol.");
 			return;
 		}
-		strcpy(fname,argv[0].a_w.w_sym->s_name);
+		strncpy(fname,argv[0].a_w.w_sym->s_name, MAX_FILENAME_CHARS);
 		if(!locatefile_extended(fname,&id,&type,&type,-1))
 		{
 			path_opensysfile(argv[0].a_w.w_sym->s_name, id, &handle, READ_PERM); 
@@ -161,7 +157,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	count = sizeof(t_int32);
 	sysfile_read(handle, &count, &cvjt);
 	
-	if(cvjt ==  ( 'cvjt' ))
+	if(cvjt == ( 'cvjt' ))
 	{
 		//Free storage
 		sysmem_freeptr(x->mean);
@@ -190,7 +186,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		//Close file
 		sysfile_close(handle);
 	}
-	else if (cvjt ==  ( 'tjvc' )) //File was created on another platform, with different endian, switch
+	else if (cvjt == ( 'tjvc' )) //File was created on another platform, with different endian, switch
 	{
 		//Free storage
 		sysmem_freeptr(x->mean);
@@ -199,7 +195,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		//Read list length
 		count = sizeof(t_int32);
 		sysfile_read(handle, &count, &x->size);
-		ByteSwap((unsigned char *)&x->size,sizeof(t_int32));
+		cvjit::swapBytes((unsigned char *)&x->size,sizeof(t_int32));
 		//Allocate new memory for storage	
 		x->mean = (double *)sysmem_newptr(x->size * sizeof(double)); //Allocate memory for mean vector
 		x->covariance = (double *)sysmem_newptr(x->size * x->size * sizeof(double)); //Allocate memory for covariance matrix
@@ -207,24 +203,24 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		//Read index
 		count = sizeof(double);
 		sysfile_read(handle, &count, &x->index);
-		ByteSwap((unsigned char *)&x->index,sizeof(double));
+		cvjit::swapBytes((unsigned char *)&x->index,sizeof(double));
 		//Read mean vector
 		count = sizeof(double) * x->size;
 		sysfile_read(handle, &count, x->mean);
 		for(i=0;i<x->size;i++)
-			ByteSwap((unsigned char *)&(x->mean[i]),sizeof(double));
+			cvjit::swapBytes((unsigned char *)&(x->mean[i]),sizeof(double));
 
 		//Read covariance matrix
 		count = sizeof(double) * x->size * x->size;
 		sysfile_read(handle, &count, x->covariance);
 		for(i=0;i<(x->size * x->size);i++)
-			ByteSwap((unsigned char *)&(x->covariance[i]),sizeof(double));
+			cvjit::swapBytes((unsigned char *)&(x->covariance[i]),sizeof(double));
 			
 		//Read inverse matrix
 		count = sizeof(double) * x->size * x->size;
 		sysfile_read(handle, &count, x->inverse);
 		for(i=0;i<(x->size * x->size);i++)
-			ByteSwap((unsigned char *)&(x->inverse[i]),sizeof(double));
+			cvjit::swapBytes((unsigned char *)&(x->inverse[i]),sizeof(double));
 
 		//Close file
 		sysfile_close(handle);
@@ -245,14 +241,14 @@ void cv_jit_learn_write(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv
 	t_ptr_size count;
 	long cvjt;
 	
-	strcpy(fname,".mxb");  //Display .mxb in the dialog box
+	strncpy(fname,".mxb",256);  //Display .mxb in the dialog box
 
 	if (!saveasdialog_extended(fname, &id, NULL, NULL, -1)) {
 		int type = 'cvjt';
 		path_createsysfile(fname, id, type, &handle);
 		//Write ID code
 		count = sizeof(t_int32);
-		cvjt =  ( 'cvjt' );
+		cvjt = ( 'cvjt' );
 		sysfile_write(handle, &count, &cvjt);
 		//Write list length
 		count = sizeof(t_int32);
@@ -329,22 +325,19 @@ void cv_jit_learn_list(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		}
 		
 		//Calculate pseudo-inverse of covariance matrix
-		//Init CvMat
-		cvInitMatHeader( &x->mat1, x->size, x->size, CV_64FC1,x->covariance, CV_AUTOSTEP );
-		cvInitMatHeader( &x->mat2, x->size, x->size, CV_64FC1,x->inverse, CV_AUTOSTEP );
-		//Calculate
-		cvInvert(&x->mat1,&x->mat2,CV_SVD);
-		
+		cv::Mat covarianceMat(x->size, x->size, CV_64FC1, x->covariance);
+		cv::Mat covarianceMatrixInv;
+		cv::invert(covarianceMat, covarianceMatrixInv, cv::DECOMP_SVD);
 	}
 	else if(inletNum == 0) //List arrived in "compare" inlet
 	{		
 		//Init CvMat
-		cvInitMatHeader( &x->mat1,x->size,1, CV_64FC1,data, CV_AUTOSTEP );
-		cvInitMatHeader( &x->mat2,x->size,1, CV_64FC1,x->mean, CV_AUTOSTEP );
-		cvInitMatHeader( &x->mat3, x->size, x->size, CV_64FC1,x->inverse, CV_AUTOSTEP );
-		
-		distance = cvMahalanobis(&x->mat1,&x->mat2,&x->mat3);
-		
+		cv::Mat inputMat(x->size, 1, CV_64FC1, data);
+		cv::Mat meanMat(x->size, 1, CV_64FC1, x->mean);
+		cv::Mat covarianceMatrixInv(x->size, x->size, CV_64FC1, x->inverse);
+
+		distance = cv::Mahalanobis(inputMat, meanMat, covarianceMatrixInv);
+
 		//Output
 		outlet_float(x->m_out, (float)distance);
 	}
@@ -357,15 +350,15 @@ void cv_jit_learn_assist(t_cv_jit_learn *x, void *b, long m, long a, char *s)
 		switch (a) 
 		{ 
 		case 0: 
-			sprintf(s,"List to compare"); 
+			snprintf(s, 32, "List to compare"); 
 			break; 
 		case 1: 
-			sprintf(s,"List to learn"); 
+			snprintf(s, 32, "List to learn"); 
 			break; 
 		} 
 	} else if (m==2)
 	{ 
-		sprintf(s,"Statistical distance"); 
+		snprintf(s, 32, "Statistical distance"); 
 	} 
 }
 
@@ -412,17 +405,5 @@ void *cv_jit_learn_new(long arg)
 	x->index = 0;
 	
 	return x;
-}
-
-void ByteSwap(unsigned char * b, int n)
-{
-   int i = 0;
-   int j = n-1;
-   char tmp;
-   while (i<j)
-   {
-		CV_SWAP(b[i],b[j],tmp);
-		i++, j--;
-   }
 }
 

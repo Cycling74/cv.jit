@@ -31,7 +31,6 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "cv.h"
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
 
@@ -57,8 +56,8 @@ t_jit_err cv_jit_resize_size_set(t_cv_jit_resize *x, void *attr, long ac, t_atom
 {
 	//t_jit_matrix_info info;
 	if ((ac == 2)&&av) {
-		x->size[0] = atom_getlong(&(av[0]));
-		x->size[1] = atom_getlong(&(av[1]));
+		x->size[0] = (long)atom_getlong(&(av[0]));
+		x->size[1] = (long)atom_getlong(&(av[1]));
 		x->sizecount = 2;
 		x->changed = 1;
    } else {
@@ -108,19 +107,19 @@ t_jit_err cv_jit_resize_init(void)
 t_jit_err cv_jit_resize_matrix_calc(t_cv_jit_resize *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock,out_savelock;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
 	char *in_bp,*out_bp;
-	void *in_matrix,*out_matrix;
-	CvMat inmat, outmat;
+	c74::max::t_object *in_matrix,*out_matrix;
 	
-	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
-	out_matrix 	= jit_object_method(outputs,_jit_sym_getindex,0);
+	in_matrix = (c74::max::t_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	out_matrix = (c74::max::t_object *)jit_object_method(outputs,_jit_sym_getindex,0);
 
 	if (x&&in_matrix&&out_matrix) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
@@ -158,11 +157,11 @@ t_jit_err cv_jit_resize_matrix_calc(t_cv_jit_resize *x, void *inputs, void *outp
 		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
 		
 		//Convert matrix header
-		cvJitter2CvMat(in_matrix, &inmat);
-		cvJitter2CvMat(out_matrix, &outmat);
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix);
+		cv::Mat destMat = cvjit::wrapJitterMatrix(out_matrix);
 		
 		//calculate
-		cvResize( &inmat, &outmat, x->interpolation );
+		cv::resize(sourceMat, destMat, destMat.size(), 0.0, 0.0, x->interpolation);
 
 	} else {
 		return JIT_ERR_INVALID_PTR;

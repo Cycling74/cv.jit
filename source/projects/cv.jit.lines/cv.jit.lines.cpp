@@ -31,7 +31,6 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "cv.h"
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
 
@@ -48,10 +47,8 @@ typedef struct _cv_jit_lines
 	double				gap;
 	double				length;
 	long				resolution;
-	
-	CvMat				*edges;
-	CvMemStorage		* storage;
-	CvSeq*				lines;
+
+	cv::Mat             edgeMat;
 } t_cv_jit_lines;
 
 void *_cv_jit_lines_class;
@@ -120,26 +117,24 @@ t_jit_err cv_jit_lines_init(void)
 t_jit_err cv_jit_lines_matrix_calc(t_cv_jit_lines *x, void *inputs, void *outputs)
 {
 	t_jit_err err = JIT_ERR_NONE;
-	long in_savelock,out_savelock;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
 	char *in_bp,*out_bp;
 	long i,dimcount,dim[JIT_MATRIX_MAX_DIMCOUNT];
-	void *in_matrix,*out_matrix;
+	c74::max::t_object *in_matrix,*out_matrix;
 	t_int32 *out;
 	
 	double thresh1, thresh2, theta, rho;
 	int houghThresh;
 	
-	CvMat source;
-	CvPoint *ln;
-	
-	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
-	out_matrix 	= jit_object_method(outputs,_jit_sym_getindex,0);
+	in_matrix 	= (c74::max::t_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	out_matrix 	= (c74::max::t_object *)jit_object_method(outputs,_jit_sym_getindex,0);
 
 	if (x&&in_matrix&&out_matrix) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
@@ -166,21 +161,9 @@ t_jit_err cv_jit_lines_matrix_calc(t_cv_jit_lines *x, void *inputs, void *output
 			dim[i] = MIN(in_minfo.dim[i],out_minfo.dim[i]);
 		}		
 		
-		//Convert input matrix to OpenCV matrices
-		cvJitter2CvMat(in_matrix, &source);
-		
-		//Adjust size of edge matrix if need be
-		if((x->edges->rows != source.rows)||(x->edges->cols != source.cols))
-		{
-			cvReleaseMat(&(x->edges));
-			x->edges = cvCreateMat( source.rows, source.cols, CV_8UC1 );
-		}
-		
 		//Calculate parameter values for Hough and Canny algorithms
-		thresh1 = x->threshold - THRESHOLD_RANGE;
-		thresh2 = x->threshold + THRESHOLD_RANGE;
-		CLIP_ASSIGN(thresh1,0,255);
-		CLIP_ASSIGN(thresh2,0,255);
+		thresh1 = c74::max::clamp(x->threshold - THRESHOLD_RANGE, 0.0, 255.0);
+		thresh2 = c74::max::clamp(x->threshold + THRESHOLD_RANGE, 0.0, 255.0);
 		
 		theta = CV_PI /  (180 / (double)x->resolution);
 		rho = (double)x->resolution;
@@ -189,17 +172,21 @@ t_jit_err cv_jit_lines_matrix_calc(t_cv_jit_lines *x, void *inputs, void *output
 		
 		x->gap = MAX(0,x->gap);
 		x->length = MAX(0,x->length);
+
+		//Convert input matrix to OpenCV matrices
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix);
 				
 		//calculate edges using Canny algorithm
-		cvCanny( &source, x->edges, thresh1, thresh2, 3 );
+		cv::Canny(sourceMat, x->edgeMat, thresh1, thresh2);
 		
 		//Find lines using the probabilistic Hough transform method
-		x->lines = cvHoughLines2( x->edges, x->storage, CV_HOUGH_PROBABILISTIC, rho, theta, houghThresh, x->length, x->gap );
+		std::vector<cv::Vec4i> lines;
+		cv::HoughLinesP(x->edgeMat, lines, rho, theta, houghThresh, x->length, x->gap);
 		
 		//Transfer line information to output matrix
 		
 		//First adjust matrix size
-		out_minfo.dim[0] = x->lines->total;
+		out_minfo.dim[0] = (long)lines.size();
 		jit_object_method(out_matrix,_jit_sym_setinfo,&out_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
 		
@@ -208,17 +195,13 @@ t_jit_err cv_jit_lines_matrix_calc(t_cv_jit_lines *x, void *inputs, void *output
 		
 		//Copy...
 		out = (t_int32 *)out_bp;
-		
-		for( i = 0; i < x->lines->total; i++ )
-       	 	{
-            		ln = (CvPoint*)cvGetSeqElem(x->lines,i);
-            		out[0] = ln[0].x;
-            		out[1] = ln[0].y;
-            		out[2] = ln[1].x;
-            		out[3] = ln[1].y;
-            		
-            		out+=4;
-        	}
+
+		for (cv::Vec4i const & line : lines) {
+			for (int i = 0; i < 4; i++) {
+				out[i] = line[i];
+			}
+			out += 4;
+		}
 		
 	} else {
 		return JIT_ERR_INVALID_PTR;
@@ -241,10 +224,7 @@ t_cv_jit_lines *cv_jit_lines_new(void)
 		x->resolution = 1;
 		x->length = 10;
 		x->gap = 2;
-		
-		x->storage = cvCreateMemStorage(0);
-		x->lines = 0;
-		x->edges = cvCreateMat( 1, 1, CV_8UC1 );
+
 	} else {
 		x = NULL;
 	}	
@@ -253,8 +233,5 @@ t_cv_jit_lines *cv_jit_lines_new(void)
 
 void cv_jit_lines_free(t_cv_jit_lines *x)
 {
-	if(x->storage)
-		cvReleaseMemStorage(&(x->storage));
-	if(x->edges)
-		cvReleaseMat(&(x->edges));
+	// Nothing
 }

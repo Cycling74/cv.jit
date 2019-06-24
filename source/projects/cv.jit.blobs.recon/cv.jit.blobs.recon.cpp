@@ -32,7 +32,7 @@ in Jitter externals.
 */
 
 
-#include "cv.h"
+#include "cvjit.h"
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
 #include "ext_sysfile.h"
@@ -48,9 +48,8 @@ typedef struct _cv_jit_blobs_recon
 	double       *mean; //The mean vector
 	double       *covariance; //Covariance matrix
 	double       *inverse; //Pseudo-inverse of covariance matrix
-	CvMat       mat1;
-	CvMat       mat2;
-	CvMat       mat3;
+	cv::Mat       meanMat;
+	cv::Mat       covarianceMatrixInv;
 	char		init;
 } t_cv_jit_blobs_recon;
 
@@ -62,7 +61,6 @@ void 					cv_jit_blobs_recon_free(t_cv_jit_blobs_recon *x);
 t_jit_err 				cv_jit_blobs_recon_matrix_calc(t_cv_jit_blobs_recon *x, void *inputs, void *outputs);
 void 					cv_jit_blobs_recon_calculate(t_cv_jit_blobs_recon *x, float *in, float *out, int w);
 void                    cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t_atom *argv);
-void                    ByteSwap(unsigned char * b, int n);
 
 t_jit_err cv_jit_blobs_recon_init(void) 
 {
@@ -120,7 +118,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 	double index;
 	int i;
 	
-	code =  ( 'maxb' );
+	code = ( 'maxb' );
 	
 	if(argc > 0)
 	{
@@ -129,7 +127,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 			object_error((t_object*)x, "Invalid argument to read command. Make sure argument is a symbol.");
 			return;
 		}
-		strcpy(fname,argv[0].a_w.w_sym->s_name);
+		strncpy(fname, argv[0].a_w.w_sym->s_name, MAX_FILENAME_CHARS);
 		if(!locatefile_extended(fname,&id,&type,&type,-1))
 		{
 			path_opensysfile(argv[0].a_w.w_sym->s_name, id, &handle, READ_PERM);
@@ -158,7 +156,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 	//Check ID code
 	count = sizeof(t_int32);
 	sysfile_read(handle, &count, &cvjt);
-	if(cvjt ==  ( 'cvjt' ))
+	if(cvjt == ( 'cvjt' ))
 	{
 		
 		//Read list length
@@ -187,12 +185,12 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 		//Close file
 		sysfile_close(handle);
 	}
-	else if (cvjt ==  ( 'tjvc' )) //File was created on another platform, with different endian, switch
+	else if (cvjt == ( 'tjvc' )) //File was created on another platform, with different endian, switch
 	{
 		//Read list length
 		count = sizeof(t_int32);
 		sysfile_read(handle, &count, &x->size);
-		ByteSwap((unsigned char *)&x->size,sizeof(t_int32));
+		cvjit::swapBytes((unsigned char *)&x->size,sizeof(t_int32));
 		if(x->size != 7)
 		{
 			object_error((t_object*)x, "Invalid data: make sure %s was trained with moments or Hu invariants from cv.jit.moments.", fname);
@@ -203,22 +201,22 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 		//Read index
 		count = sizeof(double);
 		sysfile_read(handle, &count, &index);
-		ByteSwap((unsigned char *)&index,sizeof(double));
+		cvjit::swapBytes((unsigned char *)&index,sizeof(double));
 		//Read mean vector
 		count = sizeof(double) * x->size;
 		sysfile_read(handle, &count, x->mean);
 		for(i=0;i<x->size;i++)
-			ByteSwap((unsigned char *)&(x->mean[i]),sizeof(double));
+			cvjit::swapBytes((unsigned char *)&(x->mean[i]),sizeof(double));
 		//Read covariance matrix
 		count = sizeof(double) * x->size * x->size;
 		sysfile_read(handle, &count, x->covariance);
 		for(i=0;i<(x->size * x->size);i++)
-			ByteSwap((unsigned char *)&(x->covariance[i]),sizeof(double));
+			cvjit::swapBytes((unsigned char *)&(x->covariance[i]),sizeof(double));
 		//Read inverse matrix
 		count = sizeof(double) * x->size * x->size;
 		sysfile_read(handle, &count, x->inverse);
 		for(i=0;i<(x->size * x->size);i++)
-			ByteSwap((unsigned char *)&(x->inverse[i]),sizeof(double));
+			cvjit::swapBytes((unsigned char *)&(x->inverse[i]),sizeof(double));
 		
 		//Close file
 		sysfile_close(handle);
@@ -233,8 +231,8 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 	
 	
 	//Init CV matrices
-	cvInitMatHeader( &x->mat2, x->size, 1, CV_64FC1,x->mean, CV_AUTOSTEP );
-	cvInitMatHeader( &x->mat3, x->size, x->size, CV_64FC1,x->inverse, CV_AUTOSTEP );
+	x->meanMat = cv::Mat(x->size, 1, CV_64FC1, x->mean);
+	x->covarianceMatrixInv = cv::Mat(x->size, x->size, CV_64FC1, x->inverse);
 
 	x->init = 1;
 }
@@ -242,7 +240,8 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 t_jit_err cv_jit_blobs_recon_matrix_calc(t_cv_jit_blobs_recon *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock=0,out_savelock=0;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
 	char *out_bp,*in_bp;
 	void *in_matrix,*out_matrix;
@@ -255,8 +254,8 @@ t_jit_err cv_jit_blobs_recon_matrix_calc(t_cv_jit_blobs_recon *x, void *inputs, 
 	if (x&&in_matrix&&out_matrix) 
 	{
 		//Lock the matrices
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		if(!x->init) goto out;
 		
@@ -317,7 +316,7 @@ void cv_jit_blobs_recon_calculate(t_cv_jit_blobs_recon *x, float *in, float *out
 	output = out;
 	
 	//Init CvMat
-	cvInitMatHeader( &x->mat1, x->size, 1, CV_64FC1,data, CV_AUTOSTEP );
+	cv::Mat inputMat(x->size, 1, CV_64FC1, data);
 	
 	for(i=0;i<w;i++)  //For every cell
 	{
@@ -338,7 +337,7 @@ void cv_jit_blobs_recon_calculate(t_cv_jit_blobs_recon *x, float *in, float *out
 		}
 			
 		//Measure
-		*output = (float)cvMahalanobis(&x->mat1,&x->mat2,&x->mat3);
+		*output = (float)cv::Mahalanobis(inputMat, x->meanMat, x->covarianceMatrixInv);
 		
 		input += 17;
 		output++;
@@ -379,17 +378,5 @@ void cv_jit_blobs_recon_free(t_cv_jit_blobs_recon *x)
 	sysmem_freeptr(x->mean);
 	sysmem_freeptr(x->covariance);
 	sysmem_freeptr(x->inverse);
-}
-
-void ByteSwap(unsigned char * b, int n)
-{
-   int i = 0;
-   int j = n-1;
-   char tmp;
-   while (i<j)
-   {
-		CV_SWAP(b[i],b[j],tmp);
-		i++, j--;
-   }
 }
 

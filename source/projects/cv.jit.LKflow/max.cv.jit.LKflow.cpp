@@ -74,7 +74,7 @@ void *max_cv_jit_LKflow_new(t_symbol *s, long argc, t_atom *argv)
 			
 			max_jit_mop_setup_simple(x,o,argc,argv);
 						
-			max_jit_attr_args(x,argc,argv);
+			max_jit_attr_args(x,(short)argc,argv);
 			
 			
 	

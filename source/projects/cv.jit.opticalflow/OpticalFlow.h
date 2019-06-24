@@ -29,6 +29,7 @@
 #include <cctype> 
 #include <algorithm>
 #include "cv.h"
+#include <opencv2/legacy/legacy.hpp>
 
 
 class OpticalFlow{

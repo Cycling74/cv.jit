@@ -122,7 +122,7 @@ void cv_jit_perspective_free(t_cv_jit_perspective *x)
 t_jit_err cv_jit_perspective_matrix_calc(t_cv_jit_perspective *x, void *inputs, void *outputs)
 {
 	t_jit_err			err = JIT_ERR_NONE;
-	long				in1_savelock, in2_savelock, out_savelock;
+	void				*in1_savelock, *in2_savelock, *out_savelock;
 	t_jit_matrix_info	in1_minfo, in2_minfo, out_minfo;
 	float				*in1_bp, *in2_bp, *out_bp;
 	void				*in1_matrix, *in2_matrix, *out_matrix;
@@ -133,9 +133,9 @@ t_jit_err cv_jit_perspective_matrix_calc(t_cv_jit_perspective *x, void *inputs, 
 	out_matrix 	= jit_object_method(outputs,_jit_sym_getindex,0);
 	
 	if (x && in1_matrix && in2_matrix && out_matrix) {
-		in1_savelock = (long) jit_object_method(in1_matrix, _jit_sym_lock, 1);
-		in2_savelock = (long) jit_object_method(in2_matrix, _jit_sym_lock, 1);
-		out_savelock = (long) jit_object_method(out_matrix, _jit_sym_lock, 1);
+		in1_savelock = jit_object_method(in1_matrix, _jit_sym_lock, 1);
+		in2_savelock = jit_object_method(in2_matrix, _jit_sym_lock, 1);
+		out_savelock = jit_object_method(out_matrix, _jit_sym_lock, 1);
 		
 		jit_object_method(in1_matrix, _jit_sym_getinfo, &in1_minfo);
 		jit_object_method(in2_matrix, _jit_sym_getinfo, &in2_minfo);		

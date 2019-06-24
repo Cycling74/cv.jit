@@ -182,7 +182,7 @@ t_jit_err cv_jit_extrema_matrix_calc(t_cv_jit_extrema *x, void *inputs, void *ou
 	t_jit_err err=JIT_ERR_NONE;
 	
 	/** init savelocks */
-	long in_savelock, out_savelock;	
+	void * in_savelock, * out_savelock;	
 	
 	/** init matrix infos */
 	t_jit_matrix_info	in_minfo, out_minfo;
@@ -217,8 +217,8 @@ t_jit_err cv_jit_extrema_matrix_calc(t_cv_jit_extrema *x, void *inputs, void *ou
 	
 	/** lock the in_matrix/out_matrix pointers so's they don't change - dont forget to unlock them later */
 	//  we do this so that we can access them later in the program and won't lose our place
-	in_savelock = (long)jit_object_method(in_matrix, _jit_sym_lock,1);							
-	out_savelock = (long)jit_object_method(out_matrix, _jit_sym_lock, 1);								
+	in_savelock = jit_object_method(in_matrix, _jit_sym_lock,1);							
+	out_savelock = jit_object_method(out_matrix, _jit_sym_lock, 1);								
 	
 	/** load the matrix info into _minfo pointers */
 	jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);		
@@ -315,8 +315,8 @@ t_jit_err cv_jit_extrema_matrix_calc(t_cv_jit_extrema *x, void *inputs, void *ou
 					*ip > *(ip + in_minfo.dim[1])) 	     // check [SW]
 				{
 					//Changed ouput format --jmp
-					op[0] = j;
-					op[1] = i;
+					op[0] = (float)j;
+					op[1] = (float)i;
 					op += 2;
 					//*op = j;
 					//op++; // increment pointer to next long
@@ -332,8 +332,8 @@ t_jit_err cv_jit_extrema_matrix_calc(t_cv_jit_extrema *x, void *inputs, void *ou
 					*ip > *(ip + in_minfo.dim[1] + 1)) // check [S]
 				{		
 					//Changed ouput format --jmp
-					op[0] = j;
-					op[1] = i;
+					op[0] = (float)j;
+					op[1] = (float)i;
 					op += 2;		
 					//*op = j;
 					//op++; // increment pointer

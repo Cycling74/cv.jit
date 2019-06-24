@@ -36,6 +36,8 @@ in Jitter externals.
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
 
+#include <opencv2/legacy/legacy.hpp>
+
 using namespace c74::max;
 
 
@@ -113,7 +115,7 @@ t_jit_err cv_jit_opticalflow_set_method(t_cv_jit_opticalflow *x, void *attr, lon
 		}
 
 	}else{
-		long m = CLAMP(atom_getlong(av),0,3);
+		long m = clamp((long)atom_getlong(av),0L,3L);
 		switch(m){
 		case 0:
 			x->of->setMethod(OpticalFlow::Block_matching);
@@ -163,7 +165,7 @@ t_jit_err cv_jit_opticalflow_set_fb_poly_n(t_cv_jit_opticalflow *x, void *attr, 
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setFBpoly_n(atom_getlong(av));
+	x->of->setFBpoly_n((int)atom_getlong(av));
 	x->fb_poly_n = x->of->getFBpoly_n();
 	
 	return JIT_ERR_NONE;
@@ -175,7 +177,7 @@ t_jit_err cv_jit_opticalflow_set_fb_iterations(t_cv_jit_opticalflow *x, void *at
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setFBiterations(atom_getlong(av));
+	x->of->setFBiterations((int)atom_getlong(av));
 	x->fb_iterations = x->of->getFBiterations();
 	
 	return JIT_ERR_NONE;
@@ -187,7 +189,7 @@ t_jit_err cv_jit_opticalflow_set_fb_window_size(t_cv_jit_opticalflow *x, void *a
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setFBwindowSize(atom_getlong(av));
+	x->of->setFBwindowSize((int)atom_getlong(av));
 	x->fb_window_size = x->of->getFBwindowSize();
 	
 	return JIT_ERR_NONE;
@@ -199,7 +201,7 @@ t_jit_err cv_jit_opticalflow_set_fb_levels(t_cv_jit_opticalflow *x, void *attr, 
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setFBlevels(atom_getlong(av));
+	x->of->setFBlevels((int)atom_getlong(av));
 	x->fb_levels = x->of->getFBlevels();
 	
 	return JIT_ERR_NONE;
@@ -223,7 +225,7 @@ t_jit_err cv_jit_opticalflow_set_bm_max_range(t_cv_jit_opticalflow *x, void *att
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setBMmaxRange(atom_getlong(av),atom_getlong(av));
+	x->of->setBMmaxRange((unsigned int)atom_getlong(av), (unsigned int)atom_getlong(av));
 	x->bm_max_range = x->of->getBMmaxRange().width;
 	
 	return JIT_ERR_NONE;
@@ -235,7 +237,7 @@ t_jit_err cv_jit_opticalflow_set_bm_block_size(t_cv_jit_opticalflow *x, void *at
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setBMblockSize(atom_getlong(av),atom_getlong(av));
+	x->of->setBMblockSize((unsigned int)atom_getlong(av), (unsigned int)atom_getlong(av));
 	x->bm_block_size = x->of->getBMblockSize().width;
 	
 	return JIT_ERR_NONE;
@@ -247,7 +249,7 @@ t_jit_err cv_jit_opticalflow_set_bm_shift_size(t_cv_jit_opticalflow *x, void *at
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setBMshiftSize(atom_getlong(av),atom_getlong(av));
+	x->of->setBMshiftSize((unsigned int)atom_getlong(av), (unsigned int)atom_getlong(av));
 	x->bm_shift_size = x->of->getBMshiftSize().width;
 	
 	return JIT_ERR_NONE;
@@ -259,7 +261,7 @@ t_jit_err cv_jit_opticalflow_set_lk_window_size(t_cv_jit_opticalflow *x, void *a
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setLKwindowSize(atom_getlong(av),atom_getlong(av));
+	x->of->setLKwindowSize((unsigned int)atom_getlong(av), (unsigned int)atom_getlong(av));
 	x->lk_window_size = x->of->getLKwindowSize().width;
 	
 	return JIT_ERR_NONE;
@@ -271,7 +273,7 @@ t_jit_err cv_jit_opticalflow_set_hs_max_iterations(t_cv_jit_opticalflow *x, void
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setHSmaxIterations(atom_getlong(av));
+	x->of->setHSmaxIterations((unsigned int)atom_getlong(av));
 	x->hs_max_iterations = x->of->getHSmaxIterations();
 	
 	return JIT_ERR_NONE;
@@ -405,7 +407,7 @@ t_jit_err cv_jit_opticalflow_init(void)
 t_jit_err cv_jit_opticalflow_matrix_calc(t_cv_jit_opticalflow *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock=0,out_savelockX=0,out_savelockY=0;
+	void * in_savelock, * out_savelockX, * out_savelockY;
 	t_jit_matrix_info in_minfo,out_minfoX,out_minfoY;
 	void *in_matrix,*out_matrixX,*out_matrixY;
 	CvMat inmat;
@@ -417,9 +419,9 @@ t_jit_err cv_jit_opticalflow_matrix_calc(t_cv_jit_opticalflow *x, void *inputs, 
 
 	if (x&&in_matrix&&out_matrixX&&out_matrixY) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelockX = (long) jit_object_method(out_matrixX,_jit_sym_lock,1);
-		out_savelockY = (long) jit_object_method(out_matrixY,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelockX = jit_object_method(out_matrixX,_jit_sym_lock,1);
+		out_savelockY = jit_object_method(out_matrixY,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrixX,_jit_sym_getinfo,&out_minfoX);

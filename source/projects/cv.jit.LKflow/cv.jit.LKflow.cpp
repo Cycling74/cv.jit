@@ -35,6 +35,8 @@ in Jitter externals.
 
 #include "cv.h"
 #include "jitOpenCV.h"
+#include <opencv2/legacy/legacy.hpp>
+
 using namespace c74::max;
 
 typedef struct _cv_jit_LKflow 
@@ -82,7 +84,7 @@ t_jit_err cv_jit_LKflow_init(void)
 t_jit_err cv_jit_LKflow_matrix_calc(t_cv_jit_LKflow *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock,out_savelock;
+	void * in_savelock, * out_savelock;
 	t_jit_matrix_info in_minfo,out_minfo;
 	char *in_bp,*out_bp;
 	long i,j;
@@ -99,8 +101,8 @@ t_jit_err cv_jit_LKflow_matrix_calc(t_cv_jit_LKflow *x, void *inputs, void *outp
 	
 	if (x&&in_matrix&&out_matrix)
 	{ 
-		in_savelock   = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock  = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock   = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock  = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		//Get the matrix info
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);

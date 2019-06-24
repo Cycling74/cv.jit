@@ -1,7 +1,15 @@
+# macOS
 .DS_Store
+
+# build and temporary directories
 build/
 build32
 build64
+externals
+temp
+tmp
+
+# Xcode and Visual Studio files and directories
 *.pbxuser
 *.mode1v3
 xcuserdata
@@ -16,6 +24,5 @@ xcuserdata
 ipch
 *.opensdf
 
-externals
-temp
-tmp
+# Visual Studio Code
+.vscode

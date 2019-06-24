@@ -55,7 +55,7 @@ void 				cv_jit_floodfill_free			(t_cv_jit_floodfill *x);
 t_jit_err 			cv_jit_floodfill_matrix_calc	(t_cv_jit_floodfill *x, void *inputs, void *outputs);
 void 				cv_jit_floodfill_calculate 		(t_cv_jit_floodfill *x, long *dim, t_jit_matrix_info *in_minfo, uchar *bip, t_jit_matrix_info *out_minfo, uchar *bop);
 t_jit_err 			cv_jit_floodfill_init			(void);
-static long			cv_jit_floodfill(uchar *in, uchar *out, void *stack, int width, int height, int step, int seedx, int seedy, char val);
+static long			cv_jit_floodfill(uchar *in, uchar *out, void *stack, int width, int height, int step, int seedx, int seedy, uchar val);
 
 void 				*_cv_jit_floodfill_class;
 
@@ -95,7 +95,7 @@ t_jit_err cv_jit_floodfill_matrix_calc(t_cv_jit_floodfill *x, void *inputs, void
 {
 	//Variable definitions
 	t_jit_err 			err=JIT_ERR_NONE; 
-	long 				in_savelock=0,out_savelock=0;
+	void 				* in_savelock, * out_savelock;
 	t_jit_matrix_info 	in_minfo,out_minfo;
 	uchar 				*in_bp,*out_bp;
 	long 				dim[2];	
@@ -107,8 +107,8 @@ t_jit_err cv_jit_floodfill_matrix_calc(t_cv_jit_floodfill *x, void *inputs, void
 
 	if (x&&in_matrix&&out_matrix) 	//If all pointers are valid...
 	{
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);		//Lock input matrix
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);	//Lock output matrix
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);		//Lock input matrix
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);	//Lock output matrix
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);		//Get input matrix info structure
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);		//Get output matrix info structure
@@ -221,7 +221,7 @@ void cv_jit_floodfill_free(t_cv_jit_floodfill *x)
 								PR=segments[stackIn].Prevr; \
 								F=segments[stackIn].flag; }
 
-static long cv_jit_floodfill(uchar *in, uchar *out, void *stack, int width, int height, int step, int seedx, int seedy, char val)
+static long cv_jit_floodfill(uchar *in, uchar *out, void *stack, int width, int height, int step, int seedx, int seedy, uchar val)
 {
 	uchar *inData, *outData;
 	Segment *segments = (Segment *)stack;

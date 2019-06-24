@@ -86,7 +86,8 @@ t_jit_err cv_jit_blobs_orientation_init(void)
 t_jit_err cv_jit_blobs_orientation_matrix_calc(t_cv_jit_blobs_orientation *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock=0,out_savelock=0;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
 	char *out_bp,*in_bp;
 	void *in_matrix,*out_matrix;
@@ -99,8 +100,8 @@ t_jit_err cv_jit_blobs_orientation_matrix_calc(t_cv_jit_blobs_orientation *x, vo
 	if (x&&in_matrix&&out_matrix) 
 	{
 		//Lock the matrices
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		//Make sure input is of proper format
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
@@ -170,13 +171,13 @@ void cv_jit_blobs_orientation_calculate(t_cv_jit_blobs_orientation *x, float *in
 		{
 			b = nu11 * 2;
 			a = b / a;
-			c = std::atan(a) * 0.5;
+			c = std::atan(a) * 0.5f;
 			
 			if(nu20 > nu02)
 			{
 				if(c < 0)
 				{
-					theta = c + 3.14159265358979;
+					theta = c + (float)M_PI;
 				}
 				else
 				{
@@ -185,14 +186,14 @@ void cv_jit_blobs_orientation_calculate(t_cv_jit_blobs_orientation *x, float *in
 			}
 			else
 			{
-				theta = c + 1.57079632679;
+				theta = c + (float)(M_PI * 0.5);
 			}
 		}
 		
 		if(x->mode == 0)
 			*output = theta;
 		else
-			*output = theta * 57.29577951308;
+			*output = theta * (float)(180.0 / M_PI);
 		
 		input += 17;
 		output++;

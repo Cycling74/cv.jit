@@ -132,7 +132,7 @@ t_jit_err cv_jit_label_matrix_calc(t_cv_jit_label *x, void *inputs, void *output
 	t_jit_err 			err=JIT_ERR_NONE;  									//For error code
 //	Seg 				*st; 												//Pointer to segment buffer
 //	int 				bufferSize; 										//Size of the segment buffer
-	long 				in_savelock=0,out_savelock=0,buf_savelock=0,temp_savelock=0; 				//Savelocks
+	void 				*in_savelock=0,*out_savelock=0,*buf_savelock=0,*temp_savelock=0; 				//Savelocks
 	t_jit_matrix_info 	in_minfo,out_minfo,buf_minfo,temp_minfo; 						//Matrix information structures
 	char 				*in_bp,*out_bp,*buf_bp,*temp_bp = 0; 							//Pointers to matrix data
 	long 				i; 													//Used for itteration
@@ -147,10 +147,10 @@ t_jit_err cv_jit_label_matrix_calc(t_cv_jit_label *x, void *inputs, void *output
 
 	if (x&&in_matrix&&out_matrix&&buf_matrix) 	//If all pointers are valid...
 	{
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);		//Get save lock for input matrix
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);	//Get save lock for output matrix
-		buf_savelock = (long) jit_object_method(buf_matrix,_jit_sym_lock,1);
-		temp_savelock = (long) jit_object_method(temp_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);		//Get save lock for input matrix
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);	//Get save lock for output matrix
+		buf_savelock = jit_object_method(buf_matrix,_jit_sym_lock,1);
+		temp_savelock = jit_object_method(temp_matrix,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);				//Get input matrix info
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);				//Get output matrix info
@@ -452,7 +452,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     			{	
     				for (j=0;j<width;j++)
     				{
-						out[j] = equiv[out_l[j]];
+						out[j] = (char)equiv[out_l[j]];
     				}
     				//(char *)out_l += cstep;
 					out_l = (t_int32 *)((char *)out_l + cstep);
@@ -555,7 +555,7 @@ void cv_jit_label_calculate(t_cv_jit_label *x, long dimcount, long *dim, long pl
     			{	
     				for (j=0;j<width;j++)
     				{
-						out[j] = equiv[out_l[j]];
+						out[j] = (char)equiv[out_l[j]];
     				}
     				//(char *)out_l += cstep;
 					out_l = (t_int32 *)((char *)out_l + cstep);

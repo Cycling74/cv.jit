@@ -92,7 +92,8 @@ t_jit_err cv_jit_erode_init(void)
 t_jit_err cv_jit_erode_matrix_calc(t_cv_jit_erode *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock,out_savelock;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
 	char *in_bp,*out_bp;
 	void *in_matrix,*out_matrix;
@@ -102,8 +103,8 @@ t_jit_err cv_jit_erode_matrix_calc(t_cv_jit_erode *x, void *inputs, void *output
 
 	if (x&&in_matrix&&out_matrix) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);

@@ -89,7 +89,7 @@ t_jit_err cv_jit_moments_init(void)
 t_jit_err cv_jit_moments_matrix_calc(t_cv_jit_moments *x, void *inputs, void *outputs)
 {
 	t_jit_err err = JIT_ERR_NONE;
-	long in_savelock;
+	void * in_savelock;
 	t_jit_matrix_info in_minfo;
 	uchar *in_bp;
 	long i,dimcount,dim[JIT_MATRIX_MAX_DIMCOUNT];
@@ -99,7 +99,7 @@ t_jit_err cv_jit_moments_matrix_calc(t_cv_jit_moments *x, void *inputs, void *ou
 
 	if (x&&matrix) 
 	{
-		in_savelock = (long) jit_object_method(matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(matrix,_jit_sym_lock,1);
 		jit_object_method(matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(matrix,_jit_sym_getdata,&in_bp);
 		

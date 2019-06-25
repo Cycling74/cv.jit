@@ -26,3 +26,7 @@ ipch
 
 # Visual Studio Code
 .vscode
+
+# Allow binaries in the lib folder
+!source/lib/**/*.lib
+!source/lib/**/*.a

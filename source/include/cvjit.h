@@ -6,7 +6,7 @@
 //#define OPENCV
 
 
-
+#include <limits>
 
 #include "c74_jitter.h"
 using namespace c74::max;
@@ -76,6 +76,49 @@ namespace cvjit {
 			bytes[j] = tmp;
 			i++, j--;
 		}
+	}
+
+	class Savelock {
+	private:
+		void * m_savelock;
+		c74::max::t_object * m_object;
+	public:
+		Savelock(c74::max::t_object * matrix) : m_object(matrix) {
+			m_savelock = jit_object_method(m_object, _jit_sym_lock, 1);
+		}
+
+		~Savelock() {
+			if (m_savelock && m_object) {
+				jit_object_method(m_object, gensym("lock"), m_savelock);
+			}
+		}
+	};
+
+	t_jit_err check_matrix_type(t_jit_matrix_info const & info, t_symbol const * const t1, t_symbol const * const t2 = nullptr, t_symbol const * const t3 = nullptr, t_symbol const * const t4 = nullptr) {
+		return info.type == t1 || info.type == t2 || info.type == t3 || info.type == t4 ? JIT_ERR_NONE : JIT_ERR_MISMATCH_TYPE;
+	}
+	
+	t_jit_err check_matrix_dimcount(t_jit_matrix_info const & info, unsigned int min_dimcount, unsigned int max_dimcount) {
+		return info.dimcount >= min_dimcount && info.dimcount <= max_dimcount ? JIT_ERR_NONE : JIT_ERR_MISMATCH_DIM;
+	}
+
+	t_jit_err check_matrix_planecount(t_jit_matrix_info const & info, unsigned int min_planecount, unsigned int max_planecount) {
+		return info.dimcount >= min_planecount && info.dimcount <= max_planecount ? JIT_ERR_NONE : JIT_ERR_MISMATCH_PLANE;
+	}
+
+	t_jit_err check_matrix_size(t_jit_matrix_info const & info, unsigned int dim, long min_size, long max_size = std::numeric_limits<long>::max()) {
+		if (dim < info.dimcount) {
+			if (info.dim[dim] < min_size || info.dim[dim] > max_size) {
+				return JIT_ERR_MISMATCH_DIM;
+			}
+		}
+		return JIT_ERR_NONE;
+	}
+
+	template <typename... Args>
+	t_jit_err check_matrix(t_jit_err check, Args... extraChecks) {
+		t_jit_err err = check_matrix(into, extraChecks...);
+		return check != JIT_ERR_NONE ? check : (err != JIT_ERR_NONE ? err : JIT_ERR_NONE);
 	}
 }
 

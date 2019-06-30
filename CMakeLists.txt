@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
+project(cvjit)
+
 # Make sure we are generating 64-bit projects.
 if (NOT CMAKE_SIZEOF_VOID_P EQUAL 8)
 	message(FATAL_ERROR "This version of cv.jit can only be built on 64-bit architectures. Make sure you set the proper generator when calling CMake.")

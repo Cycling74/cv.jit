@@ -27,12 +27,6 @@ else ()
 endif()
 
 # Set extra libraries
-if(APPLE)
-	set(STATIC_LIB_EXT a)
-elseif(WIN32)
-	set(STATIC_LIB_EXT lib)
-endif()
-
 set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
 if (LEGACY)
 	set(OPENCV_LIB_DIR opencv/${OPENCV_VERSION_LEGACY}/x64)

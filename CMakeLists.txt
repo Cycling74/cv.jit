@@ -33,6 +33,12 @@ endif()
 # Misc setup and subroutines
 include(${CMAKE_CURRENT_SOURCE_DIR}/source/max-api/script/max-package.cmake)
 
+# Setup some useful variables
+if(APPLE)
+	set(STATIC_LIB_EXT a)
+elseif(WIN32)
+	set(STATIC_LIB_EXT lib)
+endif()
 
 # Generate a project for every folder in the "source/projects" folder
 SUBDIRLIST(PROJECT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/source/projects)

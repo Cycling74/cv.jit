@@ -19,6 +19,6 @@
 		"copyright" : "Copyright (c) 2016 Cycling '74"
 	},
 	"tags" : [ "jitter", "computer vision", "hardware", "camera", "externals" ],
-	"version" : "1.8.0-alpha",
+	"version" : "1.9.0",
 	"website" : "http://www.maxology.club/starter-kit-info/2015/4/27/starter-kit-1"
 }

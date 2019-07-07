@@ -7,6 +7,8 @@
 
 
 #include <limits>
+#include <cmath>
+#include <string>
 
 #include "c74_jitter.h"
 using namespace c74::max;
@@ -16,28 +18,6 @@ using namespace c74::max;
 #include "cv.h"
 #endif
 #endif
-
-
-/*Vector operations*/
-/*
-#ifdef __VEC__
-
-#define VEC_ADD_8U vec_add
-#define VEC_ADD_32S vec_add
-#define VEC_ADD_32F vec_add
-#define VEC_ADD_64F cv_vec_add_double
-
-#elif __SSE2__
-
-#define VEC_ADD_8U _mm_add_epi8
-#define VEC_ADD_32S _mm_add_epi32
-#define VEC_ADD_32F _mm_add_ps
-#define VEC_ADD_64F _mm_add_pd
-
-#else
-#error "Either Altivec or SSE must be enabled"
-#endif
-*/
 
 /*Error handling*/
 #ifdef JITTER
@@ -98,15 +78,15 @@ namespace cvjit {
 		return info.type == t1 || info.type == t2 || info.type == t3 || info.type == t4 ? JIT_ERR_NONE : JIT_ERR_MISMATCH_TYPE;
 	}
 	
-	t_jit_err check_matrix_dimcount(t_jit_matrix_info const & info, unsigned int min_dimcount, unsigned int max_dimcount) {
+	t_jit_err check_matrix_dimcount(t_jit_matrix_info const & info, long min_dimcount, long max_dimcount) {
 		return info.dimcount >= min_dimcount && info.dimcount <= max_dimcount ? JIT_ERR_NONE : JIT_ERR_MISMATCH_DIM;
 	}
 
-	t_jit_err check_matrix_planecount(t_jit_matrix_info const & info, unsigned int min_planecount, unsigned int max_planecount) {
+	t_jit_err check_matrix_planecount(t_jit_matrix_info const & info, long min_planecount, long max_planecount) {
 		return info.dimcount >= min_planecount && info.dimcount <= max_planecount ? JIT_ERR_NONE : JIT_ERR_MISMATCH_PLANE;
 	}
 
-	t_jit_err check_matrix_size(t_jit_matrix_info const & info, unsigned int dim, long min_size, long max_size = std::numeric_limits<long>::max()) {
+	t_jit_err check_matrix_size(t_jit_matrix_info const & info, long dim, long min_size, long max_size = std::numeric_limits<long>::max()) {
 		if (dim < info.dimcount) {
 			if (info.dim[dim] < min_size || info.dim[dim] > max_size) {
 				return JIT_ERR_MISMATCH_DIM;
@@ -117,8 +97,56 @@ namespace cvjit {
 
 	template <typename... Args>
 	t_jit_err check_matrix(t_jit_err check, Args... extraChecks) {
-		t_jit_err err = check_matrix(into, extraChecks...);
-		return check != JIT_ERR_NONE ? check : (err != JIT_ERR_NONE ? err : JIT_ERR_NONE);
+		t_jit_err all_checks[] = {check, extraChecks...};
+		for (t_jit_err const & err : all_checks) {
+			if (err != JIT_ERR_NONE) {
+				return err;
+			}
+		}
+		return JIT_ERR_NONE;
+	}
+
+	t_jit_err validate_attribute_memory(long atom_count, long *ac, t_atom **av) {
+		// Check if count matches
+		if (*ac < atom_count) {
+			// Count doesn't match, free the memory
+			sysmem_freeptr(*av);
+			*av = nullptr;
+			*ac = 0;
+		}
+
+		if (0 == *ac || nullptr == *av) {
+			// Need to allocate memory
+			*ac = std::max(1L, atom_count);
+			if (!(*av = (t_atom*)sysmem_newptr(sizeof(t_atom)*(*ac)))) {
+				*ac = 0;
+				return JIT_ERR_OUT_OF_MEM;
+			}
+		}
+
+		return JIT_ERR_NONE;
+	}
+
+	// Looks for a file in the Max search path and outputs its absolute
+	// path. If the file is not found, it outputs and empty string, ""
+	std::string get_absolute_path(std::string const & filename) {
+		short path;
+		char name[MAX_FILENAME_CHARS];
+		char full_name[MAX_PATH_CHARS];
+		char conform_name[MAX_PATH_CHARS];
+		t_fourcc type;
+
+		strncpy(name, filename.c_str(), MAX_FILENAME_CHARS);
+		if (!locatefile_extended(name, &path, &type, &type, -1)) {
+			if (!path_topathname(path, name, full_name)) {
+				//On Mactel, this function returns OS9 style paths with PATH_STYLE_NATIVE, PATH_TYPE_ABSOLUTE works on Windows but not OSX
+				if (!path_nameconform(full_name, conform_name, PATH_STYLE_SLASH, PATH_TYPE_BOOT)) {
+					return conform_name;
+				}
+			}
+		}
+
+		return "";
 	}
 }
 

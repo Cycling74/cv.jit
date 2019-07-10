@@ -44,6 +44,10 @@ inline int jit_gettype(t_jit_matrix_info *info)
 #endif
 
 namespace cvjit {
+
+	/* Useful type definitions */
+	using cstring = char const * const;
+
 	void swapBytes(unsigned char * bytes, int length)
 	{
 		int i = 0;
@@ -74,37 +78,74 @@ namespace cvjit {
 		}
 	};
 
-	t_jit_err check_matrix_type(t_jit_matrix_info const & info, t_symbol const * const t1, t_symbol const * const t2 = nullptr, t_symbol const * const t3 = nullptr, t_symbol const * const t4 = nullptr) {
-		return info.type == t1 || info.type == t2 || info.type == t3 || info.type == t4 ? JIT_ERR_NONE : JIT_ERR_MISMATCH_TYPE;
-	}
-	
-	t_jit_err check_matrix_dimcount(t_jit_matrix_info const & info, long min_dimcount, long max_dimcount) {
-		return info.dimcount >= min_dimcount && info.dimcount <= max_dimcount ? JIT_ERR_NONE : JIT_ERR_MISMATCH_DIM;
-	}
-
-	t_jit_err check_matrix_planecount(t_jit_matrix_info const & info, long min_planecount, long max_planecount) {
-		return info.dimcount >= min_planecount && info.dimcount <= max_planecount ? JIT_ERR_NONE : JIT_ERR_MISMATCH_PLANE;
-	}
-
-	t_jit_err check_matrix_size(t_jit_matrix_info const & info, long dim, long min_size, long max_size = std::numeric_limits<long>::max()) {
-		if (dim < info.dimcount) {
-			if (info.dim[dim] < min_size || info.dim[dim] > max_size) {
-				return JIT_ERR_MISMATCH_DIM;
-			}
+	class Validate {
+	private:
+		c74::max::t_object * m_matrix;
+		c74::max::t_jit_matrix_info m_info;
+		c74::max::t_jit_err m_state{ JIT_ERR_NONE };
+	public:
+		Validate(c74::max::t_object * matrix) : m_matrix(matrix) {
+			jit_object_method(m_matrix, _jit_sym_getinfo, &m_info);
 		}
-		return JIT_ERR_NONE;
-	}
 
-	template <typename... Args>
-	t_jit_err check_matrix(t_jit_err check, Args... extraChecks) {
-		t_jit_err all_checks[] = {check, extraChecks...};
-		for (t_jit_err const & err : all_checks) {
-			if (err != JIT_ERR_NONE) {
-				return err;
+		Validate & planecount(int count) {
+			if (m_state == JIT_ERR_NONE && count != m_info.planecount) {
+				m_state = JIT_ERR_MISMATCH_PLANE;
 			}
+			return *this;
 		}
-		return JIT_ERR_NONE;
-	}
+
+		Validate & planecount(int min, int max) {
+			if (m_state == JIT_ERR_NONE && m_info.planecount < min && m_info.planecount > max) {
+				m_state = JIT_ERR_MISMATCH_PLANE;
+			}
+			return *this;
+		}
+
+		Validate & dimcount(int count) {
+			if (m_state == JIT_ERR_NONE && count != m_info.dimcount) {
+				m_state = JIT_ERR_MISMATCH_DIM;
+			}
+			return *this;
+		}
+
+		Validate & dimcount(int min, int max) {
+			if (m_state == JIT_ERR_NONE && m_info.dimcount < min && m_info.dimcount > max) {
+				m_state = JIT_ERR_MISMATCH_DIM;
+			}
+			return *this;
+		}
+
+		Validate & type(c74::max::t_symbol * a, c74::max::t_symbol * b = nullptr, c74::max::t_symbol * c = nullptr, c74::max::t_symbol * d = nullptr) {
+			if (m_state == JIT_ERR_NONE && !(m_info.type == a || m_info.type == b || m_info.type == c || m_info.type == d)) {
+				m_state = JIT_ERR_MISMATCH_TYPE;
+			}
+			return *this;
+		}
+
+		Validate & dim(int index, int min_size)  {
+			if (m_state == JIT_ERR_NONE && index >= m_info.dimcount || m_info.dim[index] < min_size) {
+				m_state = JIT_ERR_MISMATCH_DIM;
+			}
+			return *this;
+		}
+
+		Validate & min_dimsize(int min_size) {
+			if (m_state == JIT_ERR_NONE) {
+				for (int i = 0; i < m_info.dimcount; i++) {
+					if (m_info.dim[i] < min_size) {
+						m_state = JIT_ERR_MISMATCH_DIM;
+						break;
+					}
+				}
+			}
+			return *this;
+		}
+
+		operator c74::max::t_jit_err() const {
+			return m_state;
+		}
+	};
 
 	t_jit_err validate_attribute_memory(long atom_count, long *ac, t_atom **av) {
 		// Check if count matches

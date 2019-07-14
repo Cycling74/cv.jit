@@ -46,9 +46,8 @@ namespace cvjit {
 	 * This function converts a Jitter matrix to an OpenCV Mat.
 	 * Note that no memory is copied, and thus the OpenCV Mat should not be released.
 	 */
-	cv::Mat wrapJitterMatrix(c74::max::t_object * jitterMatrix) {
-		c74::max::t_jit_matrix_info info;
-		char * data = nullptr;
+	cv::Mat wrapJitterMatrix(c74::max::t_object * jitterMatrix, c74::max::t_jit_matrix_info const & info, char * data) {
+		// char * data = nullptr;
 		int type = 0;
 
 		if (!jitterMatrix)
@@ -57,12 +56,10 @@ namespace cvjit {
 			cv::Mat();
 		}
 
-		c74::max::object_method(jitterMatrix, c74::max::_jit_sym_getinfo, (void*)&info);
-
 		if (info.dimcount != 2)
 		{
 			c74::max::object_error(NULL, "Error converting Jitter matrix: invalid dimension count.");
-			cv::Mat();
+			return cv::Mat();
 		}
 
 		if (info.type == c74::max::_jit_sym_char)
@@ -82,7 +79,7 @@ namespace cvjit {
 			type = CV_MAKETYPE(CV_64F, info.planecount);
 		}
 		
-		c74::max::object_method(jitterMatrix, c74::max::_jit_sym_getdata, (void*)&data);
+		// c74::max::object_method(jitterMatrix, c74::max::_jit_sym_getdata, &data);
 		return cv::Mat(info.dim[1], info.dim[0], type, data, info.dimstride[1]);
 	}
 

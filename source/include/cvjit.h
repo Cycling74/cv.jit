@@ -283,6 +283,15 @@ namespace cvjit {
 		jit_object_method(matrix, _jit_sym_getinfo, &info);
 		return info;
 	}
+
+	inline void post_info(void * sender, cvjit::cstring  name, t_jit_matrix_info const & info) {
+		object_post((t_object *)sender, "%s::\nPlanecount: %d\nDimcount: %d\nSize: %d, %d\nType: %s", name,
+			info.planecount,
+			info.dimcount,
+			info.dim[0], info.dim[0],
+			info.type == _jit_sym_char ? "char" : info.type == _jit_sym_long ? "long" : info.type == _jit_sym_float32 ? "float32" : "float64");
+	}
+
 }
 
 

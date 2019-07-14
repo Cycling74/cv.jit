@@ -62,6 +62,76 @@ namespace cvjit {
 		}
 	}
 
+	class JitterMatrix {
+	private:
+		c74::max::t_object * m_matrix;
+		c74::max::t_jit_matrix_info m_info;
+		char * m_data{ nullptr };
+	protected:
+		void report_error(t_jit_err err) {
+			jit_error_code(m_matrix, err);
+		}
+
+		void update_info() {
+			t_jit_err err = (t_jit_err)jit_object_method(m_matrix, _jit_sym_setinfo, &m_info);
+			if (JIT_ERR_NONE != err) { 
+				report_error(err);
+				m_data = nullptr;
+				return; 
+			}
+
+			err = (t_jit_err)jit_object_method(m_matrix, _jit_sym_getinfo, &m_info);
+			if (JIT_ERR_NONE != err) { 
+				report_error(err);
+				m_data = nullptr;
+				return; 
+			}
+
+			err = (t_jit_err)jit_object_method(m_matrix, _jit_sym_getdata, &m_data);
+			if (JIT_ERR_NONE != err) { report_error(err); return; }
+		}
+	public:
+		JitterMatrix(void * matrix) : m_matrix(static_cast<c74::max::t_object * >(matrix)) {
+			if (m_matrix) {
+				t_jit_err err = (t_jit_err)jit_object_method(m_matrix, _jit_sym_getinfo, &m_info);
+				if (JIT_ERR_NONE != err) { report_error(err); return; }
+
+				err = (t_jit_err)jit_object_method(m_matrix, _jit_sym_getdata, &m_data);
+				if (JIT_ERR_NONE != err) { report_error(err); return; }
+			}
+		}
+
+		virtual ~JitterMatrix() = default;
+
+		char * get_data() { return m_data; }
+		c74::max::t_jit_matrix_info const & get_info() const { return m_info; }
+
+		template <typename T>
+		T * get_data() { return (T *)m_data; }
+
+		template <typename... Args>
+		void set_size(long dim0, Args... other_dims) {
+			if (m_matrix) {
+				const int count = sizeof...(other_dims) + 1;
+				const std::vector<long> dims = {dim0, other_dims...};
+				m_info.dimcount = count;
+				for (int i = 0; i < count && i < JIT_MATRIX_MAX_DIMCOUNT; i++) {
+					m_info.dim[i] = std::max(1, dims[i]);
+				}
+
+				update_info();
+			}
+		}
+
+		void set_planecount(long planecount) {
+			if (m_matrix) {
+				m_info.planecount = planecount;
+
+				update_info();
+			}
+		}
+	};
+
 	class Savelock {
 	private:
 		void * m_savelock;

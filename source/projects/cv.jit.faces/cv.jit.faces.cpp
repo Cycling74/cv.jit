@@ -45,6 +45,7 @@ typedef struct _cv_jit_faces
 	long model;
 	cv::CascadeClassifier cascade;
 	long nfaces;
+	long normalize;
 } t_cv_jit_faces;
 
 char const * const defaultCascadeFilenames[] = {
@@ -68,7 +69,6 @@ short                   cv_jit_faces_load(t_cv_jit_faces *x,const char *m);
 
 t_jit_err cv_jit_faces_init(void) 
 {
-	long attrflags=0;
 	t_jit_object *attr,*mop,*output;
 	t_symbol *atsym;
 	
@@ -99,16 +99,18 @@ t_jit_err cv_jit_faces_init(void)
 	jit_class_addmethod(_cv_jit_faces_class, (method)cv_jit_faces_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 	jit_class_addmethod(_cv_jit_faces_class, (method)cv_jit_faces_read, 		"read", 		A_GIMME, 0L);
 
-	//add attributes	
-	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
-	
-	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"model",_jit_sym_long,attrflags,(method)0L,(method)cv_jit_faces_model,calcoffset(t_cv_jit_faces,model));			
-	jit_attr_addfilterset_clip(attr,1,4,true,true);	//clip to 1-4
+	//add attributes
+
+	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset, "model", _jit_sym_long, cvjit::Flags::get_set, (method)0L, (method)cv_jit_faces_model, calcoffset(t_cv_jit_faces, model));			
+	jit_attr_addfilterset_clip(attr, 1, 4, true, true);	//clip to 1-4
+	jit_class_addattr(_cv_jit_faces_class, attr);
+
+	attr = (t_jit_object *)jit_object_new( _jit_sym_jit_attr_offset, "normalize", _jit_sym_long, cvjit::Flags::get_set, (method)0L, (method)0L, calcoffset(t_cv_jit_faces, normalize));
+	jit_attr_addfilterset_clip(attr, 0, 1, true, true);	//clip to 0-1
 	jit_class_addattr(_cv_jit_faces_class, attr);
 	
-	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_OPAQUE;
 	
-	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"nfaces",_jit_sym_long,attrflags,(method)0L,(method)cv_jit_faces_model,calcoffset(t_cv_jit_faces,nfaces));			
+	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset, "nfaces", _jit_sym_long, cvjit::Flags::private_set, (method)0L, (method)0L, calcoffset(t_cv_jit_faces, nfaces));
 	jit_class_addattr(_cv_jit_faces_class, attr);
 			
 	jit_class_register(_cv_jit_faces_class);
@@ -171,18 +173,21 @@ t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *output
 			x->nfaces = (long)faces.size();
 
 			//Prepare output
-			t_jit_matrix_info out_minfo = cvjit::resize_matrix(out_matrix, faces.size());
+			t_jit_matrix_info out_minfo = cvjit::resize_matrix(out_matrix, { (long)faces.size() });
 			
 			jit_object_method(out_matrix, _jit_sym_getdata, &out_bp);
 			if (!out_bp) { return JIT_ERR_INVALID_OUTPUT; }
 
 			out_data = (float *)out_bp;
 
+			const float x_mul = (float)(x->normalize ? 1.0 / (double)in_minfo.dim[0] : 1.0);
+			const float y_mul = (float)(x->normalize ? 1.0 / (double)in_minfo.dim[1] : 1.0);
+
 			for (cv::Rect & rect : faces) {
-				out_data[0] = (float)rect.x;
-				out_data[1] = (float)rect.y;
-				out_data[2] = (float)rect.x + rect.width;
-				out_data[3] = (float)rect.y + rect.height;
+				out_data[0] = (float)rect.x * x_mul;
+				out_data[1] = (float)rect.y * y_mul;
+				out_data[2] = (float)(rect.x + rect.width) * x_mul;
+				out_data[3] = (float)(rect.y + rect.height) * y_mul;
 				out_data += 4;
 			}
 		}
@@ -207,6 +212,7 @@ t_cv_jit_faces *cv_jit_faces_new(void)
 			x->model = 0;
 		}
 		x->nfaces = 0;
+		x->normalize = 0;
 
 	} else {
 		x = NULL;

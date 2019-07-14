@@ -48,6 +48,12 @@ namespace cvjit {
 	/* Useful type definitions */
 	using cstring = char const * const;
 
+	class Flags {
+	public:
+		static constexpr long get_set = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
+		static constexpr long private_set = ATTR_GET_DEFER_LOW | ATTR_SET_OPAQUE;
+	};
+
 	void swapBytes(unsigned char * bytes, int length)
 	{
 		int i = 0;

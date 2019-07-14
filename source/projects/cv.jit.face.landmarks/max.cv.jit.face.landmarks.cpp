@@ -40,6 +40,8 @@ t_jit_err cv_jit_face_landmarks_init(void);
 
 void *max_cv_jit_face_landmarks_new(t_symbol *s, long argc, t_atom *argv);
 void max_cv_jit_face_landmarks_free(t_max_cv_jit_face_landmarks *x);
+void max_cv_jit_face_landmarks_assist(t_max_cv_jit_face_landmarks * x, void * b, long m, long a, char * s);
+
 void *max_cv_jit_face_landmarks_class;
 
 #ifdef __cplusplus
@@ -59,7 +61,7 @@ void ext_main(void* unused)
 	q = jit_class_findbyname(gensym("cv_jit_face_landmarks"));
 	max_jit_classex_mop_wrap(p, q, 0);
 	max_jit_classex_standard_wrap(p, q, 0);
-	addmess((method)max_jit_mop_assist, "assist", A_CANT, 0);
+	addmess((method)max_cv_jit_face_landmarks_assist, "assist", A_CANT, 0);
 
 	return;
 }
@@ -87,4 +89,22 @@ void *max_cv_jit_face_landmarks_new(t_symbol *s, long argc, t_atom *argv)
 		}
 	}
 	return (x);
+}
+
+void max_cv_jit_face_landmarks_assist(t_max_cv_jit_face_landmarks * x, void * b, long m, long a, char * s)
+{
+	const int MAX_ASSIST_LENGTH = 32;
+	if (m == 1) { //input
+		switch (a) {
+		case 0:
+			snprintf(s, MAX_ASSIST_LENGTH, "(matrix) face rectangles");
+			break;
+		case 1:
+			snprintf(s, MAX_ASSIST_LENGTH, "(matrix) input image");
+			break;
+		}
+	}
+	else { //output
+		max_jit_mop_assist(x, b, m, a, s);
+	}
 }

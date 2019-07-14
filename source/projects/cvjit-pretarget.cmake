@@ -3,60 +3,67 @@ cmake_minimum_required(VERSION 3.0)
 string(REGEX REPLACE "(.*)/" "" THIS_FOLDER_NAME "${CMAKE_CURRENT_SOURCE_DIR}")
 project(${THIS_FOLDER_NAME})
 
+message("Generating ${THIS_FOLDER_NAME}")
+
 include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-api/script/max-pretarget.cmake)
+
+# max-pretarget.cmake defines the output directory to the externals folder.
+# However, this can cause temporary files to also be written to this directory.
+# To keep things clean, we set a different output directory and copy only the
+# executables to externals.
+set(CVJIT_INSTALL_DIRECTORY ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
 
 # Set preprocessor macros
 if (LEGACY) 
 	add_compile_definitions(CVJIT_LEGACY)
 endif()
 
+# Specify runtime library
+if (WIN32)
+	if (${STATIC_RUNTIME})
+		set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+		set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+	else()
+		set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
+		set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
+	endif()
+endif()
+
 # Set header directories
+
+## Common directories
+include_directories( 
+	"${C74_INCLUDES}"
+	"${CMAKE_CURRENT_SOURCE_DIR}/../../include/"
+)
+
+## OpenCV includes
 if (LEGACY) 
-	include_directories( 
-		"${C74_INCLUDES}"
-		${CMAKE_CURRENT_SOURCE_DIR}/../../include/
-		${CMAKE_CURRENT_SOURCE_DIR}/../../include/opencv/${OPENCV_VERSION_LEGACY}/
-		${CMAKE_CURRENT_SOURCE_DIR}/../../include/opencv/${OPENCV_VERSION_LEGACY}/opencv/
-	)
+	include_directories(${OPENCV_LEGACY_INCLUDE_DIR})
 else ()
-	include_directories( 
-		"${C74_INCLUDES}"
-		${CMAKE_CURRENT_SOURCE_DIR}/../../include/
-		${CMAKE_CURRENT_SOURCE_DIR}/../../include/opencv/${OPENCV_VERSION_CURRENT}/
-	)
+	include_directories(${OPENCV_LATEST_INCLUDE_DIR})
 endif()
 
 # Set extra libraries
-set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
+
+## Common libraries
+
+## OpenCV libraries
 if (LEGACY)
-	set(OPENCV_LIB_DIR opencv/${OPENCV_VERSION_LEGACY}/x64)
-	string(REPLACE "." "" OPENCV_LIB_SUFFIX "${OPENCV_VERSION_LEGACY}")
-
-	set(EXTRA_LIBS
-		optimized ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_core${OPENCV_LIB_SUFFIX}.${STATIC_LIB_EXT}
-		debug ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_core${OPENCV_LIB_SUFFIX}d.${STATIC_LIB_EXT}
-		optimized ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_features2d${OPENCV_LIB_SUFFIX}.${STATIC_LIB_EXT}
-		debug ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_features2d${OPENCV_LIB_SUFFIX}d.${STATIC_LIB_EXT}
-		optimized ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_imgproc${OPENCV_LIB_SUFFIX}.${STATIC_LIB_EXT}
-		debug ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_imgproc${OPENCV_LIB_SUFFIX}d.${STATIC_LIB_EXT}
-		optimized ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_calib3d${OPENCV_LIB_SUFFIX}.${STATIC_LIB_EXT}
-		debug ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_calib3d${OPENCV_LIB_SUFFIX}d.${STATIC_LIB_EXT}
-		optimized ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_video${OPENCV_LIB_SUFFIX}.${STATIC_LIB_EXT}
-		optimized ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_legacy${OPENCV_LIB_SUFFIX}.${STATIC_LIB_EXT}
-		debug ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_legacy${OPENCV_LIB_SUFFIX}d.${STATIC_LIB_EXT}
-
-		optimized ${LIB_DIR}/zlib/x64/zlibstatic.${STATIC_LIB_EXT}
-		debug ${LIB_DIR}/zlib/x64/zlibstaticd.${STATIC_LIB_EXT}
-	)
+	set(OPENCV_RELEASE_LIBS ${OPENCV_LEGACY_RELEASE_LIBS} ${OPENCV_LEGACY_3RD_PARTY_RELEASE_LIBS})
+	set(OPENCV_DEBUG_LIBS ${OPENCV_LEGACY_DEBUG_LIBS} ${OPENCV_LEGACY_3RD_PARTY_DEBUG_LIBS})
 else()
-	set(OPENCV_LIB_DIR opencv/${OPENCV_VERSION_CURRENT}/x64)
-	string(REPLACE "." "" OPENCV_LIB_SUFFIX "${OPENCV_VERSION_CURRENT}")
-
-	set(EXTRA_LIBS
-		optimized ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_world${OPENCV_LIB_SUFFIX}.${STATIC_LIB_EXT}
-		debug ${LIB_DIR}/${OPENCV_LIB_DIR}/opencv_world${OPENCV_LIB_SUFFIX}d.${STATIC_LIB_EXT}
-
-		optimized ${LIB_DIR}/zlib/x64/zlibstatic.${STATIC_LIB_EXT}
-		debug ${LIB_DIR}/zlib/x64/zlibstaticd.${STATIC_LIB_EXT}
-	)	
+	set(OPENCV_RELEASE_LIBS ${OPENCV_LATEST_RELEASE_LIBS})
+	set(OPENCV_DEBUG_LIBS ${OPENCV_LATEST_DEBUG_LIBS})
 endif()
+
+foreach(OPENCV_LIB ${OPENCV_DEBUG_LIBS})
+	set (EXTRA_LIBS ${EXTRA_LIBS} debug ${OPENCV_LIB})
+endforeach()
+
+foreach(OPENCV_LIB ${OPENCV_RELEASE_LIBS})
+	set (EXTRA_LIBS ${EXTRA_LIBS} optimized ${OPENCV_LIB})
+endforeach()

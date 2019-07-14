@@ -33,7 +33,7 @@ in Jitter externals.
 
 
 #include "jitOpenCV.h"
-#include "c74_jitter.h"
+#include "cvjit.h"
 
 #include <opencv2/objdetect.hpp>
 
@@ -135,85 +135,62 @@ void cv_jit_faces_model(t_cv_jit_faces *x, t_symbol *s, long argc, t_atom *argv)
 
 t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *outputs)
 {
-	t_jit_err err=JIT_ERR_NONE;
-	void * in_savelock = 0;
-	void * out_savelock = 0;
-	t_jit_matrix_info in_minfo,out_minfo;
 	char *out_bp;
-	c74::max::t_object * in_matrix, * out_matrix;
 	float *out_data;
 	cv::Mat source;
 	std::vector<cv::Rect> faces;
-	
-	if (x->model == 0) {
-		//No valid model has been loaded, exit
-		return err;
-	}
 
 	//Get pointers to matrices
-	in_matrix 	= (c74::max::t_object *)jit_object_method(inputs,_jit_sym_getindex,0);
-	out_matrix  = (c74::max::t_object *)jit_object_method(outputs,_jit_sym_getindex,0);
+	t_object * in_matrix 	= (t_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	t_object *out_matrix  = (t_object *)jit_object_method(outputs,_jit_sym_getindex,0);
 
 	if (x && in_matrix && out_matrix && x->model > 0) 
 	{
 		//Lock the matrices
-		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
+		cvjit::Savelock savelocks[] = { in_matrix, out_matrix };
+
+		t_jit_matrix_info in_minfo;
+		jit_object_method(in_matrix, _jit_sym_getinfo, &in_minfo);
 		
 		//Make sure input is of proper format
-		jit_object_method(in_matrix,	_jit_sym_getinfo,&in_minfo);
-		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
-
-		if(in_minfo.dimcount != 2)
-		{
-			err = JIT_ERR_MISMATCH_DIM;
-			goto out;
-		}
-		if(in_minfo.planecount != 1)
-		{
-			err = JIT_ERR_MISMATCH_PLANE;
-			goto out;
-		}
-		if(in_minfo.type != _jit_sym_char)
-		{
-			err = JIT_ERR_MISMATCH_TYPE;
-			goto out;
-		}
-
-		//Don't process if image is too small
-		if((in_minfo.dim[0] < 2)||(in_minfo.dim[1] < 2))
-			goto out;
-
-		//Convert Jitter matrix to OpenCV matrix
-		cv::Mat source = cvjit::wrapJitterMatrix(in_matrix);
+		t_jit_err err = cvjit::Validate(x, in_minfo)
+			.type(_jit_sym_char)
+			.planecount(1)
+			.dimcount(2)
+			.min_dimsize(2);
 		
-		//Calculate		
-		x->cascade.detectMultiScale(source, faces);
-		x->nfaces = (long)faces.size();
+		if (JIT_ERR_NONE == err) 
+		{
+			//Convert Jitter matrix to OpenCV matrix
+			char * in_bp;
+			jit_object_method(in_matrix, _jit_sym_getdata, &in_bp);
+			cv::Mat source = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
 
-		//Prepare output
-		out_minfo.dim[0] = (long)faces.size();
-		jit_object_method(out_matrix,_jit_sym_setinfo,&out_minfo);
-		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
-		jit_object_method(out_matrix,_jit_sym_getdata,&out_bp);
-		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
-		
-		out_data = (float *)out_bp;
+			//Calculate		
+			x->cascade.detectMultiScale(source, faces);
+			x->nfaces = (long)faces.size();
 
-		for (cv::Rect & rect : faces) {
-			out_data[0] = (float)rect.x;
-			out_data[1] = (float)rect.y;
-			out_data[2] = (float)rect.x + rect.width;
-			out_data[3] = (float)rect.y + rect.height;
-			out_data += 4;
+			//Prepare output
+			t_jit_matrix_info out_minfo = cvjit::resize_matrix(out_matrix, faces.size());
+			
+			jit_object_method(out_matrix, _jit_sym_getdata, &out_bp);
+			if (!out_bp) { return JIT_ERR_INVALID_OUTPUT; }
+
+			out_data = (float *)out_bp;
+
+			for (cv::Rect & rect : faces) {
+				out_data[0] = (float)rect.x;
+				out_data[1] = (float)rect.y;
+				out_data[2] = (float)rect.x + rect.width;
+				out_data[3] = (float)rect.y + rect.height;
+				out_data += 4;
+			}
+		}
+		else {
+			return err;
 		}
 	}
-
-	
-out:
-	jit_object_method(out_matrix,gensym("lock"),out_savelock);
-	jit_object_method(in_matrix,gensym("lock"),in_savelock);
-	return err;
+	return JIT_ERR_NONE;
 }
 
 

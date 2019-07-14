@@ -150,17 +150,16 @@ namespace cvjit {
 
 	class Validate {
 	private:
-		c74::max::t_object * m_matrix;
-		c74::max::t_jit_matrix_info m_info;
+		c74::max::t_object * m_context;
+		c74::max::t_jit_matrix_info const &  m_info;
 		c74::max::t_jit_err m_state{ JIT_ERR_NONE };
 	public:
-		Validate(c74::max::t_object * matrix) : m_matrix(matrix) {
-			jit_object_method(m_matrix, _jit_sym_getinfo, &m_info);
-		}
+		Validate(void * context, c74::max::t_jit_matrix_info const & info) : m_context(static_cast<c74::max::t_object *>(context)), m_info(info) {}
 
 		Validate & planecount(int count) {
 			if (m_state == JIT_ERR_NONE && count != m_info.planecount) {
 				m_state = JIT_ERR_MISMATCH_PLANE;
+				object_error(m_context, "Invalid plane count: expected %d was %d", count, m_info.planecount);
 			}
 			return *this;
 		}
@@ -168,6 +167,7 @@ namespace cvjit {
 		Validate & planecount(int min, int max) {
 			if (m_state == JIT_ERR_NONE && m_info.planecount < min && m_info.planecount > max) {
 				m_state = JIT_ERR_MISMATCH_PLANE;
+				object_error(m_context, "Invalid plane count: expected between %d and %d was %d", min, max, m_info.planecount);
 			}
 			return *this;
 		}
@@ -175,6 +175,7 @@ namespace cvjit {
 		Validate & dimcount(int count) {
 			if (m_state == JIT_ERR_NONE && count != m_info.dimcount) {
 				m_state = JIT_ERR_MISMATCH_DIM;
+				object_error(m_context, "Invalid dimension count: expected %d was %d", count, m_info.dimcount);
 			}
 			return *this;
 		}
@@ -182,6 +183,7 @@ namespace cvjit {
 		Validate & dimcount(int min, int max) {
 			if (m_state == JIT_ERR_NONE && m_info.dimcount < min && m_info.dimcount > max) {
 				m_state = JIT_ERR_MISMATCH_DIM;
+				object_error(m_context, "Invalid dim count: expected between %d and %d was %d", min, max, m_info.dimcount);
 			}
 			return *this;
 		}
@@ -189,6 +191,7 @@ namespace cvjit {
 		Validate & type(c74::max::t_symbol * a, c74::max::t_symbol * b = nullptr, c74::max::t_symbol * c = nullptr, c74::max::t_symbol * d = nullptr) {
 			if (m_state == JIT_ERR_NONE && !(m_info.type == a || m_info.type == b || m_info.type == c || m_info.type == d)) {
 				m_state = JIT_ERR_MISMATCH_TYPE;
+				object_error(m_context, "Unsupported type");
 			}
 			return *this;
 		}
@@ -205,6 +208,7 @@ namespace cvjit {
 				for (int i = 0; i < m_info.dimcount; i++) {
 					if (m_info.dim[i] < min_size) {
 						m_state = JIT_ERR_MISMATCH_DIM;
+						object_error(m_context, "Matrix too small: dimension %d must be at least %d, was %d", i, min_size, m_info.dim[i]);
 						break;
 					}
 				}

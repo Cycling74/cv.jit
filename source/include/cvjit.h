@@ -270,19 +270,14 @@ namespace cvjit {
 		return "";
 	}
 
-	t_jit_matrix_info resize_matrix(t_object * matrix, int n, ...) {
+	t_jit_matrix_info resize_matrix(t_object * matrix, const std::vector<long> & dims) {
 		t_jit_matrix_info info;
 		jit_object_method(matrix, _jit_sym_getinfo, &info);
-		info.dimcount = std::max(1, n);
+		info.dimcount = c74::max::clamp((int)dims.size(), 1, JIT_MATRIX_MAX_DIMCOUNT);
 
-		va_list vl;
-		va_start(vl, n);
-
-		for (int i = 0; i < n && i < JIT_MATRIX_MAX_DIMCOUNT; i++) {
-			info.dim[i] = va_arg(vl, long);
+		for (int i = 0; i < info.dimcount; i++) {
+			info.dim[i] = dims[i];
 		}
-
-		va_end(vl);
 		
 		jit_object_method(matrix, _jit_sym_setinfo, &info);
 		jit_object_method(matrix, _jit_sym_getinfo, &info);

@@ -10,11 +10,13 @@ cv.jit now uses CMake to generate appropriate projects on macOS and Windows. Aft
 
 On Windows, the following commands will generate a Visual Studio 2017 solution.
 
+(Note that some static libraries used for some externals are very large and require the use of 64-bit toolsets.)
+
 ```
 cd cv.jit;
 mkdir build;
 cd build;
-cmake ../ -G "Visual Studio 15 2017 Win64"
+cmake ../ -G "Visual Studio 15 2017 Win64" -T "host="x64"
 ```
 
 You will now have appropriate Visual Studio projects and solution in the build folder.

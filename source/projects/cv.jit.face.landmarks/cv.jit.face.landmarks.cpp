@@ -72,13 +72,16 @@ struct t_cv_jit_face_landmarks
 			std::string abs_path = cvjit::get_absolute_path(file_name);
 			if (!abs_path.empty()) {
 
+				cv::Ptr<cv::face::Facemark> fm = cv::face::FacemarkLBF::create();
+				model_pool[file_name] = fm;
+				facemark = fm;
+
 				// This takes a long time, run async
 				object_post((t_object *)this, "Loading face landmark model. This may take some time...");
-				std::thread worker = std::thread([abs_path, file_name, this]() {
-					cv::Ptr<cv::face::Facemark> fm = cv::face::FacemarkLBF::create();
+				std::thread worker = std::thread([fm, this, file_name, abs_path]() {
+					
 					fm->loadModel(abs_path);
-					model_pool[file_name] = fm;
-					facemark = fm;
+					
 					object_post((t_object *)this, "Finished loading %s.", file_name.c_str());
 					ready = 1;
 				});

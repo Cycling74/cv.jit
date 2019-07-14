@@ -193,7 +193,7 @@ t_jit_err cv_jit_face_landmarks_matrix_calc(t_cv_jit_face_landmarks *x, void *in
 				if (landmarks.size() > 0 && landmarks[0].size() > 0) {
 
 					// Change the size of the output matrix
-					t_jit_matrix_info out_minfo = cvjit::resize_matrix(out_matrix, (long)landmarks[0].size(), (long)landmarks.size());
+					t_jit_matrix_info out_minfo = cvjit::resize_matrix(out_matrix, { (long)landmarks[0].size(), (long)landmarks.size() });
 
 					// Get the output data pointer
 					char *out_bp;
@@ -216,7 +216,7 @@ t_jit_err cv_jit_face_landmarks_matrix_calc(t_cv_jit_face_landmarks *x, void *in
 
 				else {
 					// No landmarks found!
-					cvjit::resize_matrix(out_matrix, 1);
+					cvjit::resize_matrix(out_matrix, { 1 });
 				}
 			}
 			catch (cv::Exception & exception) {

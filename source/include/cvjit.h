@@ -137,6 +137,26 @@ namespace cvjit {
 				update_info();
 			}
 		}
+
+		template <typename T>
+		T read(unsigned int plane, unsigned int x, unsigned int y) {
+			if (m_info.dimcount >= 2 && plane < m_info.planecount) {
+				unsigned char * p = m_data + y * m_minfo.dimstride[1] + x * m_minfo.dimstride[0];
+				if (m_info.type == _jit_sym_char) {
+					return p[plane];
+				}
+				else if (m_info.type == _jit_sym_long) {
+					return ((int32_t *)p)[plane];
+				}
+				else if (m_info.type == _jit_sym_float32) {
+					return ((float *)p)[plane];
+				}
+				else if (m_info.type == _jit_sym_float64) {
+					return ((double *)p)[plane];
+				}
+			}
+			return 0;
+		}
 	};
 
 	class Savelock {

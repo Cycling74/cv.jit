@@ -178,16 +178,16 @@ t_jit_err cv_jit_unproject_set_format(t_cv_jit_unproject *x, void *attr, long ac
 		}
 		else if (av[0].a_type == A_SYM) {
 			t_symbol * sym = atom_getsym(av);
-			for (int i = 0; i < ROTATION_FORMAT_COUNT; i++) {
-				if (sym == rotation_formats[i]) {
-					x->format = av[0];
-					return JIT_ERR_NONE;
-				}
-			}
-			object_error((t_object *)x, "Invalid format: %s", sym->s_name);
+for (int i = 0; i < ROTATION_FORMAT_COUNT; i++) {
+	if (sym == rotation_formats[i]) {
+		x->format = av[0];
+		return JIT_ERR_NONE;
+	}
+}
+object_error((t_object *)x, "Invalid format: %s", sym->s_name);
 		}
 		else {
-			object_error((t_object *)x, "Invalid format, please provide a format name or number.");
+		object_error((t_object *)x, "Invalid format, please provide a format name or number.");
 		}
 	}
 	return JIT_ERR_NONE;
@@ -234,7 +234,7 @@ void read_points(char * ptr, t_symbol * type, long stride, std::vector<T> & poin
 
 inline cv::Vec3d euler_angles(cv::Mat & mat) {
 	const float sy = std::sqrt(
-		mat.at<double>(0, 0) * mat.at<double>(0, 0) + 
+		mat.at<double>(0, 0) * mat.at<double>(0, 0) +
 		mat.at<double>(1, 0) * mat.at<double>(1, 0));
 
 	if (sy > 1e-6)
@@ -271,7 +271,7 @@ t_jit_err cv_jit_unproject_matrix_calc(t_cv_jit_unproject *x, void *inputs, void
 	t_object * reference_point_matrix = (t_object *)jit_object_method(inputs, _jit_sym_getindex, 1);
 
 	if (x && image_point_matrix && reference_point_matrix) {
-		cvjit::Savelock locks[] = {image_point_matrix, reference_point_matrix};
+		cvjit::Savelock locks[] = { image_point_matrix, reference_point_matrix };
 
 		// Make sure the plane counts are correct
 		cvjit::JitterMatrix image_points(image_point_matrix);
@@ -280,6 +280,19 @@ t_jit_err cv_jit_unproject_matrix_calc(t_cv_jit_unproject *x, void *inputs, void
 		if (image_points.get_info().planecount != 2) {
 			object_error((t_object *)x, "Image point matrix must have 2 planes");
 			return JIT_ERR_MISMATCH_PLANE;
+		}
+
+		// Skip if image point is empty
+		if (image_points.get_info().dim[0] <= 1 && image_points.get_info().dim[1] <= 1) {
+			if (image_points.read<double>(0, 0, 0) == 0.0 && image_points.read<double>(1, 0, 0) == 0.0) {
+				for (int i = 0; i < TRANSLATION_VEC_MAX_SIZE; i++) {
+					atom_setfloat(x->translation + i, 0.0);
+				}
+				for (int i = 0; i < ROTATION_VEC_MAX_SIZE; i++) {
+					atom_setfloat(x->rotation + i, 0.0);
+				}
+				return JIT_ERR_NONE;
+			}
 		}
 
 		if (reference_points.get_info().planecount != 3) {

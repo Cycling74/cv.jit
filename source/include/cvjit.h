@@ -123,7 +123,7 @@ namespace cvjit {
 				const std::vector<long> dims = {dim0, other_dims...};
 				m_info.dimcount = count;
 				for (int i = 0; i < count && i < JIT_MATRIX_MAX_DIMCOUNT; i++) {
-					m_info.dim[i] = std::max(1, dims[i]);
+					m_info.dim[i] = std::max(1L, (long)dims[i]);
 				}
 
 				update_info();
@@ -140,10 +140,10 @@ namespace cvjit {
 
 		template <typename T>
 		T read(unsigned int plane, unsigned int x, unsigned int y) {
-			if (m_info.dimcount >= 2 && plane < m_info.planecount) {
-				unsigned char * p = m_data + y * m_minfo.dimstride[1] + x * m_minfo.dimstride[0];
+			if (m_info.dimcount >= 2 && plane < (unsigned int)m_info.planecount) {
+				char * p = m_data + y * m_info.dimstride[1] + x * m_info.dimstride[0];
 				if (m_info.type == _jit_sym_char) {
-					return p[plane];
+					return ((uint8_t *)p)[plane];
 				}
 				else if (m_info.type == _jit_sym_long) {
 					return ((int32_t *)p)[plane];

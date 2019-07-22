@@ -296,6 +296,83 @@ namespace cvjit {
 		return "";
 	}
 
+	template <typename T, typename M> M get_member_type(M T::*);
+	template <typename T, typename M> T get_class_type(M T::*);
+
+	template <typename T, typename R, R T::*M>
+	constexpr R * member_offset() {
+		return &((((T*)0)->*M));
+	}
+
+#define CVJIT_CALCOFFSET(member) (cvjit::member_offset<decltype(cvjit::get_class_type(member)), decltype(cvjit::get_member_type(member)), member>())
+
+	struct AttributeManager {
+	private:
+		void * m_class;
+
+		template <typename T>
+		inline t_symbol * type_sym() {
+			static_assert(false, "Invalid argument type, must be unsigned char, long, float or double.");
+		}
+
+		template <>
+		inline static t_symbol * type_sym<unsigned char>() {
+			return _jit_sym_char;
+		}
+
+		template <>
+		inline static t_symbol * type_sym<long>() {
+			return _jit_sym_long;
+		}
+
+		template <>
+		inline static t_symbol * type_sym<float>() {
+			return _jit_sym_float32;
+		}
+
+		template <>
+		inline static t_symbol * type_sym<double>() {
+			return _jit_sym_float64;
+		}
+
+	public:
+		AttributeManager() = delete;
+		AttributeManager(void * jitter_class) : m_class(jitter_class) {}
+
+		template <typename T>
+		void add(cvjit::cstring name, T * offset) {
+			t_object * attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, name, type_sym<T>(), cvjit::Flags::get_set,
+				(method)0L, (method)0L, (t_ptr_int)offset);
+			jit_class_addattr(m_class, attr);
+		}
+
+		template <typename T>
+		void add(cvjit::cstring name, T min, T * offset) {
+			t_object * attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, name, type_sym<T>(), cvjit::Flags::get_set,
+				(method)0L, (method)0L, (t_ptr_int)offset);
+			jit_attr_addfilterset_clip(attr, min, 0, true, false);
+			jit_class_addattr(m_class, attr);
+		}
+
+		template <typename T>
+		void add(cvjit::cstring name, T min, T max, T * offset) {
+			t_object * attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, name, type_sym<T>(), cvjit::Flags::get_set,
+				(method)0L, (method)0L, (t_ptr_int)offset);
+			jit_attr_addfilterset_clip(attr, min, max, true, true);
+			jit_class_addattr(m_class, attr);
+		}
+
+		template <typename T>
+		void add_bool(cvjit::cstring name, T * offset) {
+			t_object * attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, name, type_sym<T>(), cvjit::Flags::get_set,
+				(method)0L, (method)0L, (t_ptr_int)offset);
+			jit_attr_addfilterset_clip(attr, 0, 1, true, true);
+			jit_class_addattr(m_class, attr);
+		}
+
+
+	};
+
 	template <typename T>
 	t_jit_object * normalize_attr() {
 		t_object * attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "normalize", _jit_sym_long, cvjit::Flags::get_set,

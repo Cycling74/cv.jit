@@ -44,7 +44,6 @@ enum FeaturesMethod {
 	AKAZE = 0,
 	BRISK,
 	KAZE,
-	MSER,
 	ORB,
 	FEATURE_METHOD_COUNT
 };
@@ -53,7 +52,6 @@ t_symbol * feature_methods[FEATURE_METHOD_COUNT] = {
 	gensym("AKAZE"),
 	gensym("BRISK"),
 	gensym("KAZE"),
-	gensym("MSER"),
 	gensym("ORB")
 };
 
@@ -77,10 +75,7 @@ struct t_cv_jit_features_find
 	// Detector parameters
 	long extended;
 	long upright;
-	long delta;
 	long levels;
-	long minarea;
-	long maxarea;
 	long maxcount;
 	long octaveLayers;
 	long octaves;
@@ -166,15 +161,12 @@ t_jit_err cv_jit_features_find_init(void)
 	attributes.add_bool("extended", CVJIT_CALCOFFSET(&t_cv_jit_features_find::extended));
 	attributes.add_bool("upright", CVJIT_CALCOFFSET(&t_cv_jit_features_find::upright));
 
-	attributes.add("delta", 1L, 255L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::delta));
 	attributes.add("levels", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::levels));
-	attributes.add("minarea", 0L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::minarea));
-	attributes.add("maxarea", 0L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::maxarea));
 	attributes.add("maxcount", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::maxcount));
 	attributes.add("octaveLayers", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::octaveLayers));
 	attributes.add("octaves", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::octaves));
 	attributes.add("patchsize", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::patchsize));
-	attributes.add("scalefactor", 1.f, CVJIT_CALCOFFSET(&t_cv_jit_features_find::scalefactor));
+	attributes.add("scalefactor", 1.f, 2.66f, CVJIT_CALCOFFSET(&t_cv_jit_features_find::scalefactor));
 	attributes.add("threshold", 0.001f, CVJIT_CALCOFFSET(&t_cv_jit_features_find::threshold));
 			
 	jit_class_register(_cv_jit_features_find_class);
@@ -194,9 +186,6 @@ inline void set_detector(t_cv_jit_features_find *x, FeaturesMethod method)
 		break;
 	case KAZE:
 		x->detector = cv::KAZE::create();
-		break;
-	case MSER:
-		x->detector = cv::MSER::create();
 		break;
 	case ORB:
 		x->detector = cv::ORB::create();
@@ -297,14 +286,6 @@ t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inpu
 						KAZE->setUpright(x->upright != 0);
 						break;
 					}
-					case MSER:
-					{
-						cv::Ptr<cv::MSER> MSER = x->detector.dynamicCast<cv::MSER>();
-						MSER->setDelta(x->delta);
-						MSER->setMaxArea(x->maxarea);
-						MSER->setMinArea(x->minarea);
-						break;
-					}
 					case ORB:
 					{
 						cv::Ptr<cv::ORB> ORB = x->detector.dynamicCast<cv::ORB>();
@@ -383,10 +364,7 @@ t_cv_jit_features_find *cv_jit_features_find_new(void)
 
 		x->extended = 0;
 		x->upright = 0;
-		x->delta = 5;
 		x->levels = 8;
-		x->minarea = 60;
-		x->maxarea = 14400;
 		x->maxcount = 500;
 		x->octaveLayers = 4;
 		x->octaves = 4;

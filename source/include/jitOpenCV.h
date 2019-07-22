@@ -32,12 +32,16 @@ in Jitter externals.
 */
 
 
+#ifndef CVJIT_JIT_OPENCV_H
+#define CVJIT_JIT_OPENCV_H
 
-#include <opencv2/opencv.hpp>
+
 #include "c74_jitter.h"
 
 #ifdef CVJIT_LEGACY
 #include "cv.h"
+#else
+#include <opencv2/opencv.hpp>
 #endif
 
 namespace cvjit {
@@ -216,5 +220,7 @@ void cvMat2Jitter(CvMat *mat, void *jitMat)
 	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_setinfo_ex, (void*)&info);
 	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_data, (void*)mat->data.ptr);
 }
+
+#endif
 
 #endif

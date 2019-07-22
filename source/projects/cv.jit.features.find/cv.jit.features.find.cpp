@@ -61,6 +61,9 @@ t_jit_err cv_jit_features_find_init(void)
 {
 	constexpr int INPUT_COUNT = 1;
 	constexpr int OUTPUT_COUNT = 1; // Locations and descriptions
+#if defined(_DEBUG) || defined(DEBUG) 
+	object_post(nullptr, "cv.jit.features.find\nBuilt on %s at %s", __DATE__, __TIME__);
+#endif
 
 	t_jit_object *attr, *mop, *input, *output;
 

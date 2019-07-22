@@ -49,11 +49,6 @@ extern "C"
 #endif		 	
 void ext_main(void* unused)
 {
-
-#if defined(_DEBUG) || defined(DEBUG) 
-	object_post(nullptr, "cv.jit.features.find\nBuilt on %s at %s", __DATE__, __TIME__);
-#endif
-
 	// Generate required symbols
 	ps_cv_jit_features_find = gensym("cv_jit_features_find");
 

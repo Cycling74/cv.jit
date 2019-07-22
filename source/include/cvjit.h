@@ -291,6 +291,14 @@ namespace cvjit {
 		return "";
 	}
 
+	template <typename T>
+	t_jit_object * normalize_attr() {
+		t_object * attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "normalize", _jit_sym_long, cvjit::Flags::get_set,
+			(method)0L, (method)0L, calcoffset(T, normalize));
+		jit_attr_addfilterset_clip(attr, 0, 1, true, true);
+		return attr;
+	}
+
 	t_jit_matrix_info resize_matrix(t_object * matrix, const std::vector<long> & dims) {
 		t_jit_matrix_info info;
 		jit_object_method(matrix, _jit_sym_getinfo, &info);

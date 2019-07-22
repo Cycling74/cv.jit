@@ -74,6 +74,21 @@ struct t_cv_jit_features_find
 	t_atom method;
 	long normalize;
 
+	// Detector parameters
+	long extended;
+	long upright;
+	long delta;
+	long levels;
+	long minarea;
+	long maxarea;
+	long maxcount;
+	long octaveLayers;
+	long octaves;
+	long patchsize;
+	float scalefactor;
+	float threshold;
+	
+	FeaturesMethod _method;
 	cv::Ptr<cv::Feature2D> detector;
 };
 
@@ -142,7 +157,25 @@ t_jit_err cv_jit_features_find_init(void)
 		(method)0L, (method)cv_jit_features_find_set_method, calcoffset(t_cv_jit_features_find, method));
 	jit_class_addattr(_cv_jit_features_find_class, attr);
 
+	// The normalize attribute
 	jit_class_addattr(_cv_jit_features_find_class, cvjit::normalize_attr<t_cv_jit_features_find>());
+
+	// Detector attributes
+	cvjit::AttributeManager attributes(_cv_jit_features_find_class);
+
+	attributes.add_bool("extended", CVJIT_CALCOFFSET(&t_cv_jit_features_find::extended));
+	attributes.add_bool("upright", CVJIT_CALCOFFSET(&t_cv_jit_features_find::upright));
+
+	attributes.add("delta", 1L, 255L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::delta));
+	attributes.add("levels", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::levels));
+	attributes.add("minarea", 0L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::minarea));
+	attributes.add("maxarea", 0L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::maxarea));
+	attributes.add("maxcount", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::maxcount));
+	attributes.add("octaveLayers", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::octaveLayers));
+	attributes.add("octaves", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::octaves));
+	attributes.add("patchsize", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::patchsize));
+	attributes.add("scalefactor", 1.f, CVJIT_CALCOFFSET(&t_cv_jit_features_find::scalefactor));
+	attributes.add("threshold", 0.001f, CVJIT_CALCOFFSET(&t_cv_jit_features_find::threshold));
 			
 	jit_class_register(_cv_jit_features_find_class);
 
@@ -151,6 +184,7 @@ t_jit_err cv_jit_features_find_init(void)
 
 inline void set_detector(t_cv_jit_features_find *x, FeaturesMethod method)
 {
+	x->_method = method;
 	switch (method) {
 	case AKAZE:
 		x->detector = cv::AKAZE::create();
@@ -236,6 +270,53 @@ t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inpu
 
 			try {
 
+				// Setup the parameters
+				switch (x->_method) {
+					case AKAZE:
+					{
+						cv::Ptr<cv::AKAZE> AKAZE = x->detector.dynamicCast<cv::AKAZE>();
+						AKAZE->setThreshold(x->threshold);
+						AKAZE->setNOctaves(x->octaves);
+						AKAZE->setNOctaveLayers(x->octaveLayers);
+						break;
+					}
+					case BRISK:
+					{
+						cv::Ptr<cv::BRISK> BRISK = x->detector.dynamicCast<cv::BRISK>();
+						BRISK->setThreshold(static_cast<int>(x->threshold * 255.f));
+						BRISK->setOctaves(x->octaves);
+						break;
+					}
+					case KAZE:
+					{
+						cv::Ptr<cv::KAZE> KAZE = x->detector.dynamicCast<cv::KAZE>();
+						KAZE->setExtended(x->extended != 0);
+						KAZE->setNOctaveLayers(x->octaveLayers);
+						KAZE->setNOctaves(x->octaves);
+						KAZE->setThreshold(x->threshold);
+						KAZE->setUpright(x->upright != 0);
+						break;
+					}
+					case MSER:
+					{
+						cv::Ptr<cv::MSER> MSER = x->detector.dynamicCast<cv::MSER>();
+						MSER->setDelta(x->delta);
+						MSER->setMaxArea(x->maxarea);
+						MSER->setMinArea(x->minarea);
+						break;
+					}
+					case ORB:
+					{
+						cv::Ptr<cv::ORB> ORB = x->detector.dynamicCast<cv::ORB>();
+						ORB->setFastThreshold(static_cast<int>(x->threshold * 255.f));
+						ORB->setMaxFeatures(x->maxcount);
+						ORB->setScaleFactor(x->scalefactor);
+						ORB->setPatchSize(x->patchsize);
+						ORB->setEdgeThreshold(x->patchsize);
+						break;
+					}
+				}
+
 				// Wrap the source image in an OpenCV Mat
 				cv::Mat source_image = source;
 
@@ -299,6 +380,19 @@ t_cv_jit_features_find *cv_jit_features_find_new(void)
 		atom_setsym(&x->method, gensym("ORB"));
 		set_detector(x, ORB);
 		x->normalize = 0;
+
+		x->extended = 0;
+		x->upright = 0;
+		x->delta = 5;
+		x->levels = 8;
+		x->minarea = 60;
+		x->maxarea = 14400;
+		x->maxcount = 500;
+		x->octaveLayers = 4;
+		x->octaves = 4;
+		x->patchsize = 31;
+		x->scalefactor = 1.2f;
+		x->threshold = 0.01f;
 	}
 
 	return x;

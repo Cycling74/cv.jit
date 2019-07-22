@@ -11,14 +11,12 @@
 #include <string>
 #include <vector>
 
+#include "jitOpenCV.h"
+
 #include "c74_jitter.h"
 using namespace c74::max;
 
-#ifdef OPENCV
-#ifndef _CV_H_
-#include "cv.h"
-#endif
-#endif
+
 
 /*Error handling*/
 #ifdef JITTER
@@ -116,6 +114,9 @@ namespace cvjit {
 		template <typename T>
 		T * get_data() { return (T *)m_data; }
 
+		template <typename T>
+		T * get_data(long row, long col = 0) { return (T *)(m_data + row * m_info.dimstride[1] + col * m_info.dimstride[0]); }
+
 		template <typename... Args>
 		void set_size(long dim0, Args... other_dims) {
 			if (m_matrix) {
@@ -156,6 +157,10 @@ namespace cvjit {
 				}
 			}
 			return 0;
+		}
+
+		operator cv::Mat() {
+			return cvjit::wrapJitterMatrix(m_matrix, m_info, m_data);
 		}
 	};
 

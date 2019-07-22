@@ -1,5 +1,5 @@
-#ifndef CVJIT
-#define CVJIT
+#ifndef CVJIT_H
+#define CVJIT_H
 
 //Parameters
 #define JITTER
@@ -316,4 +316,4 @@ namespace cvjit {
 }
 
 
-#endif //#ifndef CVJIT
+#endif //#ifndef CVJIT_H

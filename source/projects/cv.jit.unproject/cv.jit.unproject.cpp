@@ -178,16 +178,16 @@ t_jit_err cv_jit_unproject_set_format(t_cv_jit_unproject *x, void *attr, long ac
 		}
 		else if (av[0].a_type == A_SYM) {
 			t_symbol * sym = atom_getsym(av);
-for (int i = 0; i < ROTATION_FORMAT_COUNT; i++) {
-	if (sym == rotation_formats[i]) {
-		x->format = av[0];
-		return JIT_ERR_NONE;
-	}
-}
-object_error((t_object *)x, "Invalid format: %s", sym->s_name);
+			for (int i = 0; i < ROTATION_FORMAT_COUNT; i++) {
+				if (sym == rotation_formats[i]) {
+					x->format = av[0];
+					return JIT_ERR_NONE;
+				}
+			}
+			object_error((t_object *)x, "Invalid format: %s", sym->s_name);
 		}
 		else {
-		object_error((t_object *)x, "Invalid format, please provide a format name or number.");
+			object_error((t_object *)x, "Invalid format, please provide a format name or number.");
 		}
 	}
 	return JIT_ERR_NONE;
@@ -233,7 +233,7 @@ void read_points(char * ptr, t_symbol * type, long stride, std::vector<T> & poin
 }
 
 inline cv::Vec3d euler_angles(cv::Mat & mat) {
-	const float sy = std::sqrt(
+	const double sy = std::sqrt(
 		mat.at<double>(0, 0) * mat.at<double>(0, 0) +
 		mat.at<double>(1, 0) * mat.at<double>(1, 0));
 

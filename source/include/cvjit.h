@@ -187,6 +187,7 @@ namespace cvjit {
 		c74::max::t_jit_err m_state{ JIT_ERR_NONE };
 	public:
 		Validate(void * context, c74::max::t_jit_matrix_info const & info) : m_context(static_cast<c74::max::t_object *>(context)), m_info(info) {}
+		Validate(void * context, JitterMatrix & mat) : m_context(static_cast<c74::max::t_object *>(context)), m_info(mat.get_info()) {}
 
 		Validate & planecount(int count) {
 			if (m_state == JIT_ERR_NONE && count != m_info.planecount) {

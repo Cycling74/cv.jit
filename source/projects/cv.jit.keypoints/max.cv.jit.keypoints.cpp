@@ -1,8 +1,8 @@
 /*
-max.cv.jit.faces
+max.cv.jit.keypoints
 	
 
-Copyright 2010, Jean-Marc Pelletier
+Copyright 2019, Jean-Marc Pelletier
 jmp@jmpelletier.com
 
 This file is part of cv.jit.

@@ -34,38 +34,14 @@ in Jitter externals.
 
 #include "jitOpenCV.h"
 #include "cvjit.h"
+#include "cvjit_keypoints.h"
 
 #include <opencv2/objdetect.hpp>
-#include <opencv2/face.hpp>
 
 using namespace c74::max;
 
-enum FeaturesMethod {
-	AKAZE = 0,
-	BRISK,
-	KAZE,
-	ORB,
-	FEATURE_METHOD_COUNT
-};
 
-t_symbol * feature_methods[FEATURE_METHOD_COUNT] = {
-	gensym("AKAZE"),
-	gensym("BRISK"),
-	gensym("KAZE"),
-	gensym("ORB")
-};
-
-enum KeypointField {
-	KEYPOINT_X = 0,
-	KEYPOINT_Y,
-	KEYPOINT_SIZE,
-	KEYPOINT_ANGLE,
-	KEYPOINT_RESPONSE,
-	KEYPOINT_OCTAVE,
-	KEYPOINT_FIELD_COUNT
-};
-
-struct t_cv_jit_features_find
+struct t_cv_jit_keypoints
 {
 	t_object ob;
 
@@ -83,34 +59,34 @@ struct t_cv_jit_features_find
 	float scalefactor;
 	float threshold;
 	
-	FeaturesMethod _method;
+	cvjit::KeypointMethod _method;
 	cv::Ptr<cv::Feature2D> detector;
 };
 
-void *_cv_jit_features_find_class;
+void *_cv_jit_keypoints_class;
 
-t_jit_err cv_jit_features_find_init(void); 
-t_cv_jit_features_find *cv_jit_features_find_new(void);
-void cv_jit_features_find_free(t_cv_jit_features_find *x);
-t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inputs, void *outputs);
+t_jit_err cv_jit_keypoints_init(void); 
+t_cv_jit_keypoints *cv_jit_keypoints_new(void);
+void cv_jit_keypoints_free(t_cv_jit_keypoints *x);
+t_jit_err cv_jit_keypoints_matrix_calc(t_cv_jit_keypoints *x, void *inputs, void *outputs);
 
 // Attributes
-t_jit_err cv_jit_features_find_set_method(t_cv_jit_features_find *x, void *attr, long ac, t_atom *av);
+t_jit_err cv_jit_keypoints_set_method(t_cv_jit_keypoints *x, void *attr, long ac, t_atom *av);
 
-t_jit_err cv_jit_features_find_init(void) 
+t_jit_err cv_jit_keypoints_init(void) 
 {
 #if defined(_DEBUG) || defined(DEBUG) 
-	object_post(nullptr, "cv.jit.features.find\nBuilt on %s at %s", __DATE__, __TIME__);
+	object_post(nullptr, "cv.jit.keypoints\nBuilt on %s at %s", __DATE__, __TIME__);
 #endif
 
 	constexpr int INPUT_COUNT = 1;
 	constexpr int OUTPUT_COUNT = 2; // Keypoints and descriptions
-	constexpr int KEYPOINT_PLANECOUNT = KEYPOINT_FIELD_COUNT;
+	constexpr int KEYPOINT_PLANECOUNT = cvjit::KEYPOINT_FIELD_COUNT;
 
 	t_symbol * atsym  = gensym("jit_attr_offset");
 	
-	_cv_jit_features_find_class = jit_class_new("cv_jit_features_find",(method)cv_jit_features_find_new, (method)cv_jit_features_find_free,
-		sizeof(t_cv_jit_features_find), 0L); 
+	_cv_jit_keypoints_class = jit_class_new("cv_jit_keypoints",(method)cv_jit_keypoints_new, (method)cv_jit_keypoints_free,
+		sizeof(t_cv_jit_keypoints), 0L); 
 
 	//add mop
 	t_jit_object * mop = (t_jit_object *)jit_object_new(_jit_sym_jit_mop, INPUT_COUNT, OUTPUT_COUNT);
@@ -121,7 +97,7 @@ t_jit_err cv_jit_features_find_init(void)
    	jit_mop_output_nolink(mop, 1); //Turn off output linking so that output matrix does not adapt to input
 	jit_mop_output_nolink(mop, 2);
 
-	jit_class_addadornment(_cv_jit_features_find_class, mop);
+	jit_class_addadornment(_cv_jit_keypoints_class, mop);
 
 	jit_attr_setlong(input, _jit_sym_minplanecount, 1);
 	jit_attr_setlong(input, _jit_sym_maxplanecount, 1);
@@ -143,75 +119,75 @@ t_jit_err cv_jit_features_find_init(void)
    	
 
 	//add methods
-	jit_class_addmethod(_cv_jit_features_find_class, (method)cv_jit_features_find_matrix_calc, "matrix_calc", A_CANT, 0L);
+	jit_class_addmethod(_cv_jit_keypoints_class, (method)cv_jit_keypoints_matrix_calc, "matrix_calc", A_CANT, 0L);
 
 	//add attributes
 	t_jit_object * attr;
 
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "method", _jit_sym_atom, cvjit::Flags::get_set,
-		(method)0L, (method)cv_jit_features_find_set_method, calcoffset(t_cv_jit_features_find, method));
-	jit_class_addattr(_cv_jit_features_find_class, attr);
+		(method)0L, (method)cv_jit_keypoints_set_method, calcoffset(t_cv_jit_keypoints, method));
+	jit_class_addattr(_cv_jit_keypoints_class, attr);
 
 	// The normalize attribute
-	jit_class_addattr(_cv_jit_features_find_class, cvjit::normalize_attr<t_cv_jit_features_find>());
+	jit_class_addattr(_cv_jit_keypoints_class, cvjit::normalize_attr<t_cv_jit_keypoints>());
 
 	// Detector attributes
-	cvjit::AttributeManager attributes(_cv_jit_features_find_class);
+	cvjit::AttributeManager attributes(_cv_jit_keypoints_class);
 
-	attributes.add_bool("extended", CVJIT_CALCOFFSET(&t_cv_jit_features_find::extended));
-	attributes.add_bool("upright", CVJIT_CALCOFFSET(&t_cv_jit_features_find::upright));
+	attributes.add_bool("extended", CVJIT_CALCOFFSET(&t_cv_jit_keypoints::extended));
+	attributes.add_bool("upright", CVJIT_CALCOFFSET(&t_cv_jit_keypoints::upright));
 
-	attributes.add("levels", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::levels));
-	attributes.add("maxcount", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::maxcount));
-	attributes.add("octaveLayers", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::octaveLayers));
-	attributes.add("octaves", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::octaves));
-	attributes.add("patchsize", 1L, CVJIT_CALCOFFSET(&t_cv_jit_features_find::patchsize));
-	attributes.add("scalefactor", 1.f, 2.66f, CVJIT_CALCOFFSET(&t_cv_jit_features_find::scalefactor));
-	attributes.add("threshold", 0.001f, CVJIT_CALCOFFSET(&t_cv_jit_features_find::threshold));
+	attributes.add("levels", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::levels));
+	attributes.add("maxcount", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::maxcount));
+	attributes.add("octaveLayers", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::octaveLayers));
+	attributes.add("octaves", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::octaves));
+	attributes.add("patchsize", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::patchsize));
+	attributes.add("scalefactor", 1.f, 2.66f, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::scalefactor));
+	attributes.add("threshold", 0.001f, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::threshold));
 			
-	jit_class_register(_cv_jit_features_find_class);
+	jit_class_register(_cv_jit_keypoints_class);
 
 	return JIT_ERR_NONE;
 }
 
-inline void set_detector(t_cv_jit_features_find *x, FeaturesMethod method)
+inline void set_detector(t_cv_jit_keypoints *x, cvjit::KeypointMethod method)
 {
 	x->_method = method;
 	switch (method) {
-	case AKAZE:
+	case cvjit::AKAZE:
 		x->detector = cv::AKAZE::create();
 		break;
-	case BRISK:
+	case cvjit::BRISK:
 		x->detector = cv::BRISK::create();
 		break;
-	case KAZE:
+	case cvjit::KAZE:
 		x->detector = cv::KAZE::create();
 		break;
-	case ORB:
+	case cvjit::ORB:
 		x->detector = cv::ORB::create();
 		break;
 	}
 }
 
-t_jit_err cv_jit_features_find_set_method(t_cv_jit_features_find *x, void *attr, long ac, t_atom *av)
+t_jit_err cv_jit_keypoints_set_method(t_cv_jit_keypoints *x, void *attr, long ac, t_atom *av)
 {
 	if (ac > 0) {
 		if (av[0].a_type == A_LONG || av[0].a_type == A_FLOAT) {
 			t_atom_long val = atom_getlong(av);
-			if (val < 0 || val >= FEATURE_METHOD_COUNT) {
-				object_error((t_object *)x, "Invalid method, make sure value is between 0 and %d.", FEATURE_METHOD_COUNT - 1);
+			if (val < 0 || val >= cvjit::KEYPOINT_METHOD_COUNT) {
+				object_error((t_object *)x, "Invalid method, make sure value is between 0 and %d.", cvjit::KEYPOINT_METHOD_COUNT - 1);
 			}
 			else {
-				atom_setsym(&x->method, feature_methods[val]);
-				set_detector(x, static_cast<FeaturesMethod>(val));
+				atom_setsym(&x->method, cvjit::keypoint_methods[val]);
+				set_detector(x, static_cast<cvjit::KeypointMethod>(val));
 			}
 		}
 		else if (av[0].a_type == A_SYM) {
 			t_symbol * sym = atom_getsym(av);
-			for (int i = 0; i < FEATURE_METHOD_COUNT; i++) {
-				if (sym == feature_methods[i]) {
+			for (int i = 0; i < cvjit::KEYPOINT_METHOD_COUNT; i++) {
+				if (sym == cvjit::keypoint_methods[i]) {
 					x->method = av[0];
-					set_detector(x, static_cast<FeaturesMethod>(i));
+					set_detector(x, static_cast<cvjit::KeypointMethod>(i));
 					return JIT_ERR_NONE;
 				}
 			}
@@ -224,10 +200,9 @@ t_jit_err cv_jit_features_find_set_method(t_cv_jit_features_find *x, void *attr,
 	return JIT_ERR_NONE;
 }
 
-t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inputs, void *outputs)
+t_jit_err cv_jit_keypoints_matrix_calc(t_cv_jit_keypoints *x, void *inputs, void *outputs)
 {
 	cv::Mat source;
-	std::vector<cv::Rect> faces;
 
 	// Check to see that detector has been set
 	if (x->detector.empty()) {
@@ -250,7 +225,7 @@ t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inpu
 		cvjit::JitterMatrix descriptors(descriptor_matrix);
 		
 		//Make sure input is of proper format
-		t_jit_err err = cvjit::Validate(x, source.get_info())
+		t_jit_err err = cvjit::Validate(x, source)
 			.type(_jit_sym_char)
 			.planecount(1)
 			.dimcount(2);
@@ -261,7 +236,7 @@ t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inpu
 
 				// Setup the parameters
 				switch (x->_method) {
-					case AKAZE:
+					case cvjit::AKAZE:
 					{
 						cv::Ptr<cv::AKAZE> AKAZE = x->detector.dynamicCast<cv::AKAZE>();
 						AKAZE->setThreshold(x->threshold);
@@ -269,14 +244,14 @@ t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inpu
 						AKAZE->setNOctaveLayers(x->octaveLayers);
 						break;
 					}
-					case BRISK:
+					case cvjit::BRISK:
 					{
 						cv::Ptr<cv::BRISK> BRISK = x->detector.dynamicCast<cv::BRISK>();
 						BRISK->setThreshold(static_cast<int>(x->threshold * 255.f));
 						BRISK->setOctaves(x->octaves);
 						break;
 					}
-					case KAZE:
+					case cvjit::KAZE:
 					{
 						cv::Ptr<cv::KAZE> KAZE = x->detector.dynamicCast<cv::KAZE>();
 						KAZE->setExtended(x->extended != 0);
@@ -286,7 +261,7 @@ t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inpu
 						KAZE->setUpright(x->upright != 0);
 						break;
 					}
-					case ORB:
+					case cvjit::ORB:
 					{
 						cv::Ptr<cv::ORB> ORB = x->detector.dynamicCast<cv::ORB>();
 						ORB->setFastThreshold(static_cast<int>(x->threshold * 255.f));
@@ -328,16 +303,16 @@ t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inpu
 				const float y_scale = x->normalize ? 1.f / (float)source.get_info().dim[1] : 1.f;
 				const float size_scale = std::min(x_scale, y_scale);
 
-				for (long int i = 0; i < feature_count; i++) {
+				for (long i = 0; i < feature_count; i++) {
 					float * kp = keypoints.get_data<float>(i);
 					char * desc = descriptors.get_data<char>(i);
 					cv::KeyPoint const & p = keypointsVec.at(i);
-					kp[KEYPOINT_X] = p.pt.x * x_scale;
-					kp[KEYPOINT_Y] = p.pt.y * y_scale;
-					kp[KEYPOINT_SIZE] = p.size * size_scale;
-					kp[KEYPOINT_ANGLE] = p.angle;
-					kp[KEYPOINT_RESPONSE] = p.response;
-					kp[KEYPOINT_OCTAVE] = static_cast<float>(p.octave);
+					kp[cvjit::KEYPOINT_X] = p.pt.x * x_scale;
+					kp[cvjit::KEYPOINT_Y] = p.pt.y * y_scale;
+					kp[cvjit::KEYPOINT_SIZE] = p.size * size_scale;
+					kp[cvjit::KEYPOINT_ANGLE] = p.angle;
+					kp[cvjit::KEYPOINT_RESPONSE] = p.response;
+					kp[cvjit::KEYPOINT_OCTAVE] = static_cast<float>(p.octave);
 
 					sysmem_copyptr(descriptorsMat.ptr(i), desc, descriptor_size);
 				}
@@ -354,12 +329,12 @@ t_jit_err cv_jit_features_find_matrix_calc(t_cv_jit_features_find *x, void *inpu
 	return JIT_ERR_NONE;
 }
 
-t_cv_jit_features_find *cv_jit_features_find_new(void)
+t_cv_jit_keypoints *cv_jit_keypoints_new(void)
 {
-	t_cv_jit_features_find *x = (t_cv_jit_features_find *)jit_object_alloc(_cv_jit_features_find_class);
+	t_cv_jit_keypoints *x = (t_cv_jit_keypoints *)jit_object_alloc(_cv_jit_keypoints_class);
 	if (x) {
 		atom_setsym(&x->method, gensym("ORB"));
-		set_detector(x, ORB);
+		set_detector(x, cvjit::ORB);
 		x->normalize = 0;
 
 		x->extended = 0;
@@ -376,7 +351,7 @@ t_cv_jit_features_find *cv_jit_features_find_new(void)
 	return x;
 }
 
-void cv_jit_features_find_free(t_cv_jit_features_find *x)
+void cv_jit_keypoints_free(t_cv_jit_keypoints *x)
 {
 	// Nothing
 }

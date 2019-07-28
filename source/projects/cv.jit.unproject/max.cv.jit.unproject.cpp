@@ -114,10 +114,17 @@ void max_cv_jit_unproject_mproc(t_max_cv_jit_unproject *x, void *mop)
 
 static constexpr char const * const outlet_assistance[] = {
 	"(list) translation",
-	"(list) rotation quaternion",
+	"(list) rotation",
 	"dumpout"
 };
 
+static constexpr char const * const inlet_assistance[] = {
+	"(matrix) image points",
+	"(matrix) reference points",
+	"dumpout"
+};
+
+static constexpr int INLET_ASSIST_COUNT = sizeof(inlet_assistance) / sizeof(inlet_assistance[0]);
 static constexpr int OUTLET_ASSIST_COUNT = sizeof(outlet_assistance) / sizeof(outlet_assistance[0]);
 
 void max_cv_jit_unproject_assist(t_max_cv_jit_unproject *x, void *b, long m, long a, char *s)

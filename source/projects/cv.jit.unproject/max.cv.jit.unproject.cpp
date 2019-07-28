@@ -50,6 +50,7 @@ void * max_cv_jit_unproject_class;
 
 // Symbols
 static t_symbol * ps_cv_jit_unproject;
+static t_symbol * ps_getvalid;
 		 
 #ifdef __cplusplus
 extern "C"
@@ -61,6 +62,7 @@ void ext_main(void* unused)
 #endif
 	// Generate required symbols
 	ps_cv_jit_unproject = gensym("cv_jit_unproject");
+	ps_getvalid = gensym("getvalid");
 
 	// Initialize the Jitter class
 	cv_jit_unproject_init();
@@ -104,9 +106,22 @@ void max_cv_jit_unproject_mproc(t_max_cv_jit_unproject *x, void *mop)
 
 	// Call the matrix calc method
 	t_jit_err err = (t_jit_err)jit_object_method(jitter_object, _jit_sym_matrix_calc, input_matrix_list, output_matrix_list);
+
 	if (JIT_ERR_NONE == err) {
-		// Calculation was succesful, call the bang function to output
-		max_cv_jit_unproject_bang(x);
+		// No error, but that doesn't mean calculation was succesful!
+		long count = 0;
+		t_atom *a;
+		err = (t_jit_err)jit_object_method(jitter_object, ps_getvalid, &count, &a);
+		if (JIT_ERR_NONE != err || !count) {
+			object_error((t_object *)x, "Could not read valid attribute.");
+			return;
+		}
+		if (atom_getlong(a) != 0) {
+			max_cv_jit_unproject_bang(x);
+		}
+
+		// Dont' do anything if calculation was not succesful
+		
 	} else {
 		jit_error_code(jitter_object, err);
 	}

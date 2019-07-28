@@ -31,6 +31,7 @@ Possible improvements:
 
 #include "c74_jitter.h"
 #include "cvjit.h"
+#include "cvjit_keypoints.h"
 #include <opencv2/calib3d.hpp>
 
 using namespace c74::max;
@@ -59,7 +60,8 @@ typedef struct _cv_jit_unproject
 	
 	float focal_length;
 	t_atom format;
-	long flip_y_axis;
+	long flip_image_y_axis;
+	long flip_reference_y_axis;
 
 	t_atom image_size[2]; 
 	long image_size_count;
@@ -67,6 +69,8 @@ typedef struct _cv_jit_unproject
 	long translation_count;
 	t_atom rotation[ROTATION_VEC_MAX_SIZE];
 	long rotation_count;
+
+	long valid;
 
 	std::vector<cv::Point2f> image_points;
 	std::vector<cv::Point3f> object_points;
@@ -144,8 +148,13 @@ t_jit_err cv_jit_unproject_init(void)
 		(method)0L, (method)cv_jit_unproject_set_format, calcoffset(t_cv_jit_unproject, format));
 	jit_class_addattr(_cv_jit_unproject_class, attr);
 
-	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "yflip", _jit_sym_atom, flags_get_set,
-		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, flip_y_axis));
+	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "flip_image", _jit_sym_long, cvjit::Flags::get_set,
+		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, flip_image_y_axis));
+	jit_attr_addfilterset_clip(attr, 0, 1, true, true);
+	jit_class_addattr(_cv_jit_unproject_class, attr);
+
+	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "flip_reference", _jit_sym_long, cvjit::Flags::get_set,
+		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, flip_reference_y_axis));
 	jit_attr_addfilterset_clip(attr, 0, 1, true, true);
 	jit_class_addattr(_cv_jit_unproject_class, attr);
 
@@ -156,6 +165,10 @@ t_jit_err cv_jit_unproject_init(void)
 
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset_array, "rotation", _jit_sym_atom, ROTATION_VEC_MAX_SIZE, flags_get_private_set,
 		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, rotation_count), calcoffset(t_cv_jit_unproject, rotation));
+	jit_class_addattr(_cv_jit_unproject_class, attr);
+
+	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "valid", _jit_sym_long, cvjit::Flags::private_set,
+		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, valid));
 	jit_class_addattr(_cv_jit_unproject_class, attr);
 	
 	// Register class
@@ -194,41 +207,55 @@ t_jit_err cv_jit_unproject_set_format(t_cv_jit_unproject *x, void *attr, long ac
 }
 
 template <typename T>
-void read_points(char * ptr, long stride, std::vector<cv::Point2f> & points) {
+void read_points(char * ptr, long stride, long planes, std::vector<cv::Point2f> & points) {
 	char * p = ptr;
-	for (cv::Point2f & pt : points) {
-		T * data = (T *)p;
-		pt.x = (float)data[0];
-		pt.y = (float)data[1];
-		p += stride;
+	if (planes == 2 || planes == cvjit::KEYPOINT_FIELD_COUNT) {
+		for (cv::Point2f & pt : points) {
+			T * data = (T *)p;
+			pt.x = (float)data[0];
+			pt.y = (float)data[1];
+			p += stride;
+		}
 	}
 }
 
 template <typename T>
-void read_points(char * ptr, long stride, std::vector<cv::Point3f> & points) {
+void read_points(char * ptr, long stride, long planes, std::vector<cv::Point3f> & points) {
 	char * p = ptr;
-	for (cv::Point3f & pt : points) {
-		T * data = (T *)p;
-		pt.x = (float)data[0];
-		pt.y = (float)data[1];
-		pt.z = (float)data[2];
-		p += stride;
+	if (planes == 3) {
+		for (cv::Point3f & pt : points) {
+			T * data = (T *)p;
+			pt.x = (float)data[0];
+			pt.y = (float)data[1];
+			pt.z = (float)data[2];
+			p += stride;
+		}
 	}
+	else if (planes == 2 || planes == cvjit::KEYPOINT_FIELD_COUNT) {
+		for (cv::Point3f & pt : points) {
+			T * data = (T *)p;
+			pt.x = (float)data[0];
+			pt.y = (float)data[1];
+			pt.z = 0.f;
+			p += stride;
+		}
+	}
+	
 }
 
 template <typename T>
-void read_points(char * ptr, t_symbol * type, long stride, std::vector<T> & points) {
+void read_points(char * ptr, t_symbol * type, long stride, long planes, std::vector<T> & points) {
 	if (type == _jit_sym_char) {
-		read_points<uint8_t>(ptr, stride, points);
+		read_points<uint8_t>(ptr, stride, planes, points);
 	}
 	if (type == _jit_sym_long) {
-		read_points<int32_t>(ptr, stride, points);
+		read_points<int32_t>(ptr, stride, planes, points);
 	}
 	if (type == _jit_sym_float32) {
-		read_points<float>(ptr, stride, points);
+		read_points<float>(ptr, stride, planes, points);
 	}
 	if (type == _jit_sym_float64) {
-		read_points<double>(ptr, stride, points);
+		read_points<double>(ptr, stride, planes, points);
 	}
 }
 
@@ -277,51 +304,57 @@ t_jit_err cv_jit_unproject_matrix_calc(t_cv_jit_unproject *x, void *inputs, void
 		cvjit::JitterMatrix image_points(image_point_matrix);
 		cvjit::JitterMatrix reference_points(reference_point_matrix);
 
-		if (image_points.get_info().planecount != 2) {
-			object_error((t_object *)x, "Image point matrix must have 2 planes");
+		if (image_points.get_info().planecount != 2 && image_points.get_info().planecount != cvjit::KEYPOINT_FIELD_COUNT) {
+			object_error((t_object *)x, "Image point matrix must have 2 or %d planes", cvjit::KEYPOINT_FIELD_COUNT);
 			return JIT_ERR_MISMATCH_PLANE;
 		}
 
-		// Skip if image point is empty
-		if (image_points.get_info().dim[0] <= 1 && image_points.get_info().dim[1] <= 1) {
-			if (image_points.read<double>(0, 0, 0) == 0.0 && image_points.read<double>(1, 0, 0) == 0.0) {
-				for (int i = 0; i < TRANSLATION_VEC_MAX_SIZE; i++) {
-					atom_setfloat(x->translation + i, 0.0);
-				}
-				for (int i = 0; i < ROTATION_VEC_MAX_SIZE; i++) {
-					atom_setfloat(x->rotation + i, 0.0);
-				}
-				return JIT_ERR_NONE;
-			}
-		}
 
-		if (reference_points.get_info().planecount != 3) {
-			object_error((t_object *)x, "Reference point matrix must have 3 planes");
+		if (reference_points.get_info().planecount != 2 && reference_points.get_info().planecount != 3 && reference_points.get_info().planecount != cvjit::KEYPOINT_FIELD_COUNT) {
+			object_error((t_object *)x, "Reference point matrix must have 2, 3 or %d planes", cvjit::KEYPOINT_FIELD_COUNT);
 			return JIT_ERR_MISMATCH_PLANE;
 		}
+
+		// Find out how the points are arranged
+		long in_dim1 = image_points.get_info().dim[0] == 1 ? 1 : 0;
+		long in_dim2 = reference_points.get_info().dim[0] == 1 ? 1 : 0;
 
 		// Make sure the number of points match
-		if (image_points.get_info().dim[0] != reference_points.get_info().dim[0]) {
-			object_error((t_object *)x, "The numbers of image and reference points do not match: %d and %d", image_points.get_info().dim[0], reference_points.get_info().dim[0]);
+		if (image_points.get_info().dim[in_dim1] != reference_points.get_info().dim[in_dim2]) {
+			object_error((t_object *)x, "The numbers of image and reference points do not match: %d and %d", image_points.get_info().dim[in_dim1], reference_points.get_info().dim[in_dim2]);
 			return JIT_ERR_MISMATCH_DIM;
 		}
 
+		// Make sure we have enough points
+		x->valid = 0;
+
+		if (image_points.get_info().dim[in_dim1] < 5) {	
+			return JIT_ERR_NONE;
+		}
+
+
 		// Prepare the inputs
-		x->image_points.resize(image_points.get_info().dim[0]);
-		x->object_points.resize(reference_points.get_info().dim[0]);
+		x->image_points.resize(image_points.get_info().dim[in_dim1]);
+		x->object_points.resize(reference_points.get_info().dim[in_dim2]);
 
 		read_points(image_points.get_data(), image_points.get_info().type, 
-			image_points.get_info().dimstride[0], x->image_points);
+			image_points.get_info().dimstride[in_dim1], image_points.get_info().planecount, x->image_points);
 	
 		read_points(reference_points.get_data(), reference_points.get_info().type, 
-			reference_points.get_info().dimstride[0], x->object_points);
+			reference_points.get_info().dimstride[in_dim2], reference_points.get_info().planecount, x->object_points);
 
 		const float image_width = (float)atom_getfloat(&x->image_size[0]);
 		const float image_height = (float)atom_getfloat(&x->image_size[1]);
 
-		if (x->flip_y_axis) {
+		if (x->flip_image_y_axis) {
 			for (cv::Point2f & p : x->image_points) {
 				p.y = image_height - p.y;
+			}
+		}
+
+		if (x->flip_reference_y_axis) {
+			for (cv::Point3f & p : x->object_points) {
+				p.y = 1.f - p.y;
 			}
 		}
 
@@ -337,6 +370,8 @@ t_jit_err cv_jit_unproject_matrix_calc(t_cv_jit_unproject *x, void *inputs, void
 
 			// Calculate
 			cv::solvePnPRansac(x->object_points, x->image_points, camera_matrix, distortion_coeffs, rotation_vector, translation_vector);
+
+			x->valid = 1;
 
 			// Copy output
 			x->translation_count = std::min(translation_vector.rows, TRANSLATION_VEC_MAX_SIZE);
@@ -379,10 +414,11 @@ t_jit_err cv_jit_unproject_matrix_calc(t_cv_jit_unproject *x, void *inputs, void
 					}
 				}
 				else if (format == Euler) {
+					constexpr float RAD2DEG = 57.295779513082320876798154814105f;
 					cv::Vec3f euler = euler_angles(rotation_mat);
-					atom_setfloat(x->rotation, euler[0]);
-					atom_setfloat(x->rotation + 1, euler[1]);
-					atom_setfloat(x->rotation + 2, euler[2]);
+					atom_setfloat(x->rotation, euler[0] * RAD2DEG);
+					atom_setfloat(x->rotation + 1, euler[1] * RAD2DEG);
+					atom_setfloat(x->rotation + 2, euler[2] * RAD2DEG);
 				}
 				else if (format == Quaternion) {
 					cv::Vec4d quat = quaternion(rotation_mat);
@@ -413,12 +449,16 @@ t_cv_jit_unproject *cv_jit_unproject_new(void)
 	if ((x=(t_cv_jit_unproject *)jit_object_alloc(_cv_jit_unproject_class))) 
 	{
 		x->focal_length = DEFAULT_FOCAL_LENGTH;
-		x->flip_y_axis = 1;
+		x->flip_image_y_axis = 0;
+		x->flip_reference_y_axis = 0;
+
 		atom_setsym(&x->format, rotation_formats[Euler]);
 
 		atom_setfloat(&x->image_size[0], DEFAULT_IMAGE_WIDTH);
 		atom_setfloat(&x->image_size[1], DEFAULT_IMAGE_HEIGHT);
 		x->image_size_count = 2;
+
+		x->valid = 0;
 
 		for (int i = 0; i < TRANSLATION_VEC_MAX_SIZE; i++) {
 			atom_setfloat(x->translation + i, 0);

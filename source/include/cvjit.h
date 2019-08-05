@@ -117,6 +117,15 @@ namespace cvjit {
 		template <typename T>
 		T * get_data(long row, long col = 0) { return (T *)(m_data + row * m_info.dimstride[1] + col * m_info.dimstride[0]); }
 
+		bool empty() {
+			for (long i = 0; i < m_info.dimcount; i++) {
+				if (m_info.dim[i] > 1) {
+					return false;
+				}
+			}
+			return read<long>(0, 0, 0) == 0;
+		}
+
 		template <typename... Args>
 		void set_size(long dim0, Args... other_dims) {
 			if (m_matrix) {
@@ -144,16 +153,16 @@ namespace cvjit {
 			if (m_info.dimcount >= 2 && plane < (unsigned int)m_info.planecount) {
 				char * p = m_data + y * m_info.dimstride[1] + x * m_info.dimstride[0];
 				if (m_info.type == _jit_sym_char) {
-					return ((uint8_t *)p)[plane];
+					return (T)((uint8_t *)p)[plane];
 				}
 				else if (m_info.type == _jit_sym_long) {
-					return ((int32_t *)p)[plane];
+					return (T)((int32_t *)p)[plane];
 				}
 				else if (m_info.type == _jit_sym_float32) {
-					return ((float *)p)[plane];
+					return (T)((float *)p)[plane];
 				}
 				else if (m_info.type == _jit_sym_float64) {
-					return ((double *)p)[plane];
+					return (T)((double *)p)[plane];
 				}
 			}
 			return 0;
@@ -162,6 +171,48 @@ namespace cvjit {
 		operator cv::Mat() {
 			return cvjit::wrapJitterMatrix(m_matrix, m_info, m_data);
 		}
+
+#ifdef CVJIT_LEGACY
+		operator CvMat() {
+			return cvJitter2CvMat(m_info, m_data);
+		}
+
+		void wrap(CvMat const & mat) {
+			m_info.dimcount = 2;
+			m_info.dim[0] = mat.cols;
+			m_info.dim[1] = mat.rows;
+			m_info.planecount = CV_MAT_CN(mat.type);
+
+			switch (CV_MAT_DEPTH(mat.type)) {
+			case CV_8U:
+				m_info.type = c74::max::_jit_sym_char;
+				m_info.dimstride[0] = m_info.planecount;
+				break;
+			case CV_32S:
+				m_info.type = c74::max::_jit_sym_long;
+				m_info.dimstride[0] = m_info.planecount * 4;
+				break;
+			case CV_32F:
+				m_info.type = c74::max::_jit_sym_float32;
+				m_info.dimstride[0] = m_info.planecount * sizeof(float);
+				break;
+			case CV_64F:
+				m_info.type = c74::max::_jit_sym_float64;
+				m_info.dimstride[0] = m_info.planecount * sizeof(double);
+				break;
+			default:
+				c74::max::object_error(NULL, "Error converting to Jitter matrix: unsupported depth.");
+				return;
+	}
+			m_info.dimstride[1] = mat.step;
+			m_info.size = mat.step * mat.rows;
+			m_info.flags = JIT_MATRIX_DATA_REFERENCE | JIT_MATRIX_DATA_FLAGS_USE;
+
+			m_data = (char *)mat.data.ptr;
+			jit_object_method(m_matrix, c74::max::_jit_sym_setinfo_ex, &m_info);
+			jit_object_method(m_matrix, c74::max::_jit_sym_data, m_data);
+		}
+#endif
 	};
 
 	class Savelock {

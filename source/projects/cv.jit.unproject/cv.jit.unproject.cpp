@@ -300,15 +300,20 @@ t_jit_err cv_jit_unproject_matrix_calc(t_cv_jit_unproject *x, void *inputs, void
 	if (x && image_point_matrix && reference_point_matrix) {
 		cvjit::Savelock locks[] = { image_point_matrix, reference_point_matrix };
 
-		// Make sure the plane counts are correct
+		// Wrap the matrices
 		cvjit::JitterMatrix image_points(image_point_matrix);
 		cvjit::JitterMatrix reference_points(reference_point_matrix);
 
+		// If the image point matrix is empty, skip
+		if (image_points.empty()) {
+			return JIT_ERR_NONE;
+		}
+
+		// Make sure the plane counts are correct
 		if (image_points.get_info().planecount != 2 && image_points.get_info().planecount != cvjit::KEYPOINT_FIELD_COUNT) {
 			object_error((t_object *)x, "Image point matrix must have 2 or %d planes", cvjit::KEYPOINT_FIELD_COUNT);
 			return JIT_ERR_MISMATCH_PLANE;
 		}
-
 
 		if (reference_points.get_info().planecount != 2 && reference_points.get_info().planecount != 3 && reference_points.get_info().planecount != cvjit::KEYPOINT_FIELD_COUNT) {
 			object_error((t_object *)x, "Reference point matrix must have 2, 3 or %d planes", cvjit::KEYPOINT_FIELD_COUNT);

@@ -39,12 +39,32 @@ in Jitter externals.
 #include "c74_jitter.h"
 
 #ifdef CVJIT_LEGACY
-#include "cv.h"
+#include <opencv/cv.h>
 #else
 #include <opencv2/opencv.hpp>
 #endif
 
 namespace cvjit {
+
+	int get_opencv_type(c74::max::t_jit_matrix_info const & info) {
+		if (info.type == c74::max::_jit_sym_char)
+		{
+			return CV_MAKETYPE(CV_8U, info.planecount);
+		}
+		else if (info.type == c74::max::_jit_sym_long)
+		{
+			return CV_MAKETYPE(CV_32S, info.planecount);
+		}
+		else if (info.type == c74::max::_jit_sym_float32)
+		{
+			return CV_MAKETYPE(CV_32F, info.planecount);
+		}
+		else if (info.type == c74::max::_jit_sym_float64)
+		{
+			return CV_MAKETYPE(CV_64F, info.planecount);
+		}
+		return 0;
+	}
 
 	/**
 	 * This function converts a Jitter matrix to an OpenCV Mat.
@@ -52,36 +72,20 @@ namespace cvjit {
 	 */
 	cv::Mat wrapJitterMatrix(c74::max::t_object * jitterMatrix, c74::max::t_jit_matrix_info const & info, char * data) {
 		// char * data = nullptr;
-		int type = 0;
 
 		if (!jitterMatrix)
 		{
-			c74::max::object_error(NULL, "Error converting Jitter matrix: invalid pointer.");
-			cv::Mat();
+			c74::max::object_error(jitterMatrix, "Error converting Jitter matrix: invalid pointer.");
+			return cv::Mat();
 		}
 
 		if (info.dimcount != 2)
 		{
-			c74::max::object_error(NULL, "Error converting Jitter matrix: invalid dimension count.");
+			c74::max::object_error(jitterMatrix, "Error converting Jitter matrix: invalid dimension count.");
 			return cv::Mat();
 		}
 
-		if (info.type == c74::max::_jit_sym_char)
-		{
-			type = CV_MAKETYPE(CV_8U, info.planecount);
-		}
-		else if (info.type == c74::max::_jit_sym_long)
-		{
-			type = CV_MAKETYPE(CV_32S, info.planecount);
-		}
-		else if (info.type == c74::max::_jit_sym_float32)
-		{
-			type = CV_MAKETYPE(CV_32F, info.planecount);
-		}
-		else if (info.type == c74::max::_jit_sym_float64)
-		{
-			type = CV_MAKETYPE(CV_64F, info.planecount);
-		}
+		int type = get_opencv_type(info);
 		
 		// c74::max::object_method(jitterMatrix, c74::max::_jit_sym_getdata, &data);
 		return cv::Mat(info.dim[1], info.dim[0], type, data, info.dimstride[1]);
@@ -135,47 +139,20 @@ namespace cvjit {
 #ifdef CVJIT_LEGACY
 
 /*This is simply a utility function for converting a Jitter matrix into a CvMat.*/
-void cvJitter2CvMat(void *jitMat, CvMat *mat)
+CvMat cvJitter2CvMat(c74::max::t_jit_matrix_info & info, char * data)
 {
-	c74::max::t_jit_matrix_info info;
-	char *data;
-	int type = 0;
-
-	if ((!jitMat) || (!mat))
-	{
-		c74::max::object_error(NULL, "Error converting Jitter matrix: invalid pointer.");
-		return;
-	}
-
-	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_getinfo, (void*)&info);
+	CvMat mat;
 
 	if (info.dimcount != 2)
 	{
-		c74::max::object_error(NULL, "Error converting Jitter matrix: invalid dimension count.");
-		return;
+		c74::max::object_error(nullptr, "Error converting Jitter matrix: invalid dimension count.");
+		cvInitMatHeader(&mat, 0, 0, CV_MAKETYPE(CV_8U, info.planecount));
+		return mat;
 	}
 
-	if (info.type == c74::max::_jit_sym_char)
-	{
-		type = CV_MAKETYPE(CV_8U, info.planecount);
-	}
-	else if (info.type == c74::max::_jit_sym_long)
-	{
-		type = CV_MAKETYPE(CV_32S, info.planecount);
-	}
-	else if (info.type == c74::max::_jit_sym_float32)
-	{
-		type = CV_MAKETYPE(CV_32F, info.planecount);
-	}
-	else if (info.type == c74::max::_jit_sym_float64)
-	{
-		type = CV_MAKETYPE(CV_64F, info.planecount);
-	}
+	cvInitMatHeader(&mat, info.dim[1], info.dim[0], cvjit::get_opencv_type(info), data, info.dimstride[1]);
 
-	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_getdata, (void*)&data);
-
-	cvInitMatHeader(mat, info.dim[1], info.dim[0], type, data, info.dimstride[1]);
-
+	return mat;
 }
 
 void cvMat2Jitter(CvMat *mat, void *jitMat)

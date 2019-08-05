@@ -37,6 +37,7 @@ t_jit_err cv_jit_opticalflow_init(void);
 void *max_cv_jit_opticalflow_new(t_symbol *s, long argc, t_atom *argv);
 void max_cv_jit_opticalflow_free(t_max_cv_jit_opticalflow *x);
 void *max_cv_jit_opticalflow_class;
+void max_cv_jit_opticalflow_assist(t_max_cv_jit_opticalflow *x, void *b, long m, long a, char *s);
 
 #ifdef __cplusplus
 extern "C"
@@ -75,11 +76,30 @@ void *max_cv_jit_opticalflow_new(t_symbol *s, long argc, t_atom *argv)
 	if ((x=(t_max_cv_jit_opticalflow *)max_jit_obex_new(max_cv_jit_opticalflow_class,gensym("cv_jit_opticalflow")))) {
 		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_opticalflow")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
-			max_jit_attr_args(x,argc,argv);
+			max_jit_attr_args(x,(short)argc,argv);
 		} else {
 			object_error((t_object*)x, "cv.jit.opticalflow: could not allocate object");
 			object_free((t_object *)x);
 		}
 	}
 	return (x);
+}
+
+void max_cv_jit_opticalflow_assist(t_max_cv_jit_opticalflow *x, void *b, long m, long a, char *s)
+{
+	constexpr int MAX_ASSIST_LENGTH = 64;
+	const char * outlet_assistance[] = {
+		"(matrix) horizontal flow",
+		"(matrix) vertical flow",
+		"dumpout"
+	};
+
+	if (m == 1) { //input
+		max_jit_mop_assist(x, b, m, a, s);
+	}
+	else { //output
+		if (a < (sizeof(outlet_assistance) / sizeof(outlet_assistance[0]))) {
+			snprintf(s, MAX_ASSIST_LENGTH, "%s", outlet_assistance[a]);
+		}
+	}
 }

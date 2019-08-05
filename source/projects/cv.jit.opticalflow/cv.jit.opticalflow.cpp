@@ -31,12 +31,11 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "cv.h"
-#include "OpticalFlow.h"
-#include "jitOpenCV.h"
-#include "c74_jitter.h"
 
-#include <opencv2/legacy/legacy.hpp>
+#include "OpticalFlow.h"
+#include "cvjit.h"
+
+#include <opencv/cv.h>
 
 using namespace c74::max;
 
@@ -149,8 +148,9 @@ t_jit_err cv_jit_opticalflow_get_method(t_cv_jit_opticalflow *x, void *attr, lon
 		}
 	}
 	
-	char *str = new char[x->of->getMethodName().length()+1];
-	strcpy(str, x->of->getMethodName().c_str());
+	const size_t str_len = x->of->getMethodName().length() + 1;
+	char *str = new char[str_len];
+	strncpy(str, x->of->getMethodName().c_str(), str_len);
 	
 	atom_setsym(*av, gensym(str));
 	delete[] str;
@@ -330,6 +330,11 @@ t_jit_err cv_jit_opticalflow_set_hs_lambda(t_cv_jit_opticalflow *x, void *attr, 
 
 t_jit_err cv_jit_opticalflow_init(void) 
 {
+
+#if defined(_DEBUG) || defined(DEBUG) 
+	object_post(nullptr, "cv.jit.opticalflow\nBuilt on %s at %s", __DATE__, __TIME__);
+#endif
+
 	long attrflags=0;
 	t_jit_object *attr,*mop;
 	//t_symbol *atsym;
@@ -407,63 +412,47 @@ t_jit_err cv_jit_opticalflow_init(void)
 t_jit_err cv_jit_opticalflow_matrix_calc(t_cv_jit_opticalflow *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	void * in_savelock, * out_savelockX, * out_savelockY;
-	t_jit_matrix_info in_minfo,out_minfoX,out_minfoY;
-	void *in_matrix,*out_matrixX,*out_matrixY;
-	CvMat inmat;
-	CvMat xmat, ymat;
+	t_jit_object *in_matrix,*out_matrixX,*out_matrixY;
 	
-	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
-	out_matrixX = jit_object_method(outputs,_jit_sym_getindex,0);
-	out_matrixY = jit_object_method(outputs,_jit_sym_getindex,1);
+	in_matrix 	= (t_jit_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	out_matrixX = (t_jit_object *)jit_object_method(outputs,_jit_sym_getindex,0);
+	out_matrixY = (t_jit_object *)jit_object_method(outputs,_jit_sym_getindex,1);
 
 	if (x&&in_matrix&&out_matrixX&&out_matrixY) {
-		
-		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelockX = jit_object_method(out_matrixX,_jit_sym_lock,1);
-		out_savelockY = jit_object_method(out_matrixY,_jit_sym_lock,1);
-		
-		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
-		jit_object_method(out_matrixX,_jit_sym_getinfo,&out_minfoX);
-		jit_object_method(out_matrixY,_jit_sym_getinfo,&out_minfoY);
-		
-		if (in_minfo.type != _jit_sym_char) 
-		{ 
-			err=JIT_ERR_MISMATCH_TYPE; 
-			goto out;
-		}
 
-		//compatible planes?
-		if (in_minfo.planecount!=1) { 
-			err=JIT_ERR_MISMATCH_PLANE; 
-			goto out;
-		}	
+		cvjit::Savelock locks[] = { in_matrix, out_matrixX, out_matrixY };
 		
-		if (in_minfo.dimcount!=2) { 
-			err=JIT_ERR_MISMATCH_DIM; 
-			goto out;
-		}		
+		cvjit::JitterMatrix source(in_matrix);
+		cvjit::JitterMatrix out_x(out_matrixX);
+		cvjit::JitterMatrix out_y(out_matrixY);
+
+		cvjit::Validate(x, source)
+			.type(_jit_sym_char)
+			.planecount(1)
+			.dimcount(2);
+
+		try {
+			CvMat inmat = source;
+
+			//calculate
+			x->of->compute(&inmat);
+			CvMat xmat = (CvMat)x->of->getXflow();
+			CvMat ymat = (CvMat)x->of->getYflow();
+
+			//Copy to output
+			out_x.wrap(xmat);
+			out_y.wrap(ymat);
+		}
+		catch (cv::Exception & exception) {
+			object_error((t_object *)x, "OpenCV error: %s", exception.what());
+			return JIT_ERR_GENERIC;
+		}
 		
-		//Convert matrix header
-		cvJitter2CvMat(in_matrix, &inmat);
-		
-		//calculate
-		x->of->compute(&inmat);
-		xmat = (CvMat)x->of->getXflow();
-		ymat = (CvMat)x->of->getYflow();
-		
-		//Copy to output
-		cvMat2Jitter(&xmat, out_matrixX);
-		cvMat2Jitter(&ymat, out_matrixY);
 		
 	} else {
 		return JIT_ERR_INVALID_PTR;
 	}
 	
-out:
-	jit_object_method(out_matrixX,gensym("lock"),out_savelockX);
-	jit_object_method(out_matrixY,gensym("lock"),out_savelockY);
-	jit_object_method(in_matrix,gensym("lock"),in_savelock);
 	return err;
 }
 

@@ -115,17 +115,13 @@ std::string OpticalFlow::getMethodName(){
 	switch(_method){
 		case OpticalFlow::Horn_Schunk:
 			return "Horn_Schunk";
-			break;
-		case OpticalFlow::Farneback:
-			return "Farneback";
-			break;
 		case OpticalFlow::Lucas_Kanade:
 			return "Lucas_Kanade";
-			break;
 		case OpticalFlow::Block_matching:
-		default:
 			return "Block_Matching";
-			break;
+		case OpticalFlow::Farneback:
+		default:
+			return "Farneback";
 	}
 }
 
@@ -210,11 +206,16 @@ void OpticalFlow::compute(cv::Mat &first, cv::Mat &second){
 	}
 	
 	if(_method == OpticalFlow::Block_matching){
-		_xflow.create((first.rows - _bm_block_size.height)/_bm_shift_size.height,(first.cols - _bm_block_size.width)/_bm_shift_size.width,CV_32F);
-		_yflow.create(_xflow.rows,_xflow.cols,CV_32F);
+		CvSize velSize =
+		{
+			(first.cols - _bm_block_size.width + _bm_shift_size.width) / _bm_shift_size.width,
+			(first.rows - _bm_block_size.height + _bm_shift_size.height) / _bm_shift_size.height
+		};
+		_xflow.create(velSize.height, velSize.width, CV_32F);
+		_yflow.create(velSize.height, velSize.width, CV_32F);
 	}else{
-		_xflow.create(first.rows,first.cols,CV_32F);
-		_yflow.create(first.rows,first.cols,CV_32F);
+		_xflow.create(first.rows, first.cols, CV_32F);
+		_yflow.create(first.rows, first.cols, CV_32F);
 	}
 	
 	CvMat src1 = (CvMat)first;

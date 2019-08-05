@@ -28,7 +28,7 @@
 #include <iostream>
 #include <cctype> 
 #include <algorithm>
-#include "cv.h"
+#include <opencv/cv.h>
 #include <opencv2/legacy/legacy.hpp>
 
 

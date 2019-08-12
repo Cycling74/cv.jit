@@ -49,14 +49,7 @@ struct t_cv_jit_keypoints
 	long normalize;
 
 	// Detector parameters
-	long extended;
-	long upright;
-	long levels;
-	long maxcount;
-	long octaveLayers;
 	long octaves;
-	long patchsize;
-	float scalefactor;
 	float threshold;
 	
 	cvjit::KeypointMethod _method;
@@ -69,9 +62,6 @@ t_jit_err cv_jit_keypoints_init(void);
 t_cv_jit_keypoints *cv_jit_keypoints_new(void);
 void cv_jit_keypoints_free(t_cv_jit_keypoints *x);
 t_jit_err cv_jit_keypoints_matrix_calc(t_cv_jit_keypoints *x, void *inputs, void *outputs);
-
-// Attributes
-t_jit_err cv_jit_keypoints_set_method(t_cv_jit_keypoints *x, void *attr, long ac, t_atom *av);
 
 t_jit_err cv_jit_keypoints_init(void) 
 {
@@ -124,8 +114,8 @@ t_jit_err cv_jit_keypoints_init(void)
 	//add attributes
 	t_jit_object * attr;
 
-	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "method", _jit_sym_atom, cvjit::Flags::get_set,
-		(method)0L, (method)cv_jit_keypoints_set_method, calcoffset(t_cv_jit_keypoints, method));
+	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "method", _jit_sym_atom, cvjit::Flags::private_set,
+		(method)0L, (method)0L, calcoffset(t_cv_jit_keypoints, method));
 	jit_class_addattr(_cv_jit_keypoints_class, attr);
 
 	// The normalize attribute
@@ -134,69 +124,11 @@ t_jit_err cv_jit_keypoints_init(void)
 	// Detector attributes
 	cvjit::AttributeManager attributes(_cv_jit_keypoints_class);
 
-	attributes.add_bool("extended", CVJIT_CALCOFFSET(&t_cv_jit_keypoints::extended));
-	attributes.add_bool("upright", CVJIT_CALCOFFSET(&t_cv_jit_keypoints::upright));
-
-	attributes.add("levels", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::levels));
-	attributes.add("maxcount", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::maxcount));
-	attributes.add("octaveLayers", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::octaveLayers));
 	attributes.add("octaves", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::octaves));
-	attributes.add("patchsize", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::patchsize));
-	attributes.add("scalefactor", 1.f, 2.66f, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::scalefactor));
 	attributes.add("threshold", 0.001f, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::threshold));
 			
 	jit_class_register(_cv_jit_keypoints_class);
 
-	return JIT_ERR_NONE;
-}
-
-inline void set_detector(t_cv_jit_keypoints *x, cvjit::KeypointMethod method)
-{
-	x->_method = method;
-	switch (method) {
-	case cvjit::AKAZE:
-		x->detector = cv::AKAZE::create();
-		break;
-	case cvjit::BRISK:
-		x->detector = cv::BRISK::create();
-		break;
-	case cvjit::KAZE:
-		x->detector = cv::KAZE::create();
-		break;
-	case cvjit::ORB:
-		x->detector = cv::ORB::create();
-		break;
-	}
-}
-
-t_jit_err cv_jit_keypoints_set_method(t_cv_jit_keypoints *x, void *attr, long ac, t_atom *av)
-{
-	if (ac > 0) {
-		if (av[0].a_type == A_LONG || av[0].a_type == A_FLOAT) {
-			t_atom_long val = atom_getlong(av);
-			if (val < 0 || val >= cvjit::KEYPOINT_METHOD_COUNT) {
-				object_error((t_object *)x, "Invalid method, make sure value is between 0 and %d.", cvjit::KEYPOINT_METHOD_COUNT - 1);
-			}
-			else {
-				atom_setsym(&x->method, cvjit::keypoint_methods[val]);
-				set_detector(x, static_cast<cvjit::KeypointMethod>(val));
-			}
-		}
-		else if (av[0].a_type == A_SYM) {
-			t_symbol * sym = atom_getsym(av);
-			for (int i = 0; i < cvjit::KEYPOINT_METHOD_COUNT; i++) {
-				if (sym == cvjit::keypoint_methods[i]) {
-					x->method = av[0];
-					set_detector(x, static_cast<cvjit::KeypointMethod>(i));
-					return JIT_ERR_NONE;
-				}
-			}
-			object_error((t_object *)x, "Invalid method: %s", sym->s_name);
-		}
-		else {
-			object_error((t_object *)x, "Invalid method, please provide a method name or number.");
-		}
-	}
 	return JIT_ERR_NONE;
 }
 
@@ -235,43 +167,9 @@ t_jit_err cv_jit_keypoints_matrix_calc(t_cv_jit_keypoints *x, void *inputs, void
 			try {
 
 				// Setup the parameters
-				switch (x->_method) {
-					case cvjit::AKAZE:
-					{
-						cv::Ptr<cv::AKAZE> AKAZE = x->detector.dynamicCast<cv::AKAZE>();
-						AKAZE->setThreshold(x->threshold);
-						AKAZE->setNOctaves(x->octaves);
-						AKAZE->setNOctaveLayers(x->octaveLayers);
-						break;
-					}
-					case cvjit::BRISK:
-					{
-						cv::Ptr<cv::BRISK> BRISK = x->detector.dynamicCast<cv::BRISK>();
-						BRISK->setThreshold(static_cast<int>(x->threshold * 255.f));
-						BRISK->setOctaves(x->octaves);
-						break;
-					}
-					case cvjit::KAZE:
-					{
-						cv::Ptr<cv::KAZE> KAZE = x->detector.dynamicCast<cv::KAZE>();
-						KAZE->setExtended(x->extended != 0);
-						KAZE->setNOctaveLayers(x->octaveLayers);
-						KAZE->setNOctaves(x->octaves);
-						KAZE->setThreshold(x->threshold);
-						KAZE->setUpright(x->upright != 0);
-						break;
-					}
-					case cvjit::ORB:
-					{
-						cv::Ptr<cv::ORB> ORB = x->detector.dynamicCast<cv::ORB>();
-						ORB->setFastThreshold(static_cast<int>(x->threshold * 255.f));
-						ORB->setMaxFeatures(x->maxcount);
-						ORB->setScaleFactor(x->scalefactor);
-						ORB->setPatchSize(x->patchsize);
-						ORB->setEdgeThreshold(x->patchsize);
-						break;
-					}
-				}
+				cv::Ptr<cv::BRISK> BRISK = x->detector.dynamicCast<cv::BRISK>();
+				BRISK->setThreshold(static_cast<int>(x->threshold * 255.f));
+				BRISK->setOctaves(x->octaves);
 
 				// Wrap the source image in an OpenCV Mat
 				cv::Mat source_image = source;
@@ -333,19 +231,12 @@ t_cv_jit_keypoints *cv_jit_keypoints_new(void)
 {
 	t_cv_jit_keypoints *x = (t_cv_jit_keypoints *)jit_object_alloc(_cv_jit_keypoints_class);
 	if (x) {
-		atom_setsym(&x->method, gensym("ORB"));
-		set_detector(x, cvjit::ORB);
+		atom_setsym(&x->method, cvjit::keypoint_methods[cvjit::BRISK]);
+		x->detector = cv::BRISK::create();
 		x->normalize = 0;
 
-		x->extended = 0;
-		x->upright = 0;
-		x->levels = 8;
-		x->maxcount = 500;
-		x->octaveLayers = 4;
 		x->octaves = 4;
-		x->patchsize = 31;
-		x->scalefactor = 1.2f;
-		x->threshold = 0.01f;
+		x->threshold = 0.1f;
 	}
 
 	return x;

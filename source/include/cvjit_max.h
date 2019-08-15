@@ -107,7 +107,7 @@ namespace cvjit {
 					}
 				}
 				else if (count > 1) {
-					outlet_no_err = outlet_list(m_outlet, nullptr, (short)count, data);
+					outlet_no_err = outlet_list(m_outlet, _jit_sym_list, (short)count, data);
 				}
 				else {
 					post_error("Empty outlet data.");

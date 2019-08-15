@@ -139,10 +139,8 @@ t_jit_err cv_jit_face_landmarks_init(void)
 		(method)0L, (method)0L, calcoffset(t_cv_jit_face_landmarks, ready));
 	jit_class_addattr(_cv_jit_face_landmarks_class, attr);
 
-	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "normalize", _jit_sym_long, cvjit::Flags::get_set, 
-		(method)0L, (method)0L, calcoffset(t_cv_jit_face_landmarks, normalize));
-	jit_attr_addfilterset_clip(attr, 0, 1, true, true);	//clip to 0-1
-	jit_class_addattr(_cv_jit_face_landmarks_class, attr);
+	// Normalize attribute
+	jit_class_addattr(_cv_jit_face_landmarks_class, cvjit::normalize_attr<t_cv_jit_face_landmarks>());
 			
 	jit_class_register(_cv_jit_face_landmarks_class);
 
@@ -177,7 +175,6 @@ inline cv::Rect read_rect(char * p, t_symbol * type, double scale_x, double scal
 
 t_jit_err cv_jit_face_landmarks_matrix_calc(t_cv_jit_face_landmarks *x, void *inputs, void *outputs)
 {
-	cv::Mat source;
 	std::vector<cv::Rect> faces;
 
 	//Get pointers to matrices
@@ -190,20 +187,19 @@ t_jit_err cv_jit_face_landmarks_matrix_calc(t_cv_jit_face_landmarks *x, void *in
 		//Lock the matrices
 		cvjit::Savelock savelocks[] = { input_coords_matrix, input_image_matrix, out_matrix };
 
-		t_jit_matrix_info in_image_minfo;
-		jit_object_method(input_image_matrix, _jit_sym_getinfo, &in_image_minfo);
-
-		t_jit_matrix_info in_coords_minfo;
-		jit_object_method(input_coords_matrix, _jit_sym_getinfo, &in_coords_minfo);
+		// Wrap the matrices
+		cvjit::JitterMatrix input_coords(input_coords_matrix);
+		cvjit::JitterMatrix input_image(input_image_matrix);
+		cvjit::JitterMatrix results(out_matrix);
 		
 		//Make sure input is of proper format
-		t_jit_err err = cvjit::Validate(x, in_coords_minfo)
+		t_jit_err err = cvjit::Validate(x, input_coords)
 			.type(_jit_sym_long, _jit_sym_float32, _jit_sym_float64)
 			.planecount(4) // Face rectangle
 			.dimcount(1);
 
 		if (JIT_ERR_NONE == err) {
-			err = cvjit::Validate(x, in_image_minfo)
+			err = cvjit::Validate(x, input_image)
 				.type(_jit_sym_char)
 				.planecount(1)
 				.dimcount(2)
@@ -216,23 +212,19 @@ t_jit_err cv_jit_face_landmarks_matrix_calc(t_cv_jit_face_landmarks *x, void *in
 			try {
 
 				//Convert Jitter matrix to OpenCV matrix
-				char * in_bp;
-				jit_object_method(input_image_matrix, _jit_sym_getdata, &in_bp);
-				cv::Mat source = cvjit::wrapJitterMatrix(input_image_matrix, in_image_minfo, in_bp);
-
-				char * coords_bp;
-				jit_object_method(input_coords_matrix, _jit_sym_getdata, &coords_bp);
+				cv::Mat src = input_image;
 
 				std::vector<cv::Rect> face_regions;
 
-				const float x_scale_in = x->normalize ? (float)in_image_minfo.dim[0] : 1.f;
-				const float y_scale_in = x->normalize ? (float)in_image_minfo.dim[1] : 1.f;
-				const float x_scale_out = x->normalize ? 1.f / x_scale_in : 1.f;
-				const float y_scale_out = x->normalize ? 1.f / y_scale_in : 1.f;
+				const float scale_x = x->normalize ? (float)input_image.normalization_scale_x() : 1.f;
+				const float scale_y = x->normalize ? (float)input_image.normalization_scale_y() : 1.f;
+				const float inv_scale_x = scale_x == 0.f ? 0.f : 1.f / scale_x;
+				const float inv_scale_y = scale_y == 0.f ? 0.f : 1.f / scale_y;
+				const bool data_is_row = input_coords.get_info().dimcount == 1 || input_coords.get_info().dim[1] == 1;
 				
-				for (long i = 0; i < in_coords_minfo.dim[0]; i++) {
-					char * p = coords_bp + in_coords_minfo.dimstride[0] * i;
-					cv::Rect rect = read_rect(p, in_coords_minfo.type, x_scale_in, y_scale_in);
+				for (long i = 0; i < input_coords.get_info().dim[0]; i++) {
+					char * p = data_is_row ? input_coords.get_data<char>(0, i) : input_coords.get_data<char>(i);
+					cv::Rect rect = read_rect(p, input_coords.get_info().type, inv_scale_x, inv_scale_y);
 
 					if (rect.x != 0 || rect.y != 0 || rect.width != 0 || rect.height != 0) {
 						face_regions.push_back(rect);
@@ -244,30 +236,23 @@ t_jit_err cv_jit_face_landmarks_matrix_calc(t_cv_jit_face_landmarks *x, void *in
 					std::vector<std::vector<cv::Point2f> > landmarks;
 
 					// Detect the landmarks
-					x->facemark->fit(source, face_regions, landmarks);
+					x->facemark->fit(src, face_regions, landmarks);
 
 					//Prepare output
 					if (landmarks.size() > 0 && landmarks[0].size() > 0) {
 
 						// Change the size of the output matrix
-						t_jit_matrix_info out_minfo = cvjit::resize_matrix(out_matrix, { (long)landmarks[0].size(), (long)landmarks.size() });
-
-						// Get the output data pointer
-						char *out_bp;
-						jit_object_method(out_matrix, _jit_sym_getdata, &out_bp);
-						if (!out_bp) { return JIT_ERR_INVALID_OUTPUT; }
+						results.set_size((long)landmarks[0].size(), (long)landmarks.size());
 
 						// Copy the landmarks to the output matrix
-						for (std::vector<cv::Point2f> & face : landmarks) {
-							float * out_data = (float *)out_bp;
-
+						for (int i = 0; i < landmarks.size(); i++) {
+							std::vector<cv::Point2f> & face = landmarks.at(i);
+							float * out_data = results.get_data<float>(i);
 							for (cv::Point2f & point : face) {
-								out_data[0] = point.x * x_scale_out;
-								out_data[1] = point.y * y_scale_out;
+								out_data[0] = point.x * scale_x;
+								out_data[1] = point.y * scale_y;
 								out_data += 2;
 							}
-
-							out_bp += out_minfo.dimstride[1];
 						}
 
 						return JIT_ERR_NONE;
@@ -275,8 +260,8 @@ t_jit_err cv_jit_face_landmarks_matrix_calc(t_cv_jit_face_landmarks *x, void *in
 				}
 
 				// No landmarks found!
-				cvjit::resize_matrix(out_matrix, { 1 });
-
+				results.set_size(1, 1);
+				results.clear();
 			}
 			catch (cv::Exception & exception) {
 				object_error((t_object *)x, "OpenCV error: %s", exception.what());

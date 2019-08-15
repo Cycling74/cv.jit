@@ -47,6 +47,7 @@ struct t_cv_jit_keypoints
 
 	t_atom method;
 	long normalize;
+	long gl_mode;
 
 	// Detector parameters
 	long octaves;
@@ -126,6 +127,9 @@ t_jit_err cv_jit_keypoints_init(void)
 
 	attributes.add("octaves", 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::octaves));
 	attributes.add("threshold", 0.001f, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::threshold));
+
+	// Coordinate mode attributes
+	attributes.add<long>("glcoords", 0L, 1L, CVJIT_CALCOFFSET(&t_cv_jit_keypoints::gl_mode));
 			
 	jit_class_register(_cv_jit_keypoints_class);
 
@@ -197,17 +201,26 @@ t_jit_err cv_jit_keypoints_matrix_calc(t_cv_jit_keypoints *x, void *inputs, void
 				const long descriptor_size = x->detector->descriptorSize();
 				descriptors.set_size(descriptor_size, feature_count);
 
-				const float x_scale = x->normalize ? 1.f / (float)source.get_info().dim[0] : 1.f;
-				const float y_scale = x->normalize ? 1.f / (float)source.get_info().dim[1] : 1.f;
-				const float size_scale = std::min(x_scale, y_scale);
+				const float scale_x = x->normalize ? (float)source.normalization_scale_x() : x->gl_mode ? (float)(source.normalization_scale_x() * 2.0) : 1.f;
+				const float scale_y = x->normalize ? (float)source.normalization_scale_y() : x->gl_mode ? (float)(source.normalization_scale_y() * 2.0) : 1.f;
+				const float w = (float)source.get_info().dim[0];
+				const float h = (float)source.get_info().dim[1];
+				const float cx = w * 0.5f;
+				const float cy = h * 0.5f;
 
 				for (long i = 0; i < feature_count; i++) {
 					float * kp = keypoints.get_data<float>(i);
 					char * desc = descriptors.get_data<char>(i);
 					cv::KeyPoint const & p = keypointsVec.at(i);
-					kp[cvjit::KEYPOINT_X] = p.pt.x * x_scale;
-					kp[cvjit::KEYPOINT_Y] = p.pt.y * y_scale;
-					kp[cvjit::KEYPOINT_SIZE] = p.size * size_scale;
+					if (x->gl_mode) {
+						kp[cvjit::KEYPOINT_X] = (p.pt.x - cx) * scale_x;
+						kp[cvjit::KEYPOINT_Y] = (cy - p.pt.y) * scale_y;
+					}
+					else {
+						kp[cvjit::KEYPOINT_X] = p.pt.x * scale_x;
+						kp[cvjit::KEYPOINT_Y] = p.pt.y * scale_y;
+					}
+					kp[cvjit::KEYPOINT_SIZE] = p.size * std::max(scale_x, scale_y);
 					kp[cvjit::KEYPOINT_ANGLE] = p.angle;
 					kp[cvjit::KEYPOINT_RESPONSE] = p.response;
 					kp[cvjit::KEYPOINT_OCTAVE] = static_cast<float>(p.octave);
@@ -234,6 +247,7 @@ t_cv_jit_keypoints *cv_jit_keypoints_new(void)
 		atom_setsym(&x->method, cvjit::keypoint_methods[cvjit::BRISK]);
 		x->detector = cv::BRISK::create();
 		x->normalize = 0;
+		x->gl_mode = 0;
 
 		x->octaves = 4;
 		x->threshold = 0.1f;

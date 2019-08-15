@@ -117,7 +117,7 @@ namespace cvjit {
 		template <typename T>
 		T * get_data(long row, long col = 0) { return (T *)(m_data + row * m_info.dimstride[1] + col * m_info.dimstride[0]); }
 
-		bool empty() {
+		bool empty() const {
 			for (long i = 0; i < m_info.dimcount; i++) {
 				if (m_info.dim[i] > 1) {
 					return false;
@@ -149,7 +149,7 @@ namespace cvjit {
 		}
 
 		template <typename T>
-		T read(unsigned int plane, unsigned int x, unsigned int y) {
+		T read(unsigned int plane, unsigned int x, unsigned int y) const {
 			if (m_info.dimcount >= 2 && plane < (unsigned int)m_info.planecount) {
 				char * p = m_data + y * m_info.dimstride[1] + x * m_info.dimstride[0];
 				if (m_info.type == _jit_sym_char) {

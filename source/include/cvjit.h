@@ -140,6 +140,12 @@ namespace cvjit {
 			}
 		}
 
+		void clear() {
+			if (m_matrix) {
+				jit_object_method(m_matrix, _jit_sym_clear);
+			}
+		}
+
 		void set_planecount(long planecount) {
 			if (m_matrix) {
 				m_info.planecount = planecount;

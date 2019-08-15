@@ -65,7 +65,7 @@ namespace cvjit {
 				const std::string getter_string = std::string("get") + std::string(property);
 				m_getter = gensym(getter_string.c_str());
 
-				m_outlet = outlet_new(m_owner, property);
+				m_outlet = outlet_new(m_owner, "list");
 				if (!m_outlet) {
 					post_error("Could not create outlet.");
 				}

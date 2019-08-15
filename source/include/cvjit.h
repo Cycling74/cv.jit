@@ -126,6 +126,32 @@ namespace cvjit {
 			return read<long>(0, 0, 0) == 0;
 		}
 
+		double normalization_scale_x() const {
+			if (m_info.dim[0] == 0) {
+				return 0.0;
+			}
+			return 1.0 / (double)m_info.dim[0];
+		}
+
+		double normalization_scale_y() const {
+			if (m_info.dimcount < 2 || m_info.dim[0] == 0) {
+				return 0.0;
+			}
+			return 1.0 / (double)m_info.dim[1];
+		}
+
+		double wh_ratio() const {
+			if (m_info.dimcount < 2) {
+				return 1;
+			}
+
+			if (m_info.dim[1] == 0) {
+				return 0;
+			}
+
+			return (double)m_info.dim[0] / (double)m_info.dim[1];
+		}
+
 		template <typename... Args>
 		void set_size(long dim0, Args... other_dims) {
 			if (m_matrix) {

@@ -58,7 +58,6 @@ typedef struct {
 	cv::KalmanFilter filter;
 	cv::Mat control;
 	cv::Mat measurement;
-	cv::Mat prediction;
 } t_cv_jit_kalman;
 
 void cv_jit_kalman_list(t_cv_jit_kalman *x, t_symbol *s, short argc, t_atom *argv);
@@ -130,10 +129,10 @@ void cv_jit_kalman_list(t_cv_jit_kalman *x, t_symbol *s, short argc, t_atom *arg
 
 	for (int i = 0; i < argc; i++) {
 		const float val = (float)atom_getfloat(argv + i);
-		x->measurement.at<float>(i) = val;
+		x->measurement.at<float>(i, 0) = val;
 		 
 		if (x->should_init_model) {
-			x->filter.statePre.at<float>(i) = val;
+			x->filter.statePre.at<float>(i, 0) = val;
 		}
 	}
 
@@ -149,7 +148,7 @@ void cv_jit_kalman_list(t_cv_jit_kalman *x, t_symbol *s, short argc, t_atom *arg
 
 	try {
 		// Predict
-		x->prediction = x->filter.predict(x->control);
+		cv::Mat prediction = x->filter.predict(x->control);
 
 		// Correct
 		x->filter.correct(x->measurement);
@@ -165,11 +164,13 @@ void cv_jit_kalman_list(t_cv_jit_kalman *x, t_symbol *s, short argc, t_atom *arg
 			x->output_ac = (short)argc;
 		}
 
-		for (int i = 0; i < x->output_ac; i++) {
-			atom_setfloat(x->output_av + i, x->prediction.at<float>(i, 0));
-		}
+		if (prediction.rows >= x->output_ac) {
+			for (int i = 0; i < x->output_ac; i++) {
+				atom_setfloat(x->output_av + i, prediction.at<float>(i, 0));
+			}
 
-		outlet_list(x->outlet, nullptr, x->output_ac, x->output_av);
+			outlet_list(x->outlet, nullptr, x->output_ac, x->output_av);
+		}
 	}
 
 	catch (cv::Exception & exception) {

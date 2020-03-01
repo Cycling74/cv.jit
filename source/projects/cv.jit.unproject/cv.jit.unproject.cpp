@@ -59,9 +59,10 @@ typedef struct _cv_jit_unproject
 	t_object	ob;
 	
 	float focal_length;
+	long method;
 	t_atom format;
-	long flip_image_y_axis;
-	long flip_reference_y_axis;
+
+	long normalize;
 
 	t_atom image_size[2]; 
 	long image_size_count;
@@ -102,6 +103,8 @@ void cv_jit_unproject_free(t_cv_jit_unproject *x);
 t_jit_err cv_jit_unproject_set_format(t_cv_jit_unproject *x, void *attr, long ac, t_atom *av);
 
 void *_cv_jit_unproject_class;
+
+constexpr int METHOD_COUND = 4;
 
 t_jit_err cv_jit_unproject_init(void) 
 {
@@ -144,21 +147,19 @@ t_jit_err cv_jit_unproject_init(void)
 		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, image_size_count), calcoffset(t_cv_jit_unproject, image_size));
 	jit_class_addattr(_cv_jit_unproject_class, attr);
 
-	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "format", _jit_sym_atom, flags_get_set, 
+	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "method", _jit_sym_long, flags_get_set,
+		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, method));
+	jit_attr_addfilterset_clip(attr, 0, METHOD_COUND, 1, 1);
+	jit_class_addattr(_cv_jit_unproject_class, attr);
+
+	// Normalize attribute
+	jit_class_addattr(_cv_jit_unproject_class, cvjit::normalize_attr<t_cv_jit_unproject>());
+
+	// Read-only attributes
+	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "format", _jit_sym_atom, flags_get_private_set,
 		(method)0L, (method)cv_jit_unproject_set_format, calcoffset(t_cv_jit_unproject, format));
 	jit_class_addattr(_cv_jit_unproject_class, attr);
 
-	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "flip_image", _jit_sym_long, cvjit::Flags::get_set,
-		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, flip_image_y_axis));
-	jit_attr_addfilterset_clip(attr, 0, 1, true, true);
-	jit_class_addattr(_cv_jit_unproject_class, attr);
-
-	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset, "flip_reference", _jit_sym_long, cvjit::Flags::get_set,
-		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, flip_reference_y_axis));
-	jit_attr_addfilterset_clip(attr, 0, 1, true, true);
-	jit_class_addattr(_cv_jit_unproject_class, attr);
-
-	// Read-only attributes
 	attr = (t_jit_object *)jit_object_new(_jit_sym_jit_attr_offset_array, "translation", _jit_sym_atom, TRANSLATION_VEC_MAX_SIZE, flags_get_private_set,
 		(method)0L, (method)0L, calcoffset(t_cv_jit_unproject, translation_count), calcoffset(t_cv_jit_unproject, translation));
 	jit_class_addattr(_cv_jit_unproject_class, attr);
@@ -267,7 +268,7 @@ inline cv::Vec3d euler_angles(cv::Mat & mat) {
 	if (sy > 1e-6)
 	{
 		return cv::Vec3d(
-			atan2(mat.at<double>(2, 1), mat.at<double>(2, 2)),
+			atan2(-mat.at<double>(2, 1), mat.at<double>(2, 2)),
 			atan2(-mat.at<double>(2, 0), sy),
 			atan2(mat.at<double>(1, 0), mat.at<double>(0, 0)));
 	}
@@ -333,7 +334,7 @@ t_jit_err cv_jit_unproject_matrix_calc(t_cv_jit_unproject *x, void *inputs, void
 		// Make sure we have enough points
 		x->valid = 0;
 
-		if (image_points.get_info().dim[in_dim1] < 5) {	
+		if (image_points.get_info().dim[in_dim1] < 4) {	
 			return JIT_ERR_NONE;
 		}
 
@@ -348,43 +349,95 @@ t_jit_err cv_jit_unproject_matrix_calc(t_cv_jit_unproject *x, void *inputs, void
 		read_points(reference_points.get_data(), reference_points.get_info().type, 
 			reference_points.get_info().dimstride[in_dim2], reference_points.get_info().planecount, x->object_points);
 
-		const float image_width = (float)atom_getfloat(&x->image_size[0]);
-		const float image_height = (float)atom_getfloat(&x->image_size[1]);
+		const double image_width = atom_getfloat(&x->image_size[0]);
+		const double image_height = atom_getfloat(&x->image_size[1]);
 
-		if (x->flip_image_y_axis) {
+		double cx = image_width * 0.5;
+		double cy = image_height * 0.5;
+
+		// Adjust input if normalized
+		if (x->normalize) {
 			for (cv::Point2f & p : x->image_points) {
-				p.y = image_height - p.y;
+				p.x *= (float)image_width;
+				p.y *= (float)image_height;
 			}
 		}
 
-		if (x->flip_reference_y_axis) {
-			for (cv::Point3f & p : x->object_points) {
-				p.y = 1.f - p.y;
-			}
+		// Flip image coordinates
+		for (cv::Point2f & p : x->image_points) {
+			p.y = (float)image_height - p.y;
 		}
 
 		try {
 			cv::Mat camera_matrix = (cv::Mat_<double>(3, 3) << 
-				x->focal_length, 0,               image_width * 0.5,
-				0,               x->focal_length, image_height * 0.5,
+				x->focal_length, 0,               cx,
+				0,               x->focal_length, cy,
 				0,               0,               1
 			);
 			cv::Mat distortion_coeffs = cv::Mat::zeros(4, 1, cv::DataType<double>::type); // No distortion
 			cv::Mat rotation_vector;
 			cv::Mat translation_vector;
 
+			constexpr int method_flags[METHOD_COUND] = {
+				cv::SOLVEPNP_ITERATIVE,
+				cv::SOLVEPNP_EPNP,
+				cv::SOLVEPNP_P3P,
+				cv::SOLVEPNP_DLS
+			};
+
 			// Calculate
-			cv::solvePnPRansac(x->object_points, x->image_points, camera_matrix, distortion_coeffs, rotation_vector, translation_vector);
+			cv::solvePnPRansac(
+				x->object_points, 
+				x->image_points, 
+				camera_matrix, 
+				distortion_coeffs, 
+				rotation_vector, 
+				translation_vector, 
+				false, // useExtrinsicGuess 
+				100, // iterationsCount 
+				8.0, // reprojectionError 
+				0.99, // confidence
+				cv::noArray(), // inliers
+				method_flags[x->method]
+			);
+
+			// Find Euler angles
+			cv::Mat rotation_mat;
+			cv::Rodrigues(rotation_vector, rotation_mat);
+			cv::Vec3f euler = euler_angles(rotation_mat);
+
+			// Adjust output
+			translation_vector.at<double>(0) *= -1.0;
+			euler[0] *= -1.f;
+			euler[1] *= -1.f;
+			euler[2] *= -1.f;
+
+			// Check to see that the values make sense
+			if (translation_vector.at<double>(2) < 0.0) {
+				// Object cannot be behind the camera...
+				translation_vector.at<double>(0) *= -1.0;
+				translation_vector.at<double>(1) *= -1.0;
+				translation_vector.at<double>(2) *= -1.0;
+
+				euler[2] = euler[2] * -1.0 + (float)M_PI;
+			}
 
 			x->valid = 1;
 
 			// Copy output
 			x->translation_count = std::min(translation_vector.rows, TRANSLATION_VEC_MAX_SIZE);
 			for (int i = 0; i < x->translation_count; i++) {
-				atom_setfloat(x->translation + i, translation_vector.at<double>(i, 0));
+				double val = translation_vector.at<double>(i, 0);
+				atom_setfloat(x->translation + i, val);
 			}
 
-			RotationFormat format = x->get_rotation_format();
+			constexpr float RAD2DEG = 180.f / (float)M_PI;
+			x->rotation_count = 3;
+			atom_setfloat(x->rotation, euler[0] * RAD2DEG);
+			atom_setfloat(x->rotation + 1, euler[1] * RAD2DEG);
+			atom_setfloat(x->rotation + 2, euler[2] * RAD2DEG);
+
+			/*RotationFormat format = x->get_rotation_format();
 			switch (format) {
 			case Matrix:
 				x->rotation_count = 3 * 3;
@@ -432,7 +485,7 @@ t_jit_err cv_jit_unproject_matrix_calc(t_cv_jit_unproject *x, void *inputs, void
 					atom_setfloat(x->rotation + 2, quat[2]);
 					atom_setfloat(x->rotation + 3, quat[3]);
 				}
-			}
+			}*/
 		}
 		catch (cv::Exception & exception) {
 			object_error((t_object *)x, "OpenCV error: %s", exception.what());
@@ -454,8 +507,6 @@ t_cv_jit_unproject *cv_jit_unproject_new(void)
 	if ((x=(t_cv_jit_unproject *)jit_object_alloc(_cv_jit_unproject_class))) 
 	{
 		x->focal_length = DEFAULT_FOCAL_LENGTH;
-		x->flip_image_y_axis = 0;
-		x->flip_reference_y_axis = 0;
 
 		atom_setsym(&x->format, rotation_formats[Euler]);
 
@@ -464,6 +515,8 @@ t_cv_jit_unproject *cv_jit_unproject_new(void)
 		x->image_size_count = 2;
 
 		x->valid = 0;
+		x->normalize = 0;
+		x->method = 0;
 
 		for (int i = 0; i < TRANSLATION_VEC_MAX_SIZE; i++) {
 			atom_setfloat(x->translation + i, 0);

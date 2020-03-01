@@ -218,16 +218,21 @@ t_jit_err cv_jit_keypoints_match_matrix_calc(t_cv_jit_keypoints_match *x, void *
 
 		// We also need to make sure that the numbers of features match
 		if (keypoints1.get_info().dim[1] != descriptors1.get_info().dim[1] || keypoints2.get_info().dim[1] != descriptors2.get_info().dim[1]) {
-			// object_error((t_object *)x, "The number of keypoints and descriptors do not match!");
-			// err = JIT_ERR_MISMATCH_DIM;
-
 			// Return silently. This state occurs frequently enough during patching that it's best to
 			// not emit any error.
+			output1.set_size(1L, 1L);
+			output2.set_size(1L, 1L);
+			output1.clear();
+			output2.clear();
 			return JIT_ERR_NONE;
 		}
 
-		if (descriptors1.get_info().dim[0] < 2 || descriptors1.get_info().dim[1] < 2) {
-			// Same here
+		// Also return silently if either set of keypoints is empty
+		if (keypoints1.empty() || descriptors1.empty() || keypoints2.empty() || descriptors2.empty()) {
+			output1.set_size(1L, 1L);
+			output2.set_size(1L, 1L);
+			output1.clear();
+			output2.clear();
 			return JIT_ERR_NONE;
 		}
 

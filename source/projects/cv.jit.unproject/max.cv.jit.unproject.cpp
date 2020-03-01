@@ -51,6 +51,7 @@ void * max_cv_jit_unproject_class;
 // Symbols
 static t_symbol * ps_cv_jit_unproject;
 static t_symbol * ps_getvalid;
+static t_symbol * ps_valid;
 		 
 #ifdef __cplusplus
 extern "C"
@@ -63,6 +64,7 @@ void ext_main(void* unused)
 	// Generate required symbols
 	ps_cv_jit_unproject = gensym("cv_jit_unproject");
 	ps_getvalid = gensym("getvalid");
+	ps_valid = gensym("valid");
 
 	// Initialize the Jitter class
 	cv_jit_unproject_init();
@@ -116,11 +118,13 @@ void max_cv_jit_unproject_mproc(t_max_cv_jit_unproject *x, void *mop)
 			object_error((t_object *)x, "Could not read valid attribute.");
 			return;
 		}
-		if (atom_getlong(a) != 0) {
-			max_cv_jit_unproject_bang(x);
-		}
+
+		const long valid = (long)atom_getlong(a);
 
 		// Dont' do anything if calculation was not succesful
+		if (valid != 0) {
+			max_cv_jit_unproject_bang(x);
+		}
 		
 	} else {
 		jit_error_code(jitter_object, err);
@@ -173,7 +177,7 @@ void *max_cv_jit_unproject_new(t_symbol *s, long argc, t_atom *argv)
 			max_jit_mop_setup_simple(x, jitter_object, argc, argv);
 
 			// Add additional outlets
-			x->rotation_outlet = cvjit::WrapperOutlet(x, "rotation", 4); // Max length = 4 (quaternion)
+			x->rotation_outlet = cvjit::WrapperOutlet(x, "rotation", 3); // Euler angles
 			x->translation_outlet = cvjit::WrapperOutlet(x, "translation", 3); // 3D vector
 
 			// Process attribute arguments

@@ -117,13 +117,39 @@ namespace cvjit {
 		template <typename T>
 		T * get_data(long row, long col = 0) { return (T *)(m_data + row * m_info.dimstride[1] + col * m_info.dimstride[0]); }
 
-		bool empty() {
+		bool empty() const {
 			for (long i = 0; i < m_info.dimcount; i++) {
 				if (m_info.dim[i] > 1) {
 					return false;
 				}
 			}
 			return read<long>(0, 0, 0) == 0;
+		}
+
+		double normalization_scale_x() const {
+			if (m_info.dim[0] == 0) {
+				return 0.0;
+			}
+			return 1.0 / (double)m_info.dim[0];
+		}
+
+		double normalization_scale_y() const {
+			if (m_info.dimcount < 2 || m_info.dim[0] == 0) {
+				return 0.0;
+			}
+			return 1.0 / (double)m_info.dim[1];
+		}
+
+		double wh_ratio() const {
+			if (m_info.dimcount < 2) {
+				return 1;
+			}
+
+			if (m_info.dim[1] == 0) {
+				return 0;
+			}
+
+			return (double)m_info.dim[0] / (double)m_info.dim[1];
 		}
 
 		template <typename... Args>
@@ -140,6 +166,12 @@ namespace cvjit {
 			}
 		}
 
+		void clear() {
+			if (m_matrix) {
+				jit_object_method(m_matrix, _jit_sym_clear);
+			}
+		}
+
 		void set_planecount(long planecount) {
 			if (m_matrix) {
 				m_info.planecount = planecount;
@@ -149,7 +181,7 @@ namespace cvjit {
 		}
 
 		template <typename T>
-		T read(unsigned int plane, unsigned int x, unsigned int y) {
+		T read(unsigned int plane, unsigned int x, unsigned int y) const {
 			if (m_info.dimcount >= 2 && plane < (unsigned int)m_info.planecount) {
 				char * p = m_data + y * m_info.dimstride[1] + x * m_info.dimstride[0];
 				if (m_info.type == _jit_sym_char) {

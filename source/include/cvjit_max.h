@@ -65,7 +65,7 @@ namespace cvjit {
 				const std::string getter_string = std::string("get") + std::string(property);
 				m_getter = gensym(getter_string.c_str());
 
-				m_outlet = outlet_new(m_owner, property);
+				m_outlet = outlet_new(m_owner, "list");
 				if (!m_outlet) {
 					post_error("Could not create outlet.");
 				}
@@ -107,7 +107,7 @@ namespace cvjit {
 					}
 				}
 				else if (count > 1) {
-					outlet_no_err = outlet_list(m_outlet, nullptr, (short)count, data);
+					outlet_no_err = outlet_list(m_outlet, _jit_sym_list, (short)count, data);
 				}
 				else {
 					post_error("Empty outlet data.");

@@ -105,10 +105,8 @@ t_jit_err cv_jit_faces_init(void)
 	jit_attr_addfilterset_clip(attr, 1, 4, true, true);	//clip to 1-4
 	jit_class_addattr(_cv_jit_faces_class, attr);
 
-	attr = (t_jit_object *)jit_object_new( _jit_sym_jit_attr_offset, "normalize", _jit_sym_long, cvjit::Flags::get_set, (method)0L, (method)0L, calcoffset(t_cv_jit_faces, normalize));
-	jit_attr_addfilterset_clip(attr, 0, 1, true, true);	//clip to 0-1
-	jit_class_addattr(_cv_jit_faces_class, attr);
-	
+	// Normalize attribute
+	jit_class_addattr(_cv_jit_faces_class, cvjit::normalize_attr<t_cv_jit_faces>());
 	
 	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset, "nfaces", _jit_sym_long, cvjit::Flags::private_set, (method)0L, (method)0L, calcoffset(t_cv_jit_faces, nfaces));
 	jit_class_addattr(_cv_jit_faces_class, attr);
@@ -137,8 +135,6 @@ void cv_jit_faces_model(t_cv_jit_faces *x, t_symbol *s, long argc, t_atom *argv)
 
 t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *outputs)
 {
-	char *out_bp;
-	float *out_data;
 	cv::Mat source;
 	std::vector<cv::Rect> faces;
 
@@ -151,11 +147,12 @@ t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *output
 		//Lock the matrices
 		cvjit::Savelock savelocks[] = { in_matrix, out_matrix };
 
-		t_jit_matrix_info in_minfo;
-		jit_object_method(in_matrix, _jit_sym_getinfo, &in_minfo);
+		// Wrap the matrices
+		cvjit::JitterMatrix input(in_matrix);
+		cvjit::JitterMatrix results(out_matrix);
 		
 		//Make sure input is of proper format
-		t_jit_err err = cvjit::Validate(x, in_minfo)
+		t_jit_err err = cvjit::Validate(x, input)
 			.type(_jit_sym_char)
 			.planecount(1)
 			.dimcount(2)
@@ -166,7 +163,7 @@ t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *output
 			//Convert Jitter matrix to OpenCV matrix
 			char * in_bp;
 			jit_object_method(in_matrix, _jit_sym_getdata, &in_bp);
-			cv::Mat source = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
+			cv::Mat source = input;
 
 			//Calculate		
 			x->cascade.detectMultiScale(source, faces);
@@ -177,17 +174,24 @@ t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *output
 			
 			jit_object_method(out_matrix, _jit_sym_getdata, &out_bp);
 			if (!out_bp) { return JIT_ERR_INVALID_OUTPUT; }
+			if (x->nfaces == 0) {
+				results.set_size(1);
+				results.clear();
+				return JIT_ERR_NONE;
+			}
 
-			out_data = (float *)out_bp;
+			results.set_size(x->nfaces);
 
-			const float x_mul = (float)(x->normalize ? 1.0 / (double)in_minfo.dim[0] : 1.0);
-			const float y_mul = (float)(x->normalize ? 1.0 / (double)in_minfo.dim[1] : 1.0);
+			const float scale_x = x->normalize ? (float)input.normalization_scale_x() : 1.f;
+			const float scale_y = x->normalize ? (float)input.normalization_scale_y() : 1.f;
+
+			float * out_data = results.get_data<float>();
 
 			for (cv::Rect & rect : faces) {
-				out_data[0] = (float)rect.x * x_mul;
-				out_data[1] = (float)rect.y * y_mul;
-				out_data[2] = (float)(rect.x + rect.width) * x_mul;
-				out_data[3] = (float)(rect.y + rect.height) * y_mul;
+				out_data[0] = (float)rect.x * scale_x;
+				out_data[1] = (float)rect.y * scale_y;
+				out_data[2] = (float)(rect.x + rect.width) * scale_x;
+				out_data[3] = (float)(rect.y + rect.height) * scale_y;
 				out_data += 4;
 			}
 		}

@@ -90,7 +90,7 @@ struct t_cv_jit_face_landmarks
 				worker.detach();
 			}
 			else {
-				object_error((t_object *)this, "Could not read model: %s", file_name);
+				object_error((t_object *)this, "Could not read model: %s", file_name.c_str());
 			}
 		}
 	}

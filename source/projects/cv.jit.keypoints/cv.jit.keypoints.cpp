@@ -166,6 +166,8 @@ inline void set_detector(t_cv_jit_keypoints *x, cvjit::KeypointMethod method)
 	case cvjit::ORB:
 		x->detector = cv::ORB::create();
 		break;
+    default:
+        break;
 	}
 }
 
@@ -271,6 +273,8 @@ t_jit_err cv_jit_keypoints_matrix_calc(t_cv_jit_keypoints *x, void *inputs, void
 						ORB->setEdgeThreshold(x->patchsize);
 						break;
 					}
+                    default:
+                        break;
 				}
 
 				// Wrap the source image in an OpenCV Mat

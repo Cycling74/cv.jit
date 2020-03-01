@@ -281,7 +281,7 @@ namespace cvjit {
 		}
 
 		Validate & dim(int index, int min_size)  {
-			if (m_state == JIT_ERR_NONE && index >= m_info.dimcount || m_info.dim[index] < min_size) {
+			if ((m_state == JIT_ERR_NONE && index >= m_info.dimcount) || m_info.dim[index] < min_size) {
 				m_state = JIT_ERR_MISMATCH_DIM;
 			}
 			return *this;
@@ -364,26 +364,26 @@ namespace cvjit {
 
 		template <typename T>
 		inline t_symbol * type_sym() {
-			static_assert(false, "Invalid argument type, must be unsigned char, long, float or double.");
+            return 0L;
 		}
 
 		template <>
-		inline static t_symbol * type_sym<unsigned char>() {
+		inline t_symbol * type_sym<unsigned char>() {
 			return _jit_sym_char;
 		}
 
 		template <>
-		inline static t_symbol * type_sym<long>() {
+		inline t_symbol * type_sym<long>() {
 			return _jit_sym_long;
 		}
 
 		template <>
-		inline static t_symbol * type_sym<float>() {
+		inline t_symbol * type_sym<float>() {
 			return _jit_sym_float32;
 		}
 
 		template <>
-		inline static t_symbol * type_sym<double>() {
+		inline t_symbol * type_sym<double>() {
 			return _jit_sym_float64;
 		}
 

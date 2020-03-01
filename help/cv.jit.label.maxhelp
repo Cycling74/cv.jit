@@ -367,7 +367,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 720.0, 73.0, 118.0, 37.0 ],
 					"style" : "",
-					"text" : "by Jean-Marc Pelletier\rjmp@iamas.ac.jp\rCopyright ©2003-2008"
+					"text" : "by Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
 			}

@@ -47,7 +47,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 659.0, 376.0, 120.0, 67.0 ],
 					"style" : "",
-					"text" : "cv.jit.hough2lines abstraction\rby Jean-Marc Pelletier\r<jmp@iamas.ac.jp>\r\rCopyright ©2006-2008"
+					"text" : "cv.jit.hough2lines abstraction\rby Jean-Marc Pelletier\r<jmp@jmpelletier.com>\r\rCopyright ©2006-2020"
 				}
 
 			}
@@ -62,7 +62,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 659.0, 265.0, 127.0, 77.0 ],
 					"style" : "",
-					"text" : "cv.jit.extrema external\rby Christopher P. Baker\r<https://christopherbaker.net> &\r Mateusz Herczka \r<msz@westerplatte.net>\r\rCopyright ©2005-2008"
+					"text" : "cv.jit.extrema external\rby Christopher P. Baker\r<https://christopherbaker.net> &\r Mateusz Herczka \r<msz@westerplatte.net>\r\rCopyright ©2005-2020"
 				}
 
 			}

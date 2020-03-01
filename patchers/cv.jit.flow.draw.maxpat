@@ -433,7 +433,7 @@
 				"box" : 				{
 					"maxclass" : "comment",
 					"varname" : "copyright-comment",
-					"text" : "Copyright ©2003-2009",
+					"text" : "Copyright ©2003-2020",
 					"id" : "obj-17",
 					"fontname" : "Arial",
 					"frgb" : [ 0.0, 0.0, 0.0, 0.901961 ],

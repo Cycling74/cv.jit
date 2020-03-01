@@ -3,7 +3,7 @@ cv.jit.dilate.h
 	
 
 Copyright 2008, Jean-Marc Pelletier
-jmp@iamas.ac.jp
+jmp@jmpelletier.com
 
 This file is part of cv.jit.
 

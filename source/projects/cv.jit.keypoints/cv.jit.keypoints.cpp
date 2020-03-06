@@ -136,6 +136,58 @@ t_jit_err cv_jit_keypoints_init(void)
 	return JIT_ERR_NONE;
 }
 
+inline void set_detector(t_cv_jit_keypoints *x, cvjit::KeypointMethod method)
+{
+	x->_method = method;
+	switch (method) {
+	case cvjit::AKAZE:
+		x->detector = cv::AKAZE::create();
+		break;
+	case cvjit::BRISK:
+		x->detector = cv::BRISK::create();
+		break;
+	case cvjit::KAZE:
+		x->detector = cv::KAZE::create();
+		break;
+	case cvjit::ORB:
+		x->detector = cv::ORB::create();
+		break;
+    default:
+        break;
+	}
+}
+
+t_jit_err cv_jit_keypoints_set_method(t_cv_jit_keypoints *x, void *attr, long ac, t_atom *av)
+{
+	if (ac > 0) {
+		if (av[0].a_type == A_LONG || av[0].a_type == A_FLOAT) {
+			t_atom_long val = atom_getlong(av);
+			if (val < 0 || val >= cvjit::KEYPOINT_METHOD_COUNT) {
+				object_error((t_object *)x, "Invalid method, make sure value is between 0 and %d.", cvjit::KEYPOINT_METHOD_COUNT - 1);
+			}
+			else {
+				atom_setsym(&x->method, cvjit::keypoint_methods[val]);
+				set_detector(x, static_cast<cvjit::KeypointMethod>(val));
+			}
+		}
+		else if (av[0].a_type == A_SYM) {
+			t_symbol * sym = atom_getsym(av);
+			for (int i = 0; i < cvjit::KEYPOINT_METHOD_COUNT; i++) {
+				if (sym == cvjit::keypoint_methods[i]) {
+					x->method = av[0];
+					set_detector(x, static_cast<cvjit::KeypointMethod>(i));
+					return JIT_ERR_NONE;
+				}
+			}
+			object_error((t_object *)x, "Invalid method: %s", sym->s_name);
+		}
+		else {
+			object_error((t_object *)x, "Invalid method, please provide a method name or number.");
+		}
+	}
+	return JIT_ERR_NONE;
+}
+
 t_jit_err cv_jit_keypoints_matrix_calc(t_cv_jit_keypoints *x, void *inputs, void *outputs)
 {
 	cv::Mat source;
@@ -171,6 +223,45 @@ t_jit_err cv_jit_keypoints_matrix_calc(t_cv_jit_keypoints *x, void *inputs, void
 			try {
 
 				// Setup the parameters
+				switch (x->_method) {
+					case cvjit::AKAZE:
+					{
+						cv::Ptr<cv::AKAZE> AKAZE = x->detector.dynamicCast<cv::AKAZE>();
+						AKAZE->setThreshold(x->threshold);
+						AKAZE->setNOctaves(x->octaves);
+						AKAZE->setNOctaveLayers(x->octaveLayers);
+						break;
+					}
+					case cvjit::BRISK:
+					{
+						cv::Ptr<cv::BRISK> BRISK = x->detector.dynamicCast<cv::BRISK>();
+						BRISK->setThreshold(static_cast<int>(x->threshold * 255.f));
+						BRISK->setOctaves(x->octaves);
+						break;
+					}
+					case cvjit::KAZE:
+					{
+						cv::Ptr<cv::KAZE> KAZE = x->detector.dynamicCast<cv::KAZE>();
+						KAZE->setExtended(x->extended != 0);
+						KAZE->setNOctaveLayers(x->octaveLayers);
+						KAZE->setNOctaves(x->octaves);
+						KAZE->setThreshold(x->threshold);
+						KAZE->setUpright(x->upright != 0);
+						break;
+					}
+					case cvjit::ORB:
+					{
+						cv::Ptr<cv::ORB> ORB = x->detector.dynamicCast<cv::ORB>();
+						ORB->setFastThreshold(static_cast<int>(x->threshold * 255.f));
+						ORB->setMaxFeatures(x->maxcount);
+						ORB->setScaleFactor(x->scalefactor);
+						ORB->setPatchSize(x->patchsize);
+						ORB->setEdgeThreshold(x->patchsize);
+						break;
+					}
+                    default:
+                        break;
+				}
 				cv::Ptr<cv::BRISK> BRISK = x->detector.dynamicCast<cv::BRISK>();
 				BRISK->setThreshold(static_cast<int>(x->threshold * 255.f));
 				BRISK->setOctaves(x->octaves);

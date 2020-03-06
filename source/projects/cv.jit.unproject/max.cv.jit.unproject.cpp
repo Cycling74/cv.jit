@@ -80,7 +80,7 @@ void ext_main(void* unused)
 
 	// We use a custom mop
 	max_jit_classex_mop_wrap(classex, jitter_class, MAX_JIT_MOP_FLAGS_OWN_BANG | MAX_JIT_MOP_FLAGS_OWN_OUTPUTMATRIX);
-	max_jit_classex_mop_mproc(classex, jitter_class, max_cv_jit_unproject_mproc);
+	max_jit_classex_mop_mproc(classex, jitter_class, (void *)max_cv_jit_unproject_mproc);
 	max_jit_classex_standard_wrap(classex, jitter_class, 0);
 
 	// Register our custom bang method
@@ -150,10 +150,12 @@ void max_cv_jit_unproject_assist(t_max_cv_jit_unproject *x, void *b, long m, lon
 {
 	const int MAX_ASSIST_LENGTH = 32;
 	if (m == 1) { //input
-		max_jit_mop_assist(x, b, m, a, s);
+        if (a < INLET_ASSIST_COUNT) {
+            snprintf(s, MAX_ASSIST_LENGTH, "%s", inlet_assistance[a]);
+        }
 	} else { //output
 		if (a < OUTLET_ASSIST_COUNT) {
-			snprintf(s, MAX_ASSIST_LENGTH, outlet_assistance[a]);
+			snprintf(s, MAX_ASSIST_LENGTH, "%s", outlet_assistance[a]);
 		}
 	}
 }

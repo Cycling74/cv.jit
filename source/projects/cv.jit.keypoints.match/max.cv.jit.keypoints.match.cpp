@@ -119,9 +119,9 @@ void max_cv_jit_keypoints_match_assist(t_max_cv_jit_keypoints_match * x, void * 
 
 	
 	if (m == 1 && a < inlet_assist_count) { //input
-		snprintf(s, MAX_ASSIST_LENGTH, inlet_assist[a]);
+		snprintf(s, MAX_ASSIST_LENGTH, "%s", inlet_assist[a]);
 	}
 	else if (a < outlet_assist_count) { //output
-		snprintf(s, MAX_ASSIST_LENGTH, outlet_assist[a]);
+		snprintf(s, MAX_ASSIST_LENGTH, "%s", outlet_assist[a]);
 	}
 }

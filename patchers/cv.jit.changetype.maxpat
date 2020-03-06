@@ -22,7 +22,7 @@
 				"box" : 				{
 					"maxclass" : "comment",
 					"varname" : "copyright-comment",
-					"text" : "Copyright ©2003-2010",
+					"text" : "Copyright ©2003-2020",
 					"fontsize" : 10.0,
 					"frgb" : [ 0.0, 0.0, 0.0, 0.901961 ],
 					"patching_rect" : [ 73.0, 464.0, 111.0, 18.0 ],

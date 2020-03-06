@@ -1,6 +1,6 @@
 # cv.jit copyright notice
 
-All externals, abstractions and help files by Jean-Marc Pelletier <jmp@iamas.ac.jp> 2003-2008 except:
+All externals, abstractions and help files by Jean-Marc Pelletier <jmp@jmpelletier.com> 2003-2008 except:
 
 * `cv.jit.hough` by Christopher P. Baker <https://christopherbaker.net> and Mateusz Herczka 2004
 * `cv.jit.extrema` by Christopher P. Baker <https://christopherbaker.net> and Mateusz Herczka 2004, with modifications by Jean-Marc Pelletier 2006

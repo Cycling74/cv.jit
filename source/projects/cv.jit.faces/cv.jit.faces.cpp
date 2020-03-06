@@ -170,6 +170,10 @@ t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *output
 			x->nfaces = (long)faces.size();
 
 			//Prepare output
+			cvjit::resize_matrix(out_matrix, { (long)faces.size() });
+			
+			jit_object_method(out_matrix, _jit_sym_getdata, &out_bp);
+			if (!out_bp) { return JIT_ERR_INVALID_OUTPUT; }
 			if (x->nfaces == 0) {
 				results.set_size(1);
 				results.clear();

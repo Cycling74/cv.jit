@@ -239,8 +239,8 @@ void *cv_jit_kalman_new(long arg)
 		x->dynamic_dims = 0;
 		x->measurement_dims = 0;
 
-		x->vel_weight = 0.3f;
-		x->accel_weight = 0.2f;
+		x->vel_weight = 0.001f;
+		x->accel_weight = 0.001f;
 		x->should_init_model = true;
 	}
 	else {

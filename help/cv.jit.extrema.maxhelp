@@ -48,7 +48,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 699.0, 461.0, 124.0, 77.0 ],
 					"style" : "",
-					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rChristopher P. Baker <https://christopherbaker.net>\rMateusz Herczka\rmsz@westerplatte.net\rCopyright ©2005-2020"
+					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rChristopher P. Baker bakercp@umn.edu\rMateusz Herczka\rmsz@westerplatte.net\rCopyright ©2005-2020"
 				}
 
 			}

@@ -1,0 +1,13 @@
+{
+	"lbfmodel.yaml": {
+		"jaw": [0, 17],
+		"brow-l": [17, 5],
+		"brow-r": [22, 5],
+		"nose-ridge": [27, 4],
+		"nose-base": [31, 5],
+		"eye-l": [36, 6],
+		"eye-r": [42, 6],
+		"lips": [48, 12],
+		"mouth": [60, 8]
+	}
+}

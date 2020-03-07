@@ -79,7 +79,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 665.0, 433.0, 121.0, 97.0 ],
 					"style" : "",
-					"text" : "External by\rChristopher P. Baker bakercp@umn.edu\rMateusz Herczka\r\rHelp file by\rJean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2004-2020"
+					"text" : "External by\rChristopher P. Baker <https://christopherbaker.net>\rMateusz Herczka\r\rHelp file by\rJean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2004-2020"
 				}
 
 			}

@@ -62,7 +62,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 659.0, 265.0, 127.0, 77.0 ],
 					"style" : "",
-					"text" : "cv.jit.extrema external\rby Christopher P. Baker\r<bakercp@umn.edu> &\r Mateusz Herczka \r<msz@westerplatte.net>\r\rCopyright ©2005-2020"
+					"text" : "cv.jit.extrema external\rby Christopher P. Baker\r<<https://christopherbaker.net>> &\r Mateusz Herczka \r<msz@westerplatte.net>\r\rCopyright ©2005-2020"
 				}
 
 			}

@@ -2,15 +2,15 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 7,
-			"minor" : 0,
-			"revision" : 3,
-			"architecture" : "x86",
+			"major" : 8,
+			"minor" : 1,
+			"revision" : 2,
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 287.0, 135.0, 828.0, 560.0 ],
-		"bgcolor" : [ 0.823529, 0.823529, 0.764706, 1.0 ],
+		"classnamespace" : "box",
+		"rect" : [ 427.0, 148.0, 828.0, 518.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,21 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"bgcolor" : [ 0.0, 0.0, 0.0, 0.1 ],
+					"fontname" : "Arial",
+					"fontsize" : 10.0,
+					"id" : "obj-3",
+					"linecount" : 3,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 640.0, 452.0, 134.0, 41.0 ],
+					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 9.0,
 					"hidden" : 1,
@@ -47,8 +62,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 173.0, 524.0, 47.0, 0.0 ],
-					"style" : "",
+					"patching_rect" : [ 173.0, 524.0, 47.0, 19.0 ],
 					"text" : "pcontrol"
 				}
 
@@ -66,14 +80,15 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 7,
-							"minor" : 0,
-							"revision" : 3,
-							"architecture" : "x86",
+							"major" : 8,
+							"minor" : 1,
+							"revision" : 2,
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 20.0, 74.0, 600.0, 400.0 ],
+						"classnamespace" : "box",
+						"rect" : [ 41.0, 84.0, 600.0, 400.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -108,8 +123,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 269.0, 92.0, 32.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 269.0, 92.0, 32.0, 19.0 ],
 									"text" : "print"
 								}
 
@@ -118,11 +132,11 @@
 								"box" : 								{
 									"comment" : "",
 									"id" : "obj-2",
+									"index" : 1,
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 171.0, 294.0, 15.0, 15.0 ],
-									"style" : ""
+									"patching_rect" : [ 171.0, 294.0, 15.0, 15.0 ]
 								}
 
 							}
@@ -135,8 +149,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 171.0, 264.0, 66.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 171.0, 264.0, 66.0, 19.0 ],
 									"text" : "prepend help"
 								}
 
@@ -150,8 +163,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 197.0, 216.0, 44.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 197.0, 216.0, 44.0, 19.0 ],
 									"text" : "zl nth 3"
 								}
 
@@ -165,8 +177,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 197.0, 105.0, 57.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 197.0, 105.0, 57.0, 19.0 ],
 									"text" : "t l l"
 								}
 
@@ -180,8 +191,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 171.0, 242.0, 36.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 171.0, 242.0, 36.0, 19.0 ],
 									"text" : "zl reg"
 								}
 
@@ -195,8 +205,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 197.0, 193.0, 57.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 197.0, 193.0, 57.0, 19.0 ],
 									"text" : "zl reg"
 								}
 
@@ -210,8 +219,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "" ],
-									"patching_rect" : [ 197.0, 152.0, 32.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 197.0, 152.0, 32.0, 19.0 ],
 									"text" : "sel 0"
 								}
 
@@ -225,8 +233,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "" ],
-									"patching_rect" : [ 116.0, 217.0, 32.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 116.0, 217.0, 32.0, 19.0 ],
 									"text" : "sel 1"
 								}
 
@@ -240,8 +247,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 116.0, 196.0, 27.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 116.0, 196.0, 27.0, 19.0 ],
 									"text" : "> 1"
 								}
 
@@ -255,8 +261,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 116.0, 174.0, 34.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 116.0, 174.0, 34.0, 19.0 ],
 									"text" : "zl len"
 								}
 
@@ -270,8 +275,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 116.0, 134.0, 14.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 116.0, 134.0, 16.0, 19.0 ],
 									"text" : "1"
 								}
 
@@ -285,8 +289,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 116.0, 153.0, 52.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 116.0, 153.0, 52.0, 19.0 ],
 									"text" : "thresh 400"
 								}
 
@@ -300,8 +303,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 197.0, 131.0, 44.0, 0.0 ],
-									"style" : "",
+									"patching_rect" : [ 197.0, 131.0, 44.0, 19.0 ],
 									"text" : "zl nth 1"
 								}
 
@@ -310,12 +312,12 @@
 								"box" : 								{
 									"comment" : "",
 									"id" : "obj-15",
+									"index" : 1,
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "list" ],
-									"patching_rect" : [ 197.0, 85.0, 15.0, 15.0 ],
-									"style" : ""
+									"patching_rect" : [ 197.0, 85.0, 15.0, 15.0 ]
 								}
 
 							}
@@ -323,8 +325,6 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-10", 0 ]
 								}
 
@@ -332,8 +332,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-11", 0 ]
 								}
 
@@ -341,8 +339,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-12", 0 ]
 								}
 
@@ -350,8 +346,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
 
@@ -359,8 +353,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -368,8 +360,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-15", 0 ]
 								}
 
@@ -377,8 +367,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-3", 0 ]
 								}
 
@@ -386,8 +374,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 1 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -395,8 +381,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -404,8 +388,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 1 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-5", 1 ]
 								}
 
@@ -413,8 +395,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -422,8 +402,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -431,8 +409,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
+									"order" : 1,
 									"source" : [ "obj-8", 0 ]
 								}
 
@@ -440,8 +417,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
+									"order" : 0,
 									"source" : [ "obj-8", 0 ]
 								}
 
@@ -449,8 +425,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
 									"midpoints" : [ 125.5, 239.0, 180.5, 239.0 ],
 									"source" : [ "obj-9", 0 ]
 								}
@@ -459,33 +433,15 @@
  ]
 					}
 ,
-					"patching_rect" : [ 173.0, 502.0, 70.0, 0.0 ],
+					"patching_rect" : [ 173.0, 502.0, 70.0, 19.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
 						"globalpatchername" : "",
-						"style" : "",
 						"tags" : ""
 					}
 ,
-					"style" : "",
 					"text" : "p launch_help"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"hidden" : 1,
-					"id" : "obj-3",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"patching_rect" : [ 668.0, 210.0, 27.0, 0.0 ],
-					"style" : "",
-					"text" : "- 1"
 				}
 
 			}
@@ -499,8 +455,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 758.0, 231.0, 48.0, 0.0 ],
-					"style" : "",
+					"patching_rect" : [ 651.0, 233.0, 48.0, 19.0 ],
 					"text" : "loadbang"
 				}
 
@@ -508,61 +463,12 @@
 , 			{
 				"box" : 				{
 					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"hidden" : 1,
-					"id" : "obj-5",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "bang", "int" ],
-					"patching_rect" : [ 651.0, 191.0, 27.0, 0.0 ],
-					"style" : "",
-					"text" : "t b i"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"hidden" : 1,
-					"id" : "obj-6",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 668.0, 232.0, 58.0, 0.0 ],
-					"style" : "",
-					"text" : "sort -1 $1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"hidden" : 1,
-					"id" : "obj-7",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 651.0, 171.0, 86.0, 0.0 ],
-					"style" : "",
-					"text" : "pvar cvjit_ubu 3"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
+					"fontsize" : 12.0,
 					"id" : "obj-8",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 255.0, 74.0, 57.0, 17.0 ],
-					"style" : "",
+					"patching_rect" : [ 186.0, 69.0, 73.0, 20.0 ],
 					"text" : "Description"
 				}
 
@@ -570,44 +476,13 @@
 , 			{
 				"box" : 				{
 					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-9",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 189.0, 74.0, 57.0, 17.0 ],
-					"style" : "",
-					"text" : "Group"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
+					"fontsize" : 12.0,
 					"id" : "obj-10",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 25.0, 74.0, 65.0, 17.0 ],
-					"style" : "",
+					"patching_rect" : [ 25.0, 69.0, 84.0, 20.0 ],
 					"text" : "Object name"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontsize" : 9.0,
-					"id" : "obj-11",
-					"items" : [ "Name", ",", "Group" ],
-					"maxclass" : "umenu",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "int", "", "" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 526.0, 71.0, 100.0, 19.0 ],
-					"style" : "",
-					"varname" : "cvjit_ubu"
 				}
 
 			}
@@ -620,90 +495,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 4,
 					"numoutlets" : 0,
-					"patching_rect" : [ 23.0, 507.0, 106.0, 0.0 ],
-					"style" : "",
+					"patching_rect" : [ 23.0, 507.0, 106.0, 19.0 ],
 					"text" : "bgcolor 210 210 195"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-13",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 644.0, 455.0, 129.0, 27.0 ],
-					"style" : "",
-					"text" : "International Academy of Media Arts & Sciences",
-					"textcolor" : [ 0.058824, 0.007843, 0.007843, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-14",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 644.0, 440.0, 110.0, 17.0 ],
-					"style" : "",
-					"text" : "support:",
-					"textcolor" : [ 0.058824, 0.007843, 0.007843, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-15",
-					"linecount" : 3,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 642.0, 384.0, 121.0, 37.0 ],
-					"style" : "",
-					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
-					"border" : 1,
-					"bordercolor" : [ 0.54902, 0.54902, 0.54902, 1.0 ],
-					"id" : "obj-16",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 635.0, 377.0, 140.0, 111.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0,
-					"style" : ""
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.713726, 0.752941, 0.721569, 1.0 ],
-					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
-					"id" : "obj-17",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 637.0, 382.0, 142.0, 110.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0,
-					"style" : ""
 				}
 
 			}
@@ -715,8 +508,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 23.0, 26.0, 453.0, 33.0 ],
-					"style" : "",
+					"patching_rect" : [ 23.0, 26.0, 453.0, 34.0 ],
 					"text" : "cv.jit object guide",
 					"textcolor" : [ 0.054902, 0.2, 0.270588, 1.0 ]
 				}
@@ -734,8 +526,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 23.0, 55.0, 600.0, 4.0 ],
 					"proportion" : 0.39,
-					"rounded" : 0,
-					"style" : ""
+					"rounded" : 0
 				}
 
 			}
@@ -751,8 +542,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 23.0, 54.0, 600.0, 5.0 ],
 					"proportion" : 0.39,
-					"rounded" : 0,
-					"style" : ""
+					"rounded" : 0
 				}
 
 			}
@@ -766,8 +556,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 651.0, 277.0, 80.0, 0.0 ],
-					"style" : "",
+					"patching_rect" : [ 651.0, 270.0, 80.0, 19.0 ],
 					"text" : "refer externals"
 				}
 
@@ -780,11 +569,10 @@
 					"id" : "obj-22",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 4,
-					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 651.0, 295.0, 101.0, 0.0 ],
-					"style" : "",
-					"text" : "pvar cvjit_list 4"
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 651.0, 295.0, 68.0, 19.0 ],
+					"text" : "pvar cvjit_list 2"
 				}
 
 			}
@@ -792,12 +580,12 @@
 				"box" : 				{
 					"bgcolor" : [ 0.992218, 0.992218, 0.992218, 1.0 ],
 					"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"coldef" : [ [ 0, 165, 1, 0.368627, 0.0, 0.0, 1.0, 1, 0.0, 0.0, 0.0, 1.0, -1, 2, 1 ], [ -1, 5, 1, 0.368627, 0.0, 0.0, 1.0, 1, 0.0, 0.0, 0.0, 1.0, -1, 2, 1 ], [ -2, 5, 1, 0.368627, 0.0, 0.0, 1.0, 1, 0.0, 0.0, 0.0, 1.0, -1, 2, 1 ], [ 2, 360, 1, 0.368627, 0.0, 0.0, 1.0, 1, 0.0, 0.0, 0.0, 1.0, -1, 2, 1 ], [ 1, 64, 1, 0.513726, 0.086275, 0.0, 1.0, 1, 0.0, 0.0, 0.0, 1.0, -1, 2, 1 ] ],
-					"cols" : 3,
-					"colwidth" : 45,
+					"coldef" : [ [ 0, 189, 1, 0.368627, 0.0, 0.0, 1.0, 1, 0.0, 0.0, 0.0, 1.0, -1, 2, 1 ], [ -1, 5, 1, 0.368627, 0.0, 0.0, 1.0, 1, 0.0, 0.0, 0.0, 1.0, -1, 2, 1 ], [ -2, 5, 1, 0.368627, 0.0, 0.0, 1.0, 1, 0.0, 0.0, 0.0, 1.0, -1, 2, 1 ], [ 1, 400, 1, 0.513726, 0.086275, 0.0, 1.0, 1, 0.0, 0.0, 0.0, 1.0, -1, 2, 1 ] ],
+					"cols" : 2,
+					"colwidth" : 200,
 					"fontface" : 0,
 					"fontname" : "Geneva",
-					"fontsize" : 9.0,
+					"fontsize" : 11.0,
 					"gridlinecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"hcellcolor" : [ 0.801556, 0.801556, 0.801556, 1.0 ],
 					"headercolor" : [ 0.992218, 0.992218, 0.992218, 1.0 ],
@@ -809,9 +597,10 @@
 					"outlettype" : [ "list", "", "", "" ],
 					"patching_rect" : [ 23.0, 92.0, 605.0, 401.0 ],
 					"precision" : 4,
+					"readonly" : 1,
 					"rowhead" : 1,
 					"rowheight" : 25,
-					"rows" : 61,
+					"rows" : 83,
 					"selmode" : 3,
 					"varname" : "cvjit_list"
 				}
@@ -820,250 +609,338 @@
 , 			{
 				"box" : 				{
 					"coll_data" : 					{
-						"count" : 61,
+						"count" : 83,
 						"data" : [ 							{
 								"key" : "cv.jit.binedge",
-								"value" : [ "edges", "Extract edge pixels from a binary image" ]
+								"value" : [ "Extract edges in a binary image." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.bounds",
-								"value" : [ "blobs", "Return the bounding boxes of each connected component" ]
+								"value" : [ "Find connected component bounding boxes." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.bounds.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.blobs.bounds" ]
+								"value" : [ "Draw connected component bounding boxes." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.centroids",
-								"value" : [ "blobs", "Return the center of mass of each connected component" ]
+								"value" : [ "Find connected component centroids." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.centroids.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.blobs.centroids" ]
+								"value" : [ "Draw connected component centroids." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.color",
-								"value" : [ "drawing", "Paint each connected component a different colour" ]
+								"value" : [ "Display connected components with color." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.colour",
-								"value" : [ "drawing", "Paint each connected component a different color" ]
+								"value" : [ "Display connected components with colour." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.direction",
-								"value" : [ "blobs", "Return the direction each connected component points to" ]
+								"value" : [ "Find connected component directions." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.direction.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.blobs.direction" ]
+								"value" : [ "Draw connected component directions." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.elongation",
-								"value" : [ "blobs", "Return the elongation (thinness) of each connected component" ]
+								"value" : [ "Find connected component elongations." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.elongation.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.blobs.elongation" ]
+								"value" : [ "Draw connected component elongations." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.moments",
-								"value" : [ "blobs", "Return moments and invariants of each connected component" ]
-							}
-, 							{
-								"key" : "cv.jit.blobs.orient.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.blobs.orientation" ]
+								"value" : [ "Find connected component moments of inertia." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.orientation",
-								"value" : [ "blobs", "Return the orientation of each connected component" ]
+								"value" : [ "Find connected component orientations." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.orientation.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.blobs.orientation" ]
+								"value" : [ "Draw connected component orientations." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.recon",
-								"value" : [ "blobs", "Compare each connected component to a pre-calculated model" ]
+								"value" : [ "Shape recognition for connected components." ]
 							}
 , 							{
 								"key" : "cv.jit.blobs.sort",
-								"value" : [ "blobs", "Try to keep blob labels in order" ]
+								"value" : [ "Sort connected components." ]
+							}
+, 							{
+								"key" : "cv.jit.blur",
+								"value" : [ "Add gaussian blur to an image." ]
+							}
+, 							{
+								"key" : "cv.jit.calibration",
+								"value" : [ "Calibrate camera." ]
 							}
 , 							{
 								"key" : "cv.jit.canny",
-								"value" : [ "edges", "Extract a binary edge from a greyscale image" ]
+								"value" : [ "Detect edges in an image." ]
 							}
 , 							{
 								"key" : "cv.jit.cartopol",
-								"value" : [ "utilities", "Convert cartesian coordinates to polar form (matrix version)" ]
+								"value" : [ "Cartesian to polar conversion in matrix data." ]
 							}
 , 							{
 								"key" : "cv.jit.centroids",
-								"value" : [ "shape", "Calculate the center of mass of the image" ]
+								"value" : [ "Calculate the center of mass of an image." ]
 							}
 , 							{
 								"key" : "cv.jit.centroids.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.centroids" ]
+								"value" : [ "Draw image centroids." ]
+							}
+, 							{
+								"key" : "cv.jit.changetype",
+								"value" : [ "Change the type of a matrix." ]
 							}
 , 							{
 								"key" : "cv.jit.circularity",
-								"value" : [ "shape", "Calculate how compact a shape is." ]
+								"value" : [ "Find circularity of binary image." ]
 							}
 , 							{
 								"key" : "cv.jit.close",
-								"value" : [ "morphology", "Morphological close operator (dilate+erode)" ]
+								"value" : [ "Dilate then erode a binary image." ]
+							}
+, 							{
+								"key" : "cv.jit.covariance",
+								"value" : [ "Calculate covariance matrix." ]
 							}
 , 							{
 								"key" : "cv.jit.dilate",
-								"value" : [ "morphology", "Morphological open operator" ]
+								"value" : [ "Dilate a binary image to remove noise." ]
 							}
 , 							{
 								"key" : "cv.jit.direction",
-								"value" : [ "shape", "Calculate the direction of a shape from its moments" ]
+								"value" : [ "Find the direction of a binary image." ]
 							}
 , 							{
 								"key" : "cv.jit.elongation",
-								"value" : [ "shape", "Calculate how thin a shape is from its moments" ]
+								"value" : [ "Find elongation of binary image." ]
 							}
 , 							{
 								"key" : "cv.jit.erode",
-								"value" : [ "morphology", "Morphological erosion" ]
+								"value" : [ "Erode a binary image to remove noise." ]
+							}
+, 							{
+								"key" : "cv.jit.extrema",
+								"value" : [ "Find extreme values in a matrix." ]
+							}
+, 							{
+								"key" : "cv.jit.face.landmarks",
+								"value" : [ "Detect facial landmarks such as eyes and mouth." ]
+							}
+, 							{
+								"key" : "cv.jit.face.landmarks.draw",
+								"value" : [ "Draw facial landmarks." ]
+							}
+, 							{
+								"key" : "cv.jit.face.parts",
+								"value" : [ "Separate facial landmarks into easy to access groups." ]
+							}
+, 							{
+								"key" : "cv.jit.face.rigidpoints",
+								"value" : [ "Extract rigid points from facial landmarks." ]
 							}
 , 							{
 								"key" : "cv.jit.faces",
-								"value" : [ "patterns", "Find faces in a greyscale image" ]
+								"value" : [ "Detect faces." ]
 							}
 , 							{
 								"key" : "cv.jit.faces.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.faces" ]
+								"value" : [ "Draw detected face regions." ]
 							}
 , 							{
 								"key" : "cv.jit.features",
-								"value" : [ "patterns", "Find salient points in a greyscale image" ]
+								"value" : [ "Detect corners in a image for tracking." ]
 							}
 , 							{
 								"key" : "cv.jit.features.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.features" ]
+								"value" : [ "Draw detected corners." ]
 							}
 , 							{
 								"key" : "cv.jit.features2track",
-								"value" : [ "tracking", "Initialize cv.jit.track to salient points in the image" ]
+								"value" : [ "Extract corners for tracking." ]
+							}
+, 							{
+								"key" : "cv.jit.findchessboardcorners",
+								"value" : [ "Find chessboard corners in an image to calibrate a camera." ]
+							}
+, 							{
+								"key" : "cv.jit.findhomography",
+								"value" : [ "Find a perspective transformation between two planes." ]
 							}
 , 							{
 								"key" : "cv.jit.floodfill",
-								"value" : [ "blobs", "Isolate a single connected component from a binary image" ]
+								"value" : [ "Extract a connected component from a binary image." ]
+							}
+, 							{
+								"key" : "cv.jit.flow.draw",
+								"value" : [ "Display optical flow using hue for direction." ]
 							}
 , 							{
 								"key" : "cv.jit.framesub",
-								"value" : [ "movement", "Find the difference between the current frame and the previous one" ]
+								"value" : [ "Subtract subsequent frames for motion detection." ]
+							}
+, 							{
+								"key" : "cv.jit.getperspective",
+								"value" : [ "Calculate perspective transform." ]
 							}
 , 							{
 								"key" : "cv.jit.hough",
-								"value" : [ "patterns", "Calculate Hough space" ]
+								"value" : [ "Calculate Hough space." ]
 							}
 , 							{
 								"key" : "cv.jit.hough2lines",
-								"value" : [ "patterns", "Use the Hough space to find straight lines in an image" ]
+								"value" : [ "Find straight lines in Hough space." ]
 							}
 , 							{
-								"key" : "cv.jit.hsflow",
-								"value" : [ "movement", "Use the Horn-Schunk method to estimate optical flow" ]
+								"key" : "cv.jit.iter",
+								"value" : [ "Output a matrix one row or column at at time." ]
+							}
+, 							{
+								"key" : "cv.jit.kalman",
+								"value" : [ "Use a Kalman filter to remove noise in tracking or sensor data." ]
+							}
+, 							{
+								"key" : "cv.jit.keypoints",
+								"value" : [ "Find multi-scale features and their descriptors for object matching." ]
+							}
+, 							{
+								"key" : "cv.jit.keypoints.draw",
+								"value" : [ "Draw keypoints." ]
+							}
+, 							{
+								"key" : "cv.jit.keypoints.match",
+								"value" : [ "Match two sets of keypoints." ]
 							}
 , 							{
 								"key" : "cv.jit.label",
-								"value" : [ "blobs", "Assign a different value to each connected component in a binary image" ]
+								"value" : [ "Extract connected components from a binary image." ]
 							}
 , 							{
 								"key" : "cv.jit.learn",
-								"value" : [ "recognition", "Simple pattern learning and recognition" ]
+								"value" : [ "Learn and detect patterns." ]
 							}
 , 							{
 								"key" : "cv.jit.lines",
-								"value" : [ "patterns", "Find straight lines in a greyscale image" ]
+								"value" : [ "Find straight lines in an image." ]
 							}
 , 							{
 								"key" : "cv.jit.lines.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.lines" ]
+								"value" : [ "Draw detected straight lines." ]
 							}
 , 							{
-								"key" : "cv.jit.lkflow",
-								"value" : [ "movement", "Use the Lucas-Kanade method to estimate optical flow" ]
+								"key" : "cv.jit.lowpass",
+								"value" : [ "Filter tracking or sensor data." ]
 							}
 , 							{
 								"key" : "cv.jit.mass",
-								"value" : [ "shape", "Sum all the pixel values togther (char data is normalized between 0 and 1)" ]
+								"value" : [ "Calculate the mass of an image." ]
 							}
 , 							{
 								"key" : "cv.jit.mean",
-								"value" : [ "statistics", "Calculate the time-wise mean of an image stream" ]
+								"value" : [ "Average of all input images." ]
 							}
 , 							{
 								"key" : "cv.jit.moments",
-								"value" : [ "shape", "Calculate moments of inertia and shape invariants for an image" ]
+								"value" : [ "Calculate the moments of inertia and invariants in a binary image for shape detection and analysis." ]
+							}
+, 							{
+								"key" : "cv.jit.noise",
+								"value" : [ "Generate random floating point values. " ]
+							}
+, 							{
+								"key" : "cv.jit.notempty",
+								"value" : [ "Only pass a matrix if it has useful data." ]
 							}
 , 							{
 								"key" : "cv.jit.open",
-								"value" : [ "morphology", "Morphological open operator (erode+dilate)" ]
+								"value" : [ "Erode then dilate a binary image." ]
+							}
+, 							{
+								"key" : "cv.jit.opticalflow",
+								"value" : [ "Calculate dense optical flow for motion detection and analysis." ]
 							}
 , 							{
 								"key" : "cv.jit.orientation",
-								"value" : [ "shape", "Find the orientation of an image from its moments" ]
+								"value" : [ "Find orientation of binary image." ]
 							}
 , 							{
 								"key" : "cv.jit.perimeter",
-								"value" : [ "shape", "Count the number of edge pixels in a binary image" ]
+								"value" : [ "Find perimeter of binary image." ]
+							}
+, 							{
+								"key" : "cv.jit.perspective",
+								"value" : [ "Perspective transform." ]
 							}
 , 							{
 								"key" : "cv.jit.poltocar",
-								"value" : [ "utilities", "Convert polar coordinates to cartesian form (matrix version)" ]
+								"value" : [ "Polar to cartesian conversion in matrix data." ]
 							}
 , 							{
 								"key" : "cv.jit.ravg",
-								"value" : [ "statistics", "Calculate the time-wise running average of an image stream" ]
+								"value" : [ "Apply time-wise blurring." ]
 							}
 , 							{
 								"key" : "cv.jit.resize",
-								"value" : [ "utilities", "Use bi-cubic interpolation to resize a matrix" ]
+								"value" : [ "High-quality interpolated image resizing." ]
 							}
 , 							{
 								"key" : "cv.jit.shift",
-								"value" : [ "tracking", "Use MeanShift and CAMShift algorithms to track bright regions" ]
+								"value" : [ "Track bright areas using MeanShift and CAMShift algorithms." ]
 							}
 , 							{
 								"key" : "cv.jit.shift.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.shift" ]
-							}
-, 							{
-								"key" : "cv.jit.snake",
-								"value" : [ "patterns", "Fit a shape to image edges" ]
-							}
-, 							{
-								"key" : "cv.jit.snake.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.snake" ]
+								"value" : [ "Draw tracking info from cv.jit.shift." ]
 							}
 , 							{
 								"key" : "cv.jit.stddev",
-								"value" : [ "statistics", "Calculate the time-wise standard deviation of an image stream" ]
+								"value" : [ "Calculate the standard deviation of incoming matrices." ]
 							}
 , 							{
 								"key" : "cv.jit.sum",
-								"value" : [ "statistics", "Add all the pixel values together" ]
+								"value" : [ "Add all matrix values together." ]
+							}
+, 							{
+								"key" : "cv.jit.threshold",
+								"value" : [ "Obtain binary images using adaptive thresholding." ]
+							}
+, 							{
+								"key" : "cv.jit.touches",
+								"value" : [ "Track several areas at a time using MeanShift." ]
+							}
+, 							{
+								"key" : "cv.jit.touches.draw",
+								"value" : [ "Draw tracking info from cv.jit.touches." ]
 							}
 , 							{
 								"key" : "cv.jit.track",
-								"value" : [ "tracking", "Track individual pixels" ]
+								"value" : [ "Track points in an image." ]
 							}
 , 							{
 								"key" : "cv.jit.track.draw",
-								"value" : [ "drawing", "Drawing utility for cv.jit.track" ]
+								"value" : [ "Draw tracked corners." ]
 							}
 , 							{
 								"key" : "cv.jit.undergrad",
-								"value" : [ "recognition", "Very simple pattern learning and recognition" ]
+								"value" : [ "Very basic pattern learning and recognition." ]
+							}
+, 							{
+								"key" : "cv.jit.unproject",
+								"value" : [ "Find the translation and rotation of a detected object in an image." ]
 							}
 , 							{
 								"key" : "cv.jit.variance",
-								"value" : [ "statistics", "Calculate the time-wise variance of an image stream" ]
+								"value" : [ "Calculate the variance of incoming matrices." ]
 							}
  ]
 					}
@@ -1076,27 +953,13 @@
 					"numinlets" : 1,
 					"numoutlets" : 4,
 					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 668.0, 253.0, 86.0, 0.0 ],
+					"patching_rect" : [ 651.0, 200.0, 86.0, 19.0 ],
 					"saved_object_attributes" : 					{
-						"embed" : 1
+						"embed" : 1,
+						"precision" : 6
 					}
 ,
-					"style" : "",
 					"text" : "coll externals -1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-25",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 467.0, 74.0, 56.0, 17.0 ],
-					"style" : "",
-					"text" : "Sort by:"
 				}
 
 			}
@@ -1109,8 +972,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 640.0, 99.0, 115.0, 37.0 ],
-					"style" : "",
+					"patching_rect" : [ 640.0, 99.0, 115.0, 38.0 ],
 					"text" : "Double-click on a row to display the object's help file. (If it exists.)"
 				}
 
@@ -1128,8 +990,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 633.0, 92.0, 132.0, 55.0 ],
 					"proportion" : 0.39,
-					"rounded" : 0,
-					"style" : ""
+					"rounded" : 0
 				}
 
 			}
@@ -1137,7 +998,6 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
-					"disabled" : 0,
 					"hidden" : 1,
 					"source" : [ "obj-2", 0 ]
 				}
@@ -1146,7 +1006,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-22", 0 ],
-					"disabled" : 0,
 					"hidden" : 1,
 					"source" : [ "obj-21", 0 ]
 				}
@@ -1155,71 +1014,25 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
-					"disabled" : 0,
 					"hidden" : 1,
 					"midpoints" : [ 32.5, 498.0, 182.5, 498.0 ],
+					"order" : 1,
 					"source" : [ "obj-23", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-6", 0 ],
-					"disabled" : 0,
-					"hidden" : 1,
-					"source" : [ "obj-3", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
-					"disabled" : 0,
 					"hidden" : 1,
-					"midpoints" : [ 767.5, 274.0, 660.5, 274.0 ],
 					"source" : [ "obj-4", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-21", 0 ],
-					"disabled" : 0,
-					"hidden" : 1,
-					"source" : [ "obj-5", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
-					"disabled" : 0,
-					"hidden" : 1,
-					"source" : [ "obj-5", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-24", 0 ],
-					"disabled" : 0,
-					"hidden" : 1,
-					"source" : [ "obj-6", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-5", 0 ],
-					"disabled" : 0,
-					"hidden" : 1,
-					"source" : [ "obj-7", 0 ]
 				}
 
 			}
  ],
 		"dependency_cache" : [  ],
-		"embedsnapshot" : 0
+		"autosave" : 0,
+		"bgcolor" : [ 0.823529411764706, 0.823529411764706, 0.764705882352941, 1.0 ]
 	}
 
 }

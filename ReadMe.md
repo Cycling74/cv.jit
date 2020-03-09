@@ -60,6 +60,35 @@ You will then need to update the OPENCV_VERSION_CURRENT or OPENCV_VERSION_LEGACY
 
 # cv.jit change log
 
+## Version 1.9
+2020-03-07
+
+### New Externals
+- cv.jit.blur 
+- cv.jit.face.landmarks 
+- cv.jit.kalman 
+- cv.jit.keypoints 
+- cv.jit.keypoints.match 
+- cv.jit.noise 
+- cv.jit.unproject 
+
+### New Abstractions
+- cv.jit.face.landmarks.draw
+- cv.jit.face.parts
+- cv.jit.face.rigidpoints
+- cv.jit.iter
+- cv.jit.keypoints.draw
+- cv.jit.lowpass
+- cv.jit.notempty
+
+### New Helpfiles to old Abstractions
+- cv.jit.opticalflow (Old helpfile was somehow missing from distribution...)
+- cv.jit.touches (Very useful abstraction was somehow undocumented...) 
+
+### Changes to Existing Externals
+- cv.jit.faces, cv.jit.faces.draw: Now support "normalize" attribute for normalized coordinates.
+- cv.jit.opticalflow: Fixed crash when using block matching
+
 ## Version 1.8
 
 * Support for 64-bit architectures

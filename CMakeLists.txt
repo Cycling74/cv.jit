@@ -18,13 +18,14 @@ set (COPY_DIR
 
 
 if (APPLE)
-	set(DEFAULT_INSTALL_DIR "/usr/local/opt")
+	# This is where we expect the OpenCV libraries to be installed.
+	set(DEFAULT_INSTALL_DIR "/usr/local")
 else()
-	set(DEFAULT_INSTALL_DIR "/usr/local/opt")
+	set(DEFAULT_INSTALL_DIR "/usr/local")
 endif()
 
-set (OPENCV4_INSTALL_DIR "${DEFAULT_INSTALL_DIR}/opencv@4" CACHE PATH "The install location of OpenCV 4")
-set (OPENCV2_INSTALL_DIR "${DEFAULT_INSTALL_DIR}/opencv@2" CACHE PATH "The install location of OpenCV 2")
+set (OPENCV4_INSTALL_DIR "${DEFAULT_INSTALL_DIR}/opencv4" CACHE PATH "The install location of OpenCV 4")
+set (OPENCV2_INSTALL_DIR "${DEFAULT_INSTALL_DIR}/opencv2" CACHE PATH "The install location of OpenCV 2")
 
 # set (OPENCV_LATEST_LIB_DIR
 # 	""

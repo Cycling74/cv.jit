@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 135.0, 258.0, 1021.0, 789.0 ],
+		"rect" : [ 552.0, 289.0, 1021.0, 789.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -46,8 +46,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 553.0, 401.5, 325.0, 41.0 ],
-					"presentation_linecount" : 3,
+					"patching_rect" : [ 553.0, 401.5, 325.0, 40.0 ],
 					"text" : "This abstraction visualizes optical flow by using hue to represent direction and saturation for speed. Grey means there is no movement. This abstraction can also be used with cv.jit.lkflow and cv.jit.hsflow.",
 					"varname" : "output-description[2]"
 				}
@@ -89,8 +88,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 681.0, 224.5, 292.0, 52.0 ],
-					"presentation_linecount" : 4,
+					"patching_rect" : [ 681.0, 224.5, 292.0, 51.0 ],
 					"text" : "Set the algorithm using the \"method\" attribute. This can either be a number or a symbol. cv.jit.opticalflow isn't very specific about how you write the name of the algorithm. Here are some examples (use getmethod to verify current algorithm):",
 					"varname" : "output-description[3]"
 				}
@@ -316,8 +314,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 796.0, 479.200000000000045, 195.0, 41.0 ],
-					"presentation_linecount" : 3,
+					"patching_rect" : [ 796.0, 479.200000000000045, 195.0, 40.0 ],
 					"text" : "Double-click these patchers to read more about each algorithm and see what kind of parameters you can adjust.",
 					"varname" : "output-description[4]"
 				}
@@ -392,7 +389,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 284.0, 72.0, 265.0, 202.0 ],
+									"patching_rect" : [ 284.0, 72.0, 267.0, 196.0 ],
 									"text" : "While optical flow estimation algorithms like Horn Schunk and Lucas-Kanade date from the early 1980s, the method proposed by Farnebäck is much more recent. As such, it is more complex and refined and somewhat more robust.\n\nThe Farnebäck algorithm differs from the other ones in that calculations are done at various scales, from coarse to fine. This has the benefit that the technique is better at filling in between edges than older approaches.\n\nLike Lucas and Kanade, Farnebäck assumes a certain degree of smoothness, which can be controlled with the fb_window_size. Note that large window sizes do not severely impact performance. Like other algorithms, there is a tradeoff between optical flow that is more \"filled in\" and preservation of image crispness.\nDefault value: 5. Good values: 2 to 20. "
 								}
 
@@ -423,35 +420,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 124.0, 151.0, 95.0, 20.0 ],
 									"text" : "fb_window_size $1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 10.0,
-									"hidden" : 1,
-									"id" : "obj-6",
-									"maxclass" : "newobj",
-									"numinlets" : 0,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 89.0, 214.0, 117.0, 20.0 ],
-									"text" : "cvjit_random_bg_colour"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 10.0,
-									"hidden" : 1,
-									"id" : "obj-10",
-									"maxclass" : "newobj",
-									"numinlets" : 4,
-									"numoutlets" : 0,
-									"patching_rect" : [ 89.0, 238.546203999999989, 165.5, 20.0 ],
-									"text" : "bgcolor"
 								}
 
 							}
@@ -502,30 +470,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-10", 2 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-10", 1 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-10", 0 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-33", 0 ],
 									"source" : [ "obj-91", 0 ]
 								}
@@ -535,7 +479,7 @@
 						"bgcolor" : [ 0.945098039215686, 0.925490196078431, 0.894117647058824, 1.0 ]
 					}
 ,
-					"patching_rect" : [ 796.0, 625.200000000000045, 84.0, 25.0 ],
+					"patching_rect" : [ 796.0, 625.200000000000045, 84.0, 24.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -634,7 +578,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 234.0, 49.0, 260.0, 133.0 ],
+									"patching_rect" : [ 234.0, 49.0, 260.0, 129.0 ],
 									"text" : "The Horn-Schunk algorithm, like the Lucas-Kanade approach assumes that the optical flow is smooth. However, instead of assuming that this is true over a small area around each pixel, it assumes smoothness over the whole image.\n\nThe degree of smoothness is controlled via the \"hs_lambda\" attribute. Larger values mean smoother flow, which yields more filled-in matrices. However, this also makes the results more noisy. \nDefault value: 0.1. Good values: 0.001 to 2."
 								}
 
@@ -650,35 +594,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 94.0, 121.0, 73.0, 20.0 ],
 									"text" : "hs_lambda $1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 10.0,
-									"hidden" : 1,
-									"id" : "obj-6",
-									"maxclass" : "newobj",
-									"numinlets" : 0,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 59.0, 215.0, 117.0, 20.0 ],
-									"text" : "cvjit_random_bg_colour"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 10.0,
-									"hidden" : 1,
-									"id" : "obj-10",
-									"maxclass" : "newobj",
-									"numinlets" : 4,
-									"numoutlets" : 0,
-									"patching_rect" : [ 59.0, 239.546203999999989, 165.5, 20.0 ],
-									"text" : "bgcolor"
 								}
 
 							}
@@ -729,30 +644,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-10", 2 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-10", 1 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-10", 0 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-33", 0 ],
 									"source" : [ "obj-91", 0 ]
 								}
@@ -762,7 +653,7 @@
 						"bgcolor" : [ 0.945098039215686, 0.905882352941176, 0.886274509803922, 1.0 ]
 					}
 ,
-					"patching_rect" : [ 796.0, 592.700000000000045, 102.0, 25.0 ],
+					"patching_rect" : [ 796.0, 592.700000000000045, 102.0, 24.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -845,7 +736,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 219.0, 34.0, 260.0, 144.0 ],
+									"patching_rect" : [ 219.0, 34.0, 260.0, 141.0 ],
 									"text" : "The Lucas-Kanade algorithm estimates optical flow by assuming that neighbouring pixels move in a smooth fashion.\n\nIt requires a single parameter, \"lk_window_size\" which specifies, in pixels, the width an height of the area within which the optical is assumed to be smooth. Larger values will fill in between edges better but the resulting optical flow matrices will appear blurry. Smaller window sizes are also computed faster but will only respond well to edges.\nDefault: 5. Good values: 3 to 7."
 								}
 
@@ -876,35 +767,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 79.0, 106.0, 94.0, 20.0 ],
 									"text" : "lk_window_size $1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 10.0,
-									"hidden" : 1,
-									"id" : "obj-6",
-									"maxclass" : "newobj",
-									"numinlets" : 0,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 44.0, 169.0, 117.0, 20.0 ],
-									"text" : "cvjit_random_bg_colour"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 10.0,
-									"hidden" : 1,
-									"id" : "obj-10",
-									"maxclass" : "newobj",
-									"numinlets" : 4,
-									"numoutlets" : 0,
-									"patching_rect" : [ 44.0, 193.546203999999989, 165.5, 20.0 ],
-									"text" : "bgcolor"
 								}
 
 							}
@@ -955,30 +817,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-10", 2 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-10", 1 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-10", 0 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-33", 0 ],
 									"source" : [ "obj-91", 0 ]
 								}
@@ -988,7 +826,7 @@
 						"bgcolor" : [ 0.945098039215686, 0.92156862745098, 0.87843137254902, 1.0 ]
 					}
 ,
-					"patching_rect" : [ 796.0, 560.200000000000045, 109.0, 25.0 ],
+					"patching_rect" : [ 796.0, 560.200000000000045, 109.0, 24.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1071,7 +909,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 228.0, 29.0, 264.0, 351.0 ],
+									"patching_rect" : [ 228.0, 29.0, 264.0, 342.0 ],
 									"text" : "The block matching algorithm extracts a square area around each pixel (the block) in the previous image  and compares it with similar blocks in the current image. Optical flow is estimated by finding which block in the second image resembles most the block in the first.\n\nThe parameters it accepts are: \"bm_block_size\" which determines the width and height of each square block. Larger values fill-in better but at a cost in resolution and execution time. Default: 5. Good values: 1 to 9.\n\n\"bm_max_range\" is the distance, in pixels, beyond which the algorithm will not seek further. Smaller values will not pick up fast movement well, but too large values will slow down calculation with little benefit. Default: 3. Good values: 1 to 5.\n\n\"bm_shift_size\" is the distance, in pixels, between the center of each block. Blocks overlap, but it is possible to space them appart so that in effect the optical flow is estimated for only part of the pixels, speeding up calculation. Default: 3. Good values: 1 to 5.\n\nThe block matching algorithm, unlike the other methods, does not return flow matrices that are the same size as the input. The size of the output matrices is calculated using the following formula:\n\nflow width = (source width - block size) / shift size\nflow height = (source height - block size) / shift size"
 								}
 
@@ -1167,35 +1005,6 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"fontsize" : 10.0,
-									"hidden" : 1,
-									"id" : "obj-6",
-									"maxclass" : "newobj",
-									"numinlets" : 0,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 37.0, 317.0, 117.0, 20.0 ],
-									"text" : "cvjit_random_bg_colour"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 10.0,
-									"hidden" : 1,
-									"id" : "obj-10",
-									"maxclass" : "newobj",
-									"numinlets" : 4,
-									"numoutlets" : 0,
-									"patching_rect" : [ 37.0, 341.546203999999989, 165.5, 20.0 ],
-									"text" : "bgcolor"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 10.0,
 									"id" : "obj-33",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -1252,30 +1061,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-10", 2 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-10", 1 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-10", 0 ],
-									"hidden" : 1,
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-33", 0 ],
 									"midpoints" : [ 107.5, 138.0, 77.5, 138.0 ],
 									"source" : [ "obj-91", 0 ]
@@ -1302,7 +1087,7 @@
 						"bgcolor" : [ 0.941176470588235, 0.913725490196078, 0.866666666666667, 1.0 ]
 					}
 ,
-					"patching_rect" : [ 796.0, 527.700000000000045, 119.0, 25.0 ],
+					"patching_rect" : [ 796.0, 527.700000000000045, 119.0, 24.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1569,7 +1354,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 49.0, 613.700000000000045, 70.0, 51.0 ],
+					"patching_rect" : [ 49.0, 613.700000000000045, 70.0, 50.0 ],
 					"text" : "(float32)\n1 plane\n2 dims"
 				}
 
@@ -1623,7 +1408,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 716.0, 134.0, 41.0 ],
+					"patching_rect" : [ 30.0, 716.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -1637,7 +1422,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 531.700000000000045, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 531.700000000000045, 70.0, 50.0 ],
 					"text" : "(float32)\n1 plane\n2 dims"
 				}
 
@@ -1773,7 +1558,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 105.0, 358.0, 261.0 ],
+					"patching_rect" : [ 30.0, 105.0, 358.0, 253.0 ],
 					"text" : "Optical flow is a measure of the velocity of each pixel between two consecutive frames. In other words, displacing the pixels in the first image by the optical flow should produce the second image.\n\nOptical flow can unfortunately only be estimated, not precisely calculated. For this reason, there are several optical flow estimation algorithms. cv.jit.lkflow and cv.jit.hsflow implement two of the most famous approaches, but because the output format and its meaning are the same, cv.jit.opticalflow encapsulates several algorithms, allowing you to easily switch between them to find the one that best suits your needs.\n\nAppart from the Lucas-Kanade and Horn-Schunk techniques, cv.jit.opticalflow currently implements the \"block matching\" algorithm and an algorithm by Gunnar Farnebäck."
 				}
 
@@ -1799,7 +1584,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.opticalflow"
 				}
 
@@ -2103,16 +1888,12 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "cv.jit.opticalflow.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.opticalflow.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "cv.jit.resize.mxe64",
-				"type" : "mx64"
-			}
-, 			{
-				"name" : "jit.pass.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.resize.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0

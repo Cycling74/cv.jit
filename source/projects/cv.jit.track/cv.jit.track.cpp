@@ -117,6 +117,19 @@ t_jit_err cv_jit_track_init(void)
 	return err;
 }
 
+static void resize_points(t_cv_jit_track *x, long count)
+{
+    if (x && count > 0 && x->npoints != count) {
+        x->npoints = count;
+        
+        //Change buffer sizes
+        x->points.resize(x->npoints);
+        x->previous_points.resize(x->npoints);
+        x->status.resize(x->npoints);
+        x->error.resize(x->npoints);
+    }
+}
+
 t_jit_err cv_jit_track_set_npoints(t_cv_jit_track *x, void *attr, long ac, t_atom *av) 
 {
 	long val;
@@ -128,15 +141,7 @@ t_jit_err cv_jit_track_set_npoints(t_cv_jit_track *x, void *attr, long ac, t_ato
 	
 	val = MAX(1,(long)atom_getlong(av));
 	
-	if(val == x->npoints)return JIT_ERR_NONE;
-	
-	x->npoints = val;
-
-	//Change buffer sizes
-	x->points.resize(x->npoints);
-	x->previous_points.resize(x->npoints);
-	x->status.resize(x->npoints);
-	x->error.resize(x->npoints);
+    resize_points(x, val);
    
    return JIT_ERR_NONE;
 }
@@ -216,11 +221,9 @@ t_jit_err cv_jit_track_matrix_calc(t_cv_jit_track *x, void *inputs, void *output
 		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
 
 		// Calculate 
-		bool skip = false;
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
 
-		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix);
-
-		if (x->previous_image.size == sourceMat.size) {
+		if (!x->previous_image.empty() && x->previous_image.size == sourceMat.size) {
 			cv::calcOpticalFlowPyrLK(x->previous_image, sourceMat, x->previous_points, x->points, x->status, x->error, cv::Size(x->radius * 2 + 1, x->radius * 2 + 1));
 		}
 
@@ -238,15 +241,18 @@ t_jit_err cv_jit_track_matrix_calc(t_cv_jit_track *x, void *inputs, void *output
 		}
 				
 		//Store in matrix
-		out_data = (float *)out_bp;
-		for(i=0;i<x->npoints;i++)
-		{
-			out_data[0] = x->points[i].x;
-			out_data[1] = x->points[i].y;
-			out_data[2] = (float)x->status[i];
-			
-			out_data += 3;
-		}
+        if (out_bp) {
+            out_data = (float *)out_bp;
+            for(i=0;i<x->npoints;i++)
+            {
+                out_data[0] = x->points[i].x;
+                out_data[1] = x->points[i].y;
+                out_data[2] = (float)x->status[i];
+                
+                out_data += 3;
+            }
+        }
+		
 
 		// Swap the points for next run
 		std::swap(x->previous_points, x->points);
@@ -266,11 +272,13 @@ t_cv_jit_track *cv_jit_track_new(void)
 	if ((x=(t_cv_jit_track *)jit_object_alloc(_cv_jit_track_class))) {
 	
 		x->radius = 7;
-		x->npoints = 1;
+		x->npoints = 0;
+        resize_points(x, 1);
 		x->maxIter = 20;
 		
 		x->pyr_flags = 0;
 		x->dims[0] = x->dims[1] = 0;
+        
 
 	} else {
 		x = NULL;

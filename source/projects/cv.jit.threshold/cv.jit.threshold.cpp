@@ -141,8 +141,8 @@ t_jit_err cv_jit_threshold_matrix_calc(t_cv_jit_threshold *x, void *inputs, void
 			mode = cv::THRESH_BINARY_INV;
 		
 		//Convert input and output matrices to OpenCV matrices
-		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix);
-		cv::Mat outputMat = cvjit::wrapJitterMatrix(out_matrix);
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
+		cv::Mat outputMat = cvjit::wrapJitterMatrix(out_matrix, out_minfo, out_bp);
 
 		cv::adaptiveThreshold(sourceMat, outputMat, 255, cv::ADAPTIVE_THRESH_MEAN_C, mode, 1 + x->radius * 2, x->threshold);
 

@@ -174,7 +174,7 @@ t_jit_err cv_jit_lines_matrix_calc(t_cv_jit_lines *x, void *inputs, void *output
 		x->length = MAX(0,x->length);
 
 		//Convert input matrix to OpenCV matrices
-		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix);
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
 				
 		//calculate edges using Canny algorithm
 		cv::Canny(sourceMat, x->edgeMat, thresh1, thresh2);

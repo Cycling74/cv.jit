@@ -192,10 +192,10 @@ t_jit_err cv_jit_findhomography_matrix_calc(t_cv_jit_findhomography *x, void *in
 		jit_object_method(out_matrix, _jit_sym_setinfo, &out_minfo);
 		
 		// convert Jitter matrix to cvmat
-		cvJitter2CvMat(in1_matrix, &in1_cv);
-		cvJitter2CvMat(in2_matrix, &in2_cv);
-		cvJitter2CvMat(out_matrix, &out_cv);
-		
+        in1_cv = cvJitter2CvMat(in1_minfo, (char *)in1_bp);
+        in2_cv = cvJitter2CvMat(in2_minfo, (char *)in2_bp);
+        out_cv = cvJitter2CvMat(out_minfo, (char *)out_bp);
+    
 		cvFindHomography(&in1_cv, &in2_cv, &out_cv,  0, 0, NULL);
 		
 		

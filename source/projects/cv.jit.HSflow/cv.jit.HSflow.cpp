@@ -152,8 +152,8 @@ t_jit_err cv_jit_HSflow_matrix_calc(t_cv_jit_HSflow *x, void *inputs, void *outp
 		}		
 		
 		//Convert Jitter matrix to OpenCV matrix
-		cvJitter2CvMat(in_matrix, &current);
-		cvJitter2CvMat(prev_matrix, &previous);
+        current = cvJitter2CvMat(in_minfo, in_bp);
+        previous = cvJitter2CvMat(prev_minfo, prev_bp);
 		flowX = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		flowY = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		

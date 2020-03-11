@@ -161,8 +161,9 @@ t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *output
 		if (JIT_ERR_NONE == err) 
 		{
 			//Convert Jitter matrix to OpenCV matrix
-			char * in_bp;
+			char * in_bp, * out_bp;
 			jit_object_method(in_matrix, _jit_sym_getdata, &in_bp);
+            jit_object_method(out_matrix, _jit_sym_getdata, &out_bp);
 			cv::Mat source = input;
 
 			//Calculate		

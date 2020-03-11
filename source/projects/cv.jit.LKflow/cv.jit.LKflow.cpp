@@ -142,7 +142,8 @@ t_jit_err cv_jit_LKflow_matrix_calc(t_cv_jit_LKflow *x, void *inputs, void *outp
 		}
 		
 		//Convert Jitter matrix to OpenCV matrix
-		cvJitter2CvMat(in_matrix, &current);
+        current = cvJitter2CvMat(in_minfo, in_bp);
+        
 		flowX = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		flowY = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		

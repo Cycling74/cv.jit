@@ -37,6 +37,7 @@
 #include "cv.h"
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
+#include "cvjit.h"
 
 using namespace c74::max;
 
@@ -124,7 +125,7 @@ t_cv_jit_getperspective *cv_jit_getperspective_new(void)
 	
 	x = (t_cv_jit_getperspective*)jit_object_alloc(_cv_jit_getperspective_class);
 	if (x) {
-		x->h					=	cvCreateMat(3, 3, CV_32FC1);
+		x->h = cvCreateMat(3, 3, CV_32FC1);
 	} 
 	return x;
 }
@@ -132,7 +133,9 @@ t_cv_jit_getperspective *cv_jit_getperspective_new(void)
 
 void cv_jit_getperspective_free(t_cv_jit_getperspective *x)
 {
-	if(x->h) cvReleaseMat(&x->h);
+    if (x && x->h) {
+        cvReleaseMat(&x->h);
+    }
 }
 
 
@@ -201,12 +204,17 @@ t_jit_err cv_jit_getperspective_matrix_calc(t_cv_jit_getperspective *x, void *in
 		out_minfo.dim[1] = 3;
 		jit_object_method(out_matrix, _jit_sym_setinfo, &out_minfo);
 		
-		cvJitter2CvMat(out_matrix, x->h);
+        CvMat h = cvJitter2CvMat(out_minfo, (char *)out_bp);
 		
 		in1_cv = (CvPoint2D32f *) in1_bp;
 		in2_cv = (CvPoint2D32f *) in2_bp;
 		
-		cvGetPerspectiveTransform(in1_cv, in2_cv, x->h);
+		cvGetPerspectiveTransform(in1_cv, in2_cv, &h);
+        
+        // Save output
+        if (x->h && x->h->cols == h.cols && x->h->rows == h.rows && x->h->type == h.type) {
+            cvCopy(&h, x->h);
+        }
 		
 	} 
 	else
@@ -221,7 +229,7 @@ out:
 
 void cv_jit_getperspective_print_transfert(t_cv_jit_getperspective *x){
 	int i, j;
-	
+    
 	printf("---- Transfert matrix ----\n");
 	for ( i = 0 ; i < x->h->rows ; i++ ) {
 		for ( j = 0 ; j < x->h->cols ; j++ ) {

@@ -132,8 +132,8 @@ t_jit_err cv_jit_canny_matrix_calc(t_cv_jit_canny *x, void *inputs, void *output
 		}		
 		
 		//Convert input and output matrices to OpenCV matrices
-		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix);
-		cv::Mat edgeMat = cvjit::wrapJitterMatrix(out_matrix);
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
+		cv::Mat edgeMat = cvjit::wrapJitterMatrix(out_matrix, out_minfo, out_bp);
 		
 		//Calculate threshold values
 		thresh1 = c74::max::clamp(x->threshold - x->range, 0.0, 255.0);

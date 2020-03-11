@@ -134,7 +134,7 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 	void * in_savelock = 0;
 	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
-	char *out_bp;
+	char *in_bp, *out_bp;
 	c74::max::t_object *in_matrix,*out_matrix;
 	int i;
 	float *out_data;
@@ -173,8 +173,11 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 		//Don't process if one dimension is < 2
 		if((in_minfo.dim[0] < 2)||(in_minfo.dim[1] < 2))
 			goto out;
+        
+        jit_object_method(in_matrix, _jit_sym_getdata, &in_bp);
+        
 
-		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix);
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
 		
 		if(x->useroi)
 		{

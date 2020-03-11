@@ -176,7 +176,7 @@ t_jit_err cv_jit_perspective_matrix_calc(t_cv_jit_perspective *x, void *inputs, 
 			goto out;
 		}
 		
-		cvJitter2CvMat(in2_matrix, &in2_cv);
+		in2_cv = cvJitter2CvMat(in2_minfo, (char *)in2_bp);
 		cvInitMatHeader( &in1_cv, 1, in1_minfo.dim[0], CV_32FC2 , in1_bp, 0 );
 		cvInitMatHeader( &out_cv, 1, out_minfo.dim[0], CV_32FC2 , out_bp, 0 );
 		

@@ -279,8 +279,8 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 			
 		}
 		
-		cvJitter2CvMat(in_matrix,	&in_cv); // convert Jitter matrix into CvMat
-		cvJitter2CvMat(out_matrix, &out_cv);
+        // convert Jitter matrix into CvMat
+        in_cv = cvJitter2CvMat(in_minfo, in_bp);
 		
 		// this will loop until we got enought views (x->board_view_nb) with all corners visible
 		if ( x->success_count < x->board_view_nb && x->calibration != 0 ) {

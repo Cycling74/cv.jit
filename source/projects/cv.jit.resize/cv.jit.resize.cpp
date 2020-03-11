@@ -157,8 +157,8 @@ t_jit_err cv_jit_resize_matrix_calc(t_cv_jit_resize *x, void *inputs, void *outp
 		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
 		
 		//Convert matrix header
-		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix);
-		cv::Mat destMat = cvjit::wrapJitterMatrix(out_matrix);
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
+		cv::Mat destMat = cvjit::wrapJitterMatrix(out_matrix, out_minfo, out_bp);
 		
 		//calculate
 		cv::resize(sourceMat, destMat, destMat.size(), 0.0, 0.0, x->interpolation);

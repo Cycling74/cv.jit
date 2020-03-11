@@ -32,11 +32,13 @@ in Jitter externals.
 */
 
 
+#include "cv.h"
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
 
 using namespace c74::max;
 
+#define CLIP_ASSIGN(a, lo, hi) ((a) = ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) ))
 
 typedef struct _cv_jit_shift 
 {
@@ -136,24 +138,24 @@ t_jit_err cv_jit_shift_init(void)
 t_jit_err cv_jit_shift_matrix_calc(t_cv_jit_shift *x, void *inputs, void *outputs)
 {
 	t_jit_err			err=JIT_ERR_NONE;
-	void * in_savelock;
+	long				in_savelock = 0;
 	t_jit_matrix_info	in_minfo;
-	c74::max::t_object  * in_matrix;
-	cv::RotatedRect rotatedRect;
-	//CvMat				source;
-	//CvRect				rectangle;
-	//CvBox2D				box;
-	//CvConnectedComp		component;
-	cv::Point2f		vertices[4];
+	void				*in_matrix;
+	CvMat				source;
+	CvRect				rectangle;
+	CvBox2D				box;
+	CvConnectedComp		component;
+	CvPoint2D32f		vertices[4];
 	float				w,h,c,s;
+    char *              in_bp;
 	
 	//Get pointer to matrix
-	in_matrix = (c74::max::t_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
 
 	if (x&&in_matrix) 
 	{
 		//Lock the matrix
-		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
 		
 		//Make sure input is of proper format
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
@@ -177,61 +179,55 @@ t_jit_err cv_jit_shift_matrix_calc(t_cv_jit_shift *x, void *inputs, void *output
 		//Don't process if image is too small
 		if((in_minfo.dim[0] < 2)||(in_minfo.dim[1] < 2))
 			goto out;
+        
+        jit_object_method(in_matrix, _jit_sym_getdata, &in_bp);
 			
 		//Calculate start rectangle:
-		cv::Rect rectangle = cv::Rect(
-			x->rect[0],
-			x->rect[1],
-			x->rect[2] - x->rect[0],
-			x->rect[3] - x->rect[1]);
-
-		rectangle.x = clamp(rectangle.x, 0, (int)in_minfo.dim[0] - 1);
-		rectangle.y = clamp(rectangle.y, 0, (int)in_minfo.dim[1] - 1);
-		rectangle.width = clamp(rectangle.width, 1, (int)in_minfo.dim[0] - rectangle.x);
-		rectangle.height = clamp(rectangle.height, 1, (int)in_minfo.dim[1] - rectangle.y);
+		rectangle = cvRect(x->rect[0],x->rect[1],x->rect[2]-x->rect[0],x->rect[3]-x->rect[1]);
+		CLIP_ASSIGN(rectangle.x,0,in_minfo.dim[0]-1);
+		CLIP_ASSIGN(rectangle.y,0,in_minfo.dim[1]-1);
+		CLIP_ASSIGN(rectangle.width,1,in_minfo.dim[0]-rectangle.x);
+		CLIP_ASSIGN(rectangle.height,1,in_minfo.dim[1]-rectangle.y);
 
 		//Convert Jitter matrix to OpenCV matrix
-		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix);
+        source = cvJitter2CvMat(in_minfo, in_bp);
 		
 		//Calculate camshift
-		if (x->mode == 1) { //Use camshift
-			rotatedRect = cv::CamShift(sourceMat, rectangle, cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::MAX_ITER, (int)x->maxiters, x->epsilon));
-		}
+		if(x->mode == 1) //Use camshift
+			cvCamShift(&source, rectangle, cvTermCriteria(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS,(int)x->maxiters,x->epsilon), &component, &box );
 		else {
-			cv::meanShift(sourceMat, rectangle, cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::MAX_ITER, (int)x->maxiters, x->epsilon));
-			rotatedRect.angle = 90.f;
-			rotatedRect.size = rectangle.size();
-			rotatedRect.center = cv::Point2f(
-				rectangle.x + rectangle.size().width * 0.5f,
-				rectangle.y + rectangle.size().height * 0.5f
-			);
+			cvMeanShift(&source, rectangle, cvTermCriteria(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS,(int)x->maxiters,x->epsilon), &component);
+			box.angle = 90.f;
+			box.size = cvSize2D32f(component.rect.width, component.rect.height);
+			box.center = cvPoint2D32f((float)component.rect.x + (float)component.rect.width * 0.5f,(float)component.rect.y + (float)component.rect.height * 0.5f);
 		}
 		
 		//Prepare output
 		//
-		atom_setlong(&x->box[0], rectangle.x);
-		atom_setlong(&x->box[1], rectangle.y);
-		atom_setlong(&x->box[2], rectangle.x + rectangle.width);
-		atom_setlong(&x->box[3], rectangle.y + rectangle.height);
+		atom_setlong(&x->box[0],component.rect.x);
+		atom_setlong(&x->box[1],component.rect.y);
+		atom_setlong(&x->box[2],component.rect.x + component.rect.width);
+		atom_setlong(&x->box[3],component.rect.y + component.rect.height);
 		
-		x->rect[0] = rectangle.x;
-		x->rect[1] = rectangle.y;
-		x->rect[2] = rectangle.x + rectangle.width;
-		x->rect[3] = rectangle.y + rectangle.height;
+		x->rect[0]=component.rect.x;
+		x->rect[1]=component.rect.y;
+		x->rect[2]=component.rect.x + component.rect.width;
+		x->rect[3]=component.rect.y + component.rect.height;
 		
-		w = rotatedRect.size.width * 0.5f;
-		h = rotatedRect.size.height * 0.5f;
-		c = cos((rotatedRect.angle - 90.f) * -0.01745329252f);
-		s = sin((rotatedRect.angle - 90.f) * -0.01745329252f);
+		//cvBoxPoints(box,vertices);
+		w = box.size.width * 0.5;
+		h = box.size.height * 0.5;
+		c = cos((box.angle - 90.f) * -0.01745329252);
+		s = sin((box.angle - 90.f) * -0.01745329252);
 		
-		vertices[0].x = rotatedRect.center.x - s*h - c*w;
-		vertices[0].y = rotatedRect.center.y - c*h + s*w;
-		vertices[1].x = rotatedRect.center.x - s*h + c*w;
-		vertices[1].y = rotatedRect.center.y - c*h - s*w;
-		vertices[2].x = rotatedRect.center.x + s*h + c*w;
-		vertices[2].y = rotatedRect.center.y + c*h - s*w;
-		vertices[3].x = rotatedRect.center.x + s*h - c*w;
-		vertices[3].y = rotatedRect.center.y + c*h + s*w;
+		vertices[0].x = box.center.x - s*h - c*w;
+		vertices[0].y = box.center.y - c*h + s*w;
+		vertices[1].x = box.center.x - s*h + c*w;
+		vertices[1].y = box.center.y - c*h - s*w;
+		vertices[2].x = box.center.x + s*h + c*w;
+		vertices[2].y = box.center.y + c*h - s*w;
+		vertices[3].x = box.center.x + s*h - c*w;
+		vertices[3].y = box.center.y + c*h + s*w;
 		
 		atom_setlong(&x->frame[0],(long)vertices[0].x);
 		atom_setlong(&x->frame[1],(long)vertices[0].y);
@@ -242,10 +238,8 @@ t_jit_err cv_jit_shift_matrix_calc(t_cv_jit_shift *x, void *inputs, void *output
 		atom_setlong(&x->frame[6],(long)vertices[3].x);
 		atom_setlong(&x->frame[7],(long)vertices[3].y);
 		
-		// The new OpenCV implementation does not return the mass anymore.
-		// This isn't a terribly useful value, so instead we return the area of the rect.
-		x->mass = rotatedRect.size.width * rotatedRect.size.height;
-	}
+		x->mass = (float)(component.area / 256.);
+		}
 	
 out:
 	jit_object_method(in_matrix,gensym("lock"),in_savelock);

@@ -19,6 +19,6 @@
 		"copyright" : "Copyright (c) 2016 Cycling '74"
 	},
 	"tags" : [ "jitter", "computer vision", "hardware", "camera", "externals" ],
-	"version" : "..",
+	"version" : "1.9.0a",
 	"website" : "https://jmpelletier.com/cvjit"
 }

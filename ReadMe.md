@@ -4,58 +4,129 @@
 
 Mac CI Builds are [here](https://s3-us-west-2.amazonaws.com/cycling74-ci/index.html?prefix=cv.jit/).
 
-## Compiling cv.jit
-
-cv.jit now uses CMake to generate appropriate projects on macOS and Windows. After cloning or downloading the source files, create a "build" folder and call CMake from within. Note that by default, CMake generates 32-bit projects and so you must explicitely ask it to generate projects for 64-bit architectures.
-
-On Windows, the following commands will generate a Visual Studio 2017 solution.
-
-(Note that some static libraries used for some externals are very large and require the use of 64-bit toolsets.)
-
-```
-cd cv.jit;
-mkdir build;
-cd build;
-cmake ../ -G "Visual Studio 15 2017 Win64" -T "host="x64"
-```
-
-You will now have appropriate Visual Studio projects and solution in the build folder.
-
-## About OpenCV
+## Installing OpenCV
 
 Some of the cv.jit externals depend on the OpenCV library. <https://opencv.org/>
 
-The necessary headers, as well as libraries for compiling cv.jit are provided. You can find them in the "source/include/opencv" and "source/lib/opencv" folders.
+As of writing this text, the latest version of OpenCV is 4.1.0. However, some externals in cv.jit are very old and require functionality that has since then been removed from OpenCV. Although it is preferable to use the new C++ API, externals such as cv.jit.HSFlow must use the C API. Hence, you will need to install both OpenCV 4 and OpenCV 2.
 
-As of writing this text, the latest version of OpenCV is 4.1.0, and this version is provided with cv.jit. However, some externals in cv.jit are very old and require functionality that has since then been removed from OpenCV. Although it is far preferable to use the new C++ API, externals such as cv.jit.HSFlow must use the C API. Hence, two versions of OpenCV are provided: a current version and a legacy version that supports the C API. Currently these are versions 4.1.0 and 2.4.12.
+### macOS
 
-If you generated your projects using CMake, you should not need to do anything to use OpenCV in a new external. Just adding the following line to your source is enough:
-
-```
-#include <opencv2/opencv.hpp> 
-```
-
-Alternatively, you can also link to the following file instead which will also provide you with utility functions to wrap Jitter matrices in OpenCV matrices.
+The easiest way to install OpenCV on macOS is with [Homebrew](https://brew.sh). Unfortunately, we can't use this distribution for cv.jit: opencv@2 doesn't provide the needed static libraries and opencv@4 is built with TBB support, which we don't want. Nevertheless, installing opencv through Homebrew is an easy way of getting all the needed dependencies.
 
 ```
-#include "jitOpenCV.h"
+brew install opencv@4
 ```
 
-If, for some reason, you need to use the legacy version of OpenCV, you should add the following line at the very top of you project's CMakeLists.txt:
+Here we will install opencv2 and opencv4 separately. It is also possible to use a single install and use Git to switch between branches.
+
+First, grab the sources from Github:
 
 ```
-set(LEGACY ON)
+git clone -b 2.4 https://github.com/opencv/opencv.git opencv2
 ```
 
-Look at source/projects/cv.jit.HSFlow/CMakeLists.txt for an example.
+Now, create a "build" folder for Cmake:
 
-Instead of a custom build, cv.jit now uses standard binaries provided with OpenCV. <https://sourceforge.net/projects/opencvlibrary/files/>
+```
+cv opencv2
+mkdir build
+cd build
+```
 
-cv.jit externals link statically to OpenCV. This decision was made because I wanted cv.jit externals to have no dependencies, at the cost of having bloated files. For this reason, those who wish to compile their own OpenCV libraries, or use existing binaries must be careful to compile them as .a (under OSX) and .lib (under Windows) static libraries.
+We then use ccmake to configure:
 
-The correct way to add a new version of OpenCV to cv.jit is to create folders named after the version number in the source/lib/opencv and source/include/opencv folders. For header files, just copy the opencv2 folder found inside the build folder of the OpenCV distribution. For libraries, copy the required static library files to a folder named "x64" (source/lib/opencv/\<version>/x64).
+```
+ccmake ../
+```
 
-You will then need to update the OPENCV_VERSION_CURRENT or OPENCV_VERSION_LEGACY variables in the top CMakeLists.txt files.
+First, press the C key to configure. A list of variables should be displayed. We now need to change one very important setting. Make sure advanced mode is toggled **ON** by pressing the T key. Then look for the **BUILD_SHARED_LIBS** variable and change it to **OFF**. Make sure that **WITH_TBB** is **OFF**. 
+
+You should also change the install location by setting the **CMAKE_INSTALL_PREFIX** variable. You can install anywhere but "/usr/local/opencv2" should be fine.
+
+Once this is done, press the C key again, until the option to generate appears (G key).
+
+We're now ready to build:
+
+```
+make
+```
+
+The we install:
+
+```
+sudo make install
+```
+
+The necessary libraries should now be in the "/usr/local/opencv2/lib" folder, or elsewhere if you used a different **CMAKE_INSTALL_PREFIX**.
+
+Before we install OpenCV 4, we must download the opencv_contrib module, which is distributed separately.
+
+```
+git clone https://github.com/opencv/opencv_contrib.git
+```
+
+Now, we repeat the process for OpenCV 4. 
+
+```
+git clone -b master https://github.com/opencv/opencv.git opencv4
+cd opencv4
+mkdir build
+cd build
+ccmake ../
+```
+
+As above, make sure that **BUILD_SHARED_LIBS** and **WITH_TBB** are **OFF**. Also, set **WITH_ITT** to **OFF**. If you do not have the IPP libraries, set **WITH_IPP** to **OFF**. Set **CMAKE_INSTALL_PREFIX** to "/usr/local/opencv4" or wherever you wish to install. You must also tell CMake where you installed the opencv_contrib module with the **OPENCV_EXTRA_MODULES_PATH** variable. (For example: "/Users/me/Documents/dev/opencv_contrib/modules").
+
+While in ccmake, look for variables with names that start with **BUILD_opencv_cuda**, like **BUILD_opencv_cudaarithm** and turn them all **OFF**.
+
+Run configure again, and after generating projects, build and install:
+
+```
+make
+sudo make install
+```
+
+You should now have all the necessary OpenCV libraries to compile cv.jit.
+
+
+### Windows
+
+
+
+## Compiling cv.jit
+
+cv.jit now uses CMake to generate appropriate projects on macOS and Windows. 
+
+### macOS
+
+Download cv.jit source:
+
+```
+git clone git@github.com:jmpelletier/cv.jit.git
+```
+
+Run CMake, making sure generate an Xcode project instead of makefiles:
+
+```
+cd cv.jit
+mkdir build
+cd build
+ccmake -G Xcode ../
+```
+
+After running CMake configuration, you will be able to edit a few variables. The important ones are:
+
+- **COPY_DIR**: Set this to the folder where you wish the external binaries to be copied. For instance, "/Users/me/Documents/Max 8/packages/Max 8/cv.jit/externals".
+- **OPENCV2_INSTALL_DIR**: Where you installed OpenCV 2. If you followed the instructions in this file, the default value should be fine.
+- **OPENCV4_INSTALL_DIR**: Same, but for OpenCV 4.
+
+Run configure once again, and then generate. You should now have a file named cv.jit.xcodeproj in your build folder.
+
+Once you open the project in Xcode, select the ALL_BUILD target to build all externals, or just select individual targets.
+
+
+### Windows
 
 
 # cv.jit change log

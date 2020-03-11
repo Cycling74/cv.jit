@@ -47,7 +47,7 @@ include_directories(
 
 ## OpenCV includes
 if (LEGACY) 
-	include_directories("${OPENCV2_INSTALL_DIR}/include")
+	include_directories("${OPENCV2_INSTALL_DIR}/include" "${OPENCV2_INSTALL_DIR}/include/opencv")
 else ()
 	include_directories("${OPENCV4_INSTALL_DIR}/include/opencv4")
 endif()
@@ -66,7 +66,7 @@ if (LEGACY)
 else()
 	if (WIN32)
 		# TODO
-	elseif(APPLE)
+	elseif(APPLE) 
 		file(GLOB OPENCV_LIBS "${OPENCV4_INSTALL_DIR}/lib/*.a")
 		list(REMOVE_ITEM OPENCV_LIBS "${OPENCV4_INSTALL_DIR}/lib/libittnotify.a")
 	endif()
@@ -77,8 +77,8 @@ set (EXTRA_LIBS ${EXTRA_LIBS} ${OPENCV_LIBS})
 # Other libraries and Frameworks
 if (APPLE)
 	find_library(ACCELERATE_FRAMEWORK Accelerate)
-	find_library(OPENCV_FRAMEWORK OpenCL)
+	find_library(OPENCL_FRAMEWORK OpenCL)
 	find_package(ZLIB)
-	set (EXTRA_LIBS ${EXTRA_LIBS} "${TBB_INSTALL_DIR}/lib/libtbb.a" ${ACCELERATE_FRAMEWORK} ${OPENCV_FRAMEWORK} ${ZLIB_LIBRARIES})
+	set (EXTRA_LIBS ${EXTRA_LIBS} ${ACCELERATE_FRAMEWORK} ${OPENCL_FRAMEWORK} ${ZLIB_LIBRARIES})
 endif()
 

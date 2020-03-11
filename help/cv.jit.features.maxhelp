@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 330.0, 84.0, 886.0, 724.0 ],
+		"rect" : [ 438.0, 98.0, 886.0, 724.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -46,8 +46,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 51.0, 276.0, 115.0, 19.0 ],
-					"text" : "cv.jit.resize @size 160 120"
+					"patching_rect" : [ 51.0, 285.0, 113.0, 19.0 ],
+					"text" : "cv.jit.resize @size 160120"
 				}
 
 			}
@@ -1112,7 +1112,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 709.0, 381.0, 121.0, 38.0 ],
-					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
+					"text" : "By Jean-Marc Pelletier\rjmp@iamas.ac.jp\rCopyright ©2003-2020"
 				}
 
 			}
@@ -1178,6 +1178,7 @@
 				"box" : 				{
 					"id" : "obj-45",
 					"maxclass" : "jit.pwindow",
+					"name" : "u362003295",
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
@@ -1878,7 +1879,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-23", 1 ],
-					"midpoints" : [ 60.5, 329.0, 102.0, 329.0 ],
 					"order" : 0,
 					"source" : [ "obj-38", 0 ]
 				}
@@ -2025,7 +2025,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "cvtitle.gif",
-				"bootpath" : "D:/dev/cv.jit/help",
+				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/help",
 				"patcherrelativepath" : ".",
 				"type" : "GIFf",
 				"implicit" : 1
@@ -2033,6 +2033,7 @@
 , 			{
 				"name" : "cv.jit.features.draw.maxpat",
 				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}

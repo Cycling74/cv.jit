@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 215.0, 84.0, 1029.0, 753.0 ],
+		"rect" : [ 100.0, 79.0, 1029.0, 753.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -109,35 +109,6 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 10.0,
-					"hidden" : 1,
-					"id" : "obj-6",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 3,
-					"outlettype" : [ "int", "int", "int" ],
-					"patching_rect" : [ 59.0, 508.0, 117.0, 20.0 ],
-					"text" : "cvjit_random_bg_colour"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 10.0,
-					"hidden" : 1,
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 4,
-					"numoutlets" : 0,
-					"patching_rect" : [ 59.0, 532.546203999999989, 165.5, 20.0 ],
-					"text" : "bgcolor"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 10.0,
 					"id" : "obj-17",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -158,7 +129,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 50.0, 628.5, 243.0, 38.0 ],
+					"patching_rect" : [ 50.0, 628.5, 243.0, 37.0 ],
 					"text" : "Support:\nInternational Academy of Media Arts & Sciences (IAMAS) \n– Gifu, Japan",
 					"varname" : "support-comment"
 				}
@@ -325,7 +296,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 50.0, 95.0, 244.0, 196.0 ],
+					"patching_rect" : [ 50.0, 95.0, 244.0, 191.0 ],
 					"text" : "Uneven illumination is often a problem when thresholding an image. Adaptive thresholding addresses this issue by adjusting the threshold based on the brightness of an area surrounding each pixel.\n\nThe difference between the pixel value and the average brightness of pixels within the distance set by the \"radius\" attribute is calculated. If it is greater than the \"threshold\" value, the pixel value is set to ON.\n\nIf the \"mode\" attribute is set to 1, the calculation is reversed – in order to select dark regions instead.",
 					"varname" : "comments"
 				}
@@ -421,7 +392,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 325.0, 676.0, 80.0, 36.0 ]
+					"patching_rect" : [ 325.0, 676.0, 80.0, 35.0 ]
 				}
 
 			}
@@ -697,8 +668,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 325.0, 178.0, 92.0, 20.0 ],
-					"text" : "cv.jit.grab 320 240"
+					"patching_rect" : [ 325.0, 178.0, 129.0, 20.0 ],
+					"text" : "jit.grab 320 240 @unique 1"
 				}
 
 			}
@@ -783,7 +754,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 15.0, 565.0, 41.0 ],
+					"patching_rect" : [ 45.0, 15.0, 565.0, 40.0 ],
 					"text" : "cv.jit.threshold",
 					"textcolor" : [ 0.258824, 0.258824, 0.258824, 1.0 ]
 				}
@@ -1001,30 +972,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-10", 2 ],
-					"hidden" : 1,
-					"source" : [ "obj-6", 2 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-10", 1 ],
-					"hidden" : 1,
-					"source" : [ "obj-6", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
-					"hidden" : 1,
-					"source" : [ "obj-6", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-64", 0 ],
 					"hidden" : 1,
 					"source" : [ "obj-61", 0 ]
@@ -1093,22 +1040,8 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "cv.jit.grab.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
-				"patcherrelativepath" : "../patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "cvjit_random_bg_colour.maxpat",
-				"bootpath" : "~/Dropbox/Backup/cv_jit_in_progress/cv_jit_OSX_v1_7_0/cv.jit Help",
-				"patcherrelativepath" : "../../../../../Dropbox/Backup/cv_jit_in_progress/cv_jit_OSX_v1_7_0/cv.jit Help",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "cv.jit.threshold.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.threshold.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0,

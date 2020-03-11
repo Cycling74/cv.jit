@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 427.0, 148.0, 828.0, 518.0 ],
+		"rect" : [ 837.0, 132.0, 828.0, 518.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -47,7 +47,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 640.0, 452.0, 134.0, 41.0 ],
+					"patching_rect" : [ 640.0, 452.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -508,7 +508,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 23.0, 26.0, 453.0, 34.0 ],
+					"patching_rect" : [ 23.0, 26.0, 453.0, 33.0 ],
 					"text" : "cv.jit object guide",
 					"textcolor" : [ 0.054902, 0.2, 0.270588, 1.0 ]
 				}
@@ -600,7 +600,7 @@
 					"readonly" : 1,
 					"rowhead" : 1,
 					"rowheight" : 25,
-					"rows" : 83,
+					"rows" : 82,
 					"selmode" : 3,
 					"varname" : "cvjit_list"
 				}
@@ -609,7 +609,7 @@
 , 			{
 				"box" : 				{
 					"coll_data" : 					{
-						"count" : 83,
+						"count" : 82,
 						"data" : [ 							{
 								"key" : "cv.jit.binedge",
 								"value" : [ "Extract edges in a binary image." ]
@@ -709,10 +709,6 @@
 , 							{
 								"key" : "cv.jit.close",
 								"value" : [ "Dilate then erode a binary image." ]
-							}
-, 							{
-								"key" : "cv.jit.covariance",
-								"value" : [ "Calculate covariance matrix." ]
 							}
 , 							{
 								"key" : "cv.jit.dilate",
@@ -972,7 +968,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 640.0, 99.0, 115.0, 38.0 ],
+					"patching_rect" : [ 640.0, 99.0, 115.0, 37.0 ],
 					"text" : "Double-click on a row to display the object's help file. (If it exists.)"
 				}
 

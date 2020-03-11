@@ -49,7 +49,7 @@ include_directories(
 if (LEGACY) 
 	include_directories("${OPENCV2_INSTALL_DIR}/include" "${OPENCV2_INSTALL_DIR}/include/opencv")
 else ()
-	include_directories("${OPENCV4_INSTALL_DIR}/include/opencv4")
+	include_directories("${OPENCV4_INSTALL_DIR}/include" "${OPENCV4_INSTALL_DIR}/include/opencv4")
 endif()
 
 # Set extra libraries
@@ -59,13 +59,13 @@ endif()
 ## OpenCV libraries
 if (LEGACY)
 	if (WIN32)
-		# TODO
+		file(GLOB_RECURSE OPENCV_LIBS "${OPENCV2_INSTALL_DIR}/x64/*.lib")
 	elseif(APPLE)
 		file(GLOB OPENCV_LIBS "${OPENCV2_INSTALL_DIR}/lib/*.a")
 	endif()
 else()
 	if (WIN32)
-		# TODO
+		file(GLOB_RECURSE OPENCV_LIBS "${OPENCV4_INSTALL_DIR}/x64/*.lib")
 	elseif(APPLE) 
 		file(GLOB OPENCV_LIBS "${OPENCV4_INSTALL_DIR}/lib/*.a")
 		list(REMOVE_ITEM OPENCV_LIBS "${OPENCV4_INSTALL_DIR}/lib/libittnotify.a")

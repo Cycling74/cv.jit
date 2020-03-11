@@ -73,8 +73,6 @@ t_jit_err cv_jit_keypoints_init(void)
 	constexpr int INPUT_COUNT = 1;
 	constexpr int OUTPUT_COUNT = 2; // Keypoints and descriptions
 	constexpr int KEYPOINT_PLANECOUNT = cvjit::KEYPOINT_FIELD_COUNT;
-
-	t_symbol * atsym  = gensym("jit_attr_offset");
 	
 	_cv_jit_keypoints_class = jit_class_new("cv_jit_keypoints",(method)cv_jit_keypoints_new, (method)cv_jit_keypoints_free,
 		sizeof(t_cv_jit_keypoints), 0L); 
@@ -140,17 +138,8 @@ inline void set_detector(t_cv_jit_keypoints *x, cvjit::KeypointMethod method)
 {
 	x->_method = method;
 	switch (method) {
-	case cvjit::AKAZE:
-		x->detector = cv::AKAZE::create();
-		break;
 	case cvjit::BRISK:
 		x->detector = cv::BRISK::create();
-		break;
-	case cvjit::KAZE:
-		x->detector = cv::KAZE::create();
-		break;
-	case cvjit::ORB:
-		x->detector = cv::ORB::create();
 		break;
     default:
         break;
@@ -222,41 +211,13 @@ t_jit_err cv_jit_keypoints_matrix_calc(t_cv_jit_keypoints *x, void *inputs, void
 
 			try {
 
-				// Setup the parameters
+                // Setup the parameters: only BRISK is currently supported by other methods may be added later...
 				switch (x->_method) {
-					case cvjit::AKAZE:
-					{
-						cv::Ptr<cv::AKAZE> AKAZE = x->detector.dynamicCast<cv::AKAZE>();
-						AKAZE->setThreshold(x->threshold);
-						AKAZE->setNOctaves(x->octaves);
-						AKAZE->setNOctaveLayers(x->octaveLayers);
-						break;
-					}
 					case cvjit::BRISK:
 					{
 						cv::Ptr<cv::BRISK> BRISK = x->detector.dynamicCast<cv::BRISK>();
 						BRISK->setThreshold(static_cast<int>(x->threshold * 255.f));
 						BRISK->setOctaves(x->octaves);
-						break;
-					}
-					case cvjit::KAZE:
-					{
-						cv::Ptr<cv::KAZE> KAZE = x->detector.dynamicCast<cv::KAZE>();
-						KAZE->setExtended(x->extended != 0);
-						KAZE->setNOctaveLayers(x->octaveLayers);
-						KAZE->setNOctaves(x->octaves);
-						KAZE->setThreshold(x->threshold);
-						KAZE->setUpright(x->upright != 0);
-						break;
-					}
-					case cvjit::ORB:
-					{
-						cv::Ptr<cv::ORB> ORB = x->detector.dynamicCast<cv::ORB>();
-						ORB->setFastThreshold(static_cast<int>(x->threshold * 255.f));
-						ORB->setMaxFeatures(x->maxcount);
-						ORB->setScaleFactor(x->scalefactor);
-						ORB->setPatchSize(x->patchsize);
-						ORB->setEdgeThreshold(x->patchsize);
 						break;
 					}
                     default:

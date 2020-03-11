@@ -60,15 +60,12 @@ t_jit_err cv_jit_keypoints_match_matrix_calc(t_cv_jit_keypoints_match *x, void *
 // Constants
 constexpr int INPUT_COUNT = 4;
 constexpr int OUTPUT_COUNT = 2;
-constexpr int KEYPOINT_PLANECOUNT = cvjit::KEYPOINT_FIELD_COUNT;
 
 t_jit_err cv_jit_keypoints_match_init(void) 
 {
 #if defined(_DEBUG) || defined(DEBUG) 
 	object_post(nullptr, "cv.jit.keypoints.match\nBuilt on %s at %s", __DATE__, __TIME__);
 #endif
-
-	t_symbol * atsym  = gensym("jit_attr_offset");
 	
 	_cv_jit_keypoints_match_class = jit_class_new("cv_jit_keypoints_match",(method)cv_jit_keypoints_match_new, (method)cv_jit_keypoints_match_free,
 		sizeof(t_cv_jit_keypoints_match), 0L); 

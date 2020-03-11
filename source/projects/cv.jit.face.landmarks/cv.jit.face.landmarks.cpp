@@ -107,8 +107,6 @@ void cv_jit_face_landmarks_read(t_cv_jit_face_landmarks *x, t_symbol *s, short a
 t_jit_err cv_jit_face_landmarks_init(void) 
 {
 	t_jit_object *attr, *mop, *output;
-
-	t_symbol * atsym  = gensym("jit_attr_offset");
 	
 	_cv_jit_face_landmarks_class = jit_class_new("cv_jit_face_landmarks",(method)cv_jit_face_landmarks_new, (method)cv_jit_face_landmarks_free,
 		sizeof(t_cv_jit_face_landmarks), 0L); 

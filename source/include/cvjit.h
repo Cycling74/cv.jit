@@ -554,23 +554,23 @@ namespace cvjit {
 	template <typename T>
 	using max_object_destructor = auto (*)(T *) -> void;
 
-	template <typename T, typename U>
-	inline U new_max_class(U & class_ptr, cvjit::cstring name, max_object_constructor constructor, max_object_destructor<T> destructor)
-	{
-		t_class	*c = class_new(name,
-			(method)constructor,
-			(method)destructor,
-			sizeof(T),
-			(method)NULL,
-			A_GIMME,
-			0);
-
-		static_assert(std::is_same<U, void *>::value || std::is_same<U, t_class *>::value, "Class must be void * or t_class *");
-		union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;
-		alias_ptr.v_ptr = &(void *)class_ptr;
-		setup(alias_ptr.m_ptr, (method)constructor, (method)destructor, (short)sizeof(T), 0L, A_GIMME, 0);
-		return class_ptr;
-	}
+//    template <typename T, typename U>
+//    inline U new_max_class(U & class_ptr, cvjit::cstring name, max_object_constructor constructor, max_object_destructor<T> destructor)
+//    {
+//        t_class    *c = class_new(name,
+//            (method)constructor,
+//            (method)destructor,
+//            sizeof(T),
+//            (method)NULL,
+//            A_GIMME,
+//            0);
+//
+//        static_assert(std::is_same<U, void *>::value || std::is_same<U, t_class *>::value, "Class must be void * or t_class *");
+//        union { void **v_ptr; t_messlist **m_ptr; } alias_ptr;
+//        alias_ptr.v_ptr = &(void *)class_ptr;
+//        setup(alias_ptr.m_ptr, (method)constructor, (method)destructor, (short)sizeof(T), 0L, A_GIMME, 0);
+//        return class_ptr;
+//    }
 
 	template <typename T>
 	using bang_callback = auto (*)(T *) -> void;

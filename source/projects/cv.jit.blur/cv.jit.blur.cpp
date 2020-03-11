@@ -38,7 +38,6 @@ typedef struct _cv_jit_blur {
 
 void *_cv_jit_blur_class;
 
-static char compareInfo(t_jit_matrix_info *info1, t_jit_matrix_info *info2);
 t_jit_err cv_jit_blur_init(void);
 t_cv_jit_blur *cv_jit_blur_new(void);
 void cv_jit_blur_free(t_cv_jit_blur *x);

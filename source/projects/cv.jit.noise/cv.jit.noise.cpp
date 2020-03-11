@@ -140,7 +140,6 @@ void cv_jit_noise_bang(t_cv_jit_noise *x)
 {	
 	if (x) {
 		for (int i = 0; i < x->m_dims; i++) {
-			double val = 0;
 			t_symbol * sym = atom_getsym(&x->m_mode[i]);
 			if (sym == distribution_syms[0]) {
 				// uniform

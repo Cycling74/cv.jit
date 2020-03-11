@@ -26,7 +26,7 @@ First, grab the sources from Github:
 git clone -b 2.4 https://github.com/opencv/opencv.git opencv2
 ```
 
-Now, create a "build" folder for Cmake:
+Now, create a "build" directory for Cmake:
 
 ```
 cv opencv2
@@ -58,7 +58,7 @@ The we install:
 sudo make install
 ```
 
-The necessary libraries should now be in the "/usr/local/opencv2/lib" folder, or elsewhere if you used a different **CMAKE_INSTALL_PREFIX**.
+The necessary libraries should now be in the "/usr/local/opencv2/lib" directory, or elsewhere if you used a different **CMAKE_INSTALL_PREFIX**.
 
 Before we install OpenCV 4, we must download the opencv_contrib module, which is distributed separately.
 
@@ -92,13 +92,56 @@ You should now have all the necessary OpenCV libraries to compile cv.jit.
 
 ### Windows
 
+On Windows, we also need to compile our own versions of OpenCV. For OpenCV 2, we shouldn't need to install any dependencies. 
+
+In your favourite shell, run the following commands:
+
+```
+git clone -b 2.4 https://github.com/opencv/opencv.git opencv2
+mkdir opencv2/build
+```
+
+Launch the CMake GUI app, and set the source code directory to where you installed OpenCV 2, and the build directory to the directory we just made in the line above.
+
+We then run configure for the first time. In the generator option, chose the latest version of Visual Studio installed on your machine.
+
+You must then **explicitely set the platform to "x64"**. Lastly, in the optional toolset field, enter "host=x64". You can then press "Finish".
+
+In the list of variables that are shown, you should **uncheck** the following options:
+
+- **BUILD_SHARED_LIBS**
+- **WITH_CUDA**
+- **WITH_TBB**
+
+Change or make a note of the **CMAKE_INSTALL_PREFIX** variable; this is where OpenCV will be installed. Run configure again and generate the project.
+
+Open the project in Visual Studio, set the configuration to Release and build the ALL_BUILD target. Once the build is complete build the INSTALL target.
+
+We then repeat more or less the same process for OpenCV 4, with a few differences.
+
+First clone and make a build directory:
+
+```
+git clone -b master https://github.com/opencv/opencv.git openc4
+mkdir opencv4/build
+```
+
+In CMake GUI, update the source and build directory and run configure. Be careful to use the same settings as for OpenCV 2.
+
+**Uncheck** the following options:
+
+- **BUILD_SHARED_LIBS**
+- **WITH_CUDA**
+- **WITH_TBB**
+
+Set **OPENCV_EXTRA_MODULES_PATH** to the location of the "modules" directory inside the opencv_contrib directory. Here also, change or make a note of the **CMAKE_INSTALL_PREFIX** variable.
+
+Run configure again until there are no more variables highlighted in red, and the press generate. Open the project in Visual Studio. Set the configuration to Release, and build the ALL_BUILD target, followed by the INSTALL target.
 
 
 ## Compiling cv.jit
 
 cv.jit now uses CMake to generate appropriate projects on macOS and Windows. 
-
-### macOS
 
 Download cv.jit source:
 
@@ -112,21 +155,26 @@ Run CMake, making sure generate an Xcode project instead of makefiles:
 cd cv.jit
 mkdir build
 cd build
+```
+
+On macOS, use the ccmake utility:
+
+```
 ccmake -G Xcode ../
 ```
 
+On Windows, use the CMake GUI app, and set the source and build directories. On Windows, the first time you run configure, chose the latest version of Visual Studio installed on your machine. You must then **explicitely set the platform to "x64"**. Lastly, in the optional toolset field, enter "host=x64". You can then press "Finish".
+
+
 After running CMake configuration, you will be able to edit a few variables. The important ones are:
 
-- **COPY_DIR**: Set this to the folder where you wish the external binaries to be copied. For instance, "/Users/me/Documents/Max 8/packages/Max 8/cv.jit/externals".
-- **OPENCV2_INSTALL_DIR**: Where you installed OpenCV 2. If you followed the instructions in this file, the default value should be fine.
+- **COPY_DIR**: Set this to the directory where you wish the external binaries to be copied. For instance, "/Users/me/Documents/Max 8/packages/Max 8/cv.jit/externals" on macOS or "C:\Users\me\Documents\Max 8\packages\cv.jit\externals".
+- **OPENCV2_INSTALL_DIR**: Where you installed OpenCV 2. This is the same path you gave for **CMAKE_INSTALL_PREFIX** when building OpenCV.
 - **OPENCV4_INSTALL_DIR**: Same, but for OpenCV 4.
 
-Run configure once again, and then generate. You should now have a file named cv.jit.xcodeproj in your build folder.
+Run configure once again, and then generate.
 
-Once you open the project in Xcode, select the ALL_BUILD target to build all externals, or just select individual targets.
-
-
-### Windows
+Once you open the project in Xcode or Visual Studio, select the ALL_BUILD target to build all externals, or just select individual targets.
 
 
 # cv.jit change log

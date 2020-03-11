@@ -34,7 +34,8 @@
  in Jitter externals.
  */
 
-#include "ext_jitter.h"
+#include "c74_jitter.h"
+using namespace c74::max;
 
 
 // Max object instance data
@@ -124,7 +125,7 @@ void *max_cv_jit_perspective_new(t_symbol *s, long argc, t_atom *argv)
 		} 
 		else {
 			object_error((t_object*)x, "cv.jit.perspective : could not allocate object");
-			freeobject((t_object*)x);
+			object_free(x);
 			x = NULL;
 		}
 	}

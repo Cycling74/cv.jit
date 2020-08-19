@@ -29,7 +29,7 @@ git clone -b 2.4 https://github.com/opencv/opencv.git opencv2
 Now, create a "build" directory for Cmake:
 
 ```
-cv opencv2
+cd opencv2
 mkdir build
 cd build
 ```
@@ -40,7 +40,7 @@ We then use ccmake to configure:
 ccmake ../
 ```
 
-First, press the C key to configure. A list of variables should be displayed. We now need to change one very important setting. Make sure advanced mode is toggled **ON** by pressing the T key. Then look for the **BUILD_SHARED_LIBS** variable and change it to **OFF**. Make sure that **WITH_TBB** is **OFF**. 
+First, press the C key to configure. A list of variables should be displayed. We now need to change one very important setting. Make sure advanced mode is toggled **ON** by pressing the T key. Then look for the **BUILD_SHARED_LIBS** variable and change it to **OFF**. Make sure that **WITH_TBB** is **OFF**. Also, you may want to set **WITH_FFMEG** to **OFF** as we don't need it and it may cause problems during build.
 
 You should also change the install location by setting the **CMAKE_INSTALL_PREFIX** variable. You can install anywhere but "/usr/local/opencv2" should be fine.
 

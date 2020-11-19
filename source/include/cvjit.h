@@ -415,8 +415,10 @@ namespace cvjit {
 				*ac = 1;
 			}
 			else {
+				// no memory passed in therefore we must allocate
+				*av = (t_atom*)sysmem_newptr(sizeof(t_atom));
 				*ac = 1;
-				*av = &atom;
+				**av = atom;
 			}
 		}
 	};

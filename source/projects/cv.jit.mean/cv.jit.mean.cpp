@@ -94,7 +94,8 @@ static char compareInfo(t_jit_matrix_info *info1, t_jit_matrix_info *info2)
 t_jit_err cv_jit_mean_matrix_calc(t_cv_jit_mean *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock=0,out_savelock=0;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
 	uchar *in_bp,*out_bp;
 	long i,dimcount,planecount,dim[JIT_MATRIX_MAX_DIMCOUNT];
@@ -105,8 +106,8 @@ t_jit_err cv_jit_mean_matrix_calc(t_cv_jit_mean *x, void *inputs, void *outputs)
 
 	if (x&&in_matrix&&out_matrix) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
@@ -253,7 +254,7 @@ void cv_jit_mean_calculate(t_cv_jit_mean *x, long dimcount, long *dim, long plan
 					
 					for (k=0;k<in_minfo->planecount;k++) 
 					{
-						((float *)op)[l+k] = (((float *)ip)[l+k] * a) + (((float *)op)[l+k] * b);
+						((float *)op)[l+k] = (((float *)ip)[l+k] * (float)a) + (((float *)op)[l+k] * (float)b);
 					}
 					
 				}

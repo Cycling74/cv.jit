@@ -104,7 +104,7 @@ t_jit_err cv_jit_sum_init(void)
 t_jit_err cv_jit_sum_matrix_calc(t_cv_jit_sum *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock;
+	void * in_savelock;
 	t_jit_matrix_info in_minfo;
 	uchar *in_bp;
 	long i,dimcount,dim[JIT_MATRIX_MAX_DIMCOUNT];
@@ -115,7 +115,7 @@ t_jit_err cv_jit_sum_matrix_calc(t_cv_jit_sum *x, void *inputs, void *outputs)
 
 	if (x&&in_matrix) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(in_matrix,_jit_sym_getdata,&in_bp);
 		
@@ -209,7 +209,7 @@ void cv_jit_sum_sum(t_cv_jit_sum_vecdata *vecdata, t_jit_matrix_info *in1_minfo)
 		}
 	} else if (in1_minfo->type==_jit_sym_float32) {
 		for (i=0;i<in1_minfo->planecount;i++) {
-			vecdata->v_float32.sum[i] = ((double)(vecdata->v_float32.sum[i]))/(double)count;
+			vecdata->v_float32.sum[i] = ((float)(vecdata->v_float32.sum[i]))/(float)count;
 		}
 	} else if (in1_minfo->type==_jit_sym_float64) {
 		for (i=0;i<in1_minfo->planecount;i++) {

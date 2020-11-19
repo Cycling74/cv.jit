@@ -77,7 +77,7 @@ t_jit_err cv_jit_ravg_init(void)
 t_jit_err cv_jit_ravg_matrix_calc(t_cv_jit_ravg *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock,out_savelock, buf_savelock;
+	void * in_savelock, * out_savelock, * buf_savelock;
 	t_jit_matrix_info in_minfo,out_minfo, buf_minfo;
 	char *in_bp,*out_bp, *buf_bp;
 	long i,dimcount,planecount,dim[JIT_MATRIX_MAX_DIMCOUNT];
@@ -88,9 +88,9 @@ t_jit_err cv_jit_ravg_matrix_calc(t_cv_jit_ravg *x, void *inputs, void *outputs)
 
 	if (x&&in_matrix&&out_matrix) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
-		buf_savelock = (long) jit_object_method(x->bufMat,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
+		buf_savelock = jit_object_method(x->bufMat,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);

@@ -32,7 +32,6 @@ in Jitter externals.
 */
 
 
-#include "cv.h"
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
 
@@ -92,22 +91,21 @@ t_jit_err cv_jit_threshold_init(void)
 t_jit_err cv_jit_threshold_matrix_calc(t_cv_jit_threshold *x, void *inputs, void *outputs)
 {
 	t_jit_err err = JIT_ERR_NONE;
-	long in_savelock,out_savelock;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
 	char *in_bp,*out_bp;
 	long i,dimcount,planecount,dim[JIT_MATRIX_MAX_DIMCOUNT];
-	void *in_matrix,*out_matrix;
+	t_object *in_matrix,*out_matrix;
 	int mode;
-		
-	CvMat source, output;
-	
-	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
-	out_matrix 	= jit_object_method(outputs,_jit_sym_getindex,0);
+			
+	in_matrix 	= (t_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	out_matrix 	= (t_object *)jit_object_method(outputs,_jit_sym_getindex,0);
 
 	if (x&&in_matrix&&out_matrix) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
@@ -136,19 +134,18 @@ t_jit_err cv_jit_threshold_matrix_calc(t_cv_jit_threshold *x, void *inputs, void
 		for (i=0;i<dimcount;i++) {
 			dim[i] = MIN(in_minfo.dim[i],out_minfo.dim[i]);
 		}		
+
+		if (x->inverse)
+			mode = cv::THRESH_BINARY;
+		else
+			mode = cv::THRESH_BINARY_INV;
 		
 		//Convert input and output matrices to OpenCV matrices
-		cvJitter2CvMat(in_matrix, &source);
-		cvJitter2CvMat(out_matrix, &output);
-		
-		if(x->inverse)
-			mode = CV_THRESH_BINARY_INV;
-		else
-			mode = CV_THRESH_BINARY;
-				
-		//calculate
-		cvAdaptiveThreshold(&source, &output, 255, CV_ADAPTIVE_THRESH_MEAN_C, mode, 1 + x->radius * 2, x->threshold);
-		
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
+		cv::Mat outputMat = cvjit::wrapJitterMatrix(out_matrix, out_minfo, out_bp);
+
+		cv::adaptiveThreshold(sourceMat, outputMat, 255, cv::ADAPTIVE_THRESH_MEAN_C, mode, 1 + x->radius * 2, x->threshold);
+
 	} else {
 		return JIT_ERR_INVALID_PTR;
 	}

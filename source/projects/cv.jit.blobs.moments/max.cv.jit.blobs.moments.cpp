@@ -78,7 +78,7 @@ void *max_cv_jit_blobs_moments_new(t_symbol *s, long argc, t_atom *argv)
 	if ((x=(t_max_cv_jit_blobs_moments *)max_jit_obex_new(max_cv_jit_blobs_moments_class,gensym("cv_jit_blobs_moments")))) {
 		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_blobs_moments")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
-			max_jit_attr_args(x,argc,argv);
+			max_jit_attr_args(x,(short)argc,argv);
 		} else {
 			object_error((t_object*)x, "cv.jit.blobs.moments: could not allocate object");
 			object_free((t_object *)x);

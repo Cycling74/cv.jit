@@ -81,7 +81,7 @@ void *max_cv_jit_blobs_direction_new(t_symbol *s, long argc, t_atom *argv)
 	if ((x=(t_max_cv_jit_blobs_direction *)max_jit_obex_new(max_cv_jit_blobs_direction_class,gensym("cv_jit_blobs_direction")))) {
 		if ((o= (t_jit_object*)jit_object_new(gensym("cv_jit_blobs_direction")))) {
 			max_jit_mop_setup_simple(x,o,argc,argv);			
-			max_jit_attr_args(x,argc,argv);
+			max_jit_attr_args(x,(short)argc,argv);
 		} else {
 			object_error((t_object*)x, "cv.jit.blobs.direction: could not allocate object");
 			object_free((t_object *)x);

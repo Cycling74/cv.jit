@@ -32,11 +32,14 @@ in Jitter externals.
 */
 
 
-#include "cv.h"
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
 
+#include <vector>
+
 using namespace c74::max;
+
+const int MAX_FEATURES = 2048;
 
 #define CLAMP(a, lo, hi) ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) )
 #define CLIP_ASSIGN(a, lo, hi) ((a) = ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) ))
@@ -44,9 +47,7 @@ using namespace c74::max;
 typedef struct _cv_jit_features 
 {
 	t_object				ob;
-	CvMat*				eigImage; //Matrix to hold eigen image
-	CvMat*				tempImage; //Temporary image for algorithm
-	CvPoint2D32f 			features[2048]; //Array to hold feature positions
+	std::vector<cv::Point2f> features;
 	double				threshold; //Set threshold for corner detection
 	double				distance; //Set minimum distance between two features
 	long					roi[4];
@@ -130,25 +131,24 @@ t_jit_err cv_jit_features_init(void)
 t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock=0,out_savelock=0;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
-	char *out_bp, *in_bp;
-	void *in_matrix,*out_matrix;
+	char *in_bp, *out_bp;
+	c74::max::t_object *in_matrix,*out_matrix;
 	int i;
-	int roi_w,roi_h,roi_offset;
 	float *out_data;
-	CvMat source;
 	int featureCount = 2048;
 	
 	//Get pointers to matrices
-	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
-	out_matrix  = jit_object_method(outputs,_jit_sym_getindex,0);
+	in_matrix 	= (c74::max::t_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	out_matrix  = (c74::max::t_object *)jit_object_method(outputs,_jit_sym_getindex,0);
 
 	if (x&&in_matrix&&out_matrix) 
 	{
 		//Lock the matrices
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		//Make sure input is of proper format
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
@@ -173,6 +173,11 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 		//Don't process if one dimension is < 2
 		if((in_minfo.dim[0] < 2)||(in_minfo.dim[1] < 2))
 			goto out;
+        
+        jit_object_method(in_matrix, _jit_sym_getdata, &in_bp);
+        
+
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
 		
 		if(x->useroi)
 		{
@@ -186,49 +191,22 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 			x->roi[2] = MAX(x->roi[0], x->roi[2]);
 			x->roi[3] = MAX(x->roi[1], x->roi[3]);
 			
-			roi_w = x->roi[2] - x->roi[0];
-			roi_h = x->roi[3] - x->roi[1];
-			
-			if(roi_w == 0)
-				roi_w = in_minfo.dim[0] - x->roi[0];
-			if(roi_h == 0)
-				roi_h = in_minfo.dim[1] - x->roi[1];
-				
-			roi_offset = x->roi[1] * in_minfo.dimstride[1] + x->roi[0];
-			
-			jit_object_method(in_matrix,_jit_sym_getdata,&in_bp);
-			
-			//Convert Jitter matrix to OpenCV matrix
-			cvInitMatHeader( &source, roi_h, roi_w, CV_8UC1, in_bp + roi_offset, in_minfo.dimstride[1] );
+			sourceMat.adjustROI(x->roi[1], x->roi[3], x->roi[0], x->roi[2]);
 		}
-		else
-		{
-			//Convert Jitter matrix to OpenCV matrix
-			cvJitter2CvMat(in_matrix, &source);
-		}
-		
-		//Adjust the size of eigImage and tempImage if need be
-		if((source.cols != x->eigImage->cols)||(source.rows != x->eigImage->rows))
-		{
-			cvReleaseMat(&(x->eigImage));
-			x->eigImage = cvCreateMat( source.rows, source.cols, CV_32FC1 );
-			cvReleaseMat(&(x->tempImage));
-			x->tempImage = cvCreateMat( source.rows, source.cols, CV_32FC1 );
-		}
-		
+
 		//Adjust parameters
-		x->threshold = MAX(0.001,x->threshold);
-		x->distance = MAX(1,x->distance);
-		
-		//Calculate
-		cvGoodFeaturesToTrack( &source, x->eigImage, x->tempImage,x->features, &featureCount,x->threshold, x->distance,NULL, x->aperture,0, 0.04 );
+		x->threshold = MAX(0.001, x->threshold);
+		x->distance = MAX(1, x->distance);
+
+		cv::goodFeaturesToTrack(sourceMat, x->features, MAX_FEATURES, x->threshold, x->distance);
 		
 		if(x->precision == 1){
 			int minsize = (x->aperture*2)+5;
 			
 			//Error check for cvFindCornerSubPix
-			if((featureCount>0)&&(source.cols > minsize)&&(source.rows > minsize))
-				cvFindCornerSubPix( &source, x->features, featureCount, cvSize(x->aperture,x->aperture),cvSize(-1,-1),cvTermCriteria(CV_TERMCRIT_ITER, 10, 0.1f));
+			if ((featureCount > 0) && (sourceMat.cols > minsize) && (sourceMat.rows > minsize)) {
+				cv::cornerSubPix(sourceMat, x->features, cv::Size(x->aperture, x->aperture), cv::Size(-1, -1), cv::TermCriteria(cv::TermCriteria::MAX_ITER, 10, 0.1f));
+			}
 		}
 		
 		
@@ -241,7 +219,7 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 		
 		out_data = (float *)out_bp;
 		
-		if(x->useroi)
+		/*if(x->useroi)
 		{
 			for(i=0; i < featureCount; i++)
 			{
@@ -252,7 +230,7 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 			}
 		}
 		else
-		{
+		{*/
 			for(i=0; i < featureCount; i++)
 			{
 				out_data[0] = x->features[i].x;
@@ -260,7 +238,7 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 				
 				out_data += 2;
 			}
-		}
+		//}
 	}
 
 	
@@ -284,10 +262,6 @@ t_cv_jit_features *cv_jit_features_new(void)
 		x->useroi = 0;
 		x->precision = 0;
 		x->aperture = 3;
-		
-		//Initialize matrices
-		x->eigImage = cvCreateMat( 1, 1, CV_32FC1 );
-		x->tempImage = cvCreateMat( 1, 1, CV_32FC1 );
 
 	} else {
 		x = NULL;
@@ -297,9 +271,5 @@ t_cv_jit_features *cv_jit_features_new(void)
 
 void cv_jit_features_free(t_cv_jit_features *x)
 {
-	if(x->eigImage)
-		cvReleaseMat(&(x->eigImage));
-		
-	if(x->tempImage)
-		cvReleaseMat(&(x->tempImage));
+	// Nothing
 }

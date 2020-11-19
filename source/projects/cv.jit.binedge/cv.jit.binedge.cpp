@@ -22,6 +22,7 @@
 */
 
 #include "c74_jitter.h"
+#include <cstdint>
 
 using namespace c74::max;
 
@@ -35,7 +36,7 @@ t_jit_err			cv_jit_binedge_init(void);
 t_cv_jit_binedge*	cv_jit_binedge_new(void);
 void				cv_jit_binedge_free(t_cv_jit_binedge *x);
 t_jit_err			cv_jit_binedge_matrix_calc(t_cv_jit_binedge *x, void *inputs, void *outputs);
-void				cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim,  t_jit_matrix_info *in_minfo, char *bip, t_jit_matrix_info *out_minfo, char *bop);
+void				cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim,  t_jit_matrix_info *in_minfo, uint8_t *bip, t_jit_matrix_info *out_minfo, uint8_t *bop);
 
 t_jit_err cv_jit_binedge_init(void) 
 {
@@ -59,9 +60,10 @@ t_jit_err cv_jit_binedge_init(void)
 t_jit_err cv_jit_binedge_matrix_calc(t_cv_jit_binedge *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock,out_savelock;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
-	char *in_bp,*out_bp;
+	uint8_t *in_bp,*out_bp;
 	long i,dimcount,planecount,dim[JIT_MATRIX_MAX_DIMCOUNT];
 	void *in_matrix,*out_matrix;
 	
@@ -70,8 +72,8 @@ t_jit_err cv_jit_binedge_matrix_calc(t_cv_jit_binedge *x, void *inputs, void *ou
 
 	if (x&&in_matrix&&out_matrix) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
@@ -124,10 +126,10 @@ out:
 }
 
 void cv_jit_binedge_calculate(t_cv_jit_binedge *x, long *dim, t_jit_matrix_info *in_minfo, 
-	char *bip, t_jit_matrix_info *out_minfo, char *bop)
+	uint8_t *bip, t_jit_matrix_info *out_minfo, uint8_t *bop)
 {
 	long i,j,width,height;
-	char *ip,*op,*line1,*line3;
+	::uint8_t *ip,*op,*line1,*line3;
 	long stride,step;
 			
 	stride = in_minfo->dimstride[1];

@@ -110,7 +110,8 @@ t_jit_err cv_jit_blobs_sort_init(void)
 t_jit_err cv_jit_blobs_sort_matrix_calc(t_cv_jit_blobs_sort *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock=0,out_savelock=0;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
 	char *out_bp,*in_bp;
 	void *in_matrix,*out_matrix;
@@ -124,8 +125,8 @@ t_jit_err cv_jit_blobs_sort_matrix_calc(t_cv_jit_blobs_sort *x, void *inputs, vo
 	if (x&&in_matrix&&out_matrix) 
 	{
 		//Lock the matrices
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		//Make sure input is of proper format
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);

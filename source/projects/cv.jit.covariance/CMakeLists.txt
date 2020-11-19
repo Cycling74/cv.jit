@@ -1,26 +1,18 @@
-cmake_minimum_required(VERSION 3.0)
+include(${CMAKE_CURRENT_SOURCE_DIR}/../cvjit-pretarget.cmake)
 
-string(REGEX REPLACE "(.*)/" "" THIS_FOLDER_NAME "${CMAKE_CURRENT_SOURCE_DIR}")
-project(${THIS_FOLDER_NAME})
+unset(PROJECT_SOURCES)
+if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/max.${PROJECT_NAME}.cpp)
+    set(PROJECT_SOURCES ${PROJECT_SOURCES} max.${PROJECT_NAME}.cpp)
+endif()
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-api/script/max-pretarget.cmake)
-
-
-include_directories( 
-	"${C74_INCLUDES}"
-	${CMAKE_CURRENT_SOURCE_DIR}/../../include
-	${CMAKE_CURRENT_SOURCE_DIR}/../../OpenCVsupport/opencv
-	${CMAKE_CURRENT_SOURCE_DIR}/../../OpenCVsupport
-)
-
+if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.cpp)
+    set(PROJECT_SOURCES ${PROJECT_SOURCES} ${PROJECT_NAME}.cpp)
+endif()
 
 add_library( 
 	${PROJECT_NAME} 
 	MODULE
-	${PROJECT_NAME}.cpp
-	max.${PROJECT_NAME}.cpp
+	${PROJECT_SOURCES}
 )
 
-
-include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-api/script/max-posttarget.cmake)
-
+include(${CMAKE_CURRENT_SOURCE_DIR}/../cvjit-posttarget.cmake)

@@ -188,7 +188,7 @@ t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *output
 	t_jit_err err=JIT_ERR_NONE;
 	
 	/** init savelocks */
-	long in_savelock, out_savelock;	
+	void * in_savelock, * out_savelock;	
 	
 	/** init matrix infos */
 	t_jit_matrix_info	in_minfo, out_minfo;
@@ -229,8 +229,8 @@ t_jit_err cv_jit_hough_matrix_calc(t_cv_jit_hough *x, void *inputs, void *output
 	}
 	
 	/** lock the in_matrix/out_matrix pointers so's they don't change - dont forget to unlock them later */
-	in_savelock = (long)jit_object_method(in_matrix, _jit_sym_lock,1);							
-	out_savelock = (long)jit_object_method(out_matrix, _jit_sym_lock, 1);								
+	in_savelock = jit_object_method(in_matrix, _jit_sym_lock,1);							
+	out_savelock = jit_object_method(out_matrix, _jit_sym_lock, 1);								
 	
 	/** load the matrix info into _minfo pointers */
 	jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);		

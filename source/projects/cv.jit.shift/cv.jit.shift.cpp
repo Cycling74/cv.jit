@@ -38,6 +38,8 @@ in Jitter externals.
 
 using namespace c74::max;
 
+#define CLIP_ASSIGN(a, lo, hi) ((a) = ( (a)>(lo)?( (a)<(hi)?(a):(hi) ):(lo) ))
+
 typedef struct _cv_jit_shift 
 {
 	
@@ -145,6 +147,7 @@ t_jit_err cv_jit_shift_matrix_calc(t_cv_jit_shift *x, void *inputs, void *output
 	CvConnectedComp		component;
 	CvPoint2D32f		vertices[4];
 	float				w,h,c,s;
+    char *              in_bp;
 	
 	//Get pointer to matrix
 	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
@@ -176,6 +179,8 @@ t_jit_err cv_jit_shift_matrix_calc(t_cv_jit_shift *x, void *inputs, void *output
 		//Don't process if image is too small
 		if((in_minfo.dim[0] < 2)||(in_minfo.dim[1] < 2))
 			goto out;
+        
+        jit_object_method(in_matrix, _jit_sym_getdata, &in_bp);
 			
 		//Calculate start rectangle:
 		rectangle = cvRect(x->rect[0],x->rect[1],x->rect[2]-x->rect[0],x->rect[3]-x->rect[1]);
@@ -185,7 +190,7 @@ t_jit_err cv_jit_shift_matrix_calc(t_cv_jit_shift *x, void *inputs, void *output
 		CLIP_ASSIGN(rectangle.height,1,in_minfo.dim[1]-rectangle.y);
 
 		//Convert Jitter matrix to OpenCV matrix
-		cvJitter2CvMat(in_matrix, &source);
+        source = cvJitter2CvMat(in_minfo, in_bp);
 		
 		//Calculate camshift
 		if(x->mode == 1) //Use camshift

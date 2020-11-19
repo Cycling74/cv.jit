@@ -32,24 +32,30 @@ in Jitter externals.
 */
 
 
-#include "cv.h"
 #include "jitOpenCV.h"
-#include "c74_jitter.h"
+#include "cvjit.h"
+
+#include <opencv2/objdetect.hpp>
 
 using namespace c74::max;
 
 typedef struct _cv_jit_faces 
 {
-	t_object				 ob;
-	long                     model;
-	CvHaarClassifierCascade* cascade;	
-	long	nfaces;
+	t_object ob;
+	long model;
+	cv::CascadeClassifier cascade;
+	long nfaces;
+	long normalize;
 } t_cv_jit_faces;
 
-const char cascade1[] = "haarFaceCascade1.xml";
-const char cascade2[] = "haarFaceCascade2.xml";
-const char cascade3[] = "haarFaceCascade3.xml";
-const char cascade4[] = "haarFaceCascade4.xml";
+char const * const defaultCascadeFilenames[] = {
+	"haarFaceCascade1.xml",
+	"haarFaceCascade2.xml",
+	"haarFaceCascade3.xml",
+	"haarFaceCascade4.xml"
+};
+
+constexpr int DEFAULT_CASCADE_COUNT = 4;
 
 void *_cv_jit_faces_class;
 
@@ -63,7 +69,6 @@ short                   cv_jit_faces_load(t_cv_jit_faces *x,const char *m);
 
 t_jit_err cv_jit_faces_init(void) 
 {
-	long attrflags=0;
 	t_jit_object *attr,*mop,*output;
 	t_symbol *atsym;
 	
@@ -94,16 +99,16 @@ t_jit_err cv_jit_faces_init(void)
 	jit_class_addmethod(_cv_jit_faces_class, (method)cv_jit_faces_matrix_calc, 		"matrix_calc", 		A_CANT, 0L);
 	jit_class_addmethod(_cv_jit_faces_class, (method)cv_jit_faces_read, 		"read", 		A_GIMME, 0L);
 
-	//add attributes	
-	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_USURP_LOW;
-	
-	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"model",_jit_sym_long,attrflags,(method)0L,(method)cv_jit_faces_model,calcoffset(t_cv_jit_faces,model));			
-	jit_attr_addfilterset_clip(attr,1,4,true,true);	//clip to 1-4
+	//add attributes
+
+	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset, "model", _jit_sym_long, cvjit::Flags::get_set, (method)0L, (method)cv_jit_faces_model, calcoffset(t_cv_jit_faces, model));			
+	jit_attr_addfilterset_clip(attr, 1, 4, true, true);	//clip to 1-4
 	jit_class_addattr(_cv_jit_faces_class, attr);
+
+	// Normalize attribute
+	jit_class_addattr(_cv_jit_faces_class, cvjit::normalize_attr<t_cv_jit_faces>());
 	
-	attrflags = ATTR_GET_DEFER_LOW | ATTR_SET_OPAQUE;
-	
-	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset,"nfaces",_jit_sym_long,attrflags,(method)0L,(method)cv_jit_faces_model,calcoffset(t_cv_jit_faces,nfaces));			
+	attr = (t_jit_object *)jit_object_new(	_jit_sym_jit_attr_offset, "nfaces", _jit_sym_long, cvjit::Flags::private_set, (method)0L, (method)0L, calcoffset(t_cv_jit_faces, nfaces));
 	jit_class_addattr(_cv_jit_faces_class, attr);
 			
 	jit_class_register(_cv_jit_faces_class);
@@ -115,127 +120,87 @@ void cv_jit_faces_model(t_cv_jit_faces *x, t_symbol *s, long argc, t_atom *argv)
 {
 	long m;
 
-	short err;
+	m = (long)atom_getlong(argv);
 
-	m = atom_getlong(argv);
-	
-	if(x->model == m)
-		return;
-
-	switch(m)
-	{
-	case 1:
-		err = cv_jit_faces_load(x,cascade1);
-		break;
-	case 2:
-		err = cv_jit_faces_load(x,cascade2);
-		break;
-	case 3:
-		err = cv_jit_faces_load(x,cascade3);
-		break;
-	case 4:
-		err = cv_jit_faces_load(x,cascade4);
-		break;
-	default:
-		return;
+	if (m != x->model && m >= 1 && m <= DEFAULT_CASCADE_COUNT) {
+		if (0 == cv_jit_faces_load(x, defaultCascadeFilenames[m - 1])) {
+			x->model = m;
+		}
+		else {
+			// Error
+			x->model = 0;
+		}
 	}
-
-	if(err)
-		x->model = 0;
 }
 
 t_jit_err cv_jit_faces_matrix_calc(t_cv_jit_faces *x, void *inputs, void *outputs)
 {
-	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock = 0,out_savelock = 0;
-	t_jit_matrix_info in_minfo,out_minfo;
-	char *out_bp;
-	void *in_matrix,*out_matrix;
-	float *out_data;
-	int i;
-	CvMat source;
-	CvSeq *faces;
-	CvMemStorage* storage;
-	CvRect rect;
-	
-	if(x->model == 0) //No valid model has been loaded, exit
-		return err;
-
-	if(!x->cascade)
-		return err;
-
-	storage = cvCreateMemStorage(0);
+	cv::Mat source;
+	std::vector<cv::Rect> faces;
 
 	//Get pointers to matrices
-	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
-	out_matrix  = jit_object_method(outputs,_jit_sym_getindex,0);
+	t_object * in_matrix 	= (t_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	t_object *out_matrix  = (t_object *)jit_object_method(outputs,_jit_sym_getindex,0);
 
-	if (x&&in_matrix&&out_matrix&&storage) 
+	if (x && in_matrix && out_matrix && x->model > 0) 
 	{
 		//Lock the matrices
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		cvjit::Savelock savelocks[] = { in_matrix, out_matrix };
+
+		// Wrap the matrices
+		cvjit::JitterMatrix input(in_matrix);
+		cvjit::JitterMatrix results(out_matrix);
 		
 		//Make sure input is of proper format
-		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
-		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
-
-		if(in_minfo.dimcount != 2)
+		t_jit_err err = cvjit::Validate(x, input)
+			.type(_jit_sym_char)
+			.planecount(1)
+			.dimcount(2)
+			.min_dimsize(2);
+		
+		if (JIT_ERR_NONE == err) 
 		{
-			err = JIT_ERR_MISMATCH_DIM;
-			goto out;
+			//Convert Jitter matrix to OpenCV matrix
+			char * in_bp, * out_bp;
+			jit_object_method(in_matrix, _jit_sym_getdata, &in_bp);
+            jit_object_method(out_matrix, _jit_sym_getdata, &out_bp);
+			cv::Mat source = input;
+
+			//Calculate		
+			x->cascade.detectMultiScale(source, faces);
+			x->nfaces = (long)faces.size();
+
+			//Prepare output
+			cvjit::resize_matrix(out_matrix, { (long)faces.size() });
+			
+			jit_object_method(out_matrix, _jit_sym_getdata, &out_bp);
+			if (!out_bp) { return JIT_ERR_INVALID_OUTPUT; }
+			if (x->nfaces == 0) {
+				results.set_size(1);
+				results.clear();
+				return JIT_ERR_NONE;
+			}
+
+			results.set_size(x->nfaces);
+
+			const float scale_x = x->normalize ? (float)input.normalization_scale_x() : 1.f;
+			const float scale_y = x->normalize ? (float)input.normalization_scale_y() : 1.f;
+
+			float * out_data = results.get_data<float>();
+
+			for (cv::Rect & rect : faces) {
+				out_data[0] = (float)rect.x * scale_x;
+				out_data[1] = (float)rect.y * scale_y;
+				out_data[2] = (float)(rect.x + rect.width) * scale_x;
+				out_data[3] = (float)(rect.y + rect.height) * scale_y;
+				out_data += 4;
+			}
 		}
-		if(in_minfo.planecount != 1)
-		{
-			err = JIT_ERR_MISMATCH_PLANE;
-			goto out;
-		}
-		if(in_minfo.type != _jit_sym_char)
-		{
-			err = JIT_ERR_MISMATCH_TYPE;
-			goto out;
-		}
-
-		//Don't process if image is too small
-		if((in_minfo.dim[0] < 2)||(in_minfo.dim[1] < 2))
-			goto out;
-
-		//Convert Jitter matrix to OpenCV matrix
-		cvJitter2CvMat(in_matrix, &source);
-		
-		//Calculate		
-		faces = cvHaarDetectObjects(&source,x->cascade,storage,1.1,3,CV_HAAR_DO_CANNY_PRUNING,cvSize(20,20), cvSize(0,0) /*default, windows doesn't support this*/);
-		
-		x->nfaces = faces->total;
-
-		//Prepare output
-		out_minfo.dim[0] = faces->total;
-		jit_object_method(out_matrix,_jit_sym_setinfo,&out_minfo);
-		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
-		jit_object_method(out_matrix,_jit_sym_getdata,&out_bp);
-		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
-		
-		out_data = (float *)out_bp;
-		
-		for(i=0; i < faces->total; i++)
-		{
-			rect = *(CvRect *)cvGetSeqElem(faces,i);
-			out_data[0] = rect.x;
-			out_data[1] = rect.y;
-			out_data[2] = rect.x + rect.width;
-			out_data[3] = rect.y + rect.height;
-
-			out_data+=4;
+		else {
+			return err;
 		}
 	}
-
-	
-out:
-	jit_object_method(out_matrix,gensym("lock"),out_savelock);
-	jit_object_method(in_matrix,gensym("lock"),in_savelock);
-	if(storage)
-		cvReleaseMemStorage(&storage);
-	return err;
+	return JIT_ERR_NONE;
 }
 
 
@@ -247,9 +212,12 @@ t_cv_jit_faces *cv_jit_faces_new(void)
 	if ((x=(t_cv_jit_faces *)jit_object_alloc(_cv_jit_faces_class))) {
 		
 		x->model = 1;
-		if(cv_jit_faces_load(x,cascade1))
+		if (cv_jit_faces_load(x, defaultCascadeFilenames[1])) {
+			// Error loading cascade
 			x->model = 0;
+		}
 		x->nfaces = 0;
+		x->normalize = 0;
 
 	} else {
 		x = NULL;
@@ -266,7 +234,7 @@ void cv_jit_faces_read(t_cv_jit_faces *x, t_symbol *s, short argc, t_atom *argv)
 	t_fourcc code;
 
 
-	code =  'TEXT' ;
+	code = 'TEXT' ;
 	
 	if(argc > 0)
 	{
@@ -275,45 +243,47 @@ void cv_jit_faces_read(t_cv_jit_faces *x, t_symbol *s, short argc, t_atom *argv)
 			object_error((t_object*)x, "Invalid argument to read command. Make sure argument is a symbol.");
 			return;
 		}
-		strcpy(fname,argv[0].a_w.w_sym->s_name);
+		strncpy(fname, argv[0].a_w.w_sym->s_name, MAX_FILENAME_CHARS);
 		if(locatefile_extended(fname,&id,&type,&type,-1))
 		{
-			object_error((t_object*)x, "Could not find file %s",argv[0].a_w.w_sym->s_name);
+			object_error((t_object*)x, "Could not find file %s", argv[0].a_w.w_sym->s_name);
 			return;
 		}
 
 		//Load file
-		if(cv_jit_faces_load(x,fname))
+		if (cv_jit_faces_load(x, fname)) {
 			x->model = 0;
-		else
-			x->model = 5;
+		}
+		else {
+			x->model = DEFAULT_CASCADE_COUNT + 1;
+		}
+			
 	}	
 	else 
 	{
 		if(open_dialog(fname, &id, &type,&code,1))
 		{
-			object_error((t_object*)x, "Could not find file %s",fname);
+			object_error((t_object*)x, "Could not find file %s", fname);
 			return;
 		}
 		path_topathname(id, fname, pname); 
 		path_nameconform(pname, fname,PATH_STYLE_SLASH, PATH_TYPE_BOOT);
 
-		x->cascade = (CvHaarClassifierCascade*)cvLoad( fname, 0, 0, 0 );
-		if(!x->cascade)
-		{
-			object_error((t_object*)x, "Can't load face description file: %s",fname); 
+		if (!x->cascade.load(fname)) {
+			object_error((t_object*)x, "Can't load face description file: %s", fname);
 			x->model = 0;
 			return;
 		}
-		x->model = 5;
-
+		else {
+			x->model = 5;
+		}
 	}
 
 	
 	
 }
 
-short cv_jit_faces_load(t_cv_jit_faces *x,const char *m)
+short cv_jit_faces_load(t_cv_jit_faces *x, const char *m)
 {
 	short path; 
 	char name[MAX_FILENAME_CHARS];
@@ -321,12 +291,11 @@ short cv_jit_faces_load(t_cv_jit_faces *x,const char *m)
 	char conform_name[MAX_PATH_CHARS];
 	t_fourcc type;
 
-	strcpy(name,m);
+	strncpy(name, m, MAX_FILENAME_CHARS);
 	
 	if (locatefile_extended(name,&path,&type,&type,-1)) 
 	{
-		object_error((t_object*)x, "Can't find face description file: %s",name); 
-		x->cascade = NULL;
+		object_error((t_object*)x, "Can't find face description file: %s", name); 
 		return 1;
 	}	
 	else
@@ -336,25 +305,20 @@ short cv_jit_faces_load(t_cv_jit_faces *x,const char *m)
 			//On Mactel, this function returns OS9 style paths with PATH_STYLE_NATIVE, PATH_TYPE_ABSOLUTE works on Windows but not OSX
 			if(!path_nameconform(full_name, conform_name,PATH_STYLE_SLASH, PATH_TYPE_BOOT))
 			{
-				x->cascade = (CvHaarClassifierCascade*)cvLoad( conform_name, 0, 0, 0 );
-				if(!x->cascade)
-				{
-						object_error((t_object*)x, "Can't load face description file: %s",conform_name); 
-						return 1;
+				if (x->cascade.load(conform_name)) {
+					return 0;
+				}
+				else {
+					object_error((t_object*)x, "Can't load face description file: %s", conform_name);
 				}
 			}
-			else
-				return 1;
 		}
-		else
-			return 1;
 	}
 
-	return 0;
+	return 1;
 }
 
 void cv_jit_faces_free(t_cv_jit_faces *x)
 {
-	if(x->cascade)
-		cvReleaseHaarClassifierCascade(&(x->cascade));
+	// Nothing
 }

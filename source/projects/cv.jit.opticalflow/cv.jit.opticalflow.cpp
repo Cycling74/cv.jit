@@ -31,10 +31,11 @@ Please also read the notes concerning technical issues with using the OpenCV lib
 in Jitter externals.
 */
 
-#include "cv.h"
+
 #include "OpticalFlow.h"
-#include "jitOpenCV.h"
-#include "c74_jitter.h"
+#include "cvjit.h"
+
+#include <opencv/cv.h>
 
 using namespace c74::max;
 
@@ -113,7 +114,7 @@ t_jit_err cv_jit_opticalflow_set_method(t_cv_jit_opticalflow *x, void *attr, lon
 		}
 
 	}else{
-		long m = CLAMP(atom_getlong(av),0,3);
+		long m = clamp((long)atom_getlong(av),0L,3L);
 		switch(m){
 		case 0:
 			x->of->setMethod(OpticalFlow::Block_matching);
@@ -147,8 +148,9 @@ t_jit_err cv_jit_opticalflow_get_method(t_cv_jit_opticalflow *x, void *attr, lon
 		}
 	}
 	
-	char *str = new char[x->of->getMethodName().length()+1];
-	strcpy(str, x->of->getMethodName().c_str());
+	const size_t str_len = x->of->getMethodName().length() + 1;
+	char *str = new char[str_len];
+	strncpy(str, x->of->getMethodName().c_str(), str_len);
 	
 	atom_setsym(*av, gensym(str));
 	delete[] str;
@@ -163,7 +165,7 @@ t_jit_err cv_jit_opticalflow_set_fb_poly_n(t_cv_jit_opticalflow *x, void *attr, 
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setFBpoly_n(atom_getlong(av));
+	x->of->setFBpoly_n((int)atom_getlong(av));
 	x->fb_poly_n = x->of->getFBpoly_n();
 	
 	return JIT_ERR_NONE;
@@ -175,7 +177,7 @@ t_jit_err cv_jit_opticalflow_set_fb_iterations(t_cv_jit_opticalflow *x, void *at
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setFBiterations(atom_getlong(av));
+	x->of->setFBiterations((int)atom_getlong(av));
 	x->fb_iterations = x->of->getFBiterations();
 	
 	return JIT_ERR_NONE;
@@ -187,7 +189,7 @@ t_jit_err cv_jit_opticalflow_set_fb_window_size(t_cv_jit_opticalflow *x, void *a
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setFBwindowSize(atom_getlong(av));
+	x->of->setFBwindowSize((int)atom_getlong(av));
 	x->fb_window_size = x->of->getFBwindowSize();
 	
 	return JIT_ERR_NONE;
@@ -199,7 +201,7 @@ t_jit_err cv_jit_opticalflow_set_fb_levels(t_cv_jit_opticalflow *x, void *attr, 
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setFBlevels(atom_getlong(av));
+	x->of->setFBlevels((int)atom_getlong(av));
 	x->fb_levels = x->of->getFBlevels();
 	
 	return JIT_ERR_NONE;
@@ -223,7 +225,7 @@ t_jit_err cv_jit_opticalflow_set_bm_max_range(t_cv_jit_opticalflow *x, void *att
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setBMmaxRange(atom_getlong(av),atom_getlong(av));
+	x->of->setBMmaxRange((unsigned int)atom_getlong(av), (unsigned int)atom_getlong(av));
 	x->bm_max_range = x->of->getBMmaxRange().width;
 	
 	return JIT_ERR_NONE;
@@ -235,7 +237,7 @@ t_jit_err cv_jit_opticalflow_set_bm_block_size(t_cv_jit_opticalflow *x, void *at
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setBMblockSize(atom_getlong(av),atom_getlong(av));
+	x->of->setBMblockSize((unsigned int)atom_getlong(av), (unsigned int)atom_getlong(av));
 	x->bm_block_size = x->of->getBMblockSize().width;
 	
 	return JIT_ERR_NONE;
@@ -247,7 +249,7 @@ t_jit_err cv_jit_opticalflow_set_bm_shift_size(t_cv_jit_opticalflow *x, void *at
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setBMshiftSize(atom_getlong(av),atom_getlong(av));
+	x->of->setBMshiftSize((unsigned int)atom_getlong(av), (unsigned int)atom_getlong(av));
 	x->bm_shift_size = x->of->getBMshiftSize().width;
 	
 	return JIT_ERR_NONE;
@@ -259,7 +261,7 @@ t_jit_err cv_jit_opticalflow_set_lk_window_size(t_cv_jit_opticalflow *x, void *a
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setLKwindowSize(atom_getlong(av),atom_getlong(av));
+	x->of->setLKwindowSize((unsigned int)atom_getlong(av), (unsigned int)atom_getlong(av));
 	x->lk_window_size = x->of->getLKwindowSize().width;
 	
 	return JIT_ERR_NONE;
@@ -271,7 +273,7 @@ t_jit_err cv_jit_opticalflow_set_hs_max_iterations(t_cv_jit_opticalflow *x, void
 		return JIT_ERR_NONE;
 	}
 	
-	x->of->setHSmaxIterations(atom_getlong(av));
+	x->of->setHSmaxIterations((unsigned int)atom_getlong(av));
 	x->hs_max_iterations = x->of->getHSmaxIterations();
 	
 	return JIT_ERR_NONE;
@@ -328,6 +330,11 @@ t_jit_err cv_jit_opticalflow_set_hs_lambda(t_cv_jit_opticalflow *x, void *attr, 
 
 t_jit_err cv_jit_opticalflow_init(void) 
 {
+
+#if defined(_DEBUG) || defined(DEBUG) 
+	object_post(nullptr, "cv.jit.opticalflow\nBuilt on %s at %s", __DATE__, __TIME__);
+#endif
+
 	long attrflags=0;
 	t_jit_object *attr,*mop;
 	//t_symbol *atsym;
@@ -405,63 +412,47 @@ t_jit_err cv_jit_opticalflow_init(void)
 t_jit_err cv_jit_opticalflow_matrix_calc(t_cv_jit_opticalflow *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock=0,out_savelockX=0,out_savelockY=0;
-	t_jit_matrix_info in_minfo,out_minfoX,out_minfoY;
-	void *in_matrix,*out_matrixX,*out_matrixY;
-	CvMat inmat;
-	CvMat xmat, ymat;
+	t_jit_object *in_matrix,*out_matrixX,*out_matrixY;
 	
-	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
-	out_matrixX = jit_object_method(outputs,_jit_sym_getindex,0);
-	out_matrixY = jit_object_method(outputs,_jit_sym_getindex,1);
+	in_matrix 	= (t_jit_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	out_matrixX = (t_jit_object *)jit_object_method(outputs,_jit_sym_getindex,0);
+	out_matrixY = (t_jit_object *)jit_object_method(outputs,_jit_sym_getindex,1);
 
 	if (x&&in_matrix&&out_matrixX&&out_matrixY) {
-		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelockX = (long) jit_object_method(out_matrixX,_jit_sym_lock,1);
-		out_savelockY = (long) jit_object_method(out_matrixY,_jit_sym_lock,1);
-		
-		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
-		jit_object_method(out_matrixX,_jit_sym_getinfo,&out_minfoX);
-		jit_object_method(out_matrixY,_jit_sym_getinfo,&out_minfoY);
-		
-		if (in_minfo.type != _jit_sym_char) 
-		{ 
-			err=JIT_ERR_MISMATCH_TYPE; 
-			goto out;
-		}
 
-		//compatible planes?
-		if (in_minfo.planecount!=1) { 
-			err=JIT_ERR_MISMATCH_PLANE; 
-			goto out;
-		}	
+		cvjit::Savelock locks[] = { in_matrix, out_matrixX, out_matrixY };
 		
-		if (in_minfo.dimcount!=2) { 
-			err=JIT_ERR_MISMATCH_DIM; 
-			goto out;
-		}		
+		cvjit::JitterMatrix source(in_matrix);
+		cvjit::JitterMatrix out_x(out_matrixX);
+		cvjit::JitterMatrix out_y(out_matrixY);
+
+		cvjit::Validate(x, source)
+			.type(_jit_sym_char)
+			.planecount(1)
+			.dimcount(2);
+
+		try {
+			CvMat inmat = source;
+
+			//calculate
+			x->of->compute(&inmat);
+			CvMat xmat = (CvMat)x->of->getXflow();
+			CvMat ymat = (CvMat)x->of->getYflow();
+
+			//Copy to output
+			out_x.wrap(xmat);
+			out_y.wrap(ymat);
+		}
+		catch (cv::Exception & exception) {
+			object_error((t_object *)x, "OpenCV error: %s", exception.what());
+			return JIT_ERR_GENERIC;
+		}
 		
-		//Convert matrix header
-		cvJitter2CvMat(in_matrix, &inmat);
-		
-		//calculate
-		x->of->compute(&inmat);
-		xmat = (CvMat)x->of->getXflow();
-		ymat = (CvMat)x->of->getYflow();
-		
-		//Copy to output
-		cvMat2Jitter(&xmat, out_matrixX);
-		cvMat2Jitter(&ymat, out_matrixY);
 		
 	} else {
 		return JIT_ERR_INVALID_PTR;
 	}
 	
-out:
-	jit_object_method(out_matrixX,gensym("lock"),out_savelockX);
-	jit_object_method(out_matrixY,gensym("lock"),out_savelockY);
-	jit_object_method(in_matrix,gensym("lock"),in_savelock);
 	return err;
 }
 

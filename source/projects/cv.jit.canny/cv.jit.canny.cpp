@@ -32,7 +32,6 @@ in Jitter externals.
 */
 
 
-#include "cv.h"
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
 
@@ -86,23 +85,23 @@ t_jit_err cv_jit_canny_init(void)
 t_jit_err cv_jit_canny_matrix_calc(t_cv_jit_canny *x, void *inputs, void *outputs)
 {
 	t_jit_err err = JIT_ERR_NONE;
-	long in_savelock,out_savelock;
+	void * in_savelock = 0;
+	void * out_savelock = 0;
 	t_jit_matrix_info in_minfo,out_minfo;
 	char *in_bp,*out_bp;
 	long i,dimcount,planecount,dim[JIT_MATRIX_MAX_DIMCOUNT];
-	void *in_matrix,*out_matrix;
+	c74::max::t_object * in_matrix,*out_matrix;
 	
 	double thresh1, thresh2;
 	
-	CvMat source, edges;
 	
-	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
-	out_matrix 	= jit_object_method(outputs,_jit_sym_getindex,0);
+	in_matrix 	= (c74::max::t_object *)jit_object_method(inputs,_jit_sym_getindex,0);
+	out_matrix 	= (c74::max::t_object *)jit_object_method(outputs,_jit_sym_getindex,0);
 
 	if (x&&in_matrix&&out_matrix) {
 		
-		in_savelock = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock = jit_object_method(out_matrix,_jit_sym_lock,1);
 		
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
@@ -133,17 +132,15 @@ t_jit_err cv_jit_canny_matrix_calc(t_cv_jit_canny *x, void *inputs, void *output
 		}		
 		
 		//Convert input and output matrices to OpenCV matrices
-		cvJitter2CvMat(in_matrix, &source);
-		cvJitter2CvMat(out_matrix, &edges);
+		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
+		cv::Mat edgeMat = cvjit::wrapJitterMatrix(out_matrix, out_minfo, out_bp);
 		
 		//Calculate threshold values
-		thresh1 = x->threshold - x->range;
-		thresh2 = x->threshold + x->range;
-		CLIP_ASSIGN(thresh1,0,255);
-		CLIP_ASSIGN(thresh2,0,255);
+		thresh1 = c74::max::clamp(x->threshold - x->range, 0.0, 255.0);
+		thresh2 = c74::max::clamp(x->threshold + x->range, 0.0, 255.0);
 
 		//calculate
-		cvCanny( &source, &edges, thresh1, thresh2, 3 );
+		cv::Canny(sourceMat, edgeMat, thresh1, thresh2, 3);
 		
 	} else {
 		return JIT_ERR_INVALID_PTR;

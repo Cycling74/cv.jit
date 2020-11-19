@@ -226,8 +226,8 @@ void cv_jit_calibration_free(t_cv_jit_calibration *x)
 t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, void *outputs)
 {
 	t_jit_err			err = JIT_ERR_NONE;
-	long				in_savelock;
-	long				out_savelock;
+	void *				in_savelock;
+	void *				out_savelock;
 	t_jit_matrix_info	in_minfo; 
 	t_jit_matrix_info	out_minfo;
 	char				*in_bp;
@@ -240,8 +240,8 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 	out_matrix 	= jit_object_method(outputs,_jit_sym_getindex,0);
 	
 	if (x && in_matrix && out_matrix) {
-		in_savelock = (long) jit_object_method(in_matrix, _jit_sym_lock, 1);
-		out_savelock = (long) jit_object_method(out_matrix, _jit_sym_lock, 1);
+		in_savelock = jit_object_method(in_matrix, _jit_sym_lock, 1);
+		out_savelock = jit_object_method(out_matrix, _jit_sym_lock, 1);
 		
 		jit_object_method(in_matrix, _jit_sym_getinfo, &in_minfo);
 		jit_object_method(out_matrix, _jit_sym_getinfo, &out_minfo);
@@ -279,8 +279,8 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 			
 		}
 		
-		cvJitter2CvMat(in_matrix,	&in_cv); // convert Jitter matrix into CvMat
-		cvJitter2CvMat(out_matrix, &out_cv);
+        // convert Jitter matrix into CvMat
+        in_cv = cvJitter2CvMat(in_minfo, in_bp);
 		
 		// this will loop until we got enought views (x->board_view_nb) with all corners visible
 		if ( x->success_count < x->board_view_nb && x->calibration != 0 ) {

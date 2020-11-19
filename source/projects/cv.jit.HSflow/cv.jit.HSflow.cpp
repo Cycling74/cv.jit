@@ -35,6 +35,8 @@ in Jitter externals.
 #include "cv.h"
 #include "jitOpenCV.h"
 #include "c74_jitter.h"
+#include <opencv2/legacy/legacy.hpp>
+
 using namespace c74::max;
 
 typedef struct _cv_jit_HSflow 
@@ -89,7 +91,7 @@ t_jit_err cv_jit_HSflow_init(void)
 t_jit_err cv_jit_HSflow_matrix_calc(t_cv_jit_HSflow *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock,out_savelock,prev_savelock;
+	void * in_savelock, * out_savelock, * prev_savelock;
 	t_jit_matrix_info in_minfo,out_minfo,prev_minfo;
 	char *in_bp,*out_bp,*prev_bp;
 	long i,j/*,dimcount,planecount,dim[JIT_MATRIX_MAX_DIMCOUNT]*/;
@@ -106,9 +108,9 @@ t_jit_err cv_jit_HSflow_matrix_calc(t_cv_jit_HSflow *x, void *inputs, void *outp
 
 	if (x&&in_matrix&&out_matrix&&prev_matrix) //If all pointers are valid...
 	{ 
-		in_savelock   = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock  = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
-		prev_savelock = (long) jit_object_method(prev_matrix,_jit_sym_lock,1);
+		in_savelock   = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock  = jit_object_method(out_matrix,_jit_sym_lock,1);
+		prev_savelock = jit_object_method(prev_matrix,_jit_sym_lock,1);
 		
 		//Get the matrix info
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
@@ -150,8 +152,8 @@ t_jit_err cv_jit_HSflow_matrix_calc(t_cv_jit_HSflow *x, void *inputs, void *outp
 		}		
 		
 		//Convert Jitter matrix to OpenCV matrix
-		cvJitter2CvMat(in_matrix, &current);
-		cvJitter2CvMat(prev_matrix, &previous);
+        current = cvJitter2CvMat(in_minfo, in_bp);
+        previous = cvJitter2CvMat(prev_minfo, prev_bp);
 		flowX = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		flowY = cvCreateMat(current.rows, current.cols,CV_32FC1);
 		

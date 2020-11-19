@@ -2,8 +2,8 @@
  cvjitVectorOps.h
  
  
- Copyright 2010, Jean-Marc Pelletier
- jmp@iamas.ac.jp
+ Copyright 2010-2019, Jean-Marc Pelletier
+ jmp@jmpelletier.com
  
  This file is part of cv.jit.
  
@@ -21,6 +21,8 @@
  along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
  
  */
+
+#include <cstdint>
 
 typedef double double2[2];
 typedef float float4[4];

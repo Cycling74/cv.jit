@@ -268,8 +268,7 @@ t_jit_err cv_jit_findchessboardcorners_matrix_calc(t_cv_jit_findchessboardcorner
 		color_image	=	cvCreateImage(image_size, 8, 4);
 		gray_image	=	cvCreateImage(image_size, 8, 1);
 		
-		cvJitter2CvMat(in_matrix, &in_cv);
-		//cvJitter2CvMat(out1_matrix, &out1_cv);
+        in_cv = cvJitter2CvMat(in_minfo, (char *)in_bp);
 		
 		cvGetImage(&in_cv, &in_image);
 

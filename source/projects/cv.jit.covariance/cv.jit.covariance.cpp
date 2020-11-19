@@ -84,7 +84,7 @@ void cv_jit_covariance_reset(t_cv_jit_covariance *x)
 t_jit_err cv_jit_covariance_matrix_calc(t_cv_jit_covariance *x, void *inputs, void *outputs)
 {
 	t_jit_err err=JIT_ERR_NONE;
-	long in_savelock,out_savelock,var_savelock,mean_savelock;
+	void * in_savelock, * out_savelock, * var_savelock, * mean_savelock;
 	t_jit_matrix_info in_minfo,out_minfo,var_minfo,mean_minfo;
 	char *in_bp,*out_bp,*var_bp,*mean_bp;
 	long i,dimcount,planecount,dim[JIT_MATRIX_MAX_DIMCOUNT];
@@ -99,11 +99,11 @@ t_jit_err cv_jit_covariance_matrix_calc(t_cv_jit_covariance *x, void *inputs, vo
 	if (x&&in_matrix&&out_matrix&&var_matrix&&mean_matrix) //If all pointers are valid...
 	{ 
 		//Get the "savelock" value for each matrix
-		in_savelock   = (long) jit_object_method(in_matrix,_jit_sym_lock,1);
-		out_savelock  = (long) jit_object_method(out_matrix,_jit_sym_lock,1);
+		in_savelock   = jit_object_method(in_matrix,_jit_sym_lock,1);
+		out_savelock  = jit_object_method(out_matrix,_jit_sym_lock,1);
 
-		var_savelock = (long) jit_object_method(var_matrix,_jit_sym_lock,1);
-		mean_savelock = (long) jit_object_method(mean_matrix,_jit_sym_lock,1);
+		var_savelock = jit_object_method(var_matrix,_jit_sym_lock,1);
+		mean_savelock = jit_object_method(mean_matrix,_jit_sym_lock,1);
 		
 		//Get the matrix info
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
@@ -245,7 +245,7 @@ void cv_jit_covariance_calculate_ndim(t_cv_jit_covariance *x, long *dim, t_jit_m
 		else
 		{
 			for(i=0;i<size;i++)
-				meanf[i] = (meanf[i]*nn + (ipf[i]/n));
+				meanf[i] = (float)(meanf[i]*nn + (ipf[i]/n));
 				
 			n--;
 			nn = (n-1)/n; 

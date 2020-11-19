@@ -10,6 +10,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-api/script/max-pretarget.cmake)
 if (APPLE)
 	# max-pretarget sets it to x86_64;i386 but i386 is not supported anymore
 	set(CMAKE_OSX_ARCHITECTURES x86_64)
+	set(CMAKE_OSX_DEPLOYMENT_TARGET 10.12)
 endif ()
 
 # max-pretarget.cmake defines the output directory to the externals folder.

@@ -194,9 +194,9 @@ t_jit_err cv_jit_shift_matrix_calc(t_cv_jit_shift *x, void *inputs, void *output
 		
 		//Calculate camshift
 		if(x->mode == 1) //Use camshift
-			cvCamShift(&source, rectangle, cvTermCriteria(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS,(int)x->maxiters,x->epsilon), &component, &box );
+			cvCamShift(&source, rectangle, cvTermCriteria(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS,(int)x->maxiters,MAX(x->epsilon,0)), &component, &box );
 		else {
-			cvMeanShift(&source, rectangle, cvTermCriteria(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS,(int)x->maxiters,x->epsilon), &component);
+			cvMeanShift(&source, rectangle, cvTermCriteria(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS,(int)x->maxiters,MAX(x->epsilon,0)), &component);
 			box.angle = 90.f;
 			box.size = cvSize2D32f(component.rect.width, component.rect.height);
 			box.center = cvPoint2D32f((float)component.rect.x + (float)component.rect.width * 0.5f,(float)component.rect.y + (float)component.rect.height * 0.5f);

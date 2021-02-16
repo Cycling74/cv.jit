@@ -47,7 +47,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
 					"patching_rect" : [ 51.0, 285.0, 113.0, 19.0 ],
-					"text" : "cv.jit.resize @size 160120"
+					"text" : "cv.jit.resize @size 160 120"
 				}
 
 			}

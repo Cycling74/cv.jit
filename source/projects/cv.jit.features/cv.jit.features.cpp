@@ -178,29 +178,46 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
         
 
 		cv::Mat sourceMat = cvjit::wrapJitterMatrix(in_matrix, in_minfo, in_bp);
-		
-		if(x->useroi)
-		{
-			CLIP_ASSIGN(x->roi[0],0,in_minfo.dim[0]);
-			CLIP_ASSIGN(x->roi[1],0,in_minfo.dim[1]);
-			CLIP_ASSIGN(x->roi[2],0,in_minfo.dim[0]);
-			CLIP_ASSIGN(x->roi[3],0,in_minfo.dim[1]);
-			
-			x->roi[0] = MIN(x->roi[0], x->roi[2]);
-			x->roi[1] = MIN(x->roi[1], x->roi[3]);
-			x->roi[2] = MAX(x->roi[0], x->roi[2]);
-			x->roi[3] = MAX(x->roi[1], x->roi[3]);
-			
-			sourceMat.adjustROI(x->roi[1], x->roi[3], x->roi[0], x->roi[2]);
-		}
 
 		//Adjust parameters
 		x->threshold = MAX(0.001, x->threshold);
 		x->distance = MAX(1, x->distance);
 
-		cv::goodFeaturesToTrack(sourceMat, x->features, MAX_FEATURES, x->threshold, x->distance);
-		
-		if(x->precision == 1){
+		if(x->useroi)
+		{
+			x->roi[0] = MIN(x->roi[0], x->roi[2]);
+			x->roi[1] = MIN(x->roi[1], x->roi[3]);
+			x->roi[2] = MAX(x->roi[0], x->roi[2]);
+			x->roi[3] = MAX(x->roi[1], x->roi[3]);
+			
+			CLIP_ASSIGN(x->roi[0], 0, in_minfo.dim[0] - 1);
+			CLIP_ASSIGN(x->roi[1], 0, in_minfo.dim[1]);
+			CLIP_ASSIGN(x->roi[2], 0, in_minfo.dim[0] - 1);
+			CLIP_ASSIGN(x->roi[3], 0, in_minfo.dim[1]);
+
+			try {
+				cv::Mat mask = cv::Mat::zeros(sourceMat.size(), CV_8U);  // type of mask is CV_8U
+				cv::Mat roi(mask, cv::Rect(x->roi[0], x->roi[1], MAX(1, x->roi[2] - x->roi[0]), MAX(1, x->roi[3] - x->roi[1])));
+				roi = cv::Scalar(255);
+				cv::goodFeaturesToTrack(sourceMat, x->features, MAX_FEATURES, x->threshold, x->distance, mask);
+			}
+			catch (cv::Exception & exception) {
+				object_error((t_object *)x, "OpenCV error: %s", exception.what());
+			}
+		}
+		else
+		{
+			try {
+				cv::goodFeaturesToTrack(sourceMat, x->features, MAX_FEATURES, x->threshold, x->distance);
+			}
+			catch (cv::Exception & exception) {
+				object_error((t_object *)x, "OpenCV error: %s", exception.what());
+			}
+		}
+
+		featureCount = x->features.size();
+
+		if(x->precision == 1 && featureCount > 0){
 			int minsize = (x->aperture*2)+5;
 			
 			//Error check for cvFindCornerSubPix
@@ -209,7 +226,7 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 			}
 		}
 		
-		
+
 		//Prepare output
 		out_minfo.dim[0] = featureCount;
 		jit_object_method(out_matrix,_jit_sym_setinfo,&out_minfo);
@@ -218,27 +235,13 @@ t_jit_err cv_jit_features_matrix_calc(t_cv_jit_features *x, void *inputs, void *
 		if (!out_bp) { err=JIT_ERR_INVALID_OUTPUT; goto out;}
 		
 		out_data = (float *)out_bp;
-		
-		/*if(x->useroi)
+
+		for(i=0; i < featureCount; i++)
 		{
-			for(i=0; i < featureCount; i++)
-			{
-				out_data[0] = x->features[i].x + x->roi[0];
-				out_data[1] = x->features[i].y + x->roi[1];
-				
-				out_data += 2;
-			}
+			out_data[0] = x->features[i].x;
+			out_data[1] = x->features[i].y;
+			out_data += 2;
 		}
-		else
-		{*/
-			for(i=0; i < featureCount; i++)
-			{
-				out_data[0] = x->features[i].x;
-				out_data[1] = x->features[i].y;
-				
-				out_data += 2;
-			}
-		//}
 	}
 
 	

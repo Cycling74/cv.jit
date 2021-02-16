@@ -47,14 +47,14 @@ using namespace c74::max;
 // Our Jitter object instance data
 typedef struct _cv_jit_calibration {
 	t_object	ob;
-	int			pattern_size[2];		// number of inner corners on the board
-	int			board_view_nb;			// number of views to take
-	int			success_count;			// number of successful detection
+	long		pattern_size[2];		// number of inner corners on the board
+	long		board_view_nb;			// number of views to take
+	long		success_count;			// number of successful detection
 	int			dim[2];
 	int			frame;					// frame counter
 	int			wait_n_frame;			// number of frames to wait between 2 takes
-	int			array_size;
-	int			calibration;			// flag = 1 during calibration 0 otherwise
+	long		array_size;
+	long		calibration;			// flag = 1 during calibration 0 otherwise
 	
 	// filenames
 	char		intrinsic_filename[512],
@@ -153,7 +153,7 @@ t_jit_err cv_jit_calibration_init(void)
 										   _jit_sym_long,
 										   attrflags,
 										   (method)0L,
-										   (method)cv_jit_calibration_docalibration,
+										   (method)0L,
 										   calcoffset(t_cv_jit_calibration,board_view_nb));
 	jit_class_addattr(_cv_jit_calibration_class,attr);
 	
@@ -164,7 +164,7 @@ t_jit_err cv_jit_calibration_init(void)
 										   _jit_sym_long,
 										   attrflags,
 										   (method)0L,
-										   (method)cv_jit_calibration_docalibration,
+										   (method)0L,
 										   calcoffset(t_cv_jit_calibration,success_count));
 	jit_class_addattr(_cv_jit_calibration_class,attr);
 	
@@ -281,6 +281,7 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 		
         // convert Jitter matrix into CvMat
         in_cv = cvJitter2CvMat(in_minfo, in_bp);
+		out_cv = cvJitter2CvMat(out_minfo, out_bp);
 		
 		// this will loop until we got enought views (x->board_view_nb) with all corners visible
 		if ( x->success_count < x->board_view_nb && x->calibration != 0 ) {

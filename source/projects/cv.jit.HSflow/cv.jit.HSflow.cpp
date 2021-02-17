@@ -44,8 +44,7 @@ typedef struct _cv_jit_HSflow
 	t_object				ob;
 	float					lambda;  //Size of the averaging window
 	float					threshold;
-	int						maxIter;
-	int						usePrevious;
+	long					maxIter;
 	void 					*imgA;	//Matrix to hold previous frame data
 } t_cv_jit_HSflow;
 
@@ -115,10 +114,11 @@ t_jit_err cv_jit_HSflow_matrix_calc(t_cv_jit_HSflow *x, void *inputs, void *outp
 		//Get the matrix info
 		jit_object_method(in_matrix,_jit_sym_getinfo,&in_minfo);
 		jit_object_method(out_matrix,_jit_sym_getinfo,&out_minfo);
-		jit_object_method(prev_matrix,_jit_sym_getinfo,&prev_minfo);
+
 		
 		//Copy the info structure of the input matrix to the internal matrix	
 		jit_object_method(prev_matrix,_jit_sym_setinfo,&in_minfo);
+		jit_object_method(prev_matrix,_jit_sym_getinfo,&prev_minfo);
 			
 		//Get pointers to the actual matrix data
 		jit_object_method(in_matrix,_jit_sym_getdata,&in_bp);
@@ -212,8 +212,7 @@ t_cv_jit_HSflow *cv_jit_HSflow_new(void)
 		
 	if ((x=(t_cv_jit_HSflow *)jit_object_alloc(_cv_jit_HSflow_class))) {
 	
-		x->lambda      = (float)0.001;		
-		x->usePrevious = 0;
+		x->lambda      = (float)0.001;
 		x->maxIter    = 3;
 		x->threshold = 0.f;
 		

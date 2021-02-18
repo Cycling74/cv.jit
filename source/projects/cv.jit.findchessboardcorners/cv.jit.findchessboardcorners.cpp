@@ -46,9 +46,9 @@ typedef struct _cv_jit_findchessboardcorners {
 	t_object	ob;
 
 	//CvSize		pattern_size;
-	int			pattern_size[2];
-	int			window_size[2];
-	int			zero_zone[2];
+	long			pattern_size[2];
+	long			window_size[2];
+	long			zero_zone[2];
 	long		array_size;
 	//CvSize		window;
 	//CvSize		zero_zone;

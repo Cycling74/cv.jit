@@ -42,7 +42,7 @@ using namespace c74::max;
 typedef struct _cv_jit_LKflow 
 {
 	t_object				ob;
-	int						radius;  //Size of the averaging window
+	long					radius;  //Size of the averaging window
 	void 					*imgA;	//Matrix to hold previous frame data
 	CvMat					*previous; //Holds previous frame
 } t_cv_jit_LKflow;

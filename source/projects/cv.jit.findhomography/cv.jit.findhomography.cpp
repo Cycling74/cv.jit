@@ -123,7 +123,7 @@ t_jit_err cv_jit_findhomography_init(void)
 	
 	jit_class_register(_cv_jit_findhomography_class);
 	
-	object_post(NULL, "cv.jit.findhomogragphy by Antoine Villeret - build on the %s at %s.",__DATE__, __TIME__);
+	//object_post(NULL, "cv.jit.findhomogragphy by Antoine Villeret - build on the %s at %s.",__DATE__, __TIME__);
 	
 	return JIT_ERR_NONE;
 }

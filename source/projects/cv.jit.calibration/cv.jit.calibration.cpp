@@ -235,7 +235,8 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 	void				*in_matrix;
 	void				*out_matrix;
 	CvMat				in_cv,out_cv;
-	
+	void				*rgba_matrix = NULL;
+
 	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
 	out_matrix 	= jit_object_method(outputs,_jit_sym_getindex,0);
 	
@@ -270,6 +271,14 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 		if (in_minfo.dimcount != 2) {
 			err=JIT_ERR_MISMATCH_DIM; 
 			goto out;
+		}
+
+		if (in_minfo.planecount == 4) {
+			// swap planes
+			rgba_matrix = jit_argb_to_cv_rgba(in_matrix);
+			if(!rgba_matrix)
+				goto out;
+			jit_object_method(rgba_matrix, _jit_sym_getdata, &in_bp);
 		}
 		
 		if ( x->dim[0] != in_minfo.dim[0] || x->dim[1] != in_minfo.dim[1]) {
@@ -310,6 +319,9 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 		if (x->calibration == 0) {
 			// undistort the input image
 			cvRemap( &in_cv, &out_cv, x->mapx, x->mapy );			// Undistort image
+			if (in_minfo.planecount == 4) {
+				cv_rgba_to_jit_argb(out_matrix, out_bp, out_minfo.size);
+			}
 		}
 	} 
 	else
@@ -318,6 +330,10 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 out:
 	jit_object_method(out_matrix,_jit_sym_lock,out_savelock);
 	jit_object_method(in_matrix,_jit_sym_lock,in_savelock);
+
+	if(rgba_matrix)
+		jit_object_free(rgba_matrix);
+
 	return err;
 }
 
@@ -411,7 +427,8 @@ void cv_jit_calibration_findcorners(t_cv_jit_calibration *x,
 	}
 	
 	else {
-		memcpy(out_bp,color_image->imageData,color_image->imageSize);
+		//memcpy(out_bp,color_image->imageData,color_image->imageSize);
+		cv_rgba_to_jit_argb(out_matrix, color_image->imageData, color_image->imageSize);
 	}
 	
 	//CvMat *t = cvCloneMat(&in_cv);

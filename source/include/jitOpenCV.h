@@ -138,6 +138,63 @@ namespace cvjit {
 
 #ifdef CVJIT_LEGACY
 
+// not included in max-api for some reason
+typedef struct _matrix_conv_info
+{
+	long 	flags;									///< flags for whether or not to use interpolation, or source/destination dimensions
+	long	planemap[JIT_MATRIX_MAX_PLANECOUNT];	///< plane mapping
+	long	srcdimstart[JIT_MATRIX_MAX_DIMCOUNT];	///< source dimension start
+	long	srcdimend[JIT_MATRIX_MAX_DIMCOUNT];		///< source dimension end
+	long	dstdimstart[JIT_MATRIX_MAX_DIMCOUNT];	///< destination dimension start
+	long	dstdimend[JIT_MATRIX_MAX_DIMCOUNT];		///< destination dimension end
+} t_matrix_conv_info;
+
+void * jit_argb_to_cv_rgba(void *in_matrix) {
+	void * new_matrix = NULL;
+	t_matrix_conv_info convinfo;
+	c74::max::t_jit_matrix_info info;
+	convinfo.flags = 0;
+
+	// argb to rgba
+	convinfo.planemap[0] = 1;
+	convinfo.planemap[1] = 2;
+	convinfo.planemap[2] = 3;
+	convinfo.planemap[3] = 0;
+
+	jit_matrix_info_default(&info);
+	c74::max::jit_object_method_imp(in_matrix, c74::max::_jit_sym_getinfo, (void*)&info, 0,0,0,0,0,0,0);
+	new_matrix = c74::max::jit_object_new_imp(c74::max::_jit_sym_jit_matrix, (void*)&info, 0,0,0,0,0,0,0,0);
+	if(new_matrix)
+		c74::max::jit_object_method_imp(new_matrix, c74::max::_jit_sym_frommatrix, (void*)in_matrix, (void*)&convinfo, 0,0,0,0,0,0);
+	return new_matrix;
+}
+
+void cv_rgba_to_jit_argb(void *out_matrix, char * in_data, int in_size) {
+	void * new_matrix = NULL;
+	t_matrix_conv_info convinfo;
+	c74::max::t_jit_matrix_info info;
+	convinfo.flags = 0;
+
+	// rgba to argb
+	convinfo.planemap[0] = 3;
+	convinfo.planemap[1] = 0;
+	convinfo.planemap[2] = 1;
+	convinfo.planemap[3] = 2;
+
+	jit_matrix_info_default(&info);
+	c74::max::jit_object_method_imp(out_matrix, c74::max::_jit_sym_getinfo, (void*)&info, 0,0,0,0,0,0,0);
+	new_matrix = c74::max::jit_object_new_imp(c74::max::_jit_sym_jit_matrix, (void*)&info, 0,0,0,0,0,0,0,0);
+	if(new_matrix) {
+		char *bp = NULL;
+		c74::max::jit_object_method_imp(new_matrix, c74::max::_jit_sym_getdata, (void*)&bp, 0,0,0,0,0,0,0);
+		if(bp) {
+			memcpy(bp, in_data, in_size);
+			c74::max::jit_object_method_imp(out_matrix, c74::max::_jit_sym_frommatrix, (void*)new_matrix, (void*)&convinfo, 0,0,0,0,0,0);
+		}
+		c74::max::jit_object_free(new_matrix);
+	}
+}
+
 /*This is simply a utility function for converting a Jitter matrix into a CvMat.*/
 CvMat cvJitter2CvMat(c74::max::t_jit_matrix_info & info, char * data)
 {

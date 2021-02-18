@@ -203,13 +203,12 @@ t_jit_err cv_jit_findchessboardcorners_matrix_calc(t_cv_jit_findchessboardcorner
 	IplImage			*color_image, *gray_image, in_image;
 	CvSize				image_size;
 	float				*out2_data;
-	
+	void				*rgba_matrix = NULL;
 	
 	in_matrix 	= jit_object_method(inputs,_jit_sym_getindex,0);
 	out1_matrix 	= jit_object_method(outputs,_jit_sym_getindex,0);
 	out2_matrix 	= jit_object_method(outputs,_jit_sym_getindex,1);
 
-	
 	if (x && in_matrix && out1_matrix && out2_matrix) {
 		in_savelock = (long) jit_object_method(in_matrix, _jit_sym_lock, 1);
 		out1_savelock = (long) jit_object_method(out1_matrix, _jit_sym_lock, 1);
@@ -257,6 +256,14 @@ t_jit_err cv_jit_findchessboardcorners_matrix_calc(t_cv_jit_findchessboardcorner
 			goto out;
 		}
 
+		if ( in_minfo.planecount == 4 ) {
+			// swap planes
+			rgba_matrix = jit_argb_to_cv_rgba(in_matrix);
+			if(!rgba_matrix)
+				goto out;
+			jit_object_method(rgba_matrix, _jit_sym_getdata, &in_bp);
+		}
+
 		CvSize pattern_size = cvSize(x->pattern_size[0], x->pattern_size[1]);
 		CvSize win = cvSize(x->window_size[0], x->window_size[1]);
 		CvSize zero_zone = cvSize(x->zero_zone[0], x->zero_zone[1]);
@@ -300,7 +307,8 @@ t_jit_err cv_jit_findchessboardcorners_matrix_calc(t_cv_jit_findchessboardcorner
 		}
 		
 		else {
-			memcpy(out1_bp,color_image->imageData,color_image->imageSize);
+			//memcpy(out1_bp,color_image->imageData,color_image->imageSize);
+			cv_rgba_to_jit_argb(out1_matrix, color_image->imageData, color_image->imageSize);
 		}
 		
 		// jit_object_method(out1_matrix, _jit_sym_data, out1_cv.data.ptr);
@@ -338,6 +346,10 @@ out:
 	jit_object_method(out2_matrix,_jit_sym_lock,out2_savelock);
 	jit_object_method(out1_matrix,_jit_sym_lock,out1_savelock);
 	jit_object_method(in_matrix,_jit_sym_lock,in_savelock);
+
+	if(rgba_matrix)
+		jit_object_free(rgba_matrix);
+
 	if( corners ) delete corners;
 	return err;
 }

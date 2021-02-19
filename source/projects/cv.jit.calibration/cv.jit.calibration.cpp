@@ -56,11 +56,6 @@ typedef struct _cv_jit_calibration {
 	long		array_size;
 	long		calibration;			// flag = 1 during calibration 0 otherwise
 	
-	// filenames
-	char		intrinsic_filename[512],
-	dist_filename[512],
-	dirbootpath[512];
-	
 	// Storage Matrix
 	CvMat		*image_points, 
 	*object_points, 
@@ -94,7 +89,7 @@ void					cv_jit_calibration_doread				(t_cv_jit_calibration *x, t_symbol *s, lon
 void					cv_jit_calibration_read					(t_cv_jit_calibration *x, t_symbol *s, long argc, t_atom *argv);
 void					cv_jit_calibration_dowrite				(t_cv_jit_calibration *x, t_symbol *s, long argc, t_atom *argv);
 void					cv_jit_calibration_write				(t_cv_jit_calibration *x, t_symbol *s, long argc, t_atom *argv);
-void					cv_jit_calibration_load_param			(t_cv_jit_calibration *x);
+void					cv_jit_calibration_load_param			(t_cv_jit_calibration *x, char *filename);
 void					cv_jit_calibration_docalibration		(t_cv_jit_calibration *x, t_symbol *s, long argc, t_atom *argv);
 void					cv_jit_calibration_make_identity		(t_cv_jit_calibration *x);
 void					cv_jit_calibration_print_parameters		(t_cv_jit_calibration *x);
@@ -195,8 +190,6 @@ t_cv_jit_calibration *cv_jit_calibration_new(void)
 		x->frame = 0;
 		x->wait_n_frame = 20;
 		x->array_size = 2;
-		strcpy(x->intrinsic_filename, "");
-		strcpy(x->dist_filename, "");
 		
 		// allocate storage memory
 		cv_jit_calibration_allocate(x);
@@ -205,7 +198,7 @@ t_cv_jit_calibration *cv_jit_calibration_new(void)
 		cv_jit_calibration_build_undistort_map(x);
 		
 		// load parameters
-		cv_jit_calibration_load_param(x);
+		cv_jit_calibration_load_param(x, NULL);
 		
 		x->calibration = 0;
 		
@@ -284,8 +277,7 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 		if ( x->dim[0] != in_minfo.dim[0] || x->dim[1] != in_minfo.dim[1]) {
 			x->dim[0] = in_minfo.dim[0];
 			x->dim[1] = in_minfo.dim[1];
-			cv_jit_calibration_load_param(x);
-			
+			cv_jit_calibration_build_undistort_map(x);
 		}
 		
         // convert Jitter matrix into CvMat
@@ -474,7 +466,10 @@ void cv_jit_calibration_build_undistort_map(t_cv_jit_calibration *x) {
 	// Build the undistort map that we will use for all 
 	// subsequent frames. 
 	//
-	
+
+	if( x->mapx )	cvReleaseImage( &x->mapx );
+	if( x->mapy )	cvReleaseImage( &x->mapy );
+
 	CvSize size = cvSize( x->dim[0], x->dim[1] );
 	x->mapx = cvCreateImage( size, IPL_DEPTH_32F, 1 );
 	x->mapy = cvCreateImage( size, IPL_DEPTH_32F, 1 );
@@ -493,27 +488,17 @@ void cv_jit_calibration_read(t_cv_jit_calibration *x, t_symbol *s, long argc, t_
 
 void cv_jit_calibration_doread(t_cv_jit_calibration *x, t_symbol *s, long argc, t_atom *argv){
 	
-	t_fourcc filetype = NULL, intrinsic_outtype, dist_outtype;
+	t_fourcc filetype = NULL, intrinsic_outtype;
 	//short numtype = 1;
-	char	intrinsic_filename[512],
-	dist_filename[512],
-	intrinsic_fullpathname[512],
-	dist_fullpathname[512],
-	intrinsic_fullpathname2[512],
-	dist_fullpathname2[512];
-	
-	short intrinsic_path,dist_path;
-	
-	// printf("doread method has %ld args\n", argc);
-	if (argc !=2 && argc != 0 ){
-		object_error((t_object *)x, "read message needs 0 or 2 arguments");
-		return;
-	}
+	char	intrinsic_filename[MAX_FILENAME_CHARS],
+	intrinsic_fullpathname[MAX_PATH_CHARS],
+	intrinsic_fullpathname2[MAX_PATH_CHARS];
+	short intrinsic_path;
+
 	if (argc == 0) {
 		if (open_dialog(intrinsic_filename, &intrinsic_path, &intrinsic_outtype, &filetype, 1)) return; // if non zero (= user cancels), return
-		if (open_dialog(dist_filename, &dist_path, &dist_outtype, &filetype, 1)) return; // if non zero (= user cancels), return
 	} else {
-		if ( argv[0].a_type != A_SYM || argv[1].a_type != A_SYM ) {
+		if ( argv[0].a_type != A_SYM ) {
 			object_error((t_object *)x, "arguments of read message must be 2 symbols");
 		}
 		strcpy(intrinsic_filename, argv[0].a_w.w_sym->s_name); // must copy before calling locate_extended
@@ -522,38 +507,13 @@ void cv_jit_calibration_doread(t_cv_jit_calibration *x, t_symbol *s, long argc, 
 			object_error((t_object *)x, "%s : not found", argv[0].a_w.w_sym->s_name);
 			return;
 		}
-		strcpy(dist_filename, argv[1].a_w.w_sym->s_name); // must copy before calling locate_extended
-		// printf("filename : %s\n\n",dist_filename);
-		if (locatefile_extended(dist_filename, &dist_path, &dist_outtype, &filetype, 1)) {	// non zero = file not found
-			object_error((t_object *)x, "%s : not found", argv[1].a_w.w_sym->s_name);
-			return;
-		}
 	}
 	path_topathname(intrinsic_path, intrinsic_filename, intrinsic_fullpathname);
-	path_topathname(dist_path, dist_filename, dist_fullpathname);
-	// printf("full intrinsic pathname : %s\n",intrinsic_fullpathname);
-	// printf("full distorsion pathname : %s\n",dist_fullpathname);
-	
-	// printf("matrix before reading file");
-	// cv_jit_calibration_print_parameters(x);
-	
-	// load matrix
-	
 	path_nameconform(intrinsic_fullpathname, intrinsic_fullpathname2, PATH_TYPE_ABSOLUTE, PATH_TYPE_BOOT);
-	path_nameconform(dist_fullpathname, dist_fullpathname2, PATH_TYPE_ABSOLUTE, PATH_TYPE_BOOT);
+	printf("intrinsic_filename : %s\n",intrinsic_fullpathname2);
 	
-	strcpy(x->intrinsic_filename, intrinsic_fullpathname2);
-	strcpy(x->dist_filename, dist_fullpathname2);
-	
-	printf("intrinsic_filename : %s\n",x->intrinsic_filename);
-	printf("dist_filename : %s\n",x->dist_filename);
-	
-	// printf("absolute path name : \n\t\t%s\n\t\t%s\n",intrinsic_fullpathname2,dist_fullpathname2);
-	
-	cv_jit_calibration_load_param(x);
-	
-	
-	
+	cv_jit_calibration_load_param(x, intrinsic_fullpathname2);
+
 	return;
 };
 
@@ -563,55 +523,66 @@ void cv_jit_calibration_dowrite(t_cv_jit_calibration *x, t_symbol *s, long argc,
 	defer(x, (method)cv_jit_calibration_dowrite, NULL, argc, argv);
 }
 void cv_jit_calibration_write(t_cv_jit_calibration *x, t_symbol *s, long argc, t_atom *argv){
-	t_fourcc filetype = 'TEXT', intrinsic_outtype, dist_outtype, intrinsic_filetype = 'TEXT';
-	char intrinsic_filename[512], dist_filename[512], intrinsic_fullpathname[512], dist_fullpathname[512], intrinsic_bootpath[512], dist_bootpath[512];
-	short intrinsic_path = 0, dist_path = 0;
+	t_fourcc intrinsic_outtype, intrinsic_filetype = 'TEXT';
+	char intrinsic_filename[MAX_FILENAME_CHARS], intrinsic_fullpathname[MAX_PATH_CHARS], intrinsic_bootpath[MAX_PATH_CHARS];
+	short intrinsic_path = 0;
 	
 	if ( argc != 0 && argc != 2) {
 		object_error((t_object *)x, "write message needs 0 or 2 arguments");
 		return;
 	}
 	else if (argc == 0) {	// if no argument supplied, ask for file
+		strcpy(intrinsic_filename, "calibration.yml");
 		if (saveasdialog_extended(intrinsic_filename, &intrinsic_path, &intrinsic_outtype, &intrinsic_filetype, 1)) return; // non-zero: user cancelled
-		if (saveasdialog_extended(dist_filename, &dist_path, &dist_outtype, &filetype, 1)) return; // non-zero: user cancelled
 	} else {
 		if ( argv[0].a_type != A_SYM || argv[1].a_type != A_SYM){
 			object_error((t_object *)x, "arguments of write message must be symbols");
 			return;
 		}
 		strcpy(intrinsic_filename, argv[0].a_w.w_sym->s_name);
-		strcpy(dist_filename, argv[1].a_w.w_sym->s_name);
 	}
 	
 	cv_jit_calibration_print_parameters(x);
 
 	path_topotentialname(intrinsic_path, intrinsic_filename, intrinsic_fullpathname, 0);
 	path_nameconform(intrinsic_fullpathname, intrinsic_bootpath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-
-	path_topotentialname(dist_path, dist_filename, dist_fullpathname, 0);
-	path_nameconform(dist_fullpathname, dist_bootpath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
 	
 	printf("full intrinsic bootname : %s\n",intrinsic_bootpath);
-	printf("full distorsion pathname : %s\n",dist_bootpath);
-	
-	cvSave(intrinsic_bootpath,x->intrinsic_matrix); 
-	cvSave(dist_bootpath,x->distortion_coeffs);
-	
-	
+
+	cv::FileStorage fs(intrinsic_bootpath, cv::FileStorage::WRITE);
+	fs << "intrinsic" << x->intrinsic_matrix;
+    fs << "distortion" << x->distortion_coeffs;
+	fs.release();
+
 	return;
 }
 
-void cv_jit_calibration_load_param( t_cv_jit_calibration *x ) {
+void cv_jit_calibration_load_param( t_cv_jit_calibration *x, char *filename) {
 	
 	printf("load parameters\n");
-	if ( ! ( (strcmp(x->intrinsic_filename, "") == 0) && (strcmp(x->dist_filename, "") == 0) ) ) {
+	if (filename) {
 		
 		// free the matrix before allocating one more time...
 		if( x->intrinsic_matrix )	cvReleaseMat(&x->intrinsic_matrix);
 		if( x->distortion_coeffs )	cvReleaseMat(&x->distortion_coeffs);
-		
-		x->intrinsic_matrix = (CvMat*)cvLoad( x->intrinsic_filename ); 
-		x->distortion_coeffs = (CvMat*)cvLoad( x->dist_filename );
+
+		cv::FileStorage loadNode(filename, cv::FileStorage::READ);
+		if(loadNode.isOpened()){
+			cv::Mat cvmat;
+			CvMat cstyleMat;
+
+			loadNode["intrinsic"] >> cvmat;
+			cstyleMat = cvmat;
+			x->intrinsic_matrix = cvCloneMat(&cstyleMat);
+			cvmat.release();
+
+			loadNode["distortion"] >> cvmat;
+			cstyleMat = cvmat;
+			x->distortion_coeffs = cvCloneMat(&cstyleMat);
+			cvmat.release();
+
+			loadNode.release();
+		}
 		
 		if( !x->intrinsic_matrix || ! x->distortion_coeffs ) {
 			object_error((t_object *)x, "error when loading parameters");

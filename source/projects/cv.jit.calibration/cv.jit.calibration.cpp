@@ -184,7 +184,7 @@ t_cv_jit_calibration *cv_jit_calibration_new(void)
 		// some initialization
 		x->pattern_size[0] = 7;
 		x->pattern_size[1] = 6;
-		x->board_view_nb = 20;
+		x->board_view_nb = 10;
 		x->dim[0] = 320;
 		x->dim[1] = 240;
 		x->frame = 0;
@@ -193,10 +193,9 @@ t_cv_jit_calibration *cv_jit_calibration_new(void)
 		
 		// allocate storage memory
 		cv_jit_calibration_allocate(x);
-		
-		// build undistord map
-		cv_jit_calibration_build_undistort_map(x);
-		
+		x->intrinsic_matrix		=	cvCreateMat(3, 3, CV_32FC1);
+		x->distortion_coeffs	=	cvCreateMat(5, 1, CV_32FC1);
+
 		// load parameters
 		cv_jit_calibration_load_param(x, NULL);
 		
@@ -210,6 +209,13 @@ t_cv_jit_calibration *cv_jit_calibration_new(void)
 void cv_jit_calibration_free(t_cv_jit_calibration *x)
 {
 	cv_jit_calibration_desallocate(x);
+
+	if( x->intrinsic_matrix )	cvReleaseMat( &x->intrinsic_matrix );
+	if( x->distortion_coeffs )	cvReleaseMat( &x->distortion_coeffs );
+
+	if( x->mapx )	cvReleaseImage( &x->mapx );
+	if( x->mapy )	cvReleaseImage( &x->mapy );
+
 }
 
 
@@ -273,47 +279,59 @@ t_jit_err cv_jit_calibration_matrix_calc(t_cv_jit_calibration *x, void *inputs, 
 				goto out;
 			jit_object_method(rgba_matrix, _jit_sym_getdata, &in_bp);
 		}
-		
-		if ( x->dim[0] != in_minfo.dim[0] || x->dim[1] != in_minfo.dim[1]) {
-			x->dim[0] = in_minfo.dim[0];
-			x->dim[1] = in_minfo.dim[1];
-			cv_jit_calibration_build_undistort_map(x);
+
+		if(x->point_counts->rows != x->board_view_nb) {
+			cv_jit_calibration_allocate(x);
+			x->success_count = 0;
+			x->frame = 0;
 		}
-		
-        // convert Jitter matrix into CvMat
-        in_cv = cvJitter2CvMat(in_minfo, in_bp);
-		out_cv = cvJitter2CvMat(out_minfo, out_bp);
-		
-		// this will loop until we got enought views (x->board_view_nb) with all corners visible
-		if ( x->success_count < x->board_view_nb && x->calibration != 0 ) {
-				cv_jit_calibration_findcorners(x, in_minfo, out_minfo, in_matrix, out_matrix, in_cv, out_bp );
-		}
-		if ( x->success_count >= x->board_view_nb && x->calibration != 0 ) {
-			
-			//CALIBRATE THE CAMERA! 
-			cvCalibrateCamera2(x->object_points,
-							   x->image_points,
-							   x->point_counts,
-							   cvSize( in_minfo.dim[0], in_minfo.dim[1] ),
-							   x->intrinsic_matrix,
-							   x->distortion_coeffs,
-							   NULL, 
-							   NULL,
-							   0);
-			
-			//cv_jit_calibration_print_parameters(x);
-			
-			cv_jit_calibration_build_undistort_map(x);
-			
-			x->calibration = 0;
-		}
-		
-		if (x->calibration == 0) {
-			// undistort the input image
-			cvRemap( &in_cv, &out_cv, x->mapx, x->mapy );			// Undistort image
-			if (in_minfo.planecount == 4) {
-				cv_rgba_to_jit_argb(out_matrix, out_bp, out_minfo.size);
+
+		try {
+			if ( x->dim[0] != in_minfo.dim[0] || x->dim[1] != in_minfo.dim[1]) {
+				x->dim[0] = in_minfo.dim[0];
+				x->dim[1] = in_minfo.dim[1];
+				cv_jit_calibration_build_undistort_map(x);
 			}
+
+			// convert Jitter matrix into CvMat
+			in_cv = cvJitter2CvMat(in_minfo, in_bp);
+			out_cv = cvJitter2CvMat(out_minfo, out_bp);
+
+			// this will loop until we got enought views (x->board_view_nb) with all corners visible
+			if ( x->success_count < x->board_view_nb && x->calibration != 0 ) {
+					cv_jit_calibration_findcorners(x, in_minfo, out_minfo, in_matrix, out_matrix, in_cv, out_bp );
+			}
+			if ( x->success_count >= x->board_view_nb && x->calibration != 0 ) {
+
+				//CALIBRATE THE CAMERA!
+				cvCalibrateCamera2(x->object_points,
+								   x->image_points,
+								   x->point_counts,
+								   cvSize( in_minfo.dim[0], in_minfo.dim[1] ),
+								   x->intrinsic_matrix,
+								   x->distortion_coeffs,
+								   NULL,
+								   NULL,
+								   0);
+
+				//cv_jit_calibration_print_parameters(x);
+
+				cv_jit_calibration_build_undistort_map(x);
+
+				x->calibration = 0;
+				object_post((t_object*)x, "calibration complete");
+			}
+
+			if (x->calibration == 0) {
+				// undistort the input image
+				cvRemap( &in_cv, &out_cv, x->mapx, x->mapy );			// Undistort image
+				if (in_minfo.planecount == 4) {
+					cv_rgba_to_jit_argb(out_matrix, out_bp, out_minfo.size);
+				}
+			}
+		}
+		catch (cv::Exception & exception) {
+			object_error((t_object *)x, "OpenCV error: %s", exception.what());
 		}
 	} 
 	else
@@ -431,20 +449,15 @@ void cv_jit_calibration_findcorners(t_cv_jit_calibration *x,
 }
 
 void cv_jit_calibration_allocate(t_cv_jit_calibration *x){
-	
-	//CvSize size = cvSize(x->dim[0], x->dim[1]);
-	
+
 	int board_point_nb = x->pattern_size[0] * x->pattern_size[1];
-	
-	
+
 	cv_jit_calibration_desallocate(x);
 	
 	// ALLOCATE STORAGE
 	x->image_points			=	cvCreateMat(board_point_nb*x->board_view_nb, 2, CV_32FC1);
 	x->object_points		=	cvCreateMat(board_point_nb*x->board_view_nb, 3, CV_32FC1);
 	x->point_counts			=	cvCreateMat(x->board_view_nb, 1, CV_32SC1);
-	x->intrinsic_matrix		=	cvCreateMat(3, 3, CV_32FC1);
-	x->distortion_coeffs	=	cvCreateMat(5, 1, CV_32FC1);
 }
 
 void cv_jit_calibration_desallocate(t_cv_jit_calibration *x){
@@ -455,11 +468,6 @@ void cv_jit_calibration_desallocate(t_cv_jit_calibration *x){
 	if( x->image_points)		cvReleaseMat( &x->image_points );
 	if( x->object_points )		cvReleaseMat( &x->object_points );
 	if( x->point_counts )		cvReleaseMat( &x->point_counts );
-	if( x->intrinsic_matrix )	cvReleaseMat( &x->intrinsic_matrix );
-	if( x->distortion_coeffs )	cvReleaseMat( &x->distortion_coeffs );
-	
-	if( x->mapx )	cvReleaseImage( &x->mapx );
-	if( x->mapy )	cvReleaseImage( &x->mapy );
 }
 
 void cv_jit_calibration_build_undistort_map(t_cv_jit_calibration *x) {
@@ -561,15 +569,14 @@ void cv_jit_calibration_load_param( t_cv_jit_calibration *x, char *filename) {
 	
 	printf("load parameters\n");
 	if (filename) {
-		
-		// free the matrix before allocating one more time...
-		if( x->intrinsic_matrix )	cvReleaseMat(&x->intrinsic_matrix);
-		if( x->distortion_coeffs )	cvReleaseMat(&x->distortion_coeffs);
-
 		cv::FileStorage loadNode(filename, cv::FileStorage::READ);
 		if(loadNode.isOpened()){
 			cv::Mat cvmat;
 			CvMat cstyleMat;
+
+			// free the matrix before allocating one more time...
+			if( x->intrinsic_matrix )	cvReleaseMat(&x->intrinsic_matrix);
+			if( x->distortion_coeffs )	cvReleaseMat(&x->distortion_coeffs);
 
 			loadNode["intrinsic"] >> cvmat;
 			cstyleMat = cvmat;
@@ -586,9 +593,10 @@ void cv_jit_calibration_load_param( t_cv_jit_calibration *x, char *filename) {
 		
 		if( !x->intrinsic_matrix || ! x->distortion_coeffs ) {
 			object_error((t_object *)x, "error when loading parameters");
+			x->intrinsic_matrix		=	cvCreateMat(3, 3, CV_32FC1);
+			x->distortion_coeffs	=	cvCreateMat(5, 1, CV_32FC1);
 		}
 	}
-	
 	else {
 		cv_jit_calibration_make_identity(x);
 	}

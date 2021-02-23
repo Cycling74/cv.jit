@@ -113,7 +113,7 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 	short id;
 	t_filehandle handle;
 	t_ptr_size count;
-	long cvjt;
+	t_int32 cvjt;
 	t_fourcc type;
 	t_fourcc code;
 	int i;
@@ -239,7 +239,7 @@ void cv_jit_learn_write(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv
 	short id;
 	t_filehandle handle;
 	t_ptr_size count;
-	long cvjt;
+	t_int32 cvjt;
 	
 	strncpy(fname,".mxb",256);  //Display .mxb in the dialog box
 

@@ -112,7 +112,7 @@ void cv_jit_blobs_recon_read(t_cv_jit_blobs_recon *x, t_symbol *s, short argc, t
 	short id;
 	t_filehandle handle;
 	t_ptr_size count;
-	long cvjt;
+	t_int32 cvjt;
 	t_fourcc type;
 	t_fourcc code;
 	double index;

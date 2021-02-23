@@ -326,7 +326,7 @@ void cv_jit_learn_list(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 		
 		//Calculate pseudo-inverse of covariance matrix
 		cv::Mat covarianceMat(x->size, x->size, CV_64FC1, x->covariance);
-		cv::Mat covarianceMatrixInv;
+		cv::Mat covarianceMatrixInv(x->size, x->size, CV_64FC1, x->inverse);
 		cv::invert(covarianceMat, covarianceMatrixInv, cv::DECOMP_SVD);
 	}
 	else if(inletNum == 0) //List arrived in "compare" inlet

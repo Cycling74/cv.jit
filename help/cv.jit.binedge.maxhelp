@@ -55,7 +55,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 4.0, 4.0 ],
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 74.0, 66.0, 245.0, 211.0 ],
+					"patching_rect" : [ 74.0, 66.0, 245.0, 218.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -312,6 +312,7 @@
 		"parameters" : 		{
 			"obj-1::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-1::obj-25" : [ "toggle", "toggle", 0 ],
+			"obj-1::obj-32" : [ "toggle[3]", "toggle", 0 ],
 			"obj-1::obj-38" : [ "number", "number", 0 ],
 			"obj-1::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
 			"obj-1::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],

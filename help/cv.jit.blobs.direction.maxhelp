@@ -95,7 +95,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 4.0, 4.0 ],
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 31.0, 70.0, 245.0, 211.0 ],
+					"patching_rect" : [ 31.0, 70.0, 244.0, 217.0 ],
 					"viewvisibility" : 1
 				}
 

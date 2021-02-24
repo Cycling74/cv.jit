@@ -82,7 +82,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 4.0, 4.0 ],
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 25.0, 76.0, 245.0, 211.0 ],
+					"patching_rect" : [ 25.0, 76.0, 245.0, 216.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -570,7 +570,7 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-10", 2 ],
-					"midpoints" : [ 34.5, 294.0, 12.0, 294.0, 12.0, 450.0, 167.5, 450.0 ],
+					"midpoints" : [ 34.5, 299.0, 12.0, 299.0, 12.0, 450.0, 167.5, 450.0 ],
 					"order" : 0,
 					"source" : [ "obj-1", 0 ]
 				}

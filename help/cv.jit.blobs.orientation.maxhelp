@@ -83,7 +83,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 4.0, 4.0 ],
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 65.0, 87.0, 245.0, 211.0 ],
+					"patching_rect" : [ 65.0, 87.0, 245.0, 216.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -456,7 +456,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 226.5, 332.0, 261.0, 33.0 ],
+					"patching_rect" : [ 226.5, 332.0, 263.0, 33.0 ],
 					"style" : "default",
 					"text" : "You MUST label the image with \"charmode\" set to 1 and calculate moments before processing!"
 				}
@@ -469,7 +469,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 262.0, 472.0, 246.0, 87.0 ],
+					"patching_rect" : [ 262.0, 472.0, 248.0, 87.0 ],
 					"style" : "default",
 					"text" : "The utility abstraction cv.jit.blobs.orient.draw superimposes orientation information on the image sent to its right inlet. You MUST also connect the output of cv.jit.blobs.moments to its middle inlet. You can use the attribute \"frgb\" to set the colour used."
 				}
@@ -572,7 +572,7 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-10", 2 ],
-					"midpoints" : [ 74.5, 308.0, 48.0, 308.0, 48.0, 462.0, 207.5, 462.0 ],
+					"midpoints" : [ 74.5, 318.0, 48.0, 318.0, 48.0, 462.0, 207.5, 462.0 ],
 					"order" : 0,
 					"source" : [ "obj-1", 0 ]
 				}

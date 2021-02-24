@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 2,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 105.0, 84.0, 931.0, 925.0 ],
+		"rect" : [ 100.0, 84.0, 918.0, 821.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,89 +37,277 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-12",
-					"maxclass" : "newobj",
+					"id" : "obj-32",
+					"maxclass" : "comment",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 44.0, 297.0, 115.0, 19.0 ],
-					"text" : "cv.jit.resize @size 320 240"
+					"numoutlets" : 0,
+					"patching_rect" : [ 451.0, 531.0, 205.0, 20.0 ],
+					"text" : "face bounds: left, top, right, bottom"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"id" : "obj-26",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 2,
+							"revision" : 0,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 59.0, 104.0, 245.0, 253.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 1,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 1,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
+						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "bang", "bang" ],
+									"patching_rect" : [ 28.0, 79.0, 65.0, 22.0 ],
+									"text" : "onebang 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-26",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "bang", "" ],
+									"patching_rect" : [ 28.0, 55.0, 105.5, 22.0 ],
+									"text" : "t b l"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-21",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 28.0, 107.0, 52.0, 22.0 ],
+									"text" : "plane -1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"comment" : "",
+									"id" : "obj-27",
+									"index" : 1,
+									"maxclass" : "inlet",
+									"numinlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "jit_matrix" ],
+									"patching_rect" : [ 28.0, 21.0, 30.0, 30.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"comment" : "",
+									"id" : "obj-29",
+									"index" : 1,
+									"maxclass" : "outlet",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 28.0, 143.0, 30.0, 30.0 ]
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-21", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-29", 0 ],
+									"source" : [ "obj-21", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-26", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-29", 0 ],
+									"source" : [ "obj-26", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-26", 0 ],
+									"source" : [ "obj-27", 0 ]
+								}
+
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 394.0, 531.0, 54.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p planes"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"cols" : 1,
+					"colwidth" : 160,
+					"fontface" : 0,
 					"fontname" : "Arial",
-					"fontsize" : 9.0,
+					"fontsize" : 12.0,
+					"id" : "obj-27",
+					"maxclass" : "jit.cellblock",
+					"numinlets" : 2,
+					"numoutlets" : 4,
+					"outlettype" : [ "list", "", "", "" ],
+					"patching_rect" : [ 394.0, 555.0, 347.0, 36.0 ],
+					"rows" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ 1 ],
+					"bgmode" : 0,
+					"border" : 1,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-17",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "cv.input.chooser.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"offset" : [ 4.0, 4.0 ],
+					"outlettype" : [ "jit_matrix" ],
+					"patching_rect" : [ 44.0, 63.0, 245.0, 218.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-1",
 					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 239.0, 388.0, 468.0, 27.0 ],
+					"patching_rect" : [ 300.0, 436.0, 435.0, 33.0 ],
+					"style" : "default",
 					"text" : "Query the \"nfaces\" attribute to know the number of detected faces. Useful for detecting when no face has been found."
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-2",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 178.0, 390.0, 53.0, 19.0 ],
+					"patching_rect" : [ 229.0, 440.5, 68.0, 22.0 ],
+					"style" : "default",
 					"text" : "getnfaces"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 0.866667, 0.866667, 0.866667, 1.0 ],
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-3",
 					"maxclass" : "number",
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 234.0, 472.0, 35.0, 19.0 ],
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"patching_rect" : [ 89.0, 458.0, 38.0, 22.0 ],
+					"style" : "default",
 					"triscale" : 0.9
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-4",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 234.0, 449.0, 66.0, 19.0 ],
+					"patching_rect" : [ 89.0, 435.0, 75.0, 22.0 ],
+					"style" : "default",
 					"text" : "route nfaces"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-5",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 394.0, 614.5, 67.0, 19.0 ],
+					"patching_rect" : [ 394.0, 711.5, 86.0, 22.0 ],
+					"style" : "default",
 					"text" : "prepend frgb"
 				}
 
@@ -133,90 +321,51 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 394.0, 577.5, 128.0, 32.0 ]
+					"patching_rect" : [ 394.0, 674.5, 128.0, 32.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-7",
-					"linecount" : 5,
+					"linecount" : 4,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 392.0, 507.5, 170.0, 58.0 ],
+					"patching_rect" : [ 394.0, 612.5, 229.0, 60.0 ],
+					"style" : "default",
 					"text" : "The utility abstraction cv.jit.faces.draw superimposes bounding boxes on the image sent to its right inlet. You can use the attribute \"frgb\" to set the colour used."
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.968627, 0.972549, 0.972549, 1.0 ],
-					"border" : 1,
-					"bordercolor" : [ 0.584314, 0.215686, 0.215686, 1.0 ],
-					"id" : "obj-8",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 378.0, 494.5, 213.0, 151.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.713726, 0.752941, 0.721569, 1.0 ],
-					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
-					"id" : "obj-9",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 381.0, 497.5, 214.0, 152.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-10",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 178.0, 367.0, 135.0, 19.0 ],
+					"patching_rect" : [ 178.0, 384.0, 178.0, 22.0 ],
+					"style" : "default",
 					"text" : "read haarFaceCascade1.xml"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-11",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 44.0, 463.0, 89.0, 19.0 ],
+					"patching_rect" : [ 44.0, 504.0, 115.0, 22.0 ],
+					"style" : "default",
 					"text" : "cv.jit.faces.draw"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 0.866667, 0.866667, 0.866667, 1.0 ],
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-13",
 					"maxclass" : "number",
 					"maximum" : 4,
@@ -225,65 +374,48 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 178.0, 302.0, 35.0, 19.0 ],
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"patching_rect" : [ 178.0, 297.0, 38.0, 22.0 ],
+					"style" : "default",
 					"triscale" : 0.9
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-14",
-					"linecount" : 5,
+					"linecount" : 10,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 240.0, 302.0, 404.0, 58.0 ],
-					"text" : "You can change the model used to perform face recognition with the \"model\" attribute. There are four such models provided with cv.jit. Furthermore you can manually select the files used with the \"read\" message. Other useable files are provided with the OpenCV distribution along with tools for computing them. With the proper files, cv.jit.faces can recognize shapes other than front-view faces."
+					"patching_rect" : [ 358.0, 275.0, 276.0, 141.0 ],
+					"style" : "default",
+					"text" : "You can change the model used to perform face recognition with the \"model\" attribute. There are four such models provided with cv.jit. Furthermore you can manually select the files used with the \"read\" message. \n\nOther useable files are provided with the OpenCV distribution along with tools for computing them. With the proper files, cv.jit.faces can recognize shapes other than front-view faces."
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-15",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 178.0, 343.0, 28.0, 19.0 ],
+					"patching_rect" : [ 178.0, 360.0, 35.0, 22.0 ],
+					"style" : "default",
 					"text" : "read"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-16",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 178.0, 321.0, 51.0, 19.0 ],
+					"patching_rect" : [ 178.0, 321.0, 65.0, 22.0 ],
+					"style" : "default",
 					"text" : "model $1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-17",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 44.0, 252.0, 66.0, 19.0 ],
-					"text" : "jit.rgb2luma"
 				}
 
 			}
@@ -297,61 +429,55 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 43.0, 744.0, 60.0, 32.0 ]
+					"patching_rect" : [ 44.0, 776.0, 60.0, 32.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-19",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 669.0, 252.0, 163.0, 17.0 ],
+					"patching_rect" : [ 714.0, 282.0, 146.0, 20.0 ],
+					"style" : "default",
 					"text" : "4-plane single-row float32"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-20",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 667.0, 217.0, 163.0, 17.0 ],
+					"patching_rect" : [ 712.0, 247.0, 102.0, 20.0 ],
+					"style" : "default",
 					"text" : "Single-plane char"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-21",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 621.0, 252.0, 185.0, 17.0 ],
-					"text" : "Output:",
-					"textcolor" : [ 0.968627, 0.968627, 0.968627, 1.0 ]
+					"patching_rect" : [ 666.0, 282.0, 48.0, 20.0 ],
+					"style" : "default",
+					"text" : "Output:"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-22",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 621.0, 217.0, 185.0, 17.0 ],
-					"text" : "Input:",
-					"textcolor" : [ 0.968627, 0.968627, 0.968627, 1.0 ]
+					"patching_rect" : [ 666.0, 247.0, 39.0, 20.0 ],
+					"style" : "default",
+					"text" : "Input:"
 				}
 
 			}
@@ -366,7 +492,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 617.0, 210.0, 51.0, 37.0 ],
+					"patching_rect" : [ 662.0, 240.0, 51.0, 37.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -383,7 +509,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 617.0, 210.0, 218.0, 36.0 ],
+					"patching_rect" : [ 662.0, 240.0, 218.0, 36.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -391,15 +517,14 @@
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-25",
 					"linecount" : 8,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 483.0, 97.0, 303.0, 89.0 ],
-					"text" : "cv.jit.faces scans through a greyscale image and tries to find regions that resemble frontal views of human faces. Because the algorithm is rather computationally intensive, it works best on small matrices. Ideally, the smallest face to be detected should be about 20 pixels wide.\rWhile it can be used alone for face tracking, a more efficient use of resources would be to use cv.jit.faces in tandem with a proper tracking object, such as cv.jit.track, only performing face detection when necessary."
+					"patching_rect" : [ 477.0, 102.0, 410.0, 114.0 ],
+					"style" : "default",
+					"text" : "cv.jit.faces scans through a greyscale image and tries to find regions that resemble frontal views of human faces. Because the algorithm is rather computationally intensive, it works best on small matrices. Ideally, the smallest face to be detected should be about 20 pixels wide.\n\nWhile it can be used alone for face tracking, a more efficient use of resources would be to use cv.jit.faces in tandem with a proper tracking object, such as cv.jit.track, only performing face detection when necessary."
 				}
 
 			}
@@ -412,7 +537,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 676.0, 519.0, 121.0, 38.0 ],
+					"patching_rect" : [ 716.0, 681.0, 121.0, 37.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -428,7 +553,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 669.0, 512.0, 137.0, 49.0 ],
+					"patching_rect" : [ 709.0, 674.0, 137.0, 49.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -436,42 +561,13 @@
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-30",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 114.0, 253.0, 159.0, 17.0 ],
+					"patching_rect" : [ 295.0, 245.0, 173.0, 20.0 ],
+					"style" : "default",
 					"text" : "Only works on greyscale data!"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-31",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 285.0, 100.0, 135.0, 17.0 ],
-					"text" : "Use movie file input",
-					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-32",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 64.0, 100.0, 135.0, 17.0 ],
-					"text" : "Use live camera input",
-					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 				}
 
 			}
@@ -483,174 +579,21 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 43.0, 493.0, 320.0, 240.0 ]
+					"patching_rect" : [ 44.0, 531.0, 320.0, 240.0 ],
+					"sync" : 1
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-34",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 44.0, 400.0, 62.0, 19.0 ],
+					"patching_rect" : [ 44.0, 400.0, 64.0, 22.0 ],
+					"style" : "default",
 					"text" : "cv.jit.faces"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-35",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 348.0, 152.0, 29.0, 19.0 ],
-					"text" : "stop"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-36",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 313.0, 152.0, 33.0, 19.0 ],
-					"text" : "start"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-37",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 281.0, 152.0, 30.0, 19.0 ],
-					"text" : "read"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-38",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 266.0, 101.0, 15.0, 15.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-39",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 265.5, 124.0, 46.0, 19.0 ],
-					"text" : "qmetro 2"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-40",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 266.0, 180.0, 141.0, 19.0 ],
-					"text" : "jit.qt.movie 80 60 @unique 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-42",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 115.0, 151.0, 33.0, 19.0 ],
-					"text" : "close"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-43",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 83.0, 151.0, 30.0, 19.0 ],
-					"text" : "open"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-44",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 44.0, 100.0, 15.0, 15.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-45",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 44.0, 124.0, 46.0, 19.0 ],
-					"text" : "qmetro 2"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
-					"id" : "obj-46",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 44.0, 179.0, 82.0, 19.0 ],
-					"text" : "jit.grab @unique 1"
 				}
 
 			}
@@ -662,58 +605,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 36.0, 26.0, 684.0, 34.0 ],
+					"patching_rect" : [ 36.0, 26.0, 684.0, 33.0 ],
 					"text" : "cv.jit.faces: find faces in an image",
 					"textcolor" : [ 0.054902, 0.2, 0.270588, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.435294, 0.498039, 0.494118, 1.0 ],
-					"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"id" : "obj-48",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 36.0, 93.0, 214.0, 118.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.435294, 0.498039, 0.494118, 1.0 ],
-					"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"id" : "obj-49",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 253.0, 93.0, 187.0, 118.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.968627, 0.972549, 0.972549, 1.0 ],
-					"border" : 1,
-					"bordercolor" : [ 0.584314, 0.215686, 0.215686, 1.0 ],
-					"id" : "obj-50",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 36.0, 243.0, 242.0, 34.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
 				}
 
 			}
@@ -728,7 +622,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 29.0, 391.0, 88.0, 38.0 ],
+					"patching_rect" : [ 36.0, 391.0, 81.0, 38.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -745,7 +639,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 617.0, 244.0, 51.0, 37.0 ],
+					"patching_rect" : [ 662.0, 274.0, 51.0, 37.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -762,7 +656,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 617.0, 245.0, 218.0, 36.0 ],
+					"patching_rect" : [ 662.0, 275.0, 218.0, 36.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -778,7 +672,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 671.0, 517.0, 139.0, 48.0 ],
+					"patching_rect" : [ 711.0, 679.0, 139.0, 48.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -821,77 +715,12 @@
 					"angle" : 270.0,
 					"bgcolor" : [ 0.713726, 0.752941, 0.721569, 1.0 ],
 					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
-					"id" : "obj-57",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 39.0, 246.0, 243.0, 35.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.713726, 0.752941, 0.721569, 1.0 ],
-					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
-					"id" : "obj-58",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 39.0, 96.0, 405.0, 119.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.713726, 0.752941, 0.721569, 1.0 ],
-					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
 					"id" : "obj-59",
 					"maxclass" : "panel",
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 620.0, 213.0, 218.0, 72.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.968627, 0.972549, 0.972549, 1.0 ],
-					"border" : 1,
-					"bordercolor" : [ 0.584314, 0.215686, 0.215686, 1.0 ],
-					"id" : "obj-60",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 167.0, 297.0, 553.0, 125.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.713726, 0.752941, 0.721569, 1.0 ],
-					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
-					"id" : "obj-61",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 170.0, 300.0, 554.0, 126.0 ],
+					"patching_rect" : [ 665.0, 243.0, 218.0, 72.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -908,7 +737,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 469.0, 92.0, 365.0, 107.0 ],
+					"patching_rect" : [ 469.0, 92.0, 421.0, 130.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -924,55 +753,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 473.0, 97.0, 365.0, 107.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.713726, 0.752941, 0.721569, 1.0 ],
-					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
-					"id" : "obj-64",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 443.0, 112.0, 148.0, 4.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.713726, 0.752941, 0.721569, 1.0 ],
-					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
-					"id" : "obj-65",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 443.0, 104.0, 148.0, 4.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.713726, 0.752941, 0.721569, 1.0 ],
-					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
-					"id" : "obj-66",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 443.0, 96.0, 148.0, 4.0 ],
+					"patching_rect" : [ 473.0, 97.0, 421.0, 130.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -988,7 +769,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 725.0, 155.0, 4.0, 98.0 ],
+					"patching_rect" : [ 770.0, 185.0, 4.0, 98.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -1004,7 +785,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 716.0, 155.0, 4.0, 98.0 ],
+					"patching_rect" : [ 761.0, 185.0, 4.0, 98.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -1020,7 +801,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 707.0, 155.0, 4.0, 98.0 ],
+					"patching_rect" : [ 752.0, 185.0, 4.0, 98.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -1042,7 +823,6 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-34", 0 ],
-					"hidden" : 1,
 					"source" : [ "obj-10", 0 ]
 				}
 
@@ -1056,23 +836,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-11", 1 ],
-					"midpoints" : [ 53.5, 350.0, 123.5, 350.0 ],
-					"order" : 0,
-					"source" : [ "obj-12", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-34", 0 ],
-					"order" : 1,
-					"source" : [ "obj-12", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-16", 0 ],
 					"source" : [ "obj-13", 0 ]
 				}
@@ -1081,7 +844,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-34", 0 ],
-					"hidden" : 1,
 					"source" : [ "obj-15", 0 ]
 				}
 
@@ -1089,14 +851,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-34", 0 ],
-					"hidden" : 1,
 					"source" : [ "obj-16", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-12", 0 ],
+					"destination" : [ "obj-11", 1 ],
+					"midpoints" : [ 53.5, 350.0, 149.5, 350.0 ],
+					"order" : 0,
 					"source" : [ "obj-17", 0 ]
 				}
 
@@ -1104,8 +867,22 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-34", 0 ],
-					"hidden" : 1,
+					"order" : 1,
+					"source" : [ "obj-17", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-34", 0 ],
 					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-27", 0 ],
+					"source" : [ "obj-26", 0 ]
 				}
 
 			}
@@ -1119,6 +896,16 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-11", 0 ],
+					"order" : 1,
+					"source" : [ "obj-34", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-26", 0 ],
+					"midpoints" : [ 53.5, 487.0, 403.5, 487.0 ],
+					"order" : 0,
 					"source" : [ "obj-34", 0 ]
 				}
 
@@ -1126,46 +913,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-4", 0 ],
-					"midpoints" : [ 96.5, 436.0, 243.5, 436.0 ],
 					"source" : [ "obj-34", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-40", 0 ],
-					"midpoints" : [ 357.5, 173.0, 275.5, 173.0 ],
-					"source" : [ "obj-35", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-40", 0 ],
-					"midpoints" : [ 322.5, 173.0, 275.5, 173.0 ],
-					"source" : [ "obj-36", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-40", 0 ],
-					"midpoints" : [ 290.5, 173.0, 275.5, 173.0 ],
-					"source" : [ "obj-37", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-39", 0 ],
-					"source" : [ "obj-38", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-40", 0 ],
-					"source" : [ "obj-39", 0 ]
 				}
 
 			}
@@ -1178,53 +926,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"midpoints" : [ 275.5, 227.0, 53.5, 227.0 ],
-					"source" : [ "obj-40", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-46", 0 ],
-					"midpoints" : [ 124.5, 172.0, 53.5, 172.0 ],
-					"source" : [ "obj-42", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-46", 0 ],
-					"midpoints" : [ 92.5, 172.0, 53.5, 172.0 ],
-					"source" : [ "obj-43", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-45", 0 ],
-					"source" : [ "obj-44", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-46", 0 ],
-					"source" : [ "obj-45", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-46", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-11", 0 ],
-					"midpoints" : [ 403.5, 659.0, 209.0, 659.0, 209.0, 455.0, 53.5, 455.0 ],
+					"midpoints" : [ 403.5, 747.0, 375.0, 747.0, 375.0, 494.0, 53.5, 494.0 ],
 					"source" : [ "obj-5", 0 ]
 				}
 
@@ -1237,41 +940,153 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-17::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
+			"obj-17::obj-25" : [ "toggle", "toggle", 0 ],
+			"obj-17::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-17::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-17::obj-37" : [ "number[2]", "number[2]", 0 ],
+			"obj-17::obj-38" : [ "number", "number", 0 ],
+			"obj-17::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
+			"obj-17::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
+			"obj-17::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
+			"obj-17::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
+			"parameterbanks" : 			{
+
+			}
+,
+			"inherited_shortname" : 1
+		}
+,
 		"dependency_cache" : [ 			{
+				"name" : "cv.jit.faces.maxhelp.maxsnap",
+				"bootpath" : "~/Documents/Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../Documents/Max 8/Snapshots",
+				"type" : "mx@s",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "cvtitle.gif",
-				"bootpath" : "D:/dev/cv.jit/help",
+				"bootpath" : "~/dev/cycling/cv.jit/help",
 				"patcherrelativepath" : ".",
 				"type" : "GIFf",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "cv.jit.faces.draw.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
+				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "copyright-jmp.maxpat",
-				"bootpath" : "D:/dev/cv.jit/help",
+				"bootpath" : "~/dev/cycling/cv.jit/help",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "cv.jit.faces.mxe64",
-				"type" : "mx64"
+				"name" : "cv.input.chooser.maxpat",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers/utils",
+				"patcherrelativepath" : "../patchers/utils",
+				"type" : "JSON",
+				"implicit" : 1
 			}
 , 			{
-				"name" : "jit.pass.mxe64",
-				"type" : "mx64"
+				"name" : "interfacecolor.js",
+				"bootpath" : "C74:/interfaces",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
-				"name" : "cv.jit.resize.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.faces.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "cv.jit.resize.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0,
-		"bgcolor" : [ 0.823529, 0.823529, 0.764706, 1.0 ]
+		"snapshot" : 		{
+			"filetype" : "C74Snapshot",
+			"version" : 2,
+			"minorversion" : 0,
+			"name" : "snapshotlist",
+			"origin" : "jpatcher",
+			"type" : "list",
+			"subtype" : "Undefined",
+			"embed" : 1,
+			"snapshot" : 			{
+				"valuedictionary" : 				{
+					"parameter_values" : 					{
+						"live.tab[4]" : 0.0,
+						"toggle" : 0.0,
+						"toggle[1]" : 1.0,
+						"toggle[2]" : 1.0,
+						"toggle[3]" : 0.0,
+						"blob" : 						{
+							"number" : [ 50 ],
+							"number[1]" : [ 320 ],
+							"number[2]" : [ 240 ],
+							"number[6]" : [ 240 ],
+							"number[7]" : [ 320 ]
+						}
+
+					}
+
+				}
+
+			}
+,
+			"snapshotlist" : 			{
+				"current_snapshot" : 0,
+				"entries" : [ 					{
+						"filetype" : "C74Snapshot",
+						"version" : 2,
+						"minorversion" : 0,
+						"name" : "cv.jit.faces.maxhelp",
+						"origin" : "cv.jit.faces.maxhelp",
+						"type" : "patcher",
+						"subtype" : "Undefined",
+						"embed" : 1,
+						"snapshot" : 						{
+							"valuedictionary" : 							{
+								"parameter_values" : 								{
+									"live.tab[4]" : 0.0,
+									"toggle" : 0.0,
+									"toggle[1]" : 1.0,
+									"toggle[2]" : 1.0,
+									"toggle[3]" : 0.0,
+									"blob" : 									{
+										"number" : [ 50 ],
+										"number[1]" : [ 320 ],
+										"number[2]" : [ 240 ],
+										"number[6]" : [ 240 ],
+										"number[7]" : [ 320 ]
+									}
+
+								}
+
+							}
+
+						}
+,
+						"fileref" : 						{
+							"name" : "cv.jit.faces.maxhelp",
+							"filename" : "cv.jit.faces.maxhelp.maxsnap",
+							"filepath" : "~/Documents/Max 8/Snapshots",
+							"filepos" : -1,
+							"snapshotfileid" : "e501cdb74baf590a49e7cbf2d412aa20"
+						}
+
+					}
+ ]
+			}
+
+		}
+
 	}
 
 }

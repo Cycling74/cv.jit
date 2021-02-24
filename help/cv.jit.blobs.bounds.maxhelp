@@ -795,6 +795,8 @@
 			"obj-2::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-2::obj-25" : [ "toggle", "toggle", 0 ],
 			"obj-2::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-2::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-2::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-2::obj-38" : [ "number", "number", 0 ],
 			"obj-2::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
 			"obj-2::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
@@ -870,9 +872,12 @@
 						"live.tab[4]" : 0.0,
 						"toggle" : 1.0,
 						"toggle[1]" : 1.0,
-						"toggle[2]" : 0.0,
+						"toggle[2]" : 1.0,
+						"toggle[3]" : 0.0,
 						"blob" : 						{
 							"number" : [ 220 ],
+							"number[1]" : [ 160 ],
+							"number[2]" : [ 120 ],
 							"number[6]" : [ 240 ],
 							"number[7]" : [ 320 ]
 						}
@@ -900,9 +905,12 @@
 									"live.tab[4]" : 0.0,
 									"toggle" : 1.0,
 									"toggle[1]" : 1.0,
-									"toggle[2]" : 0.0,
+									"toggle[2]" : 1.0,
+									"toggle[3]" : 0.0,
 									"blob" : 									{
 										"number" : [ 220 ],
+										"number[1]" : [ 160 ],
+										"number[2]" : [ 120 ],
 										"number[6]" : [ 240 ],
 										"number[7]" : [ 320 ]
 									}

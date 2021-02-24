@@ -40,30 +40,6 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-43",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "int", "int" ],
-					"patching_rect" : [ 415.0, 193.0, 59.0, 22.0 ],
-					"text" : "unpack i i"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-42",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 415.0, 169.0, 107.0, 22.0 ],
-					"text" : "loadmess 160 120"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"fontsize" : 12.0,
 					"id" : "obj-41",
 					"maxclass" : "comment",
@@ -96,10 +72,23 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
-					"parameter_enable" : 0,
+					"parameter_enable" : 1,
 					"patching_rect" : [ 361.0, 169.0, 50.0, 22.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 44.333329999999997, 149.666665999999992, 44.0, 22.0 ]
+					"presentation_rect" : [ 44.333329999999997, 149.666665999999992, 44.0, 22.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_initial" : [ 120 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 1,
+							"parameter_longname" : "number[2]",
+							"parameter_shortname" : "number[2]",
+							"parameter_type" : 3
+						}
+
+					}
+,
+					"varname" : "number[2]"
 				}
 
 			}
@@ -111,10 +100,23 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
-					"parameter_enable" : 0,
+					"parameter_enable" : 1,
 					"patching_rect" : [ 303.0, 169.0, 50.0, 22.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 1.333330452442169, 149.666665971279144, 42.0, 22.0 ]
+					"presentation_rect" : [ 1.333330452442169, 149.666665971279144, 42.0, 22.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_initial" : [ 160 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 1,
+							"parameter_longname" : "number[1]",
+							"parameter_shortname" : "number[1]",
+							"parameter_type" : 3
+						}
+
+					}
+,
+					"varname" : "number[1]"
 				}
 
 			}
@@ -3620,7 +3622,7 @@
 										"style" : "",
 										"subpatcher_template" : "",
 										"assistshowspatchername" : 0,
-										"globalpatchername" : "[1][1][1][3][1][1][3][2][1][1][1][1][1][2][2][2][1][1][2][1][1][2][1][1][1][1][1][1][1][2][1][1]",
+										"globalpatchername" : "[1][1][1][3][1][1][3][2][1][1][1][1][1][2][2][2][1][1][2][1][1][2][1][1][1][1][1][1][1][2][1][1][1]",
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontname" : "Arial",
@@ -3969,7 +3971,7 @@
 										"description" : "",
 										"digest" : "",
 										"editing_bgcolor" : [ 0.94902, 0.94902, 0.94902, 1.0 ],
-										"globalpatchername" : "[1][1][1][3][1][1][3][2][1][1][1][1][1][2][2][2][1][1][2][1][1][2][1][1][1][1][1][1][1][2][1][1]",
+										"globalpatchername" : "[1][1][1][3][1][1][3][2][1][1][1][1][1][2][2][2][1][1][2][1][1][2][1][1][1][1][1][1][1][2][1][1][1]",
 										"locked_bgcolor" : [ 0.94902, 0.94902, 0.94902, 1.0 ],
 										"tags" : ""
 									}
@@ -4575,27 +4577,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-43", 0 ],
-					"source" : [ "obj-42", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-36", 0 ],
-					"source" : [ "obj-43", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-37", 0 ],
-					"source" : [ "obj-43", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-7", 1 ],
 					"source" : [ "obj-5", 0 ]
 				}
@@ -4641,6 +4622,8 @@
 			"obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-25" : [ "toggle", "toggle", 0 ],
 			"obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-38" : [ "number", "number", 0 ],
 			"obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
 			"obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],

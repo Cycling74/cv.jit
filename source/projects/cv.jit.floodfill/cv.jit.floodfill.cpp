@@ -279,8 +279,8 @@ static long cv_jit_floodfill(uchar *in, uchar *out, void *stack, int width, int 
 										
 		if(((row - flag))<height)
 		{
-			inData = in + (row - flag) * step;		
-			outData = out + (row - flag) * step;
+			inData = in + std::max(0, (row - flag)) * step;
+			outData = out + std::max(0, (row - flag)) * step;
 		
 			for(i=left;i<right+1;i++)
 			{
@@ -297,8 +297,8 @@ static long cv_jit_floodfill(uchar *in, uchar *out, void *stack, int width, int 
 			}
 		}
 		
-		inData = in + (row + flag) * step;
-		outData = out + (row + flag) * step;
+		inData = in + std::max(0, (row + flag)) * step;
+		outData = out + std::max(0, (row + flag)) * step;
 		
 		for(i=left;i<prevLeft;i++)
 		{

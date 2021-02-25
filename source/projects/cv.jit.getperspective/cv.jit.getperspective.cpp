@@ -203,6 +203,7 @@ t_jit_err cv_jit_getperspective_matrix_calc(t_cv_jit_getperspective *x, void *in
 		out_minfo.dim[0] = 3;
 		out_minfo.dim[1] = 3;
 		jit_object_method(out_matrix, _jit_sym_setinfo, &out_minfo);
+		jit_object_method(out_matrix, _jit_sym_getdata, &out_bp);
 		
         CvMat h = cvJitter2CvMat(out_minfo, (char *)out_bp);
 		

@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 74.0, 154.0, 1508.0, 892.0 ],
+		"rect" : [ 34.0, 79.0, 1463.0, 838.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-34",
@@ -69,7 +71,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 708.0, 181.333333333333343, 329.0, 25.0 ],
+					"patching_rect" : [ 708.0, 181.333333333333343, 329.0, 24.0 ],
 					"text" : "3. Adjust keypoint threshold for each image."
 				}
 
@@ -82,8 +84,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 506.0, 76.0, 347.0, 25.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 506.0, 76.0, 347.0, 24.0 ],
 					"text" : "2. Load another image to try to find the target."
 				}
 
@@ -96,7 +97,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1069.0, 30.0, 251.0, 25.0 ],
+					"patching_rect" : [ 1069.0, 30.0, 251.0, 24.0 ],
 					"text" : "1. Load an image to use as target."
 				}
 
@@ -108,7 +109,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 931.0, 461.0, 122.0, 34.0 ],
+					"patching_rect" : [ 931.0, 461.0, 122.0, 33.0 ],
 					"text" : "The target image's width measures 8cm."
 				}
 
@@ -132,7 +133,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 939.0, 548.0, 114.0, 62.0 ],
+					"patching_rect" : [ 939.0, 548.0, 114.0, 60.0 ],
 					"text" : "Use cv.jit.unproject to find the position relative to the camera."
 				}
 
@@ -144,7 +145,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 425.0, 633.5, 79.0, 34.0 ],
+					"patching_rect" : [ 425.0, 633.5, 79.0, 33.0 ],
 					"text" : "The number of matches"
 				}
 
@@ -479,7 +480,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 1069.0, 475.5, 128.0, 128.0 ]
+					"patching_rect" : [ 1069.0, 475.5, 128.0, 128.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -528,7 +530,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 532.5, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 532.5, 70.0, 50.0 ],
 					"text" : "(char)\n1 plane\n2 dims"
 				}
 
@@ -582,7 +584,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 452.5, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 452.5, 70.0, 50.0 ],
 					"text" : "(float32)\n6 planes\n2 dims"
 				}
 
@@ -636,7 +638,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 372.5, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 372.5, 70.0, 50.0 ],
 					"text" : "(char)\n1 plane\n2 dims"
 				}
 
@@ -688,7 +690,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 506.0, 538.0, 320.0, 240.0 ]
+					"patching_rect" : [ 506.0, 538.0, 320.0, 240.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -752,7 +755,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 32.0, 778.0, 134.0, 41.0 ],
+					"patching_rect" : [ 32.0, 778.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -766,7 +769,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 653.5, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 653.5, 70.0, 50.0 ],
 					"text" : "(float32)\n6 planes\n2 dims"
 				}
 
@@ -793,7 +796,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 631.0, 187.0, 96.0 ],
+					"patching_rect" : [ 135.0, 631.0, 187.0, 94.0 ],
 					"text" : "For each detected feature:\nPlane 0, 1: x and y coordinates\nPlane 2: Size\nPlane 3: Angle\nPlane 4: Strength\nPlane 5: Octave"
 				}
 
@@ -820,7 +823,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 292.5, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 292.5, 70.0, 50.0 ],
 					"text" : "(float32)\n6 planes\n2 dims"
 				}
 
@@ -904,7 +907,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 105.0, 358.0, 126.0 ],
+					"patching_rect" : [ 30.0, 105.0, 358.0, 123.0 ],
 					"text" : "This object works a lot like cv.jit.features. It looks for distinctive points in an image. There are two important differences with cv.jit.features, though. First, it looks for features at various scales, so that small and large features are detected. Secondly, it also outputs a set of feature \"descriptors.\" data that can be used to match features detected in two different images. See cv.jit.keypoints.match for usage."
 				}
 
@@ -930,7 +933,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.keypoints.match"
 				}
 
@@ -1252,37 +1255,33 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "cv.jit.keypoints.draw.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "copyright-jmp.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/help",
+				"bootpath" : "~/dev/cycling/cv.jit/help",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "cv.jit.keypoints.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.keypoints.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "jit.pass.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.keypoints.match.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "cv.jit.keypoints.match.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.resize.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "cv.jit.resize.mxe64",
-				"type" : "mx64"
-			}
-, 			{
-				"name" : "cv.jit.unproject.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.unproject.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0

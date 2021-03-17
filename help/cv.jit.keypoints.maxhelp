@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 2,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 301.0, 172.0, 1156.0, 788.0 ],
+		"rect" : [ 100.0, 100.0, 1081.0, 729.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,14 +37,37 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"args" : [ 1 ],
+					"bgmode" : 0,
+					"border" : 1,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-2",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "cv.input.chooser.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"offset" : [ 4.0, 4.0 ],
+					"outlettype" : [ "jit_matrix" ],
+					"patching_rect" : [ 470.0, 24.0, 245.0, 218.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-53",
 					"linecount" : 6,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 747.5, 350.0, 153.0, 89.0 ],
+					"patching_rect" : [ 680.5, 349.700000000000045, 153.0, 87.0 ],
 					"text" : "By using the normalize attribute, coordinates will be scaled to the [0, 1] range. This is useful when working with images of different sizes like here."
 				}
 
@@ -56,7 +79,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 952.5, 160.0, 154.0, 117.0 ],
+					"patching_rect" : [ 885.5, 159.700000000000045, 154.0, 114.0 ],
 					"text" : "Adjust the threshold to change the number of features detected. Be careful, very small threshold values will return a verly large number of features. Usually between 0.05 and 0.3."
 				}
 
@@ -68,7 +91,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 952.5, 292.5, 153.0, 117.0 ],
+					"patching_rect" : [ 885.5, 292.200000000000045, 153.0, 114.0 ],
 					"text" : "By changing the octaves attribute, you can specify the number of scales at which features are detected. Larger values mean bigger features can be found. Usually between 1 and 3."
 				}
 
@@ -80,7 +103,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 865.0, 463.0, 150.0, 75.0 ],
+					"patching_rect" : [ 798.0, 462.700000000000045, 150.0, 74.0 ],
 					"text" : "The size of the circle is the same as the size of the feature. The colour corresponds to the feature's orientation."
 				}
 
@@ -92,7 +115,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 537.0, 453.0, 320.0, 240.0 ]
+					"patching_rect" : [ 470.0, 452.700000000000045, 320.0, 240.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -103,95 +127,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 537.0, 408.0, 193.0, 22.0 ],
+					"patching_rect" : [ 470.0, 407.700000000000045, 193.0, 22.0 ],
 					"text" : "cv.jit.keypoints.draw @normalize 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-44",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 537.0, 292.5, 151.0, 22.0 ],
-					"text" : "cv.jit.resize @size 320 240"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"hidden" : 1,
-					"id" : "obj-43",
-					"maxclass" : "newobj",
-					"numinlets" : 3,
-					"numoutlets" : 3,
-					"outlettype" : [ "bang", "bang", "" ],
-					"patching_rect" : [ 808.0, 66.0, 93.0, 22.0 ],
-					"text" : "sel 1 0"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"hidden" : 1,
-					"id" : "obj-42",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 845.0, 99.0, 31.0, 22.0 ],
-					"text" : "stop"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"hidden" : 1,
-					"id" : "obj-38",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 808.0, 99.0, 32.0, 22.0 ],
-					"text" : "start"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-39",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 768.0, 75.0, 33.0, 22.0 ],
-					"text" : "read"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-40",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 706.0, 22.0, 24.0, 24.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-41",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 706.0, 75.0, 56.0, 22.0 ],
-					"text" : "qmetro 1"
 				}
 
 			}
@@ -201,92 +138,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 615.0, 194.0, 185.0, 20.0 ],
+					"patching_rect" : [ 494.0, 248.0, 185.0, 20.0 ],
 					"text" : "Only works on greyscale images!"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-34",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 536.0, 194.0, 71.0, 22.0 ],
-					"text" : "jit.rgb2luma"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-33",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 638.0, 75.0, 37.0, 22.0 ],
-					"text" : "close"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-31",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 598.0, 75.0, 35.0, 22.0 ],
-					"text" : "open"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-19",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 536.0, 22.0, 24.0, 24.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-16",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 536.0, 75.0, 56.0, 22.0 ],
-					"text" : "qmetro 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-15",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 706.0, 138.0, 161.0, 22.0 ],
-					"text" : "jit.movie 640 480 @unique 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-14",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 536.0, 138.0, 153.0, 22.0 ],
-					"text" : "jit.grab 640 480 @unique 1"
 				}
 
 			}
@@ -324,7 +177,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_matrix", "jit_matrix", "" ],
-					"patching_rect" : [ 537.0, 355.0, 163.0, 22.0 ],
+					"patching_rect" : [ 470.0, 354.700000000000045, 163.0, 22.0 ],
 					"text" : "cv.jit.keypoints @normalize 1"
 				}
 
@@ -338,7 +191,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 49.0, 547.700000000000045, 70.0, 51.0 ],
+					"patching_rect" : [ 49.0, 547.700000000000045, 70.0, 50.0 ],
 					"text" : "(char)\n1 plane\n2 dims"
 				}
 
@@ -365,7 +218,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 525.200000000000045, 251.0, 66.0 ],
+					"patching_rect" : [ 135.0, 525.200000000000045, 251.0, 65.0 ],
 					"text" : "Keypoint descriptions. These values are not meant to be human-readable. Each row corresponds to the same row in the first output."
 				}
 
@@ -393,7 +246,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 650.0, 134.0, 41.0 ],
+					"patching_rect" : [ 30.0, 650.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -407,7 +260,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 440.700000000000045, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 440.700000000000045, 70.0, 50.0 ],
 					"text" : "(float32)\n6 planes\n2 dims"
 				}
 
@@ -434,7 +287,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 418.200000000000045, 187.0, 96.0 ],
+					"patching_rect" : [ 135.0, 418.200000000000045, 187.0, 94.0 ],
 					"text" : "For each detected feature:\nPlane 0, 1: x and y coordinates\nPlane 2: Size\nPlane 3: Angle in degrees\nPlane 4: Strength\nPlane 5: Octave"
 				}
 
@@ -461,7 +314,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 312.5, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 312.5, 70.0, 50.0 ],
 					"text" : "(char)\n1 plane\n2 dims"
 				}
 
@@ -545,7 +398,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 105.0, 358.0, 141.0 ],
+					"patching_rect" : [ 30.0, 105.0, 358.0, 137.0 ],
 					"text" : "This object works a lot like cv.jit.features, detecting distinctive points in an image. There are two important differences with cv.jit.features, though. First, it looks for features at various scales, so that small and large features are detected. Secondly, it also outputs a set of feature \"descriptors.\" data that can be used to match features detected in two different images. In this implementation, the BRISK detector is used. See cv.jit.keypoints.match for usage."
 				}
 
@@ -571,7 +424,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.keypoints"
 				}
 
@@ -584,7 +437,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 785.5, 292.5, 150.0, 22.0 ]
+					"patching_rect" : [ 718.5, 292.200000000000045, 150.0, 22.0 ]
 				}
 
 			}
@@ -596,7 +449,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 785.5, 253.0, 150.0, 22.0 ]
+					"patching_rect" : [ 718.5, 252.700000000000045, 150.0, 22.0 ]
 				}
 
 			}
@@ -610,134 +463,18 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-34", 0 ],
-					"source" : [ "obj-14", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-34", 0 ],
-					"midpoints" : [ 715.5, 170.0, 545.5, 170.0 ],
-					"source" : [ "obj-15", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-16", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-16", 0 ],
-					"source" : [ "obj-19", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-31", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-33", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-44", 0 ],
+					"destination" : [ "obj-1", 0 ],
 					"order" : 1,
-					"source" : [ "obj-34", 0 ]
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-45", 1 ],
-					"midpoints" : [ 545.5, 268.0, 720.5, 268.0 ],
+					"midpoints" : [ 479.5, 305.700000000000045, 653.5, 305.700000000000045 ],
 					"order" : 0,
-					"source" : [ "obj-34", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"hidden" : 1,
-					"midpoints" : [ 817.5, 130.0, 715.5, 130.0 ],
-					"source" : [ "obj-38", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"source" : [ "obj-39", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-41", 0 ],
-					"order" : 1,
-					"source" : [ "obj-40", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-43", 0 ],
-					"hidden" : 1,
-					"midpoints" : [ 715.5, 57.0, 817.5, 57.0 ],
-					"order" : 0,
-					"source" : [ "obj-40", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"source" : [ "obj-41", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"hidden" : 1,
-					"midpoints" : [ 854.5, 130.0, 715.5, 130.0 ],
-					"source" : [ "obj-42", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-38", 0 ],
-					"hidden" : 1,
-					"source" : [ "obj-43", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-42", 0 ],
-					"hidden" : 1,
-					"source" : [ "obj-43", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-44", 0 ]
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
@@ -763,34 +500,137 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-2::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
+			"obj-2::obj-25" : [ "toggle", "toggle", 0 ],
+			"obj-2::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-2::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-2::obj-37" : [ "number[2]", "number[2]", 0 ],
+			"obj-2::obj-38" : [ "number", "number", 0 ],
+			"obj-2::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
+			"parameterbanks" : 			{
+
+			}
+,
+			"inherited_shortname" : 1
+		}
+,
 		"dependency_cache" : [ 			{
+				"name" : "cv.jit.keypoints.maxhelp.maxsnap",
+				"bootpath" : "~/Documents/Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../Documents/Max 8/Snapshots",
+				"type" : "mx@s",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "cv.jit.keypoints.draw.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "copyright-jmp.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/help",
+				"bootpath" : "~/dev/cycling/cv.jit/help",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "cv.jit.keypoints.mxe64",
-				"type" : "mx64"
+				"name" : "cv.input.chooser.maxpat",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers/utils",
+				"patcherrelativepath" : "../patchers/utils",
+				"type" : "JSON",
+				"implicit" : 1
 			}
 , 			{
-				"name" : "cv.jit.resize.mxe64",
-				"type" : "mx64"
+				"name" : "interfacecolor.js",
+				"bootpath" : "C74:/interfaces",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
-				"name" : "jit.pass.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.keypoints.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "cv.jit.resize.mxo",
+				"type" : "iLaX"
 			}
  ],
-		"autosave" : 0
+		"autosave" : 0,
+		"snapshot" : 		{
+			"filetype" : "C74Snapshot",
+			"version" : 2,
+			"minorversion" : 0,
+			"name" : "snapshotlist",
+			"origin" : "jpatcher",
+			"type" : "list",
+			"subtype" : "Undefined",
+			"embed" : 1,
+			"snapshot" : 			{
+				"valuedictionary" : 				{
+					"parameter_values" : 					{
+						"toggle" : 0.0,
+						"toggle[1]" : 1.0,
+						"toggle[2]" : 1.0,
+						"toggle[3]" : 0.0,
+						"blob" : 						{
+							"number" : [ 50 ],
+							"number[1]" : [ 320 ],
+							"number[2]" : [ 240 ]
+						}
+
+					}
+
+				}
+
+			}
+,
+			"snapshotlist" : 			{
+				"current_snapshot" : 0,
+				"entries" : [ 					{
+						"filetype" : "C74Snapshot",
+						"version" : 2,
+						"minorversion" : 0,
+						"name" : "cv.jit.keypoints.maxhelp",
+						"origin" : "cv.jit.keypoints.maxhelp",
+						"type" : "patcher",
+						"subtype" : "Undefined",
+						"embed" : 1,
+						"snapshot" : 						{
+							"valuedictionary" : 							{
+								"parameter_values" : 								{
+									"toggle" : 0.0,
+									"toggle[1]" : 1.0,
+									"toggle[2]" : 1.0,
+									"toggle[3]" : 0.0,
+									"blob" : 									{
+										"number" : [ 50 ],
+										"number[1]" : [ 320 ],
+										"number[2]" : [ 240 ]
+									}
+
+								}
+
+							}
+
+						}
+,
+						"fileref" : 						{
+							"name" : "cv.jit.keypoints.maxhelp",
+							"filename" : "cv.jit.keypoints.maxhelp.maxsnap",
+							"filepath" : "~/Documents/Max 8/Snapshots",
+							"filepos" : -1,
+							"snapshotfileid" : "16ea7fa4984f0770bf9c96bab15141fc"
+						}
+
+					}
+ ]
+			}
+
+		}
+
 	}
 
 }

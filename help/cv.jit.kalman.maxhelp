@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 362.0, 162.0, 1134.0, 780.0 ],
+		"rect" : [ 34.0, 79.0, 1131.0, 638.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "cv.jit help file",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-14",
@@ -70,7 +72,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 767.0, 15.0, 310.0, 158.0 ],
+					"patching_rect" : [ 767.0, 15.0, 310.0, 154.0 ],
 					"text" : "This implementation of a Kalman filter is constructed with tracking in mind, and it tries to factor the signal's velocity and acceleration. By changing the value of these two attributes, you can tell the filter how much you expect position and velocity to vary. Usually, very small values, such as 0.001 work best.\n\nIf both velocity_weight and acceleration_weight are 0, the input signal is assumed to be *constant*. If only acceleration_weight is 0, then velocity is assumed to be constant."
 				}
 
@@ -82,7 +84,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 921.0, 313.0, 141.0, 34.0 ],
+					"patching_rect" : [ 921.0, 313.0, 141.0, 33.0 ],
 					"text" : "... and remove the noise we just added."
 				}
 
@@ -105,7 +107,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 515.0, 144.0, 138.0, 34.0 ],
+					"patching_rect" : [ 515.0, 144.0, 138.0, 33.0 ],
 					"text" : "Use the mouse position as a source."
 				}
 
@@ -167,8 +169,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -201,6 +203,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "cv.jit help file",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-54",
@@ -496,7 +499,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 838.0, 375.0, 200.0, 200.0 ]
+					"patching_rect" : [ 838.0, 375.0, 200.0, 200.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -507,7 +511,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 633.0, 375.0, 200.0, 200.0 ]
+					"patching_rect" : [ 633.0, 375.0, 200.0, 200.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -522,8 +527,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -556,6 +561,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "cv.jit help file",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-54",
@@ -855,8 +861,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -889,6 +895,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "cv.jit help file",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-3",
@@ -1051,8 +1058,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1085,6 +1092,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "cv.jit help file",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-54",
@@ -1380,7 +1388,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 428.0, 375.0, 200.0, 200.0 ]
+					"patching_rect" : [ 428.0, 375.0, 200.0, 200.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -1419,8 +1428,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1453,6 +1462,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "cv.jit help file",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -1489,8 +1499,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 0,
-											"revision" : 6,
+											"minor" : 2,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1523,6 +1533,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-29",
@@ -1799,7 +1810,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 15.0, 525.0, 134.0, 41.0 ],
+					"patching_rect" : [ 15.0, 525.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -1949,7 +1960,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 15.0, 90.0, 356.0, 96.0 ],
+					"patching_rect" : [ 15.0, 90.0, 356.0, 94.0 ],
 					"text" : "This external uses a Kalman filter to remove noise from a sequence of values.\n\nThis technique is frequently used on values returned by a tracking algorithm, or obtained from sensors that may contain some amount of noise along with the signal."
 				}
 
@@ -1975,7 +1986,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 15.0, 15.0, 356.0, 34.0 ],
+					"patching_rect" : [ 15.0, 15.0, 356.0, 33.0 ],
 					"text" : "cv.jit.kalman"
 				}
 
@@ -2106,12 +2117,12 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "cv.jit.noise.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.noise.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "cv.jit.kalman.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.kalman.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0

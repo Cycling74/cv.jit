@@ -41,6 +41,46 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"handoff" : "",
+					"id" : "obj-12",
+					"maxclass" : "ubutton",
+					"numinlets" : 1,
+					"numoutlets" : 4,
+					"outlettype" : [ "bang", "bang", "", "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 677.0, 611.5, 285.0, 20.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"hidden" : 1,
+					"id" : "obj-7",
+					"linecount" : 4,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 677.0, 633.0, 323.0, 62.0 ],
+					"text" : ";\rmax launchbrowser https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontface" : 2,
+					"id" : "obj-1",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 677.0, 611.5, 285.0, 20.0 ],
+					"text" : "For more information check out the OpenCV docs",
+					"underline" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-36",
 					"maxclass" : "toggle",
 					"numinlets" : 1,
@@ -154,7 +194,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 39.0, 455.0, 50.0, 20.0 ]
+					"patching_rect" : [ 39.0, 455.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -235,7 +275,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 686.0, 560.5, 285.0, 33.0 ],
+					"patching_rect" : [ 681.0, 533.5, 285.0, 33.0 ],
 					"text" : "The output image blinks when chessboard corners coordinates are taken into account."
 				}
 
@@ -283,7 +323,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 686.0, 511.0, 248.0, 33.0 ],
+					"patching_rect" : [ 681.0, 484.0, 248.0, 33.0 ],
 					"text" : "You need a chessboard pattern printed on a rigid paper to perform calibration.",
 					"varname" : "output-description[3]"
 				}
@@ -592,6 +632,14 @@
 					"destination" : [ "obj-71", 0 ],
 					"midpoints" : [ 627.5, 369.75, 330.5, 369.75 ],
 					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"hidden" : 1,
+					"source" : [ "obj-12", 0 ]
 				}
 
 			}

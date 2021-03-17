@@ -41,13 +41,24 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-54",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 283.0, 147.0, 169.0, 20.0 ],
+					"style" : "default",
+					"text" : "Only works on greyscale data"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-13",
 					"linecount" : 3,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 541.0, 314.0, 135.0, 47.0 ],
-					"presentation_linecount" : 3,
 					"style" : "default",
 					"text" : "2-plane float32 matrix.\nPlane 0: Horizontal flow\nPlane 1: Vertical flow"
 				}
@@ -214,18 +225,6 @@
 					"patching_rect" : [ 283.0, 209.0, 175.0, 47.0 ],
 					"style" : "default",
 					"text" : "Use @unique 1... \nSending the same matrix twice will result in zero optical flow."
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-3",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 283.0, 143.0, 91.0, 20.0 ],
-					"style" : "default",
-					"text" : "Greyscale only!"
 				}
 
 			}

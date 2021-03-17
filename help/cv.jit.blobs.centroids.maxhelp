@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 59.0, 79.0, 939.0, 705.0 ],
+		"rect" : [ 34.0, 79.0, 939.0, 705.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,19 @@
 		"helpsidebarclosed" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-65",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 305.0, 196.0, 156.0, 33.0 ],
+					"style" : "default",
+					"text" : "Change thresholding value to obtain a binary image"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-32",
 					"maxclass" : "comment",
@@ -254,7 +267,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 58.0, 333.0, 158.0, 35.0 ],
+					"patching_rect" : [ 58.0, 333.0, 139.0, 35.0 ],
 					"style" : "default",
 					"text" : "cv.jit.label @charmode 1 @threshold 20"
 				}
@@ -651,11 +664,11 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-59",
-					"linecount" : 4,
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 218.0, 333.0, 118.0, 60.0 ],
+					"patching_rect" : [ 233.0, 334.0, 222.0, 33.0 ],
 					"style" : "default",
 					"text" : "You MUST label the image with \"charmode\" set to 1 before processing!"
 				}
@@ -729,7 +742,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-7", 1 ],
-					"midpoints" : [ 67.5, 306.0, 350.0, 306.0, 350.0, 437.0, 221.5, 437.0 ],
+					"midpoints" : [ 67.5, 318.5, 221.5, 318.5 ],
 					"order" : 0,
 					"source" : [ "obj-3", 0 ]
 				}
@@ -754,10 +767,9 @@
 			"obj-3::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-3::obj-25" : [ "toggle", "toggle", 0 ],
 			"obj-3::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-3::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-3::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-3::obj-38" : [ "number", "number", 0 ],
-			"obj-3::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-3::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-3::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-3::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

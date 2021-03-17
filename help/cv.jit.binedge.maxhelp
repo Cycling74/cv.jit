@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 40.0, 79.0, 746.0, 600.0 ],
+		"rect" : [ 40.0, 79.0, 745.0, 540.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -41,6 +41,137 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-63",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 463.0, 184.0, 225.0, 20.0 ],
+					"style" : "default",
+					"text" : "Single-plane matrix."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-64",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 461.0, 145.0, 222.0, 33.0 ],
+					"presentation_linecount" : 3,
+					"style" : "default",
+					"text" : "Single-plane matrix, any type. All non-zero pixels are assumed to be ON."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-68",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 414.0, 184.0, 52.0, 20.0 ],
+					"style" : "default",
+					"text" : "Output:"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-69",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 414.0, 152.0, 43.0, 20.0 ],
+					"style" : "default",
+					"text" : "Input:"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"angle" : 270.0,
+					"bgcolor" : [ 0.54902, 0.54902, 0.54902, 1.0 ],
+					"border" : 1,
+					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
+					"id" : "obj-70",
+					"maxclass" : "panel",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 410.0, 178.0, 51.0, 28.0 ],
+					"proportion" : 0.39,
+					"rounded" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"angle" : 270.0,
+					"bgcolor" : [ 0.54902, 0.54902, 0.54902, 1.0 ],
+					"border" : 1,
+					"bordercolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
+					"id" : "obj-71",
+					"maxclass" : "panel",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 410.0, 142.0, 51.0, 37.0 ],
+					"proportion" : 0.39,
+					"rounded" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"angle" : 270.0,
+					"bgcolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
+					"border" : 1,
+					"bordercolor" : [ 0.54902, 0.54902, 0.54902, 1.0 ],
+					"id" : "obj-72",
+					"maxclass" : "panel",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 410.0, 142.0, 277.0, 35.0 ],
+					"proportion" : 0.39,
+					"rounded" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"angle" : 270.0,
+					"bgcolor" : [ 0.776471, 0.776471, 0.776471, 1.0 ],
+					"border" : 1,
+					"bordercolor" : [ 0.54902, 0.54902, 0.54902, 1.0 ],
+					"id" : "obj-73",
+					"maxclass" : "panel",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 410.0, 177.0, 277.0, 28.0 ],
+					"proportion" : 0.39,
+					"rounded" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-65",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 321.0, 230.0, 156.0, 33.0 ],
+					"style" : "default",
+					"text" : "Change thresholding value to obtain a binary image"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"args" : [ 1 ],
 					"bgmode" : 0,
 					"border" : 1,
@@ -69,7 +200,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 445.0, 523.0, 118.0, 37.0 ],
+					"patching_rect" : [ 549.5, 437.0, 118.0, 37.0 ],
 					"text" : "by Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -85,7 +216,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 438.0, 516.0, 137.0, 50.0 ],
+					"patching_rect" : [ 542.5, 430.0, 137.0, 50.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -93,27 +224,13 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-5",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 415.0, 209.0, 214.0, 20.0 ],
-					"style" : "default",
-					"text" : "Single-plane matrix."
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-6",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 519.0, 350.0, 70.0, 17.0 ],
-					"text" : "Binary edge",
-					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+					"patching_rect" : [ 371.5, 345.0, 73.0, 20.0 ],
+					"style" : "default",
+					"text" : "Binary edge"
 				}
 
 			}
@@ -125,7 +242,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 424.0, 367.0, 160.0, 120.0 ],
+					"patching_rect" : [ 284.5, 367.0, 160.0, 120.0 ],
 					"sync" : 1
 				}
 
@@ -137,22 +254,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 424.0, 298.0, 91.0, 22.0 ],
+					"patching_rect" : [ 284.5, 316.0, 91.0, 22.0 ],
 					"style" : "default",
 					"text" : "cv.jit.binedge"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-9",
-					"linecount" : 3,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 414.0, 149.0, 171.0, 47.0 ],
-					"style" : "default",
-					"text" : "Single-plane matrix, any type. All non-zero pixels are assumed to be ON."
 				}
 
 			}
@@ -163,7 +267,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 366.0, 80.0, 305.0, 47.0 ],
+					"patching_rect" : [ 396.0, 77.0, 305.0, 47.0 ],
 					"style" : "default",
 					"text" : "Marks as ON only pixels that are themselves ON and have a least one OFF neighbour. That is to say, it returns only edge pixels in a binary image."
 				}
@@ -203,30 +307,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-16",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 366.0, 209.0, 52.0, 20.0 ],
-					"style" : "default",
-					"text" : "Output:"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-17",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 366.0, 152.0, 43.0, 20.0 ],
-					"style" : "default",
-					"text" : "Input:"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 24.0,
 					"id" : "obj-41",
@@ -241,45 +321,13 @@
 			}
 , 			{
 				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.54902, 0.54902, 0.54902, 1.0 ],
-					"id" : "obj-44",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 410.0, 339.0, 188.0, 159.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 9.0,
 					"id" : "obj-45",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 169.0, 350.0, 70.0, 17.0 ],
-					"text" : "Binary image",
-					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.54902, 0.54902, 0.54902, 1.0 ],
-					"id" : "obj-46",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 60.0, 339.0, 188.0, 159.0 ],
-					"proportion" : 0.39,
-					"rounded" : 0
+					"patching_rect" : [ 157.0, 345.0, 79.0, 20.0 ],
+					"style" : "default",
+					"text" : "Binary image"
 				}
 
 			}
@@ -295,7 +343,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-8", 0 ],
-					"midpoints" : [ 83.5, 291.0, 433.5, 291.0 ],
+					"midpoints" : [ 83.5, 291.0, 294.0, 291.0 ],
 					"order" : 0,
 					"source" : [ "obj-1", 0 ]
 				}
@@ -313,10 +361,9 @@
 			"obj-1::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-1::obj-25" : [ "toggle", "toggle", 0 ],
 			"obj-1::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-1::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-1::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-1::obj-38" : [ "number", "number", 0 ],
-			"obj-1::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-1::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-1::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-1::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

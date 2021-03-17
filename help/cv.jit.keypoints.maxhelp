@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 1081.0, 729.0 ],
+		"rect" : [ 32.0, 79.0, 1081.0, 729.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,18 @@
 		"helpsidebarclosed" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-54",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 494.0, 252.700000000000045, 169.0, 20.0 ],
+					"style" : "default",
+					"text" : "Only works on greyscale data"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"args" : [ 1 ],
 					"bgmode" : 0,
@@ -129,17 +141,6 @@
 					"outlettype" : [ "jit_matrix" ],
 					"patching_rect" : [ 470.0, 407.700000000000045, 193.0, 22.0 ],
 					"text" : "cv.jit.keypoints.draw @normalize 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-37",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 494.0, 248.0, 185.0, 20.0 ],
-					"text" : "Only works on greyscale images!"
 				}
 
 			}

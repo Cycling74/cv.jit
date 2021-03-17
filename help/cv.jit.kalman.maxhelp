@@ -1412,8 +1412,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 428.0, 166.625, 69.0, 22.0 ],
-					"text" : "metro 30hz"
+					"patching_rect" : [ 428.0, 166.625, 75.0, 22.0 ],
+					"text" : "qmetro 30hz"
 				}
 
 			}

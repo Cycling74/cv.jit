@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 96.0, 79.0, 738.0, 630.0 ],
+		"rect" : [ 34.0, 79.0, 738.0, 630.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,19 @@
 		"helpsidebarclosed" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-65",
+					"linecount" : 4,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 311.0, 200.0, 101.0, 60.0 ],
+					"style" : "default",
+					"text" : "Change thresholding value to obtain a binary image"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontface" : 0,
 					"fontname" : "Arial",
@@ -138,7 +151,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 229.0, 404.5, 106.0, 47.0 ],
+					"patching_rect" : [ 229.0, 404.5, 92.0, 47.0 ],
 					"style" : "default",
 					"text" : "Click inside the window to select a blob."
 				}
@@ -188,9 +201,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 418.0, 306.0, 147.0, 22.0 ],
+					"patching_rect" : [ 418.0, 306.0, 153.0, 22.0 ],
 					"style" : "default",
-					"text" : "cv.jit.floodfill @seed 10 10"
+					"text" : "cv.jit.floodfill @seed 118 90"
 				}
 
 			}
@@ -406,9 +419,6 @@
 			"obj-1::obj-36" : [ "number[1]", "number[1]", 0 ],
 			"obj-1::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-1::obj-38" : [ "number", "number", 0 ],
-			"obj-1::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-1::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-1::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-1::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 81.0, 938.0, 689.0 ],
+		"rect" : [ 34.0, 79.0, 938.0, 689.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,18 @@
 		"helpsidebarclosed" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-54",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 337.0, 242.0, 169.0, 20.0 ],
+					"style" : "default",
+					"text" : "Only works on greyscale data"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-20",
 					"maxclass" : "toggle",
@@ -554,7 +566,7 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-15", 0 ],
-					"midpoints" : [ 78.5, 369.75, 680.5, 369.75 ],
+					"midpoints" : [ 78.5, 318.0, 54.0, 318.0, 54.0, 369.947368383407593, 680.5, 369.947368383407593 ],
 					"order" : 0,
 					"source" : [ "obj-1", 0 ]
 				}
@@ -563,7 +575,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
-					"midpoints" : [ 78.5, 435.0, 480.5, 435.0 ],
+					"midpoints" : [ 78.5, 318.0, 54.0, 318.0, 54.0, 435.0, 480.5, 435.0 ],
 					"order" : 1,
 					"source" : [ "obj-1", 0 ]
 				}
@@ -652,10 +664,9 @@
 			"obj-1::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-1::obj-25" : [ "toggle", "toggle", 0 ],
 			"obj-1::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-1::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-1::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-1::obj-38" : [ "number", "number", 0 ],
-			"obj-1::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-1::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-1::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-1::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

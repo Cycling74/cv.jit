@@ -381,7 +381,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 282.5, 278.0, 169.0, 20.0 ],
 					"style" : "default",
-					"text" : "Only works on greyscale data!"
+					"text" : "Only works on greyscale data"
 				}
 
 			}
@@ -612,7 +612,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 190.0, 307.0, 119.0, 33.0 ],
+					"patching_rect" : [ 190.0, 307.0, 121.0, 33.0 ],
 					"style" : "default",
 					"text" : "Extract binary edges before processing."
 				}
@@ -765,9 +765,6 @@
 			"obj-30::obj-36" : [ "number[1]", "number[1]", 0 ],
 			"obj-30::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-30::obj-38" : [ "number", "number", 0 ],
-			"obj-30::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-30::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-30::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-30::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

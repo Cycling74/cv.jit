@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 939.0, 782.0 ],
+		"rect" : [ 34.0, 79.0, 939.0, 819.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -41,6 +41,19 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-65",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 118.0, 280.0, 156.0, 33.0 ],
+					"style" : "default",
+					"text" : "Change thresholding value to obtain a binary image"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"args" : [ 0, "billiard.mp4" ],
 					"bgmode" : 0,
 					"border" : 1,
@@ -67,7 +80,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 74.5, 374.0, 336.0, 33.0 ],
+					"patching_rect" : [ 74.5, 404.0, 336.0, 33.0 ],
 					"style" : "default",
 					"text" : "You can change the maximum allowed displacement with the \"threshold\" attribute. Default is 10 pixels."
 				}
@@ -80,7 +93,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 127.0, 459.0, 213.0, 47.0 ],
+					"patching_rect" : [ 127.0, 489.0, 213.0, 47.0 ],
 					"style" : "default",
 					"text" : "Unprocessed labels. Notice that colours are not always the same for the same ball."
 				}
@@ -90,7 +103,7 @@
 				"box" : 				{
 					"bgcolor" : [ 0.992218, 0.992218, 0.992218, 1.0 ],
 					"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"cols" : 7,
+					"cols" : 88,
 					"colwidth" : 25,
 					"fontface" : 0,
 					"fontname" : "Geneva",
@@ -119,7 +132,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 385.0, 484.0, 93.0, 22.0 ],
+					"patching_rect" : [ 385.0, 514.0, 93.0, 22.0 ],
 					"style" : "default",
 					"text" : "cv.jit.blobs.color"
 				}
@@ -133,7 +146,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 385.0, 512.0, 320.0, 240.0 ],
+					"patching_rect" : [ 385.0, 542.0, 320.0, 240.0 ],
 					"sync" : 1
 				}
 
@@ -145,7 +158,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 385.0, 459.0, 67.0, 22.0 ],
+					"patching_rect" : [ 385.0, 489.0, 67.0, 22.0 ],
 					"style" : "default",
 					"text" : "jit.charmap"
 				}
@@ -353,7 +366,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 433.0, 435.0, 101.0, 22.0 ],
+					"patching_rect" : [ 433.0, 465.0, 101.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -373,7 +386,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 433.0, 380.0, 169.0, 22.0 ],
+					"patching_rect" : [ 433.0, 410.0, 169.0, 22.0 ],
 					"style" : "default",
 					"text" : "cv.jit.blobs.sort @threshold 20"
 				}
@@ -386,7 +399,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 433.0, 341.0, 116.0, 22.0 ],
+					"patching_rect" : [ 433.0, 371.0, 116.0, 22.0 ],
 					"style" : "default",
 					"text" : "cv.jit.blobs.centroids"
 				}
@@ -399,7 +412,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 28.0, 484.0, 93.0, 22.0 ],
+					"patching_rect" : [ 28.0, 514.0, 93.0, 22.0 ],
 					"style" : "default",
 					"text" : "cv.jit.blobs.color"
 				}
@@ -412,7 +425,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 28.0, 300.0, 139.0, 22.0 ],
+					"patching_rect" : [ 28.0, 330.0, 139.0, 22.0 ],
 					"style" : "default",
 					"text" : "cv.jit.label @charmode 1"
 				}
@@ -426,7 +439,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 28.0, 512.0, 320.0, 240.0 ],
+					"patching_rect" : [ 28.0, 542.0, 320.0, 240.0 ],
 					"sync" : 1
 				}
 
@@ -438,7 +451,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 170.0, 294.5, 127.0, 33.0 ],
+					"patching_rect" : [ 170.0, 324.5, 127.0, 33.0 ],
 					"style" : "default",
 					"text" : "Labeling must be done with char output."
 				}
@@ -533,7 +546,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 311.5, 114.0, 565.0, 194.0 ],
+					"patching_rect" : [ 311.5, 114.0, 567.0, 194.0 ],
 					"style" : "default",
 					"text" : "Labeling connected components with cv.jit.label, one often runs into the problem of objects having different labels from frame to frame due to changing position or area. cv.jit.blobs.sort provides a simple solution to this problem, that although might not work in every situation, at least greatly simplifies simple blob tracking.\n\rBlob centroids must first be computed using either cv.jit.blobs.centroids or cv.jit.blob.moments. For every blob identified in the current frame, the object tries to find the blob that was closest in the previous frame. If that blob is within user-defined bounds, it is considered to be the same and it is given the same label. If no corresponding blobs could be found in the previous frame, it is given a new label.\r\rThe output is a 1-plane single-row char matrix. The number of cells corresponds to the number of blobs in the image. The value of the output is that blob's permanent label. Once a blob dissapears, its label is freed so it can be taken by a new blob.\r"
 				}
@@ -794,7 +807,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 486.0, 459.0, 167.0, 47.0 ],
+					"patching_rect" : [ 486.0, 489.0, 167.0, 47.0 ],
 					"style" : "default",
 					"text" : "Notice that the colour stays mostly the same after processing."
 				}
@@ -811,7 +824,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 426.0, 372.5, 183.0, 35.0 ],
+					"patching_rect" : [ 426.0, 402.5, 183.0, 35.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -866,7 +879,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-10", 0 ],
-					"midpoints" : [ 37.5, 424.0, 394.5, 424.0 ],
+					"midpoints" : [ 37.5, 454.0, 394.5, 454.0 ],
 					"order" : 1,
 					"source" : [ "obj-16", 0 ]
 				}
@@ -875,7 +888,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-14", 0 ],
-					"midpoints" : [ 37.5, 335.0, 442.5, 335.0 ],
+					"midpoints" : [ 37.5, 365.0, 442.5, 365.0 ],
 					"order" : 0,
 					"source" : [ "obj-16", 0 ]
 				}
@@ -908,10 +921,9 @@
 			"obj-28::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-28::obj-25" : [ "toggle", "toggle", 0 ],
 			"obj-28::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-28::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-28::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-28::obj-38" : [ "number", "number", 0 ],
-			"obj-28::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-28::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-28::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-28::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

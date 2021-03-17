@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 50.0, 79.0, 1092.0, 745.0 ],
+		"rect" : [ 34.0, 79.0, 1092.0, 745.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -342,7 +342,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 362.333333333333314, 494.5, 157.0, 33.0 ],
+					"patching_rect" : [ 362.333333333333314, 494.5, 159.0, 33.0 ],
 					"style" : "default",
 					"text" : "# of blobs, or size of largest blob depending on mode"
 				}
@@ -713,11 +713,11 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-65",
-					"linecount" : 3,
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 290.333333333333314, 210.0, 119.666666666666686, 47.0 ],
+					"patching_rect" : [ 292.0, 202.0, 156.0, 33.0 ],
 					"style" : "default",
 					"text" : "Change thresholding value to obtain a binary image"
 				}

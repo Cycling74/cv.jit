@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 79.0, 1073.0, 735.0 ],
+		"rect" : [ 35.0, 79.0, 1073.0, 735.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -41,12 +41,24 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-26",
-					"linecount" : 2,
+					"id" : "obj-6",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 357.0, 226.0, 208.0, 33.0 ],
+					"patching_rect" : [ 341.0, 228.5, 169.0, 20.0 ],
+					"style" : "default",
+					"text" : "Only works on greyscale data"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontface" : 2,
+					"id" : "obj-26",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 397.0, 587.5, 378.0, 20.0 ],
 					"style" : "default",
 					"text" : "cv.jit.extrema object is utilized by the cv.jit.hough2lines abstraction"
 				}
@@ -94,7 +106,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 724.0, 575.0, 128.0, 77.0 ],
+					"patching_rect" : [ 884.0, 541.0, 128.0, 77.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rChristopher P. Baker <https://christopherbaker.net>\rMateusz Herczka\rmsz@westerplatte.net\rCopyright ©2005-2020"
 				}
 
@@ -110,7 +122,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 717.0, 568.0, 142.0, 91.0 ],
+					"patching_rect" : [ 877.0, 534.0, 142.0, 91.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -126,7 +138,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 719.0, 573.0, 144.0, 90.0 ],
+					"patching_rect" : [ 879.0, 539.0, 144.0, 90.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0
 				}
@@ -1363,10 +1375,9 @@
 			"obj-21::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-21::obj-25" : [ "toggle", "toggle", 0 ],
 			"obj-21::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-21::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-21::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-21::obj-38" : [ "number", "number", 0 ],
-			"obj-21::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-21::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-21::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-21::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

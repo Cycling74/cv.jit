@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 84.0, 918.0, 821.0 ],
+		"rect" : [ 34.0, 79.0, 918.0, 821.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -345,7 +345,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 178.0, 384.0, 178.0, 22.0 ],
+					"patching_rect" : [ 178.0, 384.0, 163.0, 22.0 ],
 					"style" : "default",
 					"text" : "read haarFaceCascade1.xml"
 				}
@@ -567,7 +567,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 295.0, 245.0, 173.0, 20.0 ],
 					"style" : "default",
-					"text" : "Only works on greyscale data!"
+					"text" : "Only works on greyscale data"
 				}
 
 			}
@@ -947,9 +947,6 @@
 			"obj-17::obj-36" : [ "number[1]", "number[1]", 0 ],
 			"obj-17::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-17::obj-38" : [ "number", "number", 0 ],
-			"obj-17::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-17::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-17::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-17::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

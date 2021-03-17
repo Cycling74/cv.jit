@@ -389,7 +389,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 295.5, 274.0, 177.0, 20.0 ],
 					"style" : "default",
-					"text" : "Only works on greyscale data!"
+					"text" : "Only works on greyscale data"
 				}
 
 			}

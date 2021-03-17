@@ -80,7 +80,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 231.0, 315.0, 268.0, 87.0 ],
+					"patching_rect" : [ 231.0, 315.0, 270.0, 87.0 ],
 					"style" : "default",
 					"text" : "The \"threshold\" and \"range\" attributes allow you to adjust the sensitivity of the Canny algorithm. Larger threshold values return fewer edges. The \"range\" attribute should be kept small, around its default value of 10 for better results. Both accept values between 0 and 255."
 				}
@@ -232,9 +232,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 302.0, 443.0, 169.0, 20.0 ],
+					"patching_rect" : [ 295.0, 269.0, 169.0, 20.0 ],
 					"style" : "default",
-					"text" : "Only works on greyscale data!"
+					"text" : "Only works on greyscale data"
 				}
 
 			}
@@ -563,10 +563,9 @@
 			"obj-2::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-2::obj-25" : [ "toggle", "toggle", 0 ],
 			"obj-2::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-2::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-2::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-2::obj-38" : [ "number", "number", 0 ],
-			"obj-2::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-2::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-2::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-2::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

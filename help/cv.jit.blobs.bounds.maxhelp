@@ -41,6 +41,19 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-65",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 289.0, 218.0, 156.0, 33.0 ],
+					"style" : "default",
+					"text" : "Change thresholding value to obtain a binary image"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-32",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -798,9 +811,6 @@
 			"obj-2::obj-36" : [ "number[1]", "number[1]", 0 ],
 			"obj-2::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-2::obj-38" : [ "number", "number", 0 ],
-			"obj-2::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-2::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-2::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-2::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

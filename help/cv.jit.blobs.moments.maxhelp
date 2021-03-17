@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 81.0, 974.0, 625.0 ],
+		"rect" : [ 34.0, 79.0, 937.0, 600.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,19 @@
 		"helpsidebarclosed" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 279.0, 201.0, 156.0, 33.0 ],
+					"style" : "default",
+					"text" : "Change thresholding value to obtain a binary image"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"args" : [ 0, "billiard.mp4" ],
 					"bgmode" : 0,
@@ -587,10 +600,9 @@
 			"obj-6::obj-14" : [ "toggle[2]", "toggle[2]", 0 ],
 			"obj-6::obj-25" : [ "toggle", "toggle", 0 ],
 			"obj-6::obj-32" : [ "toggle[3]", "toggle", 0 ],
+			"obj-6::obj-36" : [ "number[1]", "number[1]", 0 ],
+			"obj-6::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-6::obj-38" : [ "number", "number", 0 ],
-			"obj-6::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-6::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-6::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-6::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

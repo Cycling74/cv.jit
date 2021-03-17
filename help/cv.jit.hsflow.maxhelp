@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 79.0, 831.0, 723.0 ],
+		"rect" : [ 34.0, 79.0, 831.0, 723.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -236,7 +236,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 205.5, 299.0, 189.0, 74.0 ],
+					"patching_rect" : [ 205.5, 299.0, 191.0, 74.0 ],
 					"style" : "default",
 					"text" : "Higher values for this parameter results in an optical flow field that is more \"filled-in\", but noisier. Low values are cleaner but only detect movement at strong edges."
 				}
@@ -944,9 +944,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 283.0, 159.0, 91.0, 20.0 ],
+					"patching_rect" : [ 283.0, 159.0, 166.0, 20.0 ],
 					"style" : "default",
-					"text" : "Greyscale only!"
+					"text" : "Only works on greyscale data"
 				}
 
 			}

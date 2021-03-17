@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 742.0, 608.0 ],
+		"rect" : [ 34.0, 79.0, 742.0, 608.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,18 @@
 		"helpsidebarclosed" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-54",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 304.0, 262.0, 216.0, 20.0 ],
+					"style" : "default",
+					"text" : "Only works on greyscale or binary data"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-4",
 					"maxclass" : "comment",
@@ -422,9 +434,6 @@
 			"obj-1::obj-36" : [ "number[1]", "number[1]", 0 ],
 			"obj-1::obj-37" : [ "number[2]", "number[2]", 0 ],
 			"obj-1::obj-38" : [ "number", "number", 0 ],
-			"obj-1::obj-6::obj-4::obj-18" : [ "number[7]", "number[1]", 0 ],
-			"obj-1::obj-6::obj-4::obj-20" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-1::obj-6::obj-4::obj-21" : [ "number[6]", "number", 0 ],
 			"obj-1::obj-8" : [ "toggle[1]", "toggle[1]", 0 ],
 			"parameterbanks" : 			{
 

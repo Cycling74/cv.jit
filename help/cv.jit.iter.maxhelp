@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 2,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 59.0, 106.0, 941.0, 786.0 ],
+		"rect" : [ 34.0, 79.0, 885.0, 627.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"fontface" : 1,
@@ -60,7 +62,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 135.0, 453.200000000000045, 251.0, 36.0 ],
-					"presentation_linecount" : 2,
 					"text" : "The index of the row or column that will be output from the left outlet."
 				}
 
@@ -85,7 +86,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 577.0, 311.5, 150.0, 48.0 ],
+					"patching_rect" : [ 577.0, 311.5, 150.0, 47.0 ],
 					"text" : "Open the Max console to see the output of the print objects."
 				}
 
@@ -174,7 +175,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 538.0, 134.0, 41.0 ],
+					"patching_rect" : [ 30.0, 538.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -188,7 +189,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 375.700000000000045, 70.0, 66.0 ],
+					"patching_rect" : [ 51.0, 375.700000000000045, 70.0, 65.0 ],
 					"text" : "(any type)\nAny planes\n2 dims"
 				}
 
@@ -242,7 +243,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 225.5, 75.0, 51.0 ],
+					"patching_rect" : [ 51.0, 225.5, 75.0, 50.0 ],
 					"text" : "(any type)\nAny planes\n2 dims"
 				}
 
@@ -351,7 +352,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.iter"
 				}
 
@@ -397,14 +398,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "cv.jit.iter.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "copyright-jmp.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/help",
+				"bootpath" : "~/dev/cycling/cv.jit/help",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

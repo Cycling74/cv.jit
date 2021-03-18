@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 2,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 59.0, 106.0, 1091.0, 870.0 ],
+		"rect" : [ 34.0, 79.0, 1097.0, 807.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-53",
@@ -70,8 +72,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 582.200000000000045, 251.0, 66.0 ],
-					"presentation_linecount" : 4,
+					"patching_rect" : [ 135.0, 582.200000000000045, 253.0, 65.0 ],
 					"text" : "A series of lists containing the same information as the first outlet but for LOST objects. The coordinates are the last valid values."
 				}
 
@@ -111,8 +112,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 522.200000000000045, 251.0, 51.0 ],
-					"presentation_linecount" : 3,
+					"patching_rect" : [ 135.0, 522.200000000000045, 251.0, 50.0 ],
 					"text" : "A series of lists containing the same information as the first outlet but for EXISTING objects."
 				}
 
@@ -137,8 +137,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 892.0, 340.200000000000045, 75.0, 62.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 892.0, 340.200000000000045, 75.0, 60.0 ],
 					"text" : "Adjust the size of the objects to track."
 				}
 
@@ -161,8 +160,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 485.5, 289.200000000000045, 235.0, 48.0 ],
-					"presentation_linecount" : 4,
+					"patching_rect" : [ 485.5, 289.200000000000045, 235.0, 47.0 ],
 					"text" : "Use chromakey to extract the objects. Here we assume a green screen like in the billiard video."
 				}
 
@@ -174,7 +172,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 830.0, 178.0, 150.0, 48.0 ],
+					"patching_rect" : [ 830.0, 178.0, 150.0, 47.0 ],
 					"text" : "Send the reset message to start numbering objects at 0 again."
 				}
 
@@ -274,7 +272,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 729.5, 488.200000000000045, 320.0, 240.0 ]
+					"patching_rect" : [ 729.5, 488.200000000000045, 320.0, 240.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -286,7 +285,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 730.0, 295.200000000000045, 233.0, 36.0 ],
+					"patching_rect" : [ 730.0, 295.200000000000045, 233.0, 35.0 ],
 					"text" : "jit.chromakey @mode 1 @minkey 0 @maxkey 1 @color 0 0 1 0 @tol 0.9"
 				}
 
@@ -310,7 +309,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 405.5, 488.200000000000045, 320.0, 240.0 ]
+					"patching_rect" : [ 405.5, 488.200000000000045, 320.0, 240.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -322,7 +322,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 536.0, 25.0, 97.0, 22.0 ],
-					"presentation_linecount" : 4,
 					"text" : "read billiard.mp4"
 				}
 
@@ -424,7 +423,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 723.0, 134.0, 41.0 ],
+					"patching_rect" : [ 30.0, 723.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -451,7 +450,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 403.200000000000045, 251.0, 111.0 ],
+					"patching_rect" : [ 135.0, 403.200000000000045, 251.0, 108.0 ],
 					"text" : "A series of lists containing the following information for all NEW objects:\n\nobject unique ID,\nx coordinate,\ny coordinate,\nradius"
 				}
 
@@ -478,7 +477,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 275.5, 75.0, 51.0 ],
+					"patching_rect" : [ 51.0, 275.5, 75.0, 50.0 ],
 					"text" : "(char)\n1 plane\n2 dims"
 				}
 
@@ -505,7 +504,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 253.0, 251.0, 51.0 ],
+					"patching_rect" : [ 135.0, 253.0, 253.0, 50.0 ],
 					"text" : "A binary image where bright pixels belong to objects that are to be tracked. The background should be black."
 				}
 
@@ -562,7 +561,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 105.0, 356.0, 66.0 ],
+					"patching_rect" : [ 30.0, 105.0, 358.0, 65.0 ],
 					"text" : "This abstraction uses the MeanShift algorithm to track bright regions that are of the same approximate size. This was originally developed to track fingers in touch interfaces but can also be used for any other object."
 				}
 
@@ -588,7 +587,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.touches"
 				}
 
@@ -799,25 +798,25 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "cv.jit.touches.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "cv.jit.touches.draw.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "cv.jit.shift.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.shift.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "cv.jit.resize.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.resize.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0

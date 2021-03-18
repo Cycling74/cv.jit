@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 2,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 419.0, 149.0, 1156.0, 788.0 ],
+		"rect" : [ 34.0, 79.0, 1130.0, 766.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"fontface" : 0,
@@ -47,7 +49,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 700.5, 374.0, 251.0, 36.0 ],
-					"presentation_linecount" : 2,
 					"text" : "This is because the data is in the same format as that fro cv.jit.keypoints."
 				}
 
@@ -74,8 +75,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 700.5, 334.5, 322.0, 39.0 ],
-					"presentation_linecount" : 3,
+					"patching_rect" : [ 700.5, 334.5, 322.0, 38.0 ],
 					"text" : "Not obvious: \nUse cv.jit.keypoints.draw to draw the points!"
 				}
 
@@ -87,7 +87,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 964.0, 28.0, 99.0, 20.0 ],
-					"presentation_linecount" : 2,
 					"text" : "Or a still image..."
 				}
 
@@ -122,8 +121,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 864.0, 53.0, 222.0, 50.0 ],
-					"presentation_linecount" : 4,
+					"patching_rect" : [ 864.0, 53.0, 222.0, 49.0 ],
 					"text" : "importmovie Kusakabe_Kimbei_Four_Women.jpg, bang"
 				}
 
@@ -196,7 +194,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 439.0, 457.0, 320.0, 240.0 ]
+					"patching_rect" : [ 439.0, 457.0, 320.0, 240.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -381,7 +380,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 723.0, 134.0, 41.0 ],
+					"patching_rect" : [ 51.0, 615.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -395,7 +394,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 425.700000000000045, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 425.700000000000045, 70.0, 50.0 ],
 					"text" : "(float32)\n2 planes\n2 dims"
 				}
 
@@ -422,7 +421,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 403.200000000000045, 251.0, 126.0 ],
+					"patching_rect" : [ 135.0, 403.200000000000045, 251.0, 123.0 ],
 					"text" : "This matrix has the same format as the input but only 6 points are returned: \n0: Jaw top (left)\n1: Jaw top (right)\n2: Eye outermost point (left)\n3: Eye outermost point (right)\n4: Nose top\n5: Nose base"
 				}
 
@@ -449,7 +448,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 275.5, 75.0, 81.0 ],
+					"patching_rect" : [ 51.0, 275.5, 75.0, 79.0 ],
 					"text" : "(long, float32, float64)\n4 planes\n1 dim"
 				}
 
@@ -533,7 +532,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 105.0, 356.0, 51.0 ],
+					"patching_rect" : [ 30.0, 105.0, 356.0, 50.0 ],
 					"text" : "This abstraction filters the data of cv.jit.face.landmarks to only return a few useful \"rigid\" points. That is, points that should not move regardless of the facial expression. "
 				}
 
@@ -559,7 +558,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.face.rigidpoints"
 				}
 
@@ -760,50 +759,46 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "cv.jit.keypoints.draw.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "copyright-jmp.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/help",
+				"bootpath" : "~/dev/cycling/cv.jit/help",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "cv.jit.face.rigidpoints.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "lbfmodel.yaml.map",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/misc",
+				"bootpath" : "~/dev/cycling/cv.jit/misc",
 				"patcherrelativepath" : "../misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "cv.jit.notempty.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "cv.jit.faces.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.faces.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "jit.pass.mxe64",
-				"type" : "mx64"
-			}
-, 			{
-				"name" : "cv.jit.face.landmarks.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.face.landmarks.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0

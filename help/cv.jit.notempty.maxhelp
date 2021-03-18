@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 2,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 83.0, 132.0, 987.0, 705.0 ],
+		"rect" : [ 34.0, 79.0, 987.0, 705.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-46",
@@ -44,8 +46,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 763.0, 130.0, 152.0, 48.0 ],
-					"presentation_linecount" : 3,
+					"patching_rect" : [ 763.0, 130.0, 152.0, 47.0 ],
 					"text" : "This matrix only has one cell. It is empty if this cell's value is 0."
 				}
 
@@ -57,7 +58,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 511.0, 162.5, 150.0, 48.0 ],
+					"patching_rect" : [ 511.0, 162.5, 152.0, 47.0 ],
 					"text" : "This matrix is never empty because it has more than 1 cell."
 				}
 
@@ -122,8 +123,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 429.5, 75.0, 51.0 ],
-					"presentation_linecount" : 3,
+					"patching_rect" : [ 51.0, 429.5, 75.0, 50.0 ],
 					"text" : "(any type)\nAny planes\nAny dims"
 				}
 
@@ -310,7 +310,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 574.0, 134.0, 41.0 ],
+					"patching_rect" : [ 30.0, 574.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -324,7 +324,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 283.5, 75.0, 51.0 ],
+					"patching_rect" : [ 51.0, 283.5, 75.0, 50.0 ],
 					"text" : "(any type)\nAny planes\nAny dims"
 				}
 
@@ -407,7 +407,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 105.0, 356.0, 96.0 ],
+					"patching_rect" : [ 30.0, 105.0, 356.0, 94.0 ],
 					"text" : "This abstraction acts like a gate that only passes matrices that are not \"empty.\" Empty matrices have only one cell whose value is equal to 0.\n\nThis tool exists mostly to filter the output of objects like cv.jit.faces."
 				}
 
@@ -433,7 +433,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.notempty"
 				}
 
@@ -523,14 +523,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "cv.jit.notempty.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "copyright-jmp.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/help",
+				"bootpath" : "~/dev/cycling/cv.jit/help",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

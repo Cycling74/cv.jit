@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 2,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 59.0, 106.0, 1147.0, 603.0 ],
+		"rect" : [ 34.0, 79.0, 1005.0, 586.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-18",
@@ -96,7 +98,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 650.0, 469.5, 80.0, 36.0 ]
+					"patching_rect" : [ 650.0, 469.5, 80.0, 35.0 ]
 				}
 
 			}
@@ -134,7 +136,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 650.0, 279.799999999999955, 80.0, 36.0 ]
+					"patching_rect" : [ 650.0, 279.799999999999955, 80.0, 35.0 ]
 				}
 
 			}
@@ -181,7 +183,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 646.5, 127.133333333333297, 104.0, 22.0 ],
-					"presentation_linecount" : 2,
 					"text" : "type float32, bang"
 				}
 
@@ -271,7 +272,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 32.0, 476.0, 134.0, 41.0 ],
+					"patching_rect" : [ 32.0, 476.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -285,7 +286,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 358.700000000000045, 75.0, 51.0 ],
+					"patching_rect" : [ 51.0, 358.700000000000045, 75.0, 50.0 ],
 					"text" : "(any type)\nany planes\nany dims"
 				}
 
@@ -338,7 +339,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 232.5, 75.0, 51.0 ],
+					"patching_rect" : [ 51.0, 232.5, 75.0, 50.0 ],
 					"text" : "(any type)\nany planes\nany dims"
 				}
 
@@ -447,7 +448,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.changetype"
 				}
 
@@ -552,7 +553,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "cv.jit.changetype.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1

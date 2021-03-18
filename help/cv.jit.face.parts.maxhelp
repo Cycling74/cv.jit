@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 2,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 419.0, 149.0, 1156.0, 788.0 ],
+		"rect" : [ 34.0, 79.0, 1156.0, 788.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"color" : [ 0.996078431372549, 0.356862745098039, 0.0, 1.0 ],
@@ -57,8 +59,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 548.0, 331.0, 164.0, 34.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 548.0, 331.0, 164.0, 33.0 ],
 					"text" : "Here we're only interested in the lips."
 				}
 
@@ -70,7 +71,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 964.0, 28.0, 99.0, 20.0 ],
-					"presentation_linecount" : 2,
 					"text" : "Or a still image..."
 				}
 
@@ -105,8 +105,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 864.0, 53.0, 222.0, 50.0 ],
-					"presentation_linecount" : 4,
+					"patching_rect" : [ 864.0, 53.0, 222.0, 49.0 ],
 					"text" : "importmovie Kusakabe_Kimbei_Four_Women.jpg, bang"
 				}
 
@@ -179,7 +178,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 440.0, 453.0, 320.0, 240.0 ]
+					"patching_rect" : [ 440.0, 453.0, 320.0, 240.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -364,7 +364,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 723.0, 134.0, 41.0 ],
+					"patching_rect" : [ 30.0, 723.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -378,7 +378,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 425.700000000000045, 70.0, 51.0 ],
+					"patching_rect" : [ 51.0, 425.700000000000045, 70.0, 50.0 ],
 					"text" : "(float32)\n2 planes\n2 dims"
 				}
 
@@ -405,7 +405,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 403.200000000000045, 251.0, 186.0 ],
+					"patching_rect" : [ 135.0, 403.200000000000045, 251.0, 181.0 ],
 					"text" : "This is the same data as the input but separated as:\n\n0: jaw\n1: left brow\n2: right brow\n3: nose ridge\n4: nose base\n5: left eye\n6: right eye\n7: lips\n8: mouth"
 				}
 
@@ -419,7 +419,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 403.200000000000045, 19.0, 51.0 ],
+					"patching_rect" : [ 30.0, 403.200000000000045, 19.0, 50.0 ],
 					"text" : "0\n...\n8"
 				}
 
@@ -433,7 +433,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 51.0, 275.5, 75.0, 81.0 ],
+					"patching_rect" : [ 51.0, 275.5, 75.0, 79.0 ],
 					"text" : "(long, float32, float64)\n4 planes\n1 dim"
 				}
 
@@ -517,7 +517,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 105.0, 356.0, 81.0 ],
+					"patching_rect" : [ 30.0, 105.0, 356.0, 79.0 ],
 					"text" : "This abstraction is meant to be used with cv.jit.face.landmarks, to more easily access specific parts of the face, such as eyes or lips. Each output matrix only contains the coordinates of points belonging to a particular face part."
 				}
 
@@ -543,7 +543,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.face.parts"
 				}
 
@@ -744,50 +744,46 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "cv.jit.face.landmarks.draw.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "cv.jit.iter.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "copyright-jmp.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/help",
+				"bootpath" : "~/dev/cycling/cv.jit/help",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "cv.jit.face.parts.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "lbfmodel.yaml.map",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/misc",
+				"bootpath" : "~/dev/cycling/cv.jit/misc",
 				"patcherrelativepath" : "../misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "cv.jit.faces.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.faces.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "jit.pass.mxe64",
-				"type" : "mx64"
-			}
-, 			{
-				"name" : "cv.jit.face.landmarks.mxe64",
-				"type" : "mx64"
+				"name" : "cv.jit.face.landmarks.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0

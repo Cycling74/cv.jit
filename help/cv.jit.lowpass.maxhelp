@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 168.0, 127.0, 1233.0, 844.0 ],
+		"rect" : [ 34.0, 79.0, 1175.0, 674.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"helpsidebarclosed" : 1,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-18",
@@ -44,8 +46,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 894.0, 137.0, 165.0, 34.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 894.0, 137.0, 165.0, 33.0 ],
 					"text" : "Reset the filter, either message works."
 				}
 
@@ -81,7 +82,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 982.0, 289.0, 108.0, 62.0 ],
+					"patching_rect" : [ 982.0, 289.0, 108.0, 60.0 ],
 					"text" : "Here we make a simple high-pass filter to only pass the rapid changes."
 				}
 
@@ -97,8 +98,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -131,6 +132,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "cv.jit help file",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-54",
@@ -426,7 +428,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 886.0, 400.0, 200.0, 200.0 ]
+					"patching_rect" : [ 886.0, 400.0, 200.0, 200.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -461,7 +464,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 791.0, 204.75, 139.0, 34.0 ],
+					"patching_rect" : [ 791.0, 204.75, 139.0, 33.0 ],
 					"text" : "Smooth out rapid changes."
 				}
 
@@ -473,7 +476,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 800.0, 91.75, 165.0, 34.0 ],
+					"patching_rect" : [ 800.0, 91.75, 165.0, 33.0 ],
 					"text" : "Change the cutoff frequency. Values are in Hz."
 				}
 
@@ -488,7 +491,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 540.0, 134.0, 41.0 ],
+					"patching_rect" : [ 30.0, 540.0, 134.0, 40.0 ],
 					"text" : "By Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020"
 				}
 
@@ -636,7 +639,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 105.0, 356.0, 96.0 ],
+					"patching_rect" : [ 30.0, 105.0, 356.0, 94.0 ],
 					"text" : "This abstraction treats incoming float values, or lists of floats, as an input signal and applies a simple lowpass filter, smoothing out rapid changes.\n\nThis is similar to the slide object, but it accepts lists and you specify a cutoff frequency in Hz."
 				}
 
@@ -662,7 +665,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 30.0, 356.0, 34.0 ],
+					"patching_rect" : [ 30.0, 30.0, 356.0, 33.0 ],
 					"text" : "cv.jit.lowpass"
 				}
 
@@ -678,8 +681,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -712,6 +715,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "cv.jit help file",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-54",
@@ -1007,7 +1011,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 651.0, 400.0, 200.0, 200.0 ]
+					"patching_rect" : [ 651.0, 400.0, 200.0, 200.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -1082,7 +1087,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 498.0, 71.625, 200.0, 48.0 ],
+					"patching_rect" : [ 498.0, 71.625, 200.0, 47.0 ],
 					"text" : "Use the mouse position as a source. Try moving the mouse very quickly back and forth."
 				}
 
@@ -1098,8 +1103,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1132,6 +1137,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "cv.jit help file",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-54",
@@ -1427,7 +1433,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 423.0, 400.0, 200.0, 200.0 ]
+					"patching_rect" : [ 423.0, 400.0, 200.0, 200.0 ],
+					"sync" : 1
 				}
 
 			}
@@ -1450,8 +1457,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 423.0, 104.75, 69.0, 22.0 ],
-					"text" : "metro 30hz"
+					"patching_rect" : [ 423.0, 104.75, 75.0, 22.0 ],
+					"text" : "qmetro 30hz"
 				}
 
 			}
@@ -1466,8 +1473,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1500,6 +1507,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "cv.jit help file",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -1536,8 +1544,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 0,
-											"revision" : 6,
+											"minor" : 2,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1570,6 +1578,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-29",
@@ -1995,7 +2004,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "cv.jit.lowpass.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/cv.jit/patchers",
+				"bootpath" : "~/dev/cycling/cv.jit/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1

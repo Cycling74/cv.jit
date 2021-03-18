@@ -372,7 +372,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 34.0, 504.0, 100.0, 100.0 ],
+					"patching_rect" : [ 35.0, 505.0, 100.0, 100.0 ],
 					"sync" : 1
 				}
 
@@ -422,7 +422,6 @@
 				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "jit.pwindow",
-					"name" : "u353004481",
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
@@ -526,7 +525,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 474.0, 97.0, 352.0, 87.0 ],
+					"patching_rect" : [ 474.0, 97.0, 355.0, 87.0 ],
 					"style" : "default",
 					"text" : "cv.jit.orientation calculates the orientation of a shape's main axis. You need to compute moments of inertia beforehand.\r\rThe orientation is calculated in radians, with 0 and Pi radians corresponding to a horizontal line. Pi/2 radians is vertical. Note that cv.jit.orientation only returns values between 0. and Pi."
 				}

@@ -175,8 +175,13 @@ Once you open the project in Xcode or Visual Studio, select the ALL_BUILD target
 
 # cv.jit change log
 
+## Version 2.0
+2021-03-07
+* Several bug fixes
+* help file and launcher patch updates
+
 ## Version 1.9
-2020-03-07
+2020-03-19
 
 ### New Externals
 - cv.jit.blur 

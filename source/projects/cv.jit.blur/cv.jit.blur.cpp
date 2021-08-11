@@ -22,7 +22,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "c74_jitter.h"
+#include "cvjit.h"
 
 #include "cvjit.h"
 #include "jitOpenCV.h"

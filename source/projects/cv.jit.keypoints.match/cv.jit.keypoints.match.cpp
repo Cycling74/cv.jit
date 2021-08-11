@@ -32,7 +32,6 @@ in Jitter externals.
 */
 
 
-#include "jitOpenCV.h"
 #include "cvjit.h"
 
 #include "cvjit_keypoints.h"

@@ -32,8 +32,7 @@ in Jitter externals.
 */
 
 #include "cvjit.h"
-#include "jitOpenCV.h"
-#include "c74_jitter.h"
+#include "cvjit.h"
 #include "ext_sysfile.h"
 using namespace c74::max;
 

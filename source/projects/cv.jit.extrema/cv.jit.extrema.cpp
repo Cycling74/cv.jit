@@ -27,7 +27,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 /*Note: removed experimental code that was commented out. --jmp*/
 
-#include "c74_jitter.h"
+#include "cvjit.h"
 
 using namespace c74::max;
 

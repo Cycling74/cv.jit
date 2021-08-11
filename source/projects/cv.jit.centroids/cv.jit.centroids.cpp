@@ -29,7 +29,7 @@ Possible improvements:
 	performance.
 */
 
-#include "c74_jitter.h"
+#include "cvjit.h"
 
 using namespace c74::max;
 

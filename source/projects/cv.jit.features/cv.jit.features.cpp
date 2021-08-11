@@ -32,8 +32,7 @@ in Jitter externals.
 */
 
 
-#include "jitOpenCV.h"
-#include "c74_jitter.h"
+#include "cvjit.h"
 
 #include <vector>
 

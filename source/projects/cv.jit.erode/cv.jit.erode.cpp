@@ -24,7 +24,7 @@ along with cv.jit.  If not, see <http://www.gnu.org/licenses/>.
 
 /*Note: This is the Windows implementation of the cv.jit.erode external.*/
 
-#include "c74_jitter.h"
+#include "cvjit.h"
 using namespace c74::max;
 
 #define MIN std::min

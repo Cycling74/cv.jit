@@ -29,7 +29,6 @@ Possible improvements:
 	performance.
 */
 
-#include "c74_jitter.h"
 #include "cvjit.h"
 #include "cvjit_keypoints.h"
 #include <opencv2/calib3d.hpp>

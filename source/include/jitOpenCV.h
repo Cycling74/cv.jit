@@ -35,8 +35,8 @@ in Jitter externals.
 #ifndef CVJIT_JIT_OPENCV_H
 #define CVJIT_JIT_OPENCV_H
 
-
 #include "c74_jitter.h"
+using c74::max::t_ptr_int;
 
 #ifdef CVJIT_LEGACY
 #include <opencv/cv.h>
@@ -128,7 +128,7 @@ namespace cvjit {
 		}
 		info.dimstride[1] = (long)mat.step;
 		info.size = (long)(mat.step * mat.rows);
-		info.flags = JIT_MATRIX_DATA_REFERENCE | JIT_MATRIX_DATA_FLAGS_USE;
+		info.flags = c74::max::JIT_MATRIX_DATA_REFERENCE | c74::max::JIT_MATRIX_DATA_FLAGS_USE;
 		c74::max::object_method(jitterMatrix, c74::max::_jit_sym_setinfo_ex, (void*)&info);
 		c74::max::object_method(jitterMatrix, c74::max::_jit_sym_data, (void*)mat.data);
 	}
@@ -142,11 +142,11 @@ namespace cvjit {
 typedef struct _matrix_conv_info
 {
 	long 	flags;									///< flags for whether or not to use interpolation, or source/destination dimensions
-	long	planemap[JIT_MATRIX_MAX_PLANECOUNT];	///< plane mapping
-	long	srcdimstart[JIT_MATRIX_MAX_DIMCOUNT];	///< source dimension start
-	long	srcdimend[JIT_MATRIX_MAX_DIMCOUNT];		///< source dimension end
-	long	dstdimstart[JIT_MATRIX_MAX_DIMCOUNT];	///< destination dimension start
-	long	dstdimend[JIT_MATRIX_MAX_DIMCOUNT];		///< destination dimension end
+	long	planemap[c74::max::JIT_MATRIX_MAX_PLANECOUNT];	///< plane mapping
+	long	srcdimstart[c74::max::JIT_MATRIX_MAX_DIMCOUNT];	///< source dimension start
+	long	srcdimend[c74::max::JIT_MATRIX_MAX_DIMCOUNT];		///< source dimension end
+	long	dstdimstart[c74::max::JIT_MATRIX_MAX_DIMCOUNT];	///< destination dimension start
+	long	dstdimend[c74::max::JIT_MATRIX_MAX_DIMCOUNT];		///< destination dimension end
 } t_matrix_conv_info;
 
 void * jit_argb_to_cv_rgba(void *in_matrix) {
@@ -250,7 +250,7 @@ void cvMat2Jitter(CvMat *mat, void *jitMat)
 	}
 	info.dimstride[1] = mat->step;
 	info.size = mat->step * mat->rows;
-	info.flags = JIT_MATRIX_DATA_REFERENCE | JIT_MATRIX_DATA_FLAGS_USE;
+	info.flags = c74::max::JIT_MATRIX_DATA_REFERENCE | c74::max::JIT_MATRIX_DATA_FLAGS_USE;
 	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_setinfo_ex, (void*)&info);
 	c74::max::object_method((c74::max::t_object*)jitMat, c74::max::_jit_sym_data, (void*)mat->data.ptr);
 }

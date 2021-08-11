@@ -5,11 +5,9 @@ project(${THIS_FOLDER_NAME})
 
 message("Generating ${THIS_FOLDER_NAME}")
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-api/script/max-pretarget.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-sdk-base/script/max-pretarget.cmake)
 
 if (APPLE)
-	# max-pretarget sets it to x86_64;i386 but i386 is not supported anymore
-	set(CMAKE_OSX_ARCHITECTURES x86_64)
 	set(CMAKE_OSX_DEPLOYMENT_TARGET 10.12)
 endif ()
 
@@ -70,6 +68,9 @@ else()
 	elseif(APPLE) 
 		file(GLOB OPENCV_LIBS "${OPENCV4_INSTALL_DIR}/lib/*.a")
 		list(REMOVE_ITEM OPENCV_LIBS "${OPENCV4_INSTALL_DIR}/lib/libittnotify.a")
+		if (CMAKE_OSX_ARCHITECTURES MATCHES "arm64")
+			list(APPEND OPENCV_LIBS "${OPENCV4_INSTALL_DIR}/lib/opencv4/3rdparty/libtegra_hal.a")
+		endif()
 	endif()
 endif()
 

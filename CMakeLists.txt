@@ -49,16 +49,16 @@ execute_process(
 
 # Important, make sure to set the OpenCV versions we use!
 if (NOT OPENCV_VERSION_CURRENT)
-	SET(OPENCV_VERSION_CURRENT "4.1.0")
+	SET(OPENCV_VERSION_CURRENT "4.5.3")
 endif()
 
 if (NOT OPENCV_VERSION_LEGACY)
-	SET(OPENCV_VERSION_LEGACY "2.4.12")
+	SET(OPENCV_VERSION_LEGACY "2.4.13")
 endif()
 
 
 # Misc setup and subroutines
-include(${CMAKE_CURRENT_SOURCE_DIR}/source/max-api/script/max-package.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/source/max-sdk-base/script/max-package.cmake)
 
 # Setup some useful variables
 if(APPLE)

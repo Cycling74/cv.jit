@@ -5,15 +5,16 @@
 #define JITTER
 //#define OPENCV
 
-
+#include <sys/types.h>
+#include <pthread.h>
 #include <limits>
 #include <cmath>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "jitOpenCV.h"
 
-#include "c74_jitter.h"
 using namespace c74::max;
 
 
@@ -451,7 +452,7 @@ namespace cvjit {
 				}
 				return get();
 			}
-			t_atom_long val = clamp(atom_getlong(a), (t_atom_long)0, (t_atom_long)(count - 1));
+			t_atom_long val = std::clamp(atom_getlong(a), (t_atom_long)0, (t_atom_long)(count - 1));
 			return { m_symbols[val], val };
 		}
 	};
@@ -532,7 +533,7 @@ namespace cvjit {
 	t_jit_matrix_info resize_matrix(t_object * matrix, const std::vector<long> & dims) {
 		t_jit_matrix_info info;
 		jit_object_method(matrix, _jit_sym_getinfo, &info);
-		info.dimcount = c74::max::clamp((int)dims.size(), 1, JIT_MATRIX_MAX_DIMCOUNT);
+		info.dimcount = std::clamp((int)dims.size(), 1, (int)JIT_MATRIX_MAX_DIMCOUNT);
 
 		for (int i = 0; i < info.dimcount; i++) {
 			info.dim[i] = dims[i];

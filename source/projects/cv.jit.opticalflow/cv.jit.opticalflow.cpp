@@ -114,7 +114,7 @@ t_jit_err cv_jit_opticalflow_set_method(t_cv_jit_opticalflow *x, void *attr, lon
 		}
 
 	}else{
-		long m = clamp((long)atom_getlong(av),0L,3L);
+		long m = std::clamp((long)atom_getlong(av),0L,3L);
 		switch(m){
 		case 0:
 			x->of->setMethod(OpticalFlow::Block_matching);

@@ -161,8 +161,8 @@ t_jit_err cv_jit_lines_matrix_calc(t_cv_jit_lines *x, void *inputs, void *output
 		}		
 		
 		//Calculate parameter values for Hough and Canny algorithms
-		thresh1 = c74::max::clamp(x->threshold - THRESHOLD_RANGE, 0.0, 255.0);
-		thresh2 = c74::max::clamp(x->threshold + THRESHOLD_RANGE, 0.0, 255.0);
+		thresh1 = std::clamp(x->threshold - THRESHOLD_RANGE, 0.0, 255.0);
+		thresh2 = std::clamp(x->threshold + THRESHOLD_RANGE, 0.0, 255.0);
 		
 		theta = CV_PI /  (180 / (double)x->resolution);
 		rho = (double)x->resolution;

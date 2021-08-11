@@ -190,7 +190,7 @@ inline void resize_vec(std::vector<T> & vec, t_atom_long size) {
 
 inline void set_dims(t_cv_jit_noise * x, t_atom_long count) {
 	if (x) {
-		x->m_dims = clamp(count, (t_atom_long)1, MAX_DIMS);
+		x->m_dims = std::clamp(count, (t_atom_long)1, MAX_DIMS);
 
 		resize_vec(x->m_mode, x->m_dims);
 		resize_vec(x->m_min, x->m_dims);
@@ -214,7 +214,7 @@ inline void set_seed(t_cv_jit_noise * x) {
 }
 
 inline t_atom_long get_dims(t_atom * a) {
-	return clamp(atom_getlong(a), (t_atom_long)1, MAX_DIMS);
+	return std::clamp(atom_getlong(a), (t_atom_long)1, MAX_DIMS);
 }
 
 void *cv_jit_noise_new(t_symbol *s, short argc, t_atom *argv)
@@ -304,7 +304,7 @@ void cv_jit_noise_set_mode(t_cv_jit_noise *x, t_symbol *s, short argc, t_atom *a
 				}
 			}
 			else {
-				t_atom_long v = clamp(atom_getlong(argv + j), (t_atom_long)0, (t_atom_long)distribution_count - 1);
+				t_atom_long v = std::clamp(atom_getlong(argv + j), (t_atom_long)0, (t_atom_long)distribution_count - 1);
 				s = distribution_syms[v];
 			}
 

@@ -135,8 +135,8 @@ t_jit_err cv_jit_canny_matrix_calc(t_cv_jit_canny *x, void *inputs, void *output
 		cv::Mat edgeMat = cvjit::wrapJitterMatrix(out_matrix, out_minfo, out_bp);
 		
 		//Calculate threshold values
-		thresh1 = c74::max::clamp(x->threshold - x->range, 0.0, 255.0);
-		thresh2 = c74::max::clamp(x->threshold + x->range, 0.0, 255.0);
+		thresh1 = std::clamp(x->threshold - x->range, 0.0, 255.0);
+		thresh2 = std::clamp(x->threshold + x->range, 0.0, 255.0);
 
 		//calculate
 		cv::Canny(sourceMat, edgeMat, thresh1, thresh2, 3);

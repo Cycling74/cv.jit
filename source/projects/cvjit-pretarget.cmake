@@ -8,7 +8,7 @@ message("Generating ${THIS_FOLDER_NAME}")
 include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-sdk-base/script/max-pretarget.cmake)
 
 if (APPLE)
-	set(CMAKE_OSX_DEPLOYMENT_TARGET 10.12)
+	set(CMAKE_OSX_DEPLOYMENT_TARGET "10.12" CACHE STRING "Minimum OS X deployment version" FORCE)
 endif ()
 
 # max-pretarget.cmake defines the output directory to the externals folder.

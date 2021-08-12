@@ -6,7 +6,9 @@
 //#define OPENCV
 
 #include <sys/types.h>
-#include <pthread.h>
+#ifdef __APPLE__
+	#include <pthread.h>
+#endif
 #include <limits>
 #include <cmath>
 #include <string>

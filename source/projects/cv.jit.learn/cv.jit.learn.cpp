@@ -234,15 +234,20 @@ void cv_jit_learn_read(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 
 void cv_jit_learn_write(t_cv_jit_learn *x, t_symbol *s, short argc, t_atom *argv)
 {
-	char fname[256];
+    const int STRING_LENGTH = 256;
+	char fname[STRING_LENGTH];
 	short id;
+    t_fourcc file_type_selection;
+    t_fourcc valid_types[] = {'maxb'};
 	t_filehandle handle;
 	t_ptr_size count;
 	t_int32 cvjt;
+    
+    const int valid_type_count = sizeof(valid_types) / sizeof(t_fourcc);
 	
-	strncpy(fname,".mxb",256);  //Display .mxb in the dialog box
+	strncpy(fname,".mxb",STRING_LENGTH);  //Display .mxb in the dialog box
 
-	if (!saveasdialog_extended(fname, &id, NULL, NULL, -1)) {
+	if (!saveasdialog_extended(fname, &id, &file_type_selection, valid_types, valid_type_count)) {
 		int type = 'cvjt';
 		path_createsysfile(fname, id, type, &handle);
 		//Write ID code

@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 0,
+			"minor" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 869.0, 577.0 ],
+		"rect" : [ 34.0, 87.0, 869.0, 577.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -134,8 +134,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 0,
+							"minor" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -191,7 +191,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 17.0, 26.014590347923686, 1009.0, 205.0 ],
-									"text" : "All externals, abstractions and help files in the cv.jit package by Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020 \n\nexcept:\n\n- `cv.jit.hough` by Christopher P. Baker <https://christopherbaker.net> and Mateusz Herczka 2004\n- `cv.jit.extrema` by Christopher P. Baker <https://christopherbaker.net> and Mateusz Herczka 2004, with modifications by Jean-Marc Pelletier 2006\n- `cv.jit.hough2lines` by Christopher P. Baker <https://christopherbaker.net>, Mateusz Herczka and Jean-Marc Pelletier 2006\n- `cv.jit.calibration`, `cv.jit.findchessboardcorners`, `cv.jit.findhomography`, `cv.jit.getperspective`, `cv.jit.perspective` by Antoine Villeret <antoine.villeret@gmail.com>\n\n\nadditional bug fixes and package support by Cycling '74"
+									"text" : "All externals, abstractions and help files in the cv.jit package by Jean-Marc Pelletier\rjmp@jmpelletier.com\rCopyright ©2003-2020 \n\nexcept:\n\n- cv.jit.hough by Christopher P. Baker <https://christopherbaker.net> and Mateusz Herczka 2004\n- cv.jit.extrema by Christopher P. Baker <https://christopherbaker.net> and Mateusz Herczka 2004, with modifications by Jean-Marc Pelletier 2006\n- cv.jit.hough2lines by Christopher P. Baker <https://christopherbaker.net>, Mateusz Herczka and Jean-Marc Pelletier 2006\n- cv.jit.calibration, cv.jit.findchessboardcorners, cv.jit.findhomography, cv.jit.getperspective, cv.jit.perspective by Antoine Villeret <antoine.villeret@gmail.com>\n- cv.jit.findcontours by Rajan Craveri <https://www.patreon.com/micron> 2020\n\nadditional bug fixes and package support by Cycling '74"
 								}
 
 							}
@@ -431,14 +431,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 0,
+							"minor" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 122.0, 79.0, 1082.0, 843.0 ],
+						"rect" : [ 122.0, 87.0, 1082.0, 843.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2305,6 +2305,25 @@
 												"year" : "2019",
 												"author1" : "Jean-Marc Pelletier",
 												"contact1" : "jmp@jmpelletier.com",
+												"author2" : "",
+												"contact2" : "",
+												"author3" : "",
+												"contact3" : ""
+											}
+,
+											"cv.jit.findcontours" : 											{
+												"name" : "cv.jit.findcontours",
+												"type" : "external",
+												"deprecated" : "0",
+												"help" : "TRUE",
+												"category" : "features",
+												"title" : "cv.jit.findcontours",
+												"subtitle" : "Find contours in a binary image",
+												"num_inlets" : "1",
+												"num_outlets" : "1",
+												"year" : "2020",
+												"author1" : "Rajan Craveri",
+												"contact1" : "https://www.patreon.com/micron",
 												"author2" : "",
 												"contact2" : "",
 												"author3" : "",

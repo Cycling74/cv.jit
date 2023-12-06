@@ -175,6 +175,10 @@ Once you open the project in Xcode or Visual Studio, select the ALL_BUILD target
 
 # cv.jit change log
 
+## Version 2.0.2
+* cv.jit.findcontours
+* fix cv.jit.learn write message
+
 ## Version 2.0
 2021-03-07
 * Several bug fixes
